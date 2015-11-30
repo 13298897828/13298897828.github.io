@@ -37,16 +37,26 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
+<meta name="description" content="CocoaPods是什么当我们开发iOS项目时候，会经常使用到第三方类库，并且会使用很多。大家的做法基本上都是到GitHub上下载一个一个的类库，然后导入到工程中，并且引入各种的类库，做各种的配置。有时候还要处理ARC与MRC的问题，很麻烦。还有一种情况，就是当第三方类库出现升级的情况时候，我们还需要删掉旧的，下载新的，再重新导入。
+CocoaPods就是类库管理工具，刚刚提到所有麻烦的操作，Co">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于iOS的剪贴板基本知识">
-<meta property="og:url" content="http://yoursite.com/2015/11/30/关于iOS的剪贴板基本知识/index.html">
+<meta property="og:title" content="cocopods使用">
+<meta property="og:url" content="http://yoursite.com/2015/11/28/cocopods使用/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
-<meta property="og:updated_time" content="2015-11-30T01:29:54.000Z">
+<meta property="og:description" content="CocoaPods是什么当我们开发iOS项目时候，会经常使用到第三方类库，并且会使用很多。大家的做法基本上都是到GitHub上下载一个一个的类库，然后导入到工程中，并且引入各种的类库，做各种的配置。有时候还要处理ARC与MRC的问题，很麻烦。还有一种情况，就是当第三方类库出现升级的情况时候，我们还需要删掉旧的，下载新的，再重新导入。
+CocoaPods就是类库管理工具，刚刚提到所有麻烦的操作，Co">
+<meta property="og:image" content="http://i5.tietuku.com/935159867a2c3f82.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/74311666jw1eygxopggdtj20gw02mjrt.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/5847b5e6afb84ba5.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/5266e8d6fc217c17.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/5266e8d6fc217c17.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/87276160ad89fb15.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/52b00c779be4764e.jpg">
+<meta property="og:updated_time" content="2015-11-28T14:51:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于iOS的剪贴板基本知识">
-<meta name="twitter:description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
+<meta name="twitter:title" content="cocopods使用">
+<meta name="twitter:description" content="CocoaPods是什么当我们开发iOS项目时候，会经常使用到第三方类库，并且会使用很多。大家的做法基本上都是到GitHub上下载一个一个的类库，然后导入到工程中，并且引入各种的类库，做各种的配置。有时候还要处理ARC与MRC的问题，很麻烦。还有一种情况，就是当第三方类库出现升级的情况时候，我们还需要删掉旧的，下载新的，再重新导入。
+CocoaPods就是类库管理工具，刚刚提到所有麻烦的操作，Co">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -56,7 +66,7 @@
   };
 </script>
 
-    <title> 关于iOS的剪贴板基本知识 // 张天琦 </title>
+    <title> cocopods使用 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 <!--[if lte IE 8]>
@@ -159,7 +169,7 @@
           
           
             
-              关于iOS的剪贴板基本知识
+              cocopods使用
             
           
         </h1>
@@ -168,11 +178,22 @@
       <div class="post-meta">
         <span class="post-time">
           發表於
-          <time itemprop="dateCreated" datetime="2015-11-30T09:18:10+08:00" content="2015-11-30">
-            2015-11-30
+          <time itemprop="dateCreated" datetime="2015-11-28T19:32:44+08:00" content="2015-11-28">
+            2015-11-28
           </time>
         </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分類於
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+              
+              
+
+            
+          </span>
         
 
         
@@ -187,123 +208,51 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">[转]关于制作一个像淘宝那样复制链接就可以生成一条链接</h3><a id="more"></a>
-<h4 id="在iOS中下面三个控件，自身就有复制-粘贴的功能：">在iOS中下面三个控件，自身就有复制-粘贴的功能：</h4><ul>
-<li>1、UITextView</li>
-<li>2、UITextField</li>
-<li>3、UIWebView</li>
-</ul>
-<h4 id="UIKit_framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。">UIKit framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。</h4><ul>
-<li>1、UIPasteboard：我们可以向其中写入数据，也可以读取数据<ul>
-<li>2、UIMenuController：显示一个快捷菜单，用来展示复制、剪贴、粘贴等选择的项。</li>
-<li>3、UIResponder中的 canPerformAction:withSender:用于控制哪些命令显示在快捷菜单中。</li>
-<li>4、当快捷菜单上的命令点击的时候，UIResponderStandardEditActions将会被调用。</li>
-</ul>
-</li>
-</ul>
-<h4 id="下面这些项能被放置到剪贴板中">下面这些项能被放置到剪贴板中</h4><ul>
-<li>1、UIPasteboardTypeListString —   字符串数组, 包含kUTTypeUTF8PlainText</li>
-<li>2、UIPasteboardTypeListURL —   URL数组，包含kUTTypeURL</li>
-<li>3、UIPasteboardTypeListImage —   图形数组, 包含kUTTypePNG 和kUTTypeJPEG</li>
-<li><p>4、UIPasteboardTypeListColor —   颜色数组</p>
-<p>剪贴板的类型分为两种：<br>系统级：使用UIPasteboardNameGeneral和UIPasteboardNameFind，系统级应用程序关闭，或者卸载的数据不会丢失。<br>应用程序级：通过设置，可以让数据在应用程序关闭之后仍然保存在剪贴板中，但是应用程序卸载之后数据就会失去。我们可用通过pasteboardWithName:create：来创建。</p>
-</li>
-</ul>
-<p>例子如下：<br>有时候我们可能需要复制UILabel上的文本，或者UIImageView的图片，而UILabel和UIImageView默认是不响应Touch事件的，也无法复制，那么我们就需要自己实现一个可复制的UILabel。新添加一个类继承自UILabel：<br>[cpp] view plaincopy<br>@interface UICopyLabel : UILabel<br>@end    </p>
-<pre><code><span class="preprocessor">#import <span class="title">"UICopyLabel.h"</span>    </span>
-<span class="class"><span class="keyword">@implementation</span> <span class="title">UICopyLabel</span>    </span>
-<span class="keyword">@end</span>    
-</code></pre><p>为了能接收到事件（能成为第一响应者），我们需要覆盖一个方法：</p>
-<pre><code>-(<span class="built_in">BOOL</span>)canBecomeFirstResponder  
-{    
-<span class="keyword">return</span> <span class="literal">YES</span>;    
-}    
-</code></pre><p> 还需要针对复制的操作覆盖两个方法： </p>
-<pre><code><span class="comment">// 可以响应的方法  </span>
--(<span class="built_in">BOOL</span>)canPerformAction:(SEL)action withSender:(<span class="keyword">id</span>)sender  
-{    
-<span class="keyword">return</span> (action == <span class="keyword">@selector</span>(<span class="keyword">copy</span>:));    
-}    
-
-<span class="comment">//针对于响应方法的实现    </span>
-    -(<span class="keyword">void</span>)<span class="keyword">copy</span>:(<span class="keyword">id</span>)sender  
-{    
-<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];    
-pboard<span class="variable">.string</span> = <span class="keyword">self</span><span class="variable">.text</span>;    
-}    
-</code></pre><p>有了以上三个方法，我们就能处理copy了，当然，在能接收到事件的情况下：</p>
-<pre><code><span class="comment">//UILabel默认是不接收事件的，我们需要自己添加touch事件    </span>
--(<span class="keyword">void</span>)attachTapHandler  
-{    
-<span class="keyword">self</span><span class="variable">.userInteractionEnabled</span> = <span class="literal">YES</span>;  <span class="comment">//用户交互的总开关    </span>
-<span class="built_in">UITapGestureRecognizer</span> *touch = [[<span class="built_in">UITapGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(handleTap:)];    
-touch<span class="variable">.numberOfTapsRequired</span> = <span class="number">2</span>;    
-[<span class="keyword">self</span> addGestureRecognizer:touch];    
-[touch release];    
-}    
-<span class="comment">//绑定事件    </span>
-- (<span class="keyword">id</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame    
-{    
-<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame];    
-<span class="keyword">if</span> (<span class="keyword">self</span>)  
-   {    
-    [<span class="keyword">self</span> attachTapHandler];    
-}    
-<span class="keyword">return</span> <span class="keyword">self</span>;    
-}    
-<span class="comment">//同上    </span>
--(<span class="keyword">void</span>)awakeFromNib  
-{    
-[<span class="keyword">super</span> awakeFromNib];    
-[<span class="keyword">self</span> attachTapHandler];    
-}    
-</code></pre><p>我们已经可以接收到事件了！由于我在上方将tap数设为2，所以需要双击才能捕获，接下来，我们需要处理这个tap，以便让菜单栏弹出来：</p>
-<pre><code>-(<span class="keyword">void</span>)handleTap:(<span class="built_in">UIGestureRecognizer</span>*) recognizer  
-{    
- [<span class="keyword">self</span> becomeFirstResponder];  
- <span class="built_in">UIMenuItem</span> *copyLink = [[[<span class="built_in">UIMenuItemalloc</span>] initWithTitle:<span class="string">@"复制"</span>  
-                                                      action:<span class="keyword">@selector</span>(<span class="keyword">copy</span>:)]autorelease];  
- [[<span class="built_in">UIMenuControllersharedMenuController</span>] setMenuItems:[<span class="built_in">NSArrayarrayWithObjects</span>:copyLink, <span class="literal">nil</span>]];  
- [[<span class="built_in">UIMenuControllersharedMenuController</span>] setTargetRect:<span class="keyword">self</span><span class="variable">.frameinView</span>:<span class="keyword">self</span><span class="variable">.superview</span>];  
- [[<span class="built_in">UIMenuControllersharedMenuController</span>] setMenuVisible:YESanimated: <span class="literal">YES</span>];  
-}    
-</code></pre><p> 这样一来，一个可复制的UILabel就诞生了！它能处理接收点击、弹出菜单栏、处理copy，这是一个很普通的可复制控件。</p>
-<p>接下来我们做一个可复制的UIImageView，创建一个新的viewController，放两个imageView，默认显示不同的图：<br>然后把上面的代码直接拷过来，改三个地方：</p>
-<pre><code>-(<span class="built_in">BOOL</span>)canPerformAction:(SEL)action withSender:(<span class="keyword">id</span>)sender  
-{    
-<span class="keyword">return</span> (action == <span class="keyword">@selector</span>(<span class="keyword">copy</span>:) || action == <span class="keyword">@selector</span>(paste:));    
-}    
-
--(<span class="keyword">void</span>)<span class="keyword">copy</span>:(<span class="keyword">id</span>)sender  
-{    
-<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];   
-<span class="built_in">NSData</span> *imgData = <span class="built_in">UIImagePNGRepresentation</span>(<span class="keyword">self</span><span class="variable">.image</span>);
-pboard<span class="variable">.image</span> = [<span class="built_in">UIImage</span> imageWithData:imgData];   
-}    
-
--(<span class="keyword">void</span>)paste:(<span class="keyword">id</span>)sender  
-{    
-<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];    
-<span class="keyword">self</span><span class="variable">.image</span> = pboard<span class="variable">.image</span>;    
-}    
-</code></pre><p> UIPasteboard有系统级别和应用级别两种类型，所以不仅可以在应用程序内通信，还能在应用程序间通信，比如我复制一个url，然后打开safari，粘贴到地址栏去，而我们可以在应用程序间通信、共享数据。</p>
-<p>在PasteBoardWrite里面点“写入”后把textField中的文本写入粘贴板，然后切换到PasteBoardRead的时候显示出来。如果我们的粘贴板只想给“自己人”用的话，就不能用系统的通用粘贴板，需要我们自己创建一个：</p>
-<pre><code><span class="comment">//需要提供一个唯一的名字，一般使用倒写的域名：com.mycompany.myapp.pboard    </span>
-<span class="comment">//后面的参数表示，如果不存在，是否创建一个    </span>
-<span class="built_in">UIPasteboard</span> *pb = [<span class="built_in">UIPasteboard</span>     pasteboardWithName:<span class="string">@"testBoard"</span> create:<span class="literal">YES</span>];    
-</code></pre><p>使用这个粘贴板，我们可以把文本存进去，然后在另一个app里面读出来，一些常用的类型已经被设置为属性了： </p>
-<p>除此之外，如果是能够转换成plist的数据类型（NSString, NSArray, NSDictionary, NSDate, NSNumber 和 NSURL），我们可以调用setValue:forPasteboardType:方法去存储数据，其他类型只能调用setData:forPasteboardType:方法（plist数据类型也可使用），类似于这样：</p>
-<pre><code><span class="comment">//存储数据  </span>
-NSDictionary *dict = [NSDictionary <span class="string">dictionaryWithObject:</span>textField.text <span class="string">forKey:</span>@<span class="string">"content"</span>];    
-NSData *dictData = [NSKeyedArchiver <span class="string">archivedDataWithRootObject:</span>dict];    
-[pb <span class="string">setData:</span>dictData <span class="string">forPasteboardType:</span>@<span class="string">"myType"</span>];    
-
-<span class="comment">//获取就类似于这样：   </span>
-UIPasteboard *pb = [UIPasteboard <span class="string">pasteboardWithName:</span>@<span class="string">"testBoard"</span> <span class="string">create:</span>YES];    
-NSDictionary *dict = [NSKeyedUnarchiver <span class="string">unarchiveObjectWithData:</span>[pb <span class="string">dataForPasteboardType:</span>@<span class="string">"myType"</span>]];    
-caption.text = [dict <span class="string">objectForKey:</span>@<span class="string">"content"</span>];    
-</code></pre><p>上面提到了一个PasteboardType，这是一个统一类型标识符（Uniform Type Identifier  UTI）,能帮助app获取自己能处理的数据。比如你只能处理文本的粘贴，那给你一个UIImage显然是无用的。你可以使用公用的UTI，也可以使用任意字符，苹果建议使用倒写的域名加上类型名：com.myCompany.myApp.myType</p>
-</span>
+        <span itemprop="articleBody"><a id="more"></a>
+<h3 id="CocoaPods是什么">CocoaPods是什么</h3><p>当我们开发iOS项目时候，会经常使用到第三方类库，并且会使用很多。<br>大家的做法基本上都是到GitHub上下载一个一个的类库，然后导入到工程中，并且引入各种的类库，做各种的配置。有时候还要处理ARC与MRC的问题，很麻烦。<br>还有一种情况，就是当第三方类库出现升级的情况时候，我们还需要删掉旧的，下载新的，再重新导入。</p>
+<p>CocoaPods就是类库管理工具，刚刚提到所有麻烦的操作，CocoaPods都能解决!</p>
+<h3 id="安装CocoaPods">安装CocoaPods</h3><p>安装CocoaPods需要本地Ruby环境，默认情况下，Mac自带Ruby环境，可以通过在终端输入命令ruby -v查看Ruby版本，接下来进行安装，使用如下命令：</p>
+<pre><code>$ sudo gem <span class="operator"><span class="keyword">install</span> CocoaPods
+输入以上命令，可能会一直没有反应，或者出现<span class="keyword">ERROR</span>。注意了，我们在天朝，是有一堵墙的，挡住了，所以你安装失败。不过没关系，我们可以使用另外一个地址来访问CocoaPods。</span>
+</code></pre><p>既然官网地址被墙了，我们就使用淘宝的，淘宝的Ruby镜像可以帮助我们访问CocoaPods，分别在终端输入如下命令，将Ruby镜像替换为淘宝的镜像地址:</p>
+<pre><code><span class="variable">$ </span>gem sources —remove <span class="symbol">https:</span>/<span class="regexp">/rubygems.org/</span>
+<span class="variable">$ </span>gem sources -a <span class="symbol">http:</span>/<span class="regexp">/ruby.taobao.org/</span>
+</code></pre><p>完成之后，我们可以使用如下命令来查看Ruby镜像是否已经指向了淘宝：</p>
+<p>$ gem sources -l<br>如果看到如下信息，表示已经成功！！！<br><img src="http://i5.tietuku.com/935159867a2c3f82.jpg" alt=""></p>
+<p>下面，重新执行安装命令，等待安装结束就可以了</p>
+<pre><code>$ sudo gem <span class="keyword">install</span> CocoaPods
+</code></pre><p>等待执行完毕，看到如下提示，恭喜你，安装完成。<br><img src="http://ww2.sinaimg.cn/large/74311666jw1eygxopggdtj20gw02mjrt.jpg" alt=""></p>
+<p>如果遇到其它的安装问题，请自行Google解决吧。</p>
+<h3 id="使用CocoaPods">使用CocoaPods</h3><p>安装已经完成了，下面就来教大家如何使用。<br>做一个项目，项目中需要使用SDWebImage，看看如何使用CocoaPods进行安装<br>首先使用如下命令，查看CocoaPods是否支持SDWebImage类库</p>
+<pre><code><span class="variable">$ </span>pod search <span class="constant">SDWebImage</span>
+</code></pre><p>可以看到下面这些搜索结果，表示SDWebImage是可以的，<br> <img src="http://i12.tietuku.com/5847b5e6afb84ba5.jpg" alt=""></p>
+<p>注意圈住的那一行，一会需要使用。这行信息是告诉CocoaPods去下载哪一个第三方类库和它的哪一个版本，是一条配置信息。</p>
+<h4 id="下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库：">下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库：</h4><p>1&gt;. 创建项目 CocoaPods_Test，保存到桌面</p>
+<p>2&gt;. 在终端输入 cd空格，拖入项目文件夹，回车，进入项目所在的根目录</p>
+<p>3&gt;.通过命令行创建Podfile文件，该文件的作用是配置第三方类库的信息，就是告诉CocoaPods去管理哪些类库</p>
+<pre><code><span class="variable">$ </span>vim <span class="constant">Podfile</span>
+</code></pre><p>vim打开文件后，按i进入编辑模式，输入如下文字：<br>  <img src="http://i12.tietuku.com/5266e8d6fc217c17.jpg" alt=""><br>里面的<code>pod &#39;SDWebImage&#39;, &#39;~&gt; 3.7.1&#39;</code>就是我们在上面圈住的那一行。<br>输入完成后按ESC退出编辑模式，接着输入:wq，并按回车键进行保存并退出。<br>上面的操作完成之后，我们可以在项目根目录发现一个没有后缀的Podfile文件，这就是刚刚创建的文件，里面保存了需要使用的第三方类库的信息。(注意：Podfile文件必须和.xcodeproj文件在同一目录下)</p>
+<p>4&gt;. 接下来，我们就可以使用命令来安装第三方类库了，(确保终端路径在项目根目录)运行如下命令：</p>
+<pre><code>$ pod <span class="keyword">install</span>
+</code></pre><p>当我们看到这样的提示，就表示你操作成功：<br><img src="http://i12.tietuku.com/5266e8d6fc217c17.jpg" alt=""><br>第三方类库导入成功</p>
+<h4 id="注意最后一句话：”Please_close_any_current_Xcode_sessions_and_use_‘CocoaPods_Test-xcworkspace’for_this_project_from_now_on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的-xcodeproj">注意最后一句话：”Please close any current Xcode sessions and use ‘CocoaPods_Test.xcworkspace’for this project from now on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的.xcodeproj</h4><p>5&gt;. 双击项目中的CocoaPods_Test.xcworkspace文件来打开项目，你会看到如下目录结构：</p>
+<p> <img src="http://i12.tietuku.com/87276160ad89fb15.jpg" alt=""><br>我们会发现多了一个Pods的依赖工程，打开Pods文件夹后，发现SDWebImage已经在这里面了。</p>
+<p>6&gt;. 现在，我们就可以在想要使用SDWebImage的文件中，引入需要的文件，然后就可以正常使用了。</p>
+<p>7&gt;. 到现在为止，你已经学会了如何使用CocoaPods来添加第三方类库。如果我们需要使用多个第三方类库，只需要修改Podfile文件就可以了，如下：<br>添加多个第三方类库<br><img src="http://i12.tietuku.com/52b00c779be4764e.jpg" alt=""><br>NOTE:<br>怎么样，过程很简单吧。只需要: 1.查询 2.修改Podfile文件 3.安装 即可完成!</p>
+<h4 id="其它">其它</h4><p>当我们想要重新安装CocoaPods的时候，需要卸载这个东西，很简单，只需要执行以下命令即可：</p>
+<pre><code><span class="variable">$ </span>sudo gem uninstall <span class="constant">CocoaPods</span>
+</code></pre><p>如果安装了多个版本，选择All，即可全部卸载！</p>
+<p>第三方版本号的各种写法与含义：</p>
+<pre><code>pod <span class="string">'AFNetworking'</span>      <span class="comment">//不显式指定依赖库版本，表示每次都获取最新版本</span>
+pod <span class="string">'AFNetworking'</span>,  <span class="string">'2.0'</span>     <span class="comment">//只使用2.0版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'&gt;2.0'</span>     <span class="comment">//使用高于2.0的版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'&gt;=2.0'</span>     <span class="comment">//使用大于或等于2.0的版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'&lt;2.0'</span>     <span class="comment">//使用小于2.0的版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'&lt;=2.0'</span>     <span class="comment">//使用小于或等于2.0的版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0.1.2'</span>     <span class="comment">//使用大于等于0.1.2但小于0.2的版本，相当于&gt;=0.1.2并且&lt;0.2.0</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0.1'</span>     <span class="comment">//使用大于等于0.1但小于1.0的版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0'</span>     <span class="comment">//高于0的版本，写这个限制和什么都不写是一个效果，都表示使用最新版本</span>
+</code></pre></span>
       
     </div>
 
@@ -314,11 +263,13 @@ caption.text = [dict <span class="string">objectForKey:</span>@<span class="stri
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2015/11/30/关于iOS的剪贴板基本知识/" rel="prev">关于iOS的剪贴板基本知识</a>
+            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/28/cocopods使用/" rel="next">cocopods使用</a>
+              <a href="/2015/11/28/数据持久化的几种方式/" rel="next">数据持久化的几种方式</a>
             
           </div>
         </div>
@@ -423,7 +374,7 @@ caption.text = [dict <span class="string">objectForKey:</span>@<span class="stri
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#[转]关于制作一个像淘宝那样复制链接就可以生成一条链接"><span class="nav-number">1.</span> <span class="nav-text">[转]关于制作一个像淘宝那样复制链接就可以生成一条链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在iOS中下面三个控件，自身就有复制-粘贴的功能："><span class="nav-number">1.1.</span> <span class="nav-text">在iOS中下面三个控件，自身就有复制-粘贴的功能：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIKit_framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。"><span class="nav-number">1.2.</span> <span class="nav-text">UIKit framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下面这些项能被放置到剪贴板中"><span class="nav-number">1.3.</span> <span class="nav-text">下面这些项能被放置到剪贴板中</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods是什么"><span class="nav-number">1.</span> <span class="nav-text">CocoaPods是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装CocoaPods"><span class="nav-number">2.</span> <span class="nav-text">安装CocoaPods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用CocoaPods"><span class="nav-number">3.</span> <span class="nav-text">使用CocoaPods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库："><span class="nav-number">3.1.</span> <span class="nav-text">下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意最后一句话：”Please_close_any_current_Xcode_sessions_and_use_‘CocoaPods_Test-xcworkspace’for_this_project_from_now_on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的-xcodeproj"><span class="nav-number">3.2.</span> <span class="nav-text">注意最后一句话：”Please close any current Xcode sessions and use ‘CocoaPods_Test.xcworkspace’for this project from now on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的.xcodeproj</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它"><span class="nav-number">3.3.</span> <span class="nav-text">其它</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
