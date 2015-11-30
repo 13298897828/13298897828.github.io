@@ -1,0 +1,732 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.4"/>
+
+
+
+
+  <meta name="keywords" content="Hexo,next" />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="数据持久化是我们开发中经常涉及的问题,以下是本人对于数据持久化使用的基本了解,和大家分享下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据持久化的几种方式">
+<meta property="og:url" content="http://yoursite.com/2015/11/28/数据持久化的几种方式/index.html">
+<meta property="og:site_name" content="张天琦">
+<meta property="og:description" content="数据持久化是我们开发中经常涉及的问题,以下是本人对于数据持久化使用的基本了解,和大家分享下">
+<meta property="og:updated_time" content="2015-11-28T08:34:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据持久化的几种方式">
+<meta name="twitter:description" content="数据持久化是我们开发中经常涉及的问题,以下是本人对于数据持久化使用的基本了解,和大家分享下">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide'
+  };
+</script>
+
+    <title> 数据持久化的几种方式 // 张天琦 </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">张天琦</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            標籤
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              数据持久化的几种方式
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於
+          <time itemprop="dateCreated" datetime="2015-11-28T16:07:04+08:00" content="2015-11-28">
+            2015-11-28
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="数据持久化是我们开发中经常涉及的问题,以下是本人对于数据持久化使用的基本了解,和大家分享下">数据持久化是我们开发中经常涉及的问题,以下是本人对于数据持久化使用的基本了解,和大家分享下</h3><hr>
+<a id="more"></a> 
+<h3 id="1-数据持久化的方式">1.数据持久化的方式</h3><ul>
+<li>1.属性列表(一种XML文件)</li>
+<li>2.NSUserDefault(NSUserDefaults只支持： NSString, NSNumber, NSDate, NSArray, NSDictionary.） </li>
+<li>3.write to file </li>
+<li>4.sqlite (推荐使用FMDB进行管理)</li>
+<li>5.CoreData</li>
+</ul>
+<h3 id="2-沙盒(存文件时,应存在document路径下,在手机上运行app才能成功存储)">2.沙盒(存文件时,应存在document路径下,在手机上运行app才能成功存储)</h3><ul>
+<li>1.数据持久化的本质：数据保存成文件，存储到程序的沙盒中</li>
+<li>2.沙盒机制：沙盒的本质就是一个文件夹，名字是随机分配的 </li>
+<li>3.模拟器路径内有可能包含多个系统版本的路径 </li>
+<li>4.构成：document、library（cache、preference）、tmp、app程序包</li>
+</ul>
+<p>通过代码查找各个文件的相对路径：<br>NSHomeDirectory（）—沙盒主路径<br>NSDocumentDirectory—documents文件夹<br>NSLibraryDirectory—Library文件夹<br>NSCacheDirectory—caches文件夹<br>NSTemporaryDirectory—tmp文件夹</p>
+<pre><code><span class="comment">//获取沙盒主路径</span>
+<span class="built_in">NSString</span> *homePath = <span class="built_in">NSHomeDirectory</span>();
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,homePath);
+
+pragma mark - objectAtIndex:<span class="number">0</span>、firstObject、lastObject、[<span class="number">0</span>] 使用任意一个都是同一个文件(手机)
+
+
+<span class="comment">//document路径 (通常存放应用程序需要持久化使用的关键数据（用户数据），比如本地数据库等，iTunes在备份的时候会自动备份此文件夹)</span>
+<span class="built_in">NSString</span> *documentPath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">NO</span>) objectAtIndex:<span class="number">0</span>];
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,documentPath);
+
+
+
+<span class="comment">//library路径 （通常用来存储应用程序运行期间生成的持久数据，比如用户账户名等。应用程序退出后不会被删除文件夹内数据，但是iTunes备份时，不会备份此文件夹）</span>
+<span class="built_in">NSString</span> *libraryPath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSLibraryDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) firstObject];
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,libraryPath);
+
+<span class="comment">//cache路径（运行期间的缓存文件：历史记录等）</span>
+<span class="built_in">NSString</span> *cachePath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSCachesDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) lastObject];
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,cachePath);
+
+<span class="comment">//preference：应用程序的偏好设置，夜间模式等</span>
+
+
+
+<span class="comment">//tmp路径（存放临时文件，比如下载的zip包，应用程序结束后被清除）</span>
+<span class="built_in">NSString</span> *tmpPath = <span class="built_in">NSTemporaryDirectory</span>();
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,tmpPath);
+
+
+<span class="comment">//BUndle（当前应用程序包）</span>
+<span class="comment">//获取当前应用程序包</span>
+<span class="built_in">NSBundle</span> *bundle = [<span class="built_in">NSBundle</span> mainBundle];
+<span class="comment">//获取包的路径</span>
+<span class="comment">//NSString *bundlePath = [bundle resourcePath];</span>
+<span class="comment">//或者</span>
+<span class="built_in">NSString</span> *bundlePath = [bundle bundlePath];
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,bundlePath);
+
+
+<span class="comment">//NSString *image = [bundle pathForResource:@"image" ofType:@"png"];</span>
+
+<span class="comment">//    NSString *interfacePath = [bundle pathForResource:@"news" ofType:@"txt"];</span>
+<span class="comment">//NSLog(@"%@",image);</span>
+</code></pre><h3 id="3-简单对象写入文件（字符串、数组、字典、图片）">3.简单对象写入文件（字符串、数组、字典、图片）</h3><h4 id="字符串写入文件">字符串写入文件</h4><pre><code><span class="built_in">NSString</span> *incantation = <span class="string">@"等闲变却故人心，却道故人心易变"</span>;
+
+<span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,path);
+path = [path stringByAppendingString:<span class="string">@"/纳兰容若.txt"</span>];
+
+<span class="comment">//encoding：NSStringEncodingConversionAllowLossy 允许文件丢失</span>
+<span class="comment">//NSStringEncodingConversionExternalRepresentation 不允许文件丢失</span>
+[incantation writeToFile:path atomically:<span class="literal">YES</span> encoding:<span class="built_in">NSUTF8StringEncoding</span> error:<span class="literal">nil</span>];<span class="comment">//（atomically：YES 指的是原子性，和我们声明属性时候的nonatomic非原子性类似的道理，选择YES意思就是说不能被中断，实际操作写入文件的时候，系统会先开辟一个内存空间，将字符串存入这个缓存中，再写入文件，而不是直接写入文件，这样就保证不会出现写入过程中突然中断导致只写入一部分的情况。选择NO即直接写入文件，可以被中断）</span>
+
+
+<span class="comment">//从文件中获取字符串</span>
+<span class="built_in">NSString</span> *resultString = [<span class="built_in">NSString</span> stringWithContentsOfFile:path encoding:<span class="built_in">NSUTF8StringEncoding</span> error:<span class="literal">nil</span>];
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultString);
+</code></pre><h4 id="数组写入文件">数组写入文件</h4><pre><code><span class="built_in">NSArray</span> *array = @[<span class="string">@"相怜相念倍相亲"</span>,<span class="string">@"一生一世一双人"</span>];
+<span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();
+path = [path stringByAppendingPathComponent:<span class="string">@"王安石.txt"</span>];
+<span class="comment">//写入</span>
+[array writeToFile:path atomically:<span class="literal">YES</span>];
+
+<span class="comment">//读取</span>
+<span class="built_in">NSArray</span> *resultArr = [<span class="built_in">NSArray</span> arrayWithContentsOfFile:path];
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultArr[<span class="number">0</span>]);
+</code></pre><h4 id="字典写入文件">字典写入文件</h4><pre><code><span class="built_in">NSDictionary</span> *dict = @{<span class="string">@"周议"</span>:<span class="string">@"宁可我付天下人，不可天下人负我"</span>};
+<span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();
+path = [path stringByAppendingString:<span class="string">@"/南阳.txt"</span>];
+<span class="comment">//写入文件</span>
+[dict writeToFile:path atomically:<span class="literal">YES</span>];
+
+<span class="comment">//读取文件</span>
+<span class="built_in">NSDictionary</span> *resultDict = [<span class="built_in">NSDictionary</span> dictionaryWithContentsOfFile:path];
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultDict); 
+</code></pre><h4 id="图片写入文件">图片写入文件</h4><pre><code><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"image"</span>];
+
+<span class="comment">//NSData *data = UIImagePNGRepresentation(image);</span>
+<span class="built_in">NSData</span> *data1 = <span class="built_in">UIImageJPEGRepresentation</span>(image, <span class="number">1</span>);<span class="comment">//“1”表示图片压缩质量（不超过1，越小质量越差）</span>
+
+<span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();
+path = [path stringByAppendingString:<span class="string">@"/gir.jpg"</span>];
+<span class="comment">//写入文件</span>
+[data1 writeToFile:path atomically:<span class="literal">YES</span>];
+<span class="comment">//取出</span>
+<span class="built_in">UIImage</span> *resultImg = [<span class="built_in">UIImage</span> imageWithContentsOfFile:path];
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultImg); 
+</code></pre><h4 id="复杂对象写入文件">复杂对象写入文件</h4><p>1）复杂对象即Foundation 框架下不存在的数据类，例如自己创建的类<br>2）复杂对象至少包含一个实例对象<br>3）无法在程序内通过writeToFile 类型的方法写入文件中，只能转换为NSData，再通过writeToFile进行数据持久化 </p>
+<p>4）归档：将复杂对象转换为NSData<br>反归档：将NSData转换为复杂对象 </p>
+<p>5）要想写入文件，复杂对象要遵循NSCoding协议，并实现协议方法 </p>
+<p>6）复杂对象写入的文件在本地打不开</p>
+<p>注意：归档和反归档，只是辅助完成数据持久化的功能，本身不能数据持久化</p>
+<pre><code><span class="preprocessor">#import <span class="title">"Person.h"</span></span>
+
+<span class="class"><span class="keyword">@implementation</span> <span class="title">Person</span></span>
+
+<span class="comment">//编码</span>
+- (<span class="keyword">void</span>)encodeWithCoder:(<span class="built_in">NSCoder</span> *)aCoder{
+
+[aCoder encodeObject:_name forKey:<span class="string">@"name"</span>];
+[aCoder encodeObject:_gender forKey:<span class="string">@"gender"</span>];
+
+}
+<span class="comment">//解码</span>
+- (<span class="keyword">id</span>)initWithCoder:(<span class="built_in">NSCoder</span> *)aDecoder{
+<span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) {
+    _name = [aDecoder decodeObjectForKey:<span class="string">@"name"</span>];
+    _gender = [aDecoder decodeObjectForKey:<span class="string">@"gender"</span>];
+}
+<span class="keyword">return</span> <span class="keyword">self</span>;
+}
+
+
+<span class="keyword">@end</span>
+</code></pre><h3 id="具体事例">具体事例</h3><pre><code> Person *person = [Person new];        
+ person<span class="variable">.name</span> = <span class="string">@"Anna"</span>;
+ person<span class="variable">.gender</span> = <span class="string">@"male"</span>;
+
+ <span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();
+ path = [path stringByAppendingString:<span class="string">@"/person.txt"</span>];<span class="comment">//此文件在本地打不开</span>
+<span class="comment">//对象归档的文件是保密的磁盘上无法查看文件中的内容</span>
+
+<span class="comment">//创建可变data，用来存放归档数据</span>
+ <span class="built_in">NSMutableData</span> *mutData = [[<span class="built_in">NSMutableData</span> alloc] initWithCapacity:<span class="number">10</span>];
+
+<span class="comment">//创建归档对象</span>
+ <span class="built_in">NSKeyedArchiver</span> *archiver = [[<span class="built_in">NSKeyedArchiver</span> alloc] initForWritingWithMutableData:mutData];
+
+<span class="comment">//归档</span>
+ [archiver encodeObject:person forKey:<span class="string">@"person"</span>];
+<span class="comment">//完成归档</span>
+ [archiver finishEncoding];
+<span class="comment">//写入文件</span>
+ [mutData writeToFile:path atomically:<span class="literal">YES</span>];
+
+
+<span class="comment">//使用data对象获取对象</span>
+ <span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfFile:path];
+<span class="comment">//创建反归档对象</span>
+ <span class="built_in">NSKeyedUnarchiver</span> *unarchiver = [[<span class="built_in">NSKeyedUnarchiver</span> alloc] initForReadingWithData:data];
+<span class="comment">//反归档</span>
+ Person *p = [unarchiver decodeObjectForKey:<span class="string">@"person"</span>];
+<span class="comment">//完成反归档</span>
+ [unarchiver finishDecoding];
+ <span class="built_in">NSLog</span>(<span class="string">@"%@，%@"</span>,p<span class="variable">.name</span>,p<span class="variable">.gender</span>);
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/28/iOS编程细节整理/" rel="next">iOS编程细节整理</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+
+            
+              <div class="comments" id="comments">
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="张天琦" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">张天琦</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分類</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">標籤</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据持久化是我们开发中经常涉及的问题,以下是本人对于数据持久化使用的基本了解,和大家分享下"><span class="nav-number">1.</span> <span class="nav-text">数据持久化是我们开发中经常涉及的问题,以下是本人对于数据持久化使用的基本了解,和大家分享下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据持久化的方式"><span class="nav-number">2.</span> <span class="nav-text">1.数据持久化的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-沙盒(存文件时,应存在document路径下,在手机上运行app才能成功存储)"><span class="nav-number">3.</span> <span class="nav-text">2.沙盒(存文件时,应存在document路径下,在手机上运行app才能成功存储)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-简单对象写入文件（字符串、数组、字典、图片）"><span class="nav-number">4.</span> <span class="nav-text">3.简单对象写入文件（字符串、数组、字典、图片）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串写入文件"><span class="nav-number">4.1.</span> <span class="nav-text">字符串写入文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组写入文件"><span class="nav-number">4.2.</span> <span class="nav-text">数组写入文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字典写入文件"><span class="nav-number">4.3.</span> <span class="nav-text">字典写入文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片写入文件"><span class="nav-number">4.4.</span> <span class="nav-text">图片写入文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复杂对象写入文件"><span class="nav-number">4.5.</span> <span class="nav-text">复杂对象写入文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体事例"><span class="nav-number">5.</span> <span class="nav-text">具体事例</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="copyright" >
+  
+  &copy; &nbsp;  2014 - 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张天琦</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>
