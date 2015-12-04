@@ -35,16 +35,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
+<meta name="description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。
+假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.st">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于iOS的剪贴板基本知识">
-<meta property="og:url" content="http://yoursite.com/2015/10/30/如何制作想淘宝口令一样的链接/index.html">
+<meta property="og:title" content="@synthesize 与@dynamic 的不同">
+<meta property="og:url" content="http://yoursite.com/2015/02/10/synthesize-与-dynamic-的不同/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
-<meta property="og:updated_time" content="2015-12-04T03:00:10.000Z">
+<meta property="og:description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。
+假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.st">
+<meta property="og:updated_time" content="2015-12-04T03:05:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于iOS的剪贴板基本知识">
-<meta name="twitter:description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
+<meta name="twitter:title" content="@synthesize 与@dynamic 的不同">
+<meta name="twitter:description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。
+假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.st">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +57,7 @@
   };
 </script>
 
-    <title> 关于iOS的剪贴板基本知识 // 张天琦 </title>
+    <title> @synthesize 与@dynamic 的不同 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -175,7 +178,7 @@
           
           
             
-              关于iOS的剪贴板基本知识
+              @synthesize 与@dynamic 的不同
             
           
         </h1>
@@ -184,22 +187,11 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-10-30T09:18:10+08:00" content="2015-10-30">
-            2015-10-30
+          <time itemprop="dateCreated" datetime="2015-02-10T12:03:10+08:00" content="2015-02-10">
+            2015-02-10
           </time>
         </span>
 
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-              
-              
-
-            
-          </span>
         
 
         
@@ -214,123 +206,29 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">[转]关于制作一个像淘宝那样复制链接就可以生成一条链接</h3><a id="more"></a>
-<h4 id="在iOS中下面三个控件，自身就有复制-粘贴的功能：">在iOS中下面三个控件，自身就有复制-粘贴的功能：</h4><ul>
-<li>1、UITextView</li>
-<li>2、UITextField</li>
-<li>3、UIWebView</li>
-</ul>
-<h4 id="UIKit_framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。">UIKit framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。</h4><ul>
-<li>1、UIPasteboard：我们可以向其中写入数据，也可以读取数据<ul>
-<li>2、UIMenuController：显示一个快捷菜单，用来展示复制、剪贴、粘贴等选择的项。</li>
-<li>3、UIResponder中的 canPerformAction:withSender:用于控制哪些命令显示在快捷菜单中。</li>
-<li>4、当快捷菜单上的命令点击的时候，UIResponderStandardEditActions将会被调用。</li>
-</ul>
-</li>
-</ul>
-<h4 id="下面这些项能被放置到剪贴板中">下面这些项能被放置到剪贴板中</h4><ul>
-<li>1、UIPasteboardTypeListString —   字符串数组, 包含kUTTypeUTF8PlainText</li>
-<li>2、UIPasteboardTypeListURL —   URL数组，包含kUTTypeURL</li>
-<li>3、UIPasteboardTypeListImage —   图形数组, 包含kUTTypePNG 和kUTTypeJPEG</li>
-<li><p>4、UIPasteboardTypeListColor —   颜色数组</p>
-<p>剪贴板的类型分为两种：<br>系统级：使用UIPasteboardNameGeneral和UIPasteboardNameFind，系统级应用程序关闭，或者卸载的数据不会丢失。<br>应用程序级：通过设置，可以让数据在应用程序关闭之后仍然保存在剪贴板中，但是应用程序卸载之后数据就会失去。我们可用通过pasteboardWithName:create：来创建。</p>
-</li>
-</ul>
-<p>例子如下：<br>有时候我们可能需要复制UILabel上的文本，或者UIImageView的图片，而UILabel和UIImageView默认是不响应Touch事件的，也无法复制，那么我们就需要自己实现一个可复制的UILabel。新添加一个类继承自UILabel：<br>[cpp] view plaincopy<br>@interface UICopyLabel : UILabel<br>@end    </p>
-<pre><code><span class="preprocessor">#import <span class="title">"UICopyLabel.h"</span>    </span>
-<span class="class"><span class="keyword">@implementation</span> <span class="title">UICopyLabel</span>    </span>
-<span class="keyword">@end</span>    
-</code></pre><p>为了能接收到事件（能成为第一响应者），我们需要覆盖一个方法：</p>
-<pre><code>-(<span class="built_in">BOOL</span>)canBecomeFirstResponder  
-{    
-<span class="keyword">return</span> <span class="literal">YES</span>;    
-}    
-</code></pre><p> 还需要针对复制的操作覆盖两个方法： </p>
-<pre><code><span class="comment">// 可以响应的方法  </span>
--(<span class="built_in">BOOL</span>)canPerformAction:(SEL)action withSender:(<span class="keyword">id</span>)sender  
-{    
-<span class="keyword">return</span> (action == <span class="keyword">@selector</span>(<span class="keyword">copy</span>:));    
-}    
+        <span itemprop="articleBody"><p>一、SDK中描述是在声明property的时候，有2个选择<br>1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。<br>2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。</p>
+<pre><code>假如一个属性被声明为<span class="variable">@dynamic</span> str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.str = @”jasehruer”,由于缺setter方法导致程序崩溃，或者运行到 someValue = instance.var 时，由于缺少getter 方法同样导致程序崩溃。
 
-<span class="comment">//针对于响应方法的实现    </span>
-    -(<span class="keyword">void</span>)<span class="keyword">copy</span>:(<span class="keyword">id</span>)sender  
-{    
-<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];    
-pboard<span class="variable">.string</span> = <span class="keyword">self</span><span class="variable">.text</span>;    
-}    
-</code></pre><p>有了以上三个方法，我们就能处理copy了，当然，在能接收到事件的情况下：</p>
-<pre><code><span class="comment">//UILabel默认是不接收事件的，我们需要自己添加touch事件    </span>
--(<span class="keyword">void</span>)attachTapHandler  
-{    
-<span class="keyword">self</span><span class="variable">.userInteractionEnabled</span> = <span class="literal">YES</span>;  <span class="comment">//用户交互的总开关    </span>
-<span class="built_in">UITapGestureRecognizer</span> *touch = [[<span class="built_in">UITapGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(handleTap:)];    
-touch<span class="variable">.numberOfTapsRequired</span> = <span class="number">2</span>;    
-[<span class="keyword">self</span> addGestureRecognizer:touch];    
-[touch release];    
-}    
-<span class="comment">//绑定事件    </span>
-- (<span class="keyword">id</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame    
-{    
-<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame];    
-<span class="keyword">if</span> (<span class="keyword">self</span>)  
-   {    
-    [<span class="keyword">self</span> attachTapHandler];    
-}    
-<span class="keyword">return</span> <span class="keyword">self</span>;    
-}    
-<span class="comment">//同上    </span>
--(<span class="keyword">void</span>)awakeFromNib  
-{    
-[<span class="keyword">super</span> awakeFromNib];    
-[<span class="keyword">self</span> attachTapHandler];    
-}    
-</code></pre><p>我们已经可以接收到事件了！由于我在上方将tap数设为2，所以需要双击才能捕获，接下来，我们需要处理这个tap，以便让菜单栏弹出来：</p>
-<pre><code>-(<span class="keyword">void</span>)handleTap:(<span class="built_in">UIGestureRecognizer</span>*) recognizer  
-{    
- [<span class="keyword">self</span> becomeFirstResponder];  
- <span class="built_in">UIMenuItem</span> *copyLink = [[[<span class="built_in">UIMenuItemalloc</span>] initWithTitle:<span class="string">@"复制"</span>  
-                                                      action:<span class="keyword">@selector</span>(<span class="keyword">copy</span>:)]autorelease];  
- [[<span class="built_in">UIMenuControllersharedMenuController</span>] setMenuItems:[<span class="built_in">NSArrayarrayWithObjects</span>:copyLink, <span class="literal">nil</span>]];  
- [[<span class="built_in">UIMenuControllersharedMenuController</span>] setTargetRect:<span class="keyword">self</span><span class="variable">.frameinView</span>:<span class="keyword">self</span><span class="variable">.superview</span>];  
- [[<span class="built_in">UIMenuControllersharedMenuController</span>] setMenuVisible:YESanimated: <span class="literal">YES</span>];  
-}    
-</code></pre><p> 这样一来，一个可复制的UILabel就诞生了！它能处理接收点击、弹出菜单栏、处理copy，这是一个很普通的可复制控件。</p>
-<p>接下来我们做一个可复制的UIImageView，创建一个新的viewController，放两个imageView，默认显示不同的图：<br>然后把上面的代码直接拷过来，改三个地方：</p>
-<pre><code>-(<span class="built_in">BOOL</span>)canPerformAction:(SEL)action withSender:(<span class="keyword">id</span>)sender  
-{    
-<span class="keyword">return</span> (action == <span class="keyword">@selector</span>(<span class="keyword">copy</span>:) || action == <span class="keyword">@selector</span>(paste:));    
-}    
+编译时没有问题，运行时才执行相应的方法,这就是所谓的动态绑定。<span class="variable">@dynamic</span> 可用于在分类中添加属性，（需要用objc_getAssociateObject 和objc_setAssiociatedObject 函数）。
 
--(<span class="keyword">void</span>)<span class="keyword">copy</span>:(<span class="keyword">id</span>)sender  
-{    
-<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];   
-<span class="built_in">NSData</span> *imgData = <span class="built_in">UIImagePNGRepresentation</span>(<span class="keyword">self</span><span class="variable">.image</span>);
-pboard<span class="variable">.image</span> = [<span class="built_in">UIImage</span> imageWithData:imgData];   
-}    
-
--(<span class="keyword">void</span>)paste:(<span class="keyword">id</span>)sender  
-{    
-<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];    
-<span class="keyword">self</span><span class="variable">.image</span> = pboard<span class="variable">.image</span>;    
-}    
-</code></pre><p> UIPasteboard有系统级别和应用级别两种类型，所以不仅可以在应用程序内通信，还能在应用程序间通信，比如我复制一个url，然后打开safari，粘贴到地址栏去，而我们可以在应用程序间通信、共享数据。</p>
-<p>在PasteBoardWrite里面点“写入”后把textField中的文本写入粘贴板，然后切换到PasteBoardRead的时候显示出来。如果我们的粘贴板只想给“自己人”用的话，就不能用系统的通用粘贴板，需要我们自己创建一个：</p>
-<pre><code><span class="comment">//需要提供一个唯一的名字，一般使用倒写的域名：com.mycompany.myapp.pboard    </span>
-<span class="comment">//后面的参数表示，如果不存在，是否创建一个    </span>
-<span class="built_in">UIPasteboard</span> *pb = [<span class="built_in">UIPasteboard</span>     pasteboardWithName:<span class="string">@"testBoard"</span> create:<span class="literal">YES</span>];    
-</code></pre><p>使用这个粘贴板，我们可以把文本存进去，然后在另一个app里面读出来，一些常用的类型已经被设置为属性了： </p>
-<p>除此之外，如果是能够转换成plist的数据类型（NSString, NSArray, NSDictionary, NSDate, NSNumber 和 NSURL），我们可以调用setValue:forPasteboardType:方法去存储数据，其他类型只能调用setData:forPasteboardType:方法（plist数据类型也可使用），类似于这样：</p>
-<pre><code><span class="comment">//存储数据  </span>
-NSDictionary *dict = [NSDictionary <span class="string">dictionaryWithObject:</span>textField.text <span class="string">forKey:</span>@<span class="string">"content"</span>];    
-NSData *dictData = [NSKeyedArchiver <span class="string">archivedDataWithRootObject:</span>dict];    
-[pb <span class="string">setData:</span>dictData <span class="string">forPasteboardType:</span>@<span class="string">"myType"</span>];    
-
-<span class="comment">//获取就类似于这样：   </span>
-UIPasteboard *pb = [UIPasteboard <span class="string">pasteboardWithName:</span>@<span class="string">"testBoard"</span> <span class="string">create:</span>YES];    
-NSDictionary *dict = [NSKeyedUnarchiver <span class="string">unarchiveObjectWithData:</span>[pb <span class="string">dataForPasteboardType:</span>@<span class="string">"myType"</span>]];    
-caption.text = [dict <span class="string">objectForKey:</span>@<span class="string">"content"</span>];    
-</code></pre><p>上面提到了一个PasteboardType，这是一个统一类型标识符（Uniform Type Identifier  UTI）,能帮助app获取自己能处理的数据。比如你只能处理文本的粘贴，那给你一个UIImage显然是无用的。你可以使用公用的UTI，也可以使用任意字符，苹果建议使用倒写的域名加上类型名：com.myCompany.myApp.myType</p>
-</span>
+有些存取是在运行时动态创建的，如在CoreData的NSManagedObject类使用的某些。如果你想这些情况下，声明和使用属性，但要避免缺少方法在编译时的警告，你可以使用<span class="variable">@dynamic</span>动态指令，而不是<span class="variable">@synthesize</span>合成指令。例如
+</code></pre><p>代码演示：</p>
+<p>.h 文件</p>
+<pre><code><span class="preprocessor">#import <span class="title">&lt;UIKit/UIKit.h&gt;</span></span>
+<span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span>
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">NSString</span> *string;
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">NSString</span> *str;
+<span class="keyword">@end</span>
+</code></pre><p>.m 文件</p>
+<pre><code><span class="preprocessor">#import <span class="title">"ViewController.h"</span></span>
+<span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span>
+<span class="keyword">@synthesize</span> string = _string;
+<span class="keyword">@dynamic</span> str;
+- (<span class="keyword">void</span>)viewDidLoad {
+[<span class="keyword">super</span> viewDidLoad];
+<span class="keyword">self</span><span class="variable">.str</span> = <span class="string">@"asdf"</span>;
+}
+</code></pre></span>
       
     </div>
 
@@ -341,13 +239,13 @@ caption.text = [dict <span class="string">objectForKey:</span>@<span class="stri
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/20/使用WKWebView替换UIWebView/" rel="prev">使用WKWebView替换UIWebView</a>
+              <a href="/2015/03/10/转-关于应用程序生命周期的问题/" rel="prev">[转]关于应用程序生命周期的问题</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/04/28/数据持久化的几种方式/" rel="next">数据持久化的几种方式</a>
+              <a href="/2015/01/20/cocopods使用/" rel="next">cocopods使用</a>
             
           </div>
         </div>
@@ -452,7 +350,7 @@ caption.text = [dict <span class="string">objectForKey:</span>@<span class="stri
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#[转]关于制作一个像淘宝那样复制链接就可以生成一条链接"><span class="nav-number">1.</span> <span class="nav-text">[转]关于制作一个像淘宝那样复制链接就可以生成一条链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在iOS中下面三个控件，自身就有复制-粘贴的功能："><span class="nav-number">1.1.</span> <span class="nav-text">在iOS中下面三个控件，自身就有复制-粘贴的功能：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIKit_framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。"><span class="nav-number">1.2.</span> <span class="nav-text">UIKit framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下面这些项能被放置到剪贴板中"><span class="nav-number">1.3.</span> <span class="nav-text">下面这些项能被放置到剪贴板中</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

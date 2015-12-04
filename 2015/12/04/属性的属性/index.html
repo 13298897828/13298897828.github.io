@@ -35,16 +35,26 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
+<meta name="description" content="属性关键字 
+ 
+补充
+关于nonatomic,如果我们能确定不需要多线程访问时，强烈推荐使用这个关键字，因为atomic对于性能的损失相对较大。nonatomic 决定比编译器生成的setter、getter 方法是否是原子操作。如果是类的delegate，推荐使用assign关键字，原因是避免了retain的死循环造成的对象无法真正的释放strong 、weak 补充ARC 下新加 stron">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于iOS的剪贴板基本知识">
-<meta property="og:url" content="http://yoursite.com/2015/10/30/如何制作想淘宝口令一样的链接/index.html">
+<meta property="og:title" content="属性的属性">
+<meta property="og:url" content="http://yoursite.com/2015/12/04/属性的属性/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
-<meta property="og:updated_time" content="2015-12-04T03:00:10.000Z">
+<meta property="og:description" content="属性关键字 
+ 
+补充
+关于nonatomic,如果我们能确定不需要多线程访问时，强烈推荐使用这个关键字，因为atomic对于性能的损失相对较大。nonatomic 决定比编译器生成的setter、getter 方法是否是原子操作。如果是类的delegate，推荐使用assign关键字，原因是避免了retain的死循环造成的对象无法真正的释放strong 、weak 补充ARC 下新加 stron">
+<meta property="og:image" content="http://i5.tietuku.com/d886f72d0f04079e.png">
+<meta property="og:updated_time" content="2015-12-04T03:13:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于iOS的剪贴板基本知识">
-<meta name="twitter:description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
+<meta name="twitter:title" content="属性的属性">
+<meta name="twitter:description" content="属性关键字 
+ 
+补充
+关于nonatomic,如果我们能确定不需要多线程访问时，强烈推荐使用这个关键字，因为atomic对于性能的损失相对较大。nonatomic 决定比编译器生成的setter、getter 方法是否是原子操作。如果是类的delegate，推荐使用assign关键字，原因是避免了retain的死循环造成的对象无法真正的释放strong 、weak 补充ARC 下新加 stron">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +64,7 @@
   };
 </script>
 
-    <title> 关于iOS的剪贴板基本知识 // 张天琦 </title>
+    <title> 属性的属性 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -175,7 +185,7 @@
           
           
             
-              关于iOS的剪贴板基本知识
+              属性的属性
             
           
         </h1>
@@ -184,22 +194,11 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-10-30T09:18:10+08:00" content="2015-10-30">
-            2015-10-30
+          <time itemprop="dateCreated" datetime="2015-12-04T11:07:13+08:00" content="2015-12-04">
+            2015-12-04
           </time>
         </span>
 
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-              
-              
-
-            
-          </span>
         
 
         
@@ -214,123 +213,40 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">[转]关于制作一个像淘宝那样复制链接就可以生成一条链接</h3><a id="more"></a>
-<h4 id="在iOS中下面三个控件，自身就有复制-粘贴的功能：">在iOS中下面三个控件，自身就有复制-粘贴的功能：</h4><ul>
-<li>1、UITextView</li>
-<li>2、UITextField</li>
-<li>3、UIWebView</li>
-</ul>
-<h4 id="UIKit_framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。">UIKit framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。</h4><ul>
-<li>1、UIPasteboard：我们可以向其中写入数据，也可以读取数据<ul>
-<li>2、UIMenuController：显示一个快捷菜单，用来展示复制、剪贴、粘贴等选择的项。</li>
-<li>3、UIResponder中的 canPerformAction:withSender:用于控制哪些命令显示在快捷菜单中。</li>
-<li>4、当快捷菜单上的命令点击的时候，UIResponderStandardEditActions将会被调用。</li>
-</ul>
-</li>
-</ul>
-<h4 id="下面这些项能被放置到剪贴板中">下面这些项能被放置到剪贴板中</h4><ul>
-<li>1、UIPasteboardTypeListString —   字符串数组, 包含kUTTypeUTF8PlainText</li>
-<li>2、UIPasteboardTypeListURL —   URL数组，包含kUTTypeURL</li>
-<li>3、UIPasteboardTypeListImage —   图形数组, 包含kUTTypePNG 和kUTTypeJPEG</li>
-<li><p>4、UIPasteboardTypeListColor —   颜色数组</p>
-<p>剪贴板的类型分为两种：<br>系统级：使用UIPasteboardNameGeneral和UIPasteboardNameFind，系统级应用程序关闭，或者卸载的数据不会丢失。<br>应用程序级：通过设置，可以让数据在应用程序关闭之后仍然保存在剪贴板中，但是应用程序卸载之后数据就会失去。我们可用通过pasteboardWithName:create：来创建。</p>
-</li>
-</ul>
-<p>例子如下：<br>有时候我们可能需要复制UILabel上的文本，或者UIImageView的图片，而UILabel和UIImageView默认是不响应Touch事件的，也无法复制，那么我们就需要自己实现一个可复制的UILabel。新添加一个类继承自UILabel：<br>[cpp] view plaincopy<br>@interface UICopyLabel : UILabel<br>@end    </p>
-<pre><code><span class="preprocessor">#import <span class="title">"UICopyLabel.h"</span>    </span>
-<span class="class"><span class="keyword">@implementation</span> <span class="title">UICopyLabel</span>    </span>
-<span class="keyword">@end</span>    
-</code></pre><p>为了能接收到事件（能成为第一响应者），我们需要覆盖一个方法：</p>
-<pre><code>-(<span class="built_in">BOOL</span>)canBecomeFirstResponder  
-{    
-<span class="keyword">return</span> <span class="literal">YES</span>;    
-}    
-</code></pre><p> 还需要针对复制的操作覆盖两个方法： </p>
-<pre><code><span class="comment">// 可以响应的方法  </span>
--(<span class="built_in">BOOL</span>)canPerformAction:(SEL)action withSender:(<span class="keyword">id</span>)sender  
-{    
-<span class="keyword">return</span> (action == <span class="keyword">@selector</span>(<span class="keyword">copy</span>:));    
-}    
-
-<span class="comment">//针对于响应方法的实现    </span>
-    -(<span class="keyword">void</span>)<span class="keyword">copy</span>:(<span class="keyword">id</span>)sender  
-{    
-<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];    
-pboard<span class="variable">.string</span> = <span class="keyword">self</span><span class="variable">.text</span>;    
-}    
-</code></pre><p>有了以上三个方法，我们就能处理copy了，当然，在能接收到事件的情况下：</p>
-<pre><code><span class="comment">//UILabel默认是不接收事件的，我们需要自己添加touch事件    </span>
--(<span class="keyword">void</span>)attachTapHandler  
-{    
-<span class="keyword">self</span><span class="variable">.userInteractionEnabled</span> = <span class="literal">YES</span>;  <span class="comment">//用户交互的总开关    </span>
-<span class="built_in">UITapGestureRecognizer</span> *touch = [[<span class="built_in">UITapGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(handleTap:)];    
-touch<span class="variable">.numberOfTapsRequired</span> = <span class="number">2</span>;    
-[<span class="keyword">self</span> addGestureRecognizer:touch];    
-[touch release];    
-}    
-<span class="comment">//绑定事件    </span>
-- (<span class="keyword">id</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame    
-{    
-<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame];    
-<span class="keyword">if</span> (<span class="keyword">self</span>)  
-   {    
-    [<span class="keyword">self</span> attachTapHandler];    
-}    
-<span class="keyword">return</span> <span class="keyword">self</span>;    
-}    
-<span class="comment">//同上    </span>
--(<span class="keyword">void</span>)awakeFromNib  
-{    
-[<span class="keyword">super</span> awakeFromNib];    
-[<span class="keyword">self</span> attachTapHandler];    
-}    
-</code></pre><p>我们已经可以接收到事件了！由于我在上方将tap数设为2，所以需要双击才能捕获，接下来，我们需要处理这个tap，以便让菜单栏弹出来：</p>
-<pre><code>-(<span class="keyword">void</span>)handleTap:(<span class="built_in">UIGestureRecognizer</span>*) recognizer  
-{    
- [<span class="keyword">self</span> becomeFirstResponder];  
- <span class="built_in">UIMenuItem</span> *copyLink = [[[<span class="built_in">UIMenuItemalloc</span>] initWithTitle:<span class="string">@"复制"</span>  
-                                                      action:<span class="keyword">@selector</span>(<span class="keyword">copy</span>:)]autorelease];  
- [[<span class="built_in">UIMenuControllersharedMenuController</span>] setMenuItems:[<span class="built_in">NSArrayarrayWithObjects</span>:copyLink, <span class="literal">nil</span>]];  
- [[<span class="built_in">UIMenuControllersharedMenuController</span>] setTargetRect:<span class="keyword">self</span><span class="variable">.frameinView</span>:<span class="keyword">self</span><span class="variable">.superview</span>];  
- [[<span class="built_in">UIMenuControllersharedMenuController</span>] setMenuVisible:YESanimated: <span class="literal">YES</span>];  
-}    
-</code></pre><p> 这样一来，一个可复制的UILabel就诞生了！它能处理接收点击、弹出菜单栏、处理copy，这是一个很普通的可复制控件。</p>
-<p>接下来我们做一个可复制的UIImageView，创建一个新的viewController，放两个imageView，默认显示不同的图：<br>然后把上面的代码直接拷过来，改三个地方：</p>
-<pre><code>-(<span class="built_in">BOOL</span>)canPerformAction:(SEL)action withSender:(<span class="keyword">id</span>)sender  
-{    
-<span class="keyword">return</span> (action == <span class="keyword">@selector</span>(<span class="keyword">copy</span>:) || action == <span class="keyword">@selector</span>(paste:));    
-}    
-
--(<span class="keyword">void</span>)<span class="keyword">copy</span>:(<span class="keyword">id</span>)sender  
-{    
-<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];   
-<span class="built_in">NSData</span> *imgData = <span class="built_in">UIImagePNGRepresentation</span>(<span class="keyword">self</span><span class="variable">.image</span>);
-pboard<span class="variable">.image</span> = [<span class="built_in">UIImage</span> imageWithData:imgData];   
-}    
-
--(<span class="keyword">void</span>)paste:(<span class="keyword">id</span>)sender  
-{    
-<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];    
-<span class="keyword">self</span><span class="variable">.image</span> = pboard<span class="variable">.image</span>;    
-}    
-</code></pre><p> UIPasteboard有系统级别和应用级别两种类型，所以不仅可以在应用程序内通信，还能在应用程序间通信，比如我复制一个url，然后打开safari，粘贴到地址栏去，而我们可以在应用程序间通信、共享数据。</p>
-<p>在PasteBoardWrite里面点“写入”后把textField中的文本写入粘贴板，然后切换到PasteBoardRead的时候显示出来。如果我们的粘贴板只想给“自己人”用的话，就不能用系统的通用粘贴板，需要我们自己创建一个：</p>
-<pre><code><span class="comment">//需要提供一个唯一的名字，一般使用倒写的域名：com.mycompany.myapp.pboard    </span>
-<span class="comment">//后面的参数表示，如果不存在，是否创建一个    </span>
-<span class="built_in">UIPasteboard</span> *pb = [<span class="built_in">UIPasteboard</span>     pasteboardWithName:<span class="string">@"testBoard"</span> create:<span class="literal">YES</span>];    
-</code></pre><p>使用这个粘贴板，我们可以把文本存进去，然后在另一个app里面读出来，一些常用的类型已经被设置为属性了： </p>
-<p>除此之外，如果是能够转换成plist的数据类型（NSString, NSArray, NSDictionary, NSDate, NSNumber 和 NSURL），我们可以调用setValue:forPasteboardType:方法去存储数据，其他类型只能调用setData:forPasteboardType:方法（plist数据类型也可使用），类似于这样：</p>
-<pre><code><span class="comment">//存储数据  </span>
-NSDictionary *dict = [NSDictionary <span class="string">dictionaryWithObject:</span>textField.text <span class="string">forKey:</span>@<span class="string">"content"</span>];    
-NSData *dictData = [NSKeyedArchiver <span class="string">archivedDataWithRootObject:</span>dict];    
-[pb <span class="string">setData:</span>dictData <span class="string">forPasteboardType:</span>@<span class="string">"myType"</span>];    
-
-<span class="comment">//获取就类似于这样：   </span>
-UIPasteboard *pb = [UIPasteboard <span class="string">pasteboardWithName:</span>@<span class="string">"testBoard"</span> <span class="string">create:</span>YES];    
-NSDictionary *dict = [NSKeyedUnarchiver <span class="string">unarchiveObjectWithData:</span>[pb <span class="string">dataForPasteboardType:</span>@<span class="string">"myType"</span>]];    
-caption.text = [dict <span class="string">objectForKey:</span>@<span class="string">"content"</span>];    
-</code></pre><p>上面提到了一个PasteboardType，这是一个统一类型标识符（Uniform Type Identifier  UTI）,能帮助app获取自己能处理的数据。比如你只能处理文本的粘贴，那给你一个UIImage显然是无用的。你可以使用公用的UTI，也可以使用任意字符，苹果建议使用倒写的域名加上类型名：com.myCompany.myApp.myType</p>
-</span>
+        <span itemprop="articleBody"><p>属性关键字 </p>
+<p> <img src="http://i5.tietuku.com/d886f72d0f04079e.png" alt=""></p>
+<p>补充</p>
+<p>关于nonatomic,如果我们能确定不需要多线程访问时，强烈推荐使用这个关键字，因为atomic对于性能的损失相对较大。<br>nonatomic 决定比编译器生成的setter、getter 方法是否是原子操作。<br>如果是类的delegate，推荐使用assign关键字，原因是避免了retain的死循环造成的对象无法真正的释放<br>strong 、weak 补充<br>ARC 下新加 strong、weak</p>
+<p>strong（默认）:ARC下和MRC下retain一样<br>weak（ARC下）：和(MRC下)assign类似，区别是当weak指向的内存释放掉后自动置为nil，防止野指针,并且weak 只对于对象而言。 对于ARC 下的基本数据类型仍旧使用 assign。<br>unsafe_unretained在ARC 、MRC 下都可以使用。</p>
+<p>unsafe_unretained声明一个弱引用，但不会自动置为nil，可能会出现野指针。 （最好不要使用）<br>关于OC 的拷贝补充<br>copy 和 mutableCopy 区别?<br>mutable 易变的</p>
+<p>copy就是复制了一个imutable的对象，而mutablecopy就是复制了一个mutable的对象<br>如果对一不可变对象复制，copy是指针复制（浅拷贝）,mutableCopy就是对象复制（深拷贝）。如果是对可变对象复制，都是深拷贝，但是copy返回的对象是不可变的。<br>你如何看待iOS中的拷贝？</p>
+<p>在iOS中我看到了三种拷贝方式：</p>
+<p>(2)浅拷贝Copy：浅拷贝就是确实拷贝出来一份和原来内容一样的新对象。但是对于对象自带的属性是伪拷贝，两个对象的属性指向同一个内存。 也就是只复制指向对象的指针，而不复制引用对象本身。 拷贝出来后引用计数加 1，两者的引用计数相同，以后任意一个进行操作引用计数也会改变。</p>
+<p>(3)深拷贝mutableCopy：深拷贝就是不仅仅拷贝出一份新对象，而且对象的属性也拷贝了一份。 也就是复制引用对象本身。 新拷贝的对象引用计数为1 ，之前的引用计数不加。 之后两者的操作互补干扰。<br>总的来说，如果在开发的过程中需要实现拷贝，那么需要接受NSCopying协议。实现copyWithZone:方法。浅拷贝、深拷贝的区别在于copyWithZone:方法的实现不同。</p>
+<p>举例理解：</p>
+<p>意思就是说我有个A对象复制一份后得到A_copy对象后，对于浅复制来说，A和A_copy指向的是同一份内存资源，复制的只不过是一个指针，对象本身资源还是只有一份，那如果我们对A_copy执行了修改操作，那么发现A引用的对象同样被修改，这其实违背了我们复制拷贝的思想。深复制就是内存中存在了，两份独立对象本身。<br>用网上的通俗的话讲就是：浅复制好比你和你影子，你完蛋，你的影子也完蛋，深复制好比你和你的克隆人，你完蛋，你的克隆人还活着。<br>父类实现深拷贝时，子类如何实现深拷贝 ？父类没有实现深拷贝时，子类如何实现深度拷贝？</p>
+<p>父类实现深拷贝之后，子类在重写的copyWithZone方法，先调用父类的copyWithZone方法，之后实现自己属性的拷贝。<br>如果父类没有实现深拷贝，子类除了需要对自己的属性进行拷贝，还要对父类的属性进行拷贝。<br>拷贝的setter 方法</p>
+<pre><code>-(void)<span class="built_in">setName</span>:(NSString *)<span class="built_in">str</span>
+{
+id t = [<span class="built_in">str</span> copy];
+[<span class="built_in">name</span> release];
+<span class="built_in">name</span> = t;
+}
+</code></pre><p>copyWithZone</p>
+<p>深拷贝<br>.h 文件遵循NSCopying 协议</p>
+<pre><code>- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone
+{
+Student * stu = [[Student alloc]init];
+stu<span class="variable">.age</span> = <span class="keyword">self</span><span class="variable">.age</span>;
+stu<span class="variable">.name</span> = <span class="keyword">self</span><span class="variable">.name</span>;
+<span class="keyword">return</span> stu;
+}
+</code></pre><p>浅拷贝</p>
+<pre><code>- (<span class="keyword">id</span>)copyWithZone:(<span class="built_in">NSZone</span> *)zone
+{
+<span class="keyword">return</span> [<span class="keyword">self</span> retain];
+}
+</code></pre></span>
       
     </div>
 
@@ -341,13 +257,11 @@ caption.text = [dict <span class="string">objectForKey:</span>@<span class="stri
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/20/使用WKWebView替换UIWebView/" rel="prev">使用WKWebView替换UIWebView</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/04/28/数据持久化的几种方式/" rel="next">数据持久化的几种方式</a>
+              <a href="/2015/11/28/iOS编程细节整理/" rel="next">iOS编程细节整理</a>
             
           </div>
         </div>
@@ -452,7 +366,7 @@ caption.text = [dict <span class="string">objectForKey:</span>@<span class="stri
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#[转]关于制作一个像淘宝那样复制链接就可以生成一条链接"><span class="nav-number">1.</span> <span class="nav-text">[转]关于制作一个像淘宝那样复制链接就可以生成一条链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在iOS中下面三个控件，自身就有复制-粘贴的功能："><span class="nav-number">1.1.</span> <span class="nav-text">在iOS中下面三个控件，自身就有复制-粘贴的功能：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIKit_framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。"><span class="nav-number">1.2.</span> <span class="nav-text">UIKit framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下面这些项能被放置到剪贴板中"><span class="nav-number">1.3.</span> <span class="nav-text">下面这些项能被放置到剪贴板中</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
