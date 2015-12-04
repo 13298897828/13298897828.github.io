@@ -35,22 +35,23 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="Hexo是一个很好的博客，个人觉得他的界面干净利落，阅读体验也是很好。初次接触Hexo是在朋友的介绍下才知道的，hexo是需要手动搭建,开篇记录一下搭建的过程希望能帮助到浏览到这里的朋友我的系统为OS X，windows也可以参考。">
+<meta name="description" content="cocopods的安装与使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo博客搭建">
-<meta property="og:url" content="http://yoursite.com/2015/06/27/hexo博客搭建/index.html">
+<meta property="og:title" content="cocopods使用">
+<meta property="og:url" content="http://yoursite.com/2015/01/20/cocopods使用/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="Hexo是一个很好的博客，个人觉得他的界面干净利落，阅读体验也是很好。初次接触Hexo是在朋友的介绍下才知道的，hexo是需要手动搭建,开篇记录一下搭建的过程希望能帮助到浏览到这里的朋友我的系统为OS X，windows也可以参考。">
-<meta property="og:image" content="http://m1.yea.im/4bD.png">
-<meta property="og:image" content="http://i13.tietuku.com/328dad03b5d45c6a.png">
-<meta property="og:image" content="http://i13.tietuku.com/a866c741cacf10af.png">
-<meta property="og:image" content="http://i12.tietuku.com/6867706100908946.png">
-<meta property="og:image" content="http://i13.tietuku.com/4614dd21ce29ef47.png">
-<meta property="og:image" content="http://i13.tietuku.com/ea3165bdd678afb9.png">
-<meta property="og:updated_time" content="2015-11-30T08:49:31.000Z">
+<meta property="og:description" content="cocopods的安装与使用">
+<meta property="og:image" content="http://i5.tietuku.com/935159867a2c3f82.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/74311666jw1eygxopggdtj20gw02mjrt.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/5847b5e6afb84ba5.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/5266e8d6fc217c17.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/5266e8d6fc217c17.jpg">
+<meta property="og:image" content="http://m1.yea.im/4ev_m.jpg">
+<meta property="og:image" content="http://i12.tietuku.com/52b00c779be4764e.jpg">
+<meta property="og:updated_time" content="2015-12-04T02:54:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo博客搭建">
-<meta name="twitter:description" content="Hexo是一个很好的博客，个人觉得他的界面干净利落，阅读体验也是很好。初次接触Hexo是在朋友的介绍下才知道的，hexo是需要手动搭建,开篇记录一下搭建的过程希望能帮助到浏览到这里的朋友我的系统为OS X，windows也可以参考。">
+<meta name="twitter:title" content="cocopods使用">
+<meta name="twitter:description" content="cocopods的安装与使用">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -60,7 +61,7 @@
   };
 </script>
 
-    <title> hexo博客搭建 // 张天琦 </title>
+    <title> cocopods使用 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -181,7 +182,7 @@
           
           
             
-              hexo博客搭建
+              cocopods使用
             
           
         </h1>
@@ -190,8 +191,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-06-27T14:15:21+08:00" content="2015-06-27">
-            2015-06-27
+          <time itemprop="dateCreated" datetime="2015-01-20T19:32:44+08:00" content="2015-01-20">
+            2015-01-20
           </time>
         </span>
 
@@ -209,93 +210,54 @@
       
 
       
-        <span itemprop="articleBody"><p>Hexo是一个很好的博客，个人觉得他的界面干净利落，阅读体验也是很好。初次接触Hexo是在朋友的介绍下才知道的，hexo是需要手动搭建,<br>开篇记录一下搭建的过程希望能帮助到浏览到这里的朋友<br>我的系统为OS X，windows也可以参考。</p>
-<a id="more"></a>
-<h2 id="思路总结">思路总结</h2><hr>
-<p><img src="http://m1.yea.im/4bD.png" alt=""></p>
-<h2 id="环境配置">环境配置</h2><h3 id="安装Git">安装Git</h3><p>安装过Xcode可以直接跳过这步，因为Xcode自带Git<br>Git有很多，Mac和Windows都可以直接到git-scm官网下载安装</p>
-<h3 id="安装node-js">安装node.js</h3><p>奉上Macnode-v4.2.2.pkg安装包。</p>
-<p>这两个软件的安装步骤就不多做介绍，一直点下一步就好</p>
-<h3 id="安装">安装</h3><p>安装hexo</p>
-<p>sudo npm install -g hexo</p>
-<h3 id="初始化">初始化</h3><p>我们可以创建一个新文件夹作为hexo的安装目录，把所有的hexo文件都放里面，主要是为了方便管理。</p>
-<h3 id="初始化有两种方式：">初始化有两种方式：</h3><p>直接指定目录</p>
-<pre><code>hexo init folder 
-<span class="string">folder:</span>是指定目录的文件路径。例：<span class="regexp">/Documents/</span>hexo
-</code></pre><p>进入指定目录(cd /文件夹路径)</p>
-<pre><code><span class="title">hexo</span> init
-</code></pre><p>终端执行命令后显示的结果：</p>
-<pre><code>[info] Copying data
-[info] You are almost done! Don't forget <span class="keyword">to</span> <span class="command">run</span> `npm       install` <span class="keyword">before</span> start blogging <span class="keyword">with</span> Hexo!
-</code></pre><h3 id="安装依赖包">安装依赖包</h3><pre><code>sudo npm <span class="keyword">install</span>
-</code></pre><h3 id="生成静态页面">生成静态页面</h3><p>cd 到你的hexo安装目录（工作目录），执行如下命令</p>
-<pre><code>hexo <span class="keyword">generate</span> 简写 hexo <span class="keyword">g</span>
-</code></pre><p>必须到你新建的hexo安装目录下执行，否则不成功</p>
-<h3 id="本地启动测试">本地启动测试</h3><pre><code>hexo <span class="keyword">server</span> 简写 hexo s
-</code></pre><p>到此本地服务已经完成，可以再浏览器中输入<a href="http://localhost:4000进行查看。接下来需要把我们创建的静态页面托管到github上，别人才能访问到" target="_blank" rel="external">http://localhost:4000进行查看。接下来需要把我们创建的静态页面托管到github上，别人才能访问到</a></p>
-<hr>
-<h3 id="部署到Github">部署到Github</h3><h3 id="注册Github账号">注册Github账号</h3><p>这里就不再赘述，已有Github账号可以跳过此步骤。</p>
-<h3 id="新建repository(仓库)">新建repository(仓库)</h3><p>登陆Github账号后，点击右上角的“+”号按钮，选择“New repository”<br><img src="http://i13.tietuku.com/328dad03b5d45c6a.png" alt=""></p>
-<h3 id="生成SSH_Keys：">生成SSH Keys：</h3><p>我们如何让本地git项目与远程的github建立联系？这时候就要用到SSH Keys<br><img src="http://i13.tietuku.com/a866c741cacf10af.png" alt=""></p>
-<h4 id="1、生成SSH_Keys">1、生成SSH Keys</h4><p>使用ssh-keygen命令生成密钥对</p>
-<pre><code>ssh-keygen -t rsa -<span class="keyword">C</span> <span class="string">"这里是你申请Github账号时的邮箱"</span>
-</code></pre><p>然后系统会要你输入密码：（我们输入的密码会在你提交项目的时候使用）</p>
-<pre><code>Enter passphrase (empty <span class="keyword">for</span> no passphrase):<span class="variable">&lt;输入加密串&gt;</span>
-Enter same passphrase again:<span class="variable">&lt;再次输入加密串&gt;</span>
-</code></pre><p>（终端提示生成的文件路径）找到你生成的密钥找到id_rsa.pub用终端进入编辑，复制密钥。<br><img src="http://i12.tietuku.com/6867706100908946.png" alt=""></p>
-<h4 id="2、添加你的SSH_Key到ssh-agent">2、添加你的SSH Key到ssh-agent</h4><p>添加你的SSH Key到ssh-agent</p>
-<pre><code><span class="comment">//在后台打开 ssh-agent</span>
-<span class="built_in">eval</span> <span class="string">"$(ssh-agent -s)"</span>
-
-添加你的SSH Key到ssh-agent
-ssh-add ~<span class="regexp">/.ssh/i</span>d_rsa
-</code></pre><h3 id="添加SSH_Key到Github：">添加SSH Key到Github：</h3><h4 id="1、添加SSH_Key">1、添加SSH Key</h4><p>通过命令复制SSH Key内容到系统剪贴板</p>
-<pre><code>pbcopy &lt; ~<span class="regexp">/.ssh/id</span>_rsa.pub
-</code></pre><p>登陆Github,点击右侧用户按钮，选择Settings<br><img src="http://i13.tietuku.com/4614dd21ce29ef47.png" alt=""><br>点击 Add SSH key 按钮，将复制的密钥粘贴到 Key 栏<br><img src="http://i13.tietuku.com/ea3165bdd678afb9.png" alt=""></p>
-<h4 id="2、测试能不能链接成功">2、测试能不能链接成功</h4><p>测试</p>
-<pre><code><span class="title">ssh</span> -T git<span class="variable">@github</span>.com
-</code></pre><p>执行结果</p>
-<pre><code>Permanently added <span class="keyword">the</span> RSA host key <span class="keyword">for</span> IP address '<span class="number">192.30</span><span class="number">.252</span><span class="number">.130</span>' <span class="keyword">to</span> <span class="keyword">the</span> <span class="type">list</span> <span class="keyword">of</span> known hosts.
-Are you sure you want <span class="keyword">to</span> <span class="keyword">continue</span> connecting (yes/no)?&lt;输入yes&gt;
-Hi username! You've successfully authenticated, <span class="keyword">but</span> GitHub <span class="keyword">does</span> <span class="keyword">not</span>
-</code></pre><p>现在你已经可以通过SSH链接到Github了</p>
-<p>如果有问题，请再配置。参考网站</p>
-<p>生成SSH Keys</p>
-<p>Generating SSH Keys</p>
-<p>Error: Permission denied (publickey)错误</p>
-<p>Error: Permission denied (publickey)</p>
-<h3 id="设置你的用户名和密码：">设置你的用户名和密码：</h3><hr>
-<p>Git会根据用户的名字和邮箱来记录提交，GitHub也是用这些信息来做权限的处理。</p>
-<p>git config –global user.name “这里是你申请Github账号时的name”<br>git config –global user.email “这里是你申请Github账号时的邮箱”</p>
-<hr>
-<h3 id="部署">部署</h3><p>编辑 _config.yml(在你的工作目录下)，把下面的your_username换成你的github用户名</p>
-<pre><code><span class="attribute">deploy</span>:
-    <span class="attribute">type</span>: git 
-    <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/your_username/    your_username.github.io.git</span>
-    <span class="attribute">branch</span>: master
-</code></pre><p>执行部署命令</p>
-<pre><code>hexo <span class="keyword">d</span> -<span class="keyword">g</span>         hexo <span class="keyword">generate</span> 和 hexo deploy 合写
-
----
-</code></pre><h3 id="问题：">问题：</h3><ul>
-<li>1、 部署时出现：Error: EACCES, open ‘/Users/Desktop/hexo/public/js/script.js’<br>原因：权限问题在部署命令前加sudo<ul>
-<li>2、 deployer找不到git: ERROR Deployer not found: git<br>解决方法:npm install hexo-deployer-git –save</li>
-</ul>
-</li>
-<li><p>3、</p>
-<p>  { [Error: Cannot find module ‘./build/Release/DTraceProviderBindings’] code: ‘MODULE_NOT_FOUND’ }<br>  { [Error: Cannot find module ‘./build/default/DTraceProviderBindings’] code: ‘MODULE_NOT_FOUND’ }<br>  { [Error: Cannot find module ‘./build/Debug/DTraceProviderBindings’] code: ‘MODULE_NOT_FOUND’ }<br>解决方法：</p>
-<p>  npm install hexo –no-optional</p>
-</li>
-<li><p>4 、npm install 卡住不动</p>
-</li>
-</ul>
-<p>使用cnpm加速npm(原文地址：<a href="https://cnodejs.org/topic/5338c5db7cbade005b023c98" target="_blank" rel="external">https://cnodejs.org/topic/5338c5db7cbade005b023c98</a>)</p>
-<p>npm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a> install koa</p>
-<ul>
-<li>5、问题汇总：<br>非常全的问题汇总，大家可以参考下</li>
-</ul>
-<p>到此我们的博客就部署完毕，快看一下成果吧</p>
-</span>
+        <span itemprop="articleBody"><p>cocopods的安装与使用</p>
+ <a id="more"></a>
+<h3 id="CocoaPods是什么">CocoaPods是什么</h3><p>当我们开发iOS项目时候，会经常使用到第三方类库，并且会使用很多。<br>大家的做法基本上都是到GitHub上下载一个一个的类库，然后导入到工程中，并且引入各种的类库，做各种的配置。有时候还要处理ARC与MRC的问题，很麻烦。<br>还有一种情况，就是当第三方类库出现升级的情况时候，我们还需要删掉旧的，下载新的，再重新导入。</p>
+<p>CocoaPods就是类库管理工具，刚刚提到所有麻烦的操作，CocoaPods都能解决!</p>
+ <!--more-->
+<h3 id="安装CocoaPods">安装CocoaPods</h3><p>安装CocoaPods需要本地Ruby环境，默认情况下，Mac自带Ruby环境，可以通过在终端输入命令ruby -v查看Ruby版本，接下来进行安装，使用如下命令：</p>
+<pre><code>$ sudo gem <span class="operator"><span class="keyword">install</span> CocoaPods
+输入以上命令，可能会一直没有反应，或者出现<span class="keyword">ERROR</span>。注意了，我们在天朝，是有一堵墙的，挡住了，所以你安装失败。不过没关系，我们可以使用另外一个地址来访问CocoaPods。</span>
+</code></pre><p>既然官网地址被墙了，我们就使用淘宝的，淘宝的Ruby镜像可以帮助我们访问CocoaPods，分别在终端输入如下命令，将Ruby镜像替换为淘宝的镜像地址:</p>
+<pre><code><span class="variable">$ </span>gem sources —remove <span class="symbol">https:</span>/<span class="regexp">/rubygems.org/</span>
+<span class="variable">$ </span>gem sources -a <span class="symbol">http:</span>/<span class="regexp">/ruby.taobao.org/</span>
+</code></pre><p>完成之后，我们可以使用如下命令来查看Ruby镜像是否已经指向了淘宝：</p>
+<p>$ gem sources -l<br>如果看到如下信息，表示已经成功！！！<br><img src="http://i5.tietuku.com/935159867a2c3f82.jpg" alt=""></p>
+<p>下面，重新执行安装命令，等待安装结束就可以了</p>
+<pre><code>$ sudo gem <span class="keyword">install</span> CocoaPods
+</code></pre><p>等待执行完毕，看到如下提示，恭喜你，安装完成。<br><img src="http://ww2.sinaimg.cn/large/74311666jw1eygxopggdtj20gw02mjrt.jpg" alt=""></p>
+<p>如果遇到其它的安装问题，请自行Google解决吧。</p>
+<h3 id="使用CocoaPods">使用CocoaPods</h3><p>安装已经完成了，下面就来教大家如何使用。<br>做一个项目，项目中需要使用SDWebImage，看看如何使用CocoaPods进行安装<br>首先使用如下命令，查看CocoaPods是否支持SDWebImage类库</p>
+<pre><code><span class="variable">$ </span>pod search <span class="constant">SDWebImage</span>
+</code></pre><p>可以看到下面这些搜索结果，表示SDWebImage是可以的，<br> <img src="http://i12.tietuku.com/5847b5e6afb84ba5.jpg" alt=""></p>
+<p>注意圈住的那一行，一会需要使用。这行信息是告诉CocoaPods去下载哪一个第三方类库和它的哪一个版本，是一条配置信息。</p>
+<h4 id="下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库：">下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库：</h4><p>1&gt;. 创建项目 CocoaPods_Test，保存到桌面</p>
+<p>2&gt;. 在终端输入 cd空格，拖入项目文件夹，回车，进入项目所在的根目录</p>
+<p>3&gt;.通过命令行创建Podfile文件，该文件的作用是配置第三方类库的信息，就是告诉CocoaPods去管理哪些类库</p>
+<pre><code><span class="variable">$ </span>vim <span class="constant">Podfile</span>
+</code></pre><p>vim打开文件后，按i进入编辑模式，输入如下文字：<br>  <img src="http://i12.tietuku.com/5266e8d6fc217c17.jpg" alt=""><br>里面的<code>pod &#39;SDWebImage&#39;, &#39;~&gt; 3.7.1&#39;</code>就是我们在上面圈住的那一行。<br>输入完成后按ESC退出编辑模式，接着输入:wq，并按回车键进行保存并退出。<br>上面的操作完成之后，我们可以在项目根目录发现一个没有后缀的Podfile文件，这就是刚刚创建的文件，里面保存了需要使用的第三方类库的信息。(注意：Podfile文件必须和.xcodeproj文件在同一目录下)</p>
+<p>4&gt;. 接下来，我们就可以使用命令来安装第三方类库了，(确保终端路径在项目根目录)运行如下命令：</p>
+<pre><code>$ pod <span class="keyword">install</span>
+</code></pre><p>当我们看到这样的提示，就表示你操作成功：<br><img src="http://i12.tietuku.com/5266e8d6fc217c17.jpg" alt=""><br>第三方类库导入成功</p>
+<h4 id="注意最后一句话：”Please_close_any_current_Xcode_sessions_and_use_‘CocoaPods_Test-xcworkspace’for_this_project_from_now_on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的-xcodeproj">注意最后一句话：”Please close any current Xcode sessions and use ‘CocoaPods_Test.xcworkspace’for this project from now on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的.xcodeproj</h4><p>5&gt;. 双击项目中的CocoaPods_Test.xcworkspace文件来打开项目，你会看到如下目录结构：</p>
+<p> <a href="http://m.yea.im/4ev.html" title="87276160ad89fb15" target="_blank" rel="external"><img src="http://m1.yea.im/4ev_m.jpg" alt="87276160ad89fb15"></a></p>
+<p>我们会发现多了一个Pods的依赖工程，打开Pods文件夹后，发现SDWebImage已经在这里面了。</p>
+<p>6&gt;. 现在，我们就可以在想要使用SDWebImage的文件中，引入需要的文件，然后就可以正常使用了。</p>
+<p>7&gt;. 到现在为止，你已经学会了如何使用CocoaPods来添加第三方类库。如果我们需要使用多个第三方类库，只需要修改Podfile文件就可以了，如下：<br>添加多个第三方类库<br><img src="http://i12.tietuku.com/52b00c779be4764e.jpg" alt=""><br>NOTE:<br>怎么样，过程很简单吧。只需要: 1.查询 2.修改Podfile文件 3.安装 即可完成!</p>
+<h4 id="其它">其它</h4><p>当我们想要重新安装CocoaPods的时候，需要卸载这个东西，很简单，只需要执行以下命令即可：</p>
+<pre><code><span class="variable">$ </span>sudo gem uninstall <span class="constant">CocoaPods</span>
+</code></pre><p>如果安装了多个版本，选择All，即可全部卸载！</p>
+<p>第三方版本号的各种写法与含义：</p>
+<pre><code>pod <span class="string">'AFNetworking'</span>      <span class="comment">//不显式指定依赖库版本，表示每次都获取最新版本</span>
+pod <span class="string">'AFNetworking'</span>,  <span class="string">'2.0'</span>     <span class="comment">//只使用2.0版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'&gt;2.0'</span>     <span class="comment">//使用高于2.0的版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'&gt;=2.0'</span>     <span class="comment">//使用大于或等于2.0的版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'&lt;2.0'</span>     <span class="comment">//使用小于2.0的版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'&lt;=2.0'</span>     <span class="comment">//使用小于或等于2.0的版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0.1.2'</span>     <span class="comment">//使用大于等于0.1.2但小于0.2的版本，相当于&gt;=0.1.2并且&lt;0.2.0</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0.1'</span>     <span class="comment">//使用大于等于0.1但小于1.0的版本</span>
+pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0'</span>     <span class="comment">//高于0的版本，写这个限制和什么都不写是一个效果，都表示使用最新版本</span>
+</code></pre></span>
       
     </div>
 
@@ -306,7 +268,7 @@ Hi username! You've successfully authenticated, <span class="keyword">but</span>
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/28/hexo如何写博客/" rel="prev">hexo如何写博客</a>
+              <a href="/2015/04/28/数据持久化的几种方式/" rel="prev">数据持久化的几种方式</a>
             
           </div>
 
@@ -417,7 +379,7 @@ Hi username! You've successfully authenticated, <span class="keyword">but</span>
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路总结"><span class="nav-number">1.</span> <span class="nav-text">思路总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">2.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Git"><span class="nav-number">2.1.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装node-js"><span class="nav-number">2.2.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">2.4.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化有两种方式："><span class="nav-number">2.5.</span> <span class="nav-text">初始化有两种方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装依赖包"><span class="nav-number">2.6.</span> <span class="nav-text">安装依赖包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成静态页面"><span class="nav-number">2.7.</span> <span class="nav-text">生成静态页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地启动测试"><span class="nav-number">2.8.</span> <span class="nav-text">本地启动测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署到Github"><span class="nav-number">2.9.</span> <span class="nav-text">部署到Github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册Github账号"><span class="nav-number">2.10.</span> <span class="nav-text">注册Github账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建repository(仓库)"><span class="nav-number">2.11.</span> <span class="nav-text">新建repository(仓库)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成SSH_Keys："><span class="nav-number">2.12.</span> <span class="nav-text">生成SSH Keys：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、生成SSH_Keys"><span class="nav-number">2.12.1.</span> <span class="nav-text">1、生成SSH Keys</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、添加你的SSH_Key到ssh-agent"><span class="nav-number">2.12.2.</span> <span class="nav-text">2、添加你的SSH Key到ssh-agent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加SSH_Key到Github："><span class="nav-number">2.13.</span> <span class="nav-text">添加SSH Key到Github：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、添加SSH_Key"><span class="nav-number">2.13.1.</span> <span class="nav-text">1、添加SSH Key</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、测试能不能链接成功"><span class="nav-number">2.13.2.</span> <span class="nav-text">2、测试能不能链接成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置你的用户名和密码："><span class="nav-number">2.14.</span> <span class="nav-text">设置你的用户名和密码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署"><span class="nav-number">2.15.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题："><span class="nav-number">2.16.</span> <span class="nav-text">问题：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods是什么"><span class="nav-number">1.</span> <span class="nav-text">CocoaPods是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装CocoaPods"><span class="nav-number">2.</span> <span class="nav-text">安装CocoaPods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用CocoaPods"><span class="nav-number">3.</span> <span class="nav-text">使用CocoaPods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库："><span class="nav-number">3.1.</span> <span class="nav-text">下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意最后一句话：”Please_close_any_current_Xcode_sessions_and_use_‘CocoaPods_Test-xcworkspace’for_this_project_from_now_on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的-xcodeproj"><span class="nav-number">3.2.</span> <span class="nav-text">注意最后一句话：”Please close any current Xcode sessions and use ‘CocoaPods_Test.xcworkspace’for this project from now on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的.xcodeproj</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它"><span class="nav-number">3.3.</span> <span class="nav-text">其它</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

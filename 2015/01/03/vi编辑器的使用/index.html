@@ -35,23 +35,31 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="cocopods的安装与使用">
+<meta name="description" content="##vim编辑器
+发表于 2015-6-20   |   分类于 linux
+
+
+
+###vi(vim)简介vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cocopods使用">
-<meta property="og:url" content="http://yoursite.com/2015/11/28/cocopods使用/index.html">
+<meta property="og:title" content="vi编辑器的使用">
+<meta property="og:url" content="http://yoursite.com/2015/01/03/vi编辑器的使用/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="cocopods的安装与使用">
-<meta property="og:image" content="http://i5.tietuku.com/935159867a2c3f82.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/74311666jw1eygxopggdtj20gw02mjrt.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/5847b5e6afb84ba5.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/5266e8d6fc217c17.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/5266e8d6fc217c17.jpg">
-<meta property="og:image" content="http://m1.yea.im/4ev_m.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/52b00c779be4764e.jpg">
-<meta property="og:updated_time" content="2015-11-30T09:12:48.000Z">
+<meta property="og:description" content="##vim编辑器
+发表于 2015-6-20   |   分类于 linux
+
+
+
+###vi(vim)简介vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想">
+<meta property="og:updated_time" content="2015-12-04T02:53:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cocopods使用">
-<meta name="twitter:description" content="cocopods的安装与使用">
+<meta name="twitter:title" content="vi编辑器的使用">
+<meta name="twitter:description" content="##vim编辑器
+发表于 2015-6-20   |   分类于 linux
+
+
+
+###vi(vim)简介vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -61,7 +69,7 @@
   };
 </script>
 
-    <title> cocopods使用 // 张天琦 </title>
+    <title> vi编辑器的使用 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -182,7 +190,7 @@
           
           
             
-              cocopods使用
+              vi编辑器的使用
             
           
         </h1>
@@ -191,8 +199,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-28T19:32:44+08:00" content="2015-11-28">
-            2015-11-28
+          <time itemprop="dateCreated" datetime="2015-01-03T09:51:56+08:00" content="2015-01-03">
+            2015-01-03
           </time>
         </span>
 
@@ -210,53 +218,134 @@
       
 
       
-        <span itemprop="articleBody"><p>cocopods的安装与使用</p>
- <a id="more"></a>
-<h3 id="CocoaPods是什么">CocoaPods是什么</h3><p>当我们开发iOS项目时候，会经常使用到第三方类库，并且会使用很多。<br>大家的做法基本上都是到GitHub上下载一个一个的类库，然后导入到工程中，并且引入各种的类库，做各种的配置。有时候还要处理ARC与MRC的问题，很麻烦。<br>还有一种情况，就是当第三方类库出现升级的情况时候，我们还需要删掉旧的，下载新的，再重新导入。</p>
-<p>CocoaPods就是类库管理工具，刚刚提到所有麻烦的操作，CocoaPods都能解决!</p>
- <!--more-->
-<h3 id="安装CocoaPods">安装CocoaPods</h3><p>安装CocoaPods需要本地Ruby环境，默认情况下，Mac自带Ruby环境，可以通过在终端输入命令ruby -v查看Ruby版本，接下来进行安装，使用如下命令：</p>
-<pre><code>$ sudo gem <span class="operator"><span class="keyword">install</span> CocoaPods
-输入以上命令，可能会一直没有反应，或者出现<span class="keyword">ERROR</span>。注意了，我们在天朝，是有一堵墙的，挡住了，所以你安装失败。不过没关系，我们可以使用另外一个地址来访问CocoaPods。</span>
-</code></pre><p>既然官网地址被墙了，我们就使用淘宝的，淘宝的Ruby镜像可以帮助我们访问CocoaPods，分别在终端输入如下命令，将Ruby镜像替换为淘宝的镜像地址:</p>
-<pre><code><span class="variable">$ </span>gem sources —remove <span class="symbol">https:</span>/<span class="regexp">/rubygems.org/</span>
-<span class="variable">$ </span>gem sources -a <span class="symbol">http:</span>/<span class="regexp">/ruby.taobao.org/</span>
-</code></pre><p>完成之后，我们可以使用如下命令来查看Ruby镜像是否已经指向了淘宝：</p>
-<p>$ gem sources -l<br>如果看到如下信息，表示已经成功！！！<br><img src="http://i5.tietuku.com/935159867a2c3f82.jpg" alt=""></p>
-<p>下面，重新执行安装命令，等待安装结束就可以了</p>
-<pre><code>$ sudo gem <span class="keyword">install</span> CocoaPods
-</code></pre><p>等待执行完毕，看到如下提示，恭喜你，安装完成。<br><img src="http://ww2.sinaimg.cn/large/74311666jw1eygxopggdtj20gw02mjrt.jpg" alt=""></p>
-<p>如果遇到其它的安装问题，请自行Google解决吧。</p>
-<h3 id="使用CocoaPods">使用CocoaPods</h3><p>安装已经完成了，下面就来教大家如何使用。<br>做一个项目，项目中需要使用SDWebImage，看看如何使用CocoaPods进行安装<br>首先使用如下命令，查看CocoaPods是否支持SDWebImage类库</p>
-<pre><code><span class="variable">$ </span>pod search <span class="constant">SDWebImage</span>
-</code></pre><p>可以看到下面这些搜索结果，表示SDWebImage是可以的，<br> <img src="http://i12.tietuku.com/5847b5e6afb84ba5.jpg" alt=""></p>
-<p>注意圈住的那一行，一会需要使用。这行信息是告诉CocoaPods去下载哪一个第三方类库和它的哪一个版本，是一条配置信息。</p>
-<h4 id="下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库：">下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库：</h4><p>1&gt;. 创建项目 CocoaPods_Test，保存到桌面</p>
-<p>2&gt;. 在终端输入 cd空格，拖入项目文件夹，回车，进入项目所在的根目录</p>
-<p>3&gt;.通过命令行创建Podfile文件，该文件的作用是配置第三方类库的信息，就是告诉CocoaPods去管理哪些类库</p>
-<pre><code><span class="variable">$ </span>vim <span class="constant">Podfile</span>
-</code></pre><p>vim打开文件后，按i进入编辑模式，输入如下文字：<br>  <img src="http://i12.tietuku.com/5266e8d6fc217c17.jpg" alt=""><br>里面的<code>pod &#39;SDWebImage&#39;, &#39;~&gt; 3.7.1&#39;</code>就是我们在上面圈住的那一行。<br>输入完成后按ESC退出编辑模式，接着输入:wq，并按回车键进行保存并退出。<br>上面的操作完成之后，我们可以在项目根目录发现一个没有后缀的Podfile文件，这就是刚刚创建的文件，里面保存了需要使用的第三方类库的信息。(注意：Podfile文件必须和.xcodeproj文件在同一目录下)</p>
-<p>4&gt;. 接下来，我们就可以使用命令来安装第三方类库了，(确保终端路径在项目根目录)运行如下命令：</p>
-<pre><code>$ pod <span class="keyword">install</span>
-</code></pre><p>当我们看到这样的提示，就表示你操作成功：<br><img src="http://i12.tietuku.com/5266e8d6fc217c17.jpg" alt=""><br>第三方类库导入成功</p>
-<h4 id="注意最后一句话：”Please_close_any_current_Xcode_sessions_and_use_‘CocoaPods_Test-xcworkspace’for_this_project_from_now_on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的-xcodeproj">注意最后一句话：”Please close any current Xcode sessions and use ‘CocoaPods_Test.xcworkspace’for this project from now on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的.xcodeproj</h4><p>5&gt;. 双击项目中的CocoaPods_Test.xcworkspace文件来打开项目，你会看到如下目录结构：</p>
-<p> <a href="http://m.yea.im/4ev.html" title="87276160ad89fb15" target="_blank" rel="external"><img src="http://m1.yea.im/4ev_m.jpg" alt="87276160ad89fb15"></a></p>
-<p>我们会发现多了一个Pods的依赖工程，打开Pods文件夹后，发现SDWebImage已经在这里面了。</p>
-<p>6&gt;. 现在，我们就可以在想要使用SDWebImage的文件中，引入需要的文件，然后就可以正常使用了。</p>
-<p>7&gt;. 到现在为止，你已经学会了如何使用CocoaPods来添加第三方类库。如果我们需要使用多个第三方类库，只需要修改Podfile文件就可以了，如下：<br>添加多个第三方类库<br><img src="http://i12.tietuku.com/52b00c779be4764e.jpg" alt=""><br>NOTE:<br>怎么样，过程很简单吧。只需要: 1.查询 2.修改Podfile文件 3.安装 即可完成!</p>
-<h4 id="其它">其它</h4><p>当我们想要重新安装CocoaPods的时候，需要卸载这个东西，很简单，只需要执行以下命令即可：</p>
-<pre><code><span class="variable">$ </span>sudo gem uninstall <span class="constant">CocoaPods</span>
-</code></pre><p>如果安装了多个版本，选择All，即可全部卸载！</p>
-<p>第三方版本号的各种写法与含义：</p>
-<pre><code>pod <span class="string">'AFNetworking'</span>      <span class="comment">//不显式指定依赖库版本，表示每次都获取最新版本</span>
-pod <span class="string">'AFNetworking'</span>,  <span class="string">'2.0'</span>     <span class="comment">//只使用2.0版本</span>
-pod <span class="string">'AFNetworking'</span>, <span class="string">'&gt;2.0'</span>     <span class="comment">//使用高于2.0的版本</span>
-pod <span class="string">'AFNetworking'</span>, <span class="string">'&gt;=2.0'</span>     <span class="comment">//使用大于或等于2.0的版本</span>
-pod <span class="string">'AFNetworking'</span>, <span class="string">'&lt;2.0'</span>     <span class="comment">//使用小于2.0的版本</span>
-pod <span class="string">'AFNetworking'</span>, <span class="string">'&lt;=2.0'</span>     <span class="comment">//使用小于或等于2.0的版本</span>
-pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0.1.2'</span>     <span class="comment">//使用大于等于0.1.2但小于0.2的版本，相当于&gt;=0.1.2并且&lt;0.2.0</span>
-pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0.1'</span>     <span class="comment">//使用大于等于0.1但小于1.0的版本</span>
-pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0'</span>     <span class="comment">//高于0的版本，写这个限制和什么都不写是一个效果，都表示使用最新版本</span>
+        <span itemprop="articleBody"><p>##<center>vim编辑器</center></p>
+<center>发表于 2015-6-20   |   分类于 linux</center>
+
+
+<hr>
+<p>###vi(vim)简介<br>vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想使用代码加亮的话可以使用vim。下面是vi的使用教程：包含vi的基本介绍、使用模式、文件的打开关闭保存、插入文本或新建行、移动光标、删除、恢复字符或行、搜索等等，算是一篇比较适合新手学习vi的教程。<br><a id="more"></a></p>
+<p>##vim编辑器的三种模式</p>
+<h3 id="命令模式">命令模式</h3><p>在该模式中，可以输入命令来执行许多种功能。控制屏幕光标的移动，字符、字或行的删除，移动复制某区段及进入Insert mode下，或者到 last line mode。</p>
+<h3 id="输入模式">输入模式</h3><p>vim被运行时，通常处在命令模式下，键入以下命令 可以使vim退出命令模式，进入输入模式：I（i）、A（a）、O（o）。</p>
+<h3 id="末行模式">末行模式</h3><p>将文件保存或退出vim，也可以设置编辑环境，如寻找字符串、列出行号……等。不过一般我们在使用时把vim简化成两个模式，就是将末行模式（last line mode）也算入命令行模式command mode）。</p>
+<h3 id="vim编辑器的启动与退出">vim编辑器的启动与退出</h3><h4 id="1-_vim的启动">1. vim的启动</h4><p>　　输入vim命令后，便进入全屏幕编辑环境，此时的状态为命令模式。</p>
+<h5 id="(1)_vim">(1) vim</h5><p>　　进入vi的一个临时缓冲区，光标定位在该缓冲区第1行第1列的位置上。</p>
+<h5 id="(2)_vim_file1">(2) vim file1</h5><p>　　如果file1文件不存在，将建立此文件；如该文件存在，则将其拷贝到一个临时缓冲区。光标定位在该缓冲区第1行第1列的位置上。</p>
+<h5 id="(3)_vim_+_file1">(3) vim + file1</h5><p>　　如果file1文件不存在，将建立此文件；如该文件存在，则将其拷贝到一个临时缓冲区。光标定位在文件最后1行第1列的位置上。</p>
+<h5 id="(4)_vim_+N_file1(N：为数字)">(4) vim +N file1(N：为数字)</h5><p>　　如果file1文件不存在，将建立此文件；如该文件存在，则将其拷贝到一个临时缓冲区。光标定位在文件第N行第1列的位置上。</p>
+<h5 id="(5)_vim_+/string_file1">(5) vim +/string file1</h5><p>　　如果file1文件不存在将建立此文件；如该文件存在则将其拷贝到一个临时缓冲区。光标定位在文件中第一次出现字符串string的行首位置。</p>
+<h4 id="2-_退出vim(末行模式（last_line_mode）)">2. 退出vim(末行模式（last line mode）)</h4><p>　　建议在退出vim前，先按ESC键，以确保当前vim的状态为命令方式，然后再键入“：”(冒号)，输入下列命令，退出vi。</p>
+<p>#####　(1) :w</p>
+<p>　　将编辑缓冲区的内容写入文件，则新的内容就替代了原始文件。这时并没有退出vim，必须进一步输入下述命令才能退出vi：</p>
+<pre><code>　　<span class="pseudo">:w</span> <span class="tag">filename</span>(存入指定文件)
+
+　　<span class="pseudo">:q</span>
+</code></pre><p>#####　　(2) :wq</p>
+<p>　　即将上面的两步操作可以合成一步来完成，先执行w，后执行q。</p>
+<p>#####　　(3) :x和ZZ(注意： ZZ前面没有“:”)</p>
+<p>　　功能与(2)等价。</p>
+<p>#####　　(4) :q!(或:quit)</p>
+<p>　　强行退出vim，使被更新的内容不写回文件中。仅键入命令:q时，如vim发现文本内容已被更改，将提示用户使用“:quit”命令退出。</p>
+<p>###vim编辑器常用命令</p>
+<ul>
+<li><p>1、在文件中移动光标</p>
+<p>  　　h：向左移动一个字符</p>
+<p>  　　l：向右移动一个字符</p>
+<p>  　　j：向下移动一行</p>
+<p>  　　k：向上移动一行</p>
+<p>  　　^（即Shift+6）：移动到当前行的开头处</p>
+<p>  　　$（即Shift+4）：移动到当前行的结尾处</p>
+<p>  　　H（大写）:使光标移动到屏幕的顶部</p>
+<p>  　　M（大写）:使光标移动到屏幕的中间</p>
+<p>  　　L（大写）:使光标移动到屏幕的底部</p>
+<p>  　　Ctrl+b：上滚一屏。</p>
+<p>  　　Ctrl+f：下滚一屏。</p>
+<p>  　　Ctrl+d：下滚半屏。</p>
+<p>  　　Ctrl+u: 上滚半屏。</p>
+</li>
+<li><p>2、插入文本</p>
+</li>
+</ul>
+<p>　　（1）添加：</p>
+<p>　  　  输入a后，在光标的右边插入文本</p>
+<p>　　    输入A，在一行的结尾处添加文本</p>
+<p>　　（2）插入：</p>
+<p>　　    通过在命令模式下输入i，在光标的左边插入文本</p>
+<p>　　    通过在命令模式下输入I，在行首插入文本</p>
+<p>　　（3）插入新行：</p>
+<p>　    　输入o，在当前光标位置下面打开一行</p>
+<p>　      　输入O，在当前光标位置上面打开一行
+　      　</p>
+<ul>
+<li>3、撤消更改</li>
+</ul>
+<p>　 　（1）撤消前一个命令：在最后一个命令之后立即输入u来撤消该命令</p>
+<p>　　 （2）重复某个命令：“.”</p>
+<p>　　 （3）撤消对一行的更改：输入U来撤消你对一行所做的所有更改，这个命令只有在你没将光标移动到该行以外时才生效。</p>
+<ul>
+<li>4、删除文本</li>
+</ul>
+<p>　 　（1）删除一个字符：</p>
+<p>　　    为删除一个字符，需将光标放置在要删除的字符上并输入x</p>
+<p>　      为删除光标之前（其左边）的一个字符，需输入X</p>
+<p>　　（2）删除一个词或词的部分内容：</p>
+<p>　    　为删除一个词，需将光标放置到该词的开头并输入dw</p>
+<p>　　    为删除词的部分内容，需将光标放置到该词要保存部分的右边。输入dw来删除该词余下的部分</p>
+<p>　　（3）删除一行：将光标放置到该行的任意处并输入dd</p>
+<p>　　（4）删除多行：ndd</p>
+<p>　　（5）删除行的部分内容：将光标放置到该行要保存部分的右边，并输入D。为删除光标左边的所有内容，须将光标放置到该行要删除部分的右边，并输入d0（d-零）。</p>
+<p>　　（6）删除到文件的结尾：为删除从当前行到文件结尾的所有内容，需输入dG</p>
+<ul>
+<li>5、复制和移动文本</li>
+</ul>
+<p>　　 复制一行命令：yy</p>
+<p>　 　粘贴命令：p</p>
+<p>　 　移动文本：先将要移动的部分用删除命令删除，然后再粘贴就可以了</p>
+<p>　 　复制指定文件的内容</p>
+<pre><code>　　: r <span class="keyword">filename</span>
+</code></pre><ul>
+<li>6、查找一个字符串</li>
+</ul>
+<p>　 　输入/，并在/后面输入要查找的串，然后按下回车</p>
+<p>　 　输入“n”跳转到该串的下一个出现处</p>
+<p>　 　输入“N”跳转到该串的上一个出现处</p>
+<ul>
+<li>7、替换一个字符串</li>
+</ul>
+<p>　 　在一行内替换头一个字符串old为新的字符串new</p>
+<pre><code>　　<span class="symbol">:s/old/new</span>
+</code></pre><p>　 　在一行内替换所有的字符串old为新的字符串new</p>
+<pre><code>　　:<span class="regexp">s/old/new/g</span>
+</code></pre><p> 　　在两行内替换所有的字符串old为新的字符串new</p>
+<pre><code>　　:#,#s<span class="regexp">/old/</span><span class="keyword">new</span><span class="regexp">/g</span>
+</code></pre><p>　 　在文件内替换所有的字符串old为新的字符串new</p>
+<pre><code>　　<span class="symbol">:%s/old/new/g</span>
+</code></pre><p>　 　进行全文替换时询问用户确认每个替换需添加c选项</p>
+<pre><code>　　<span class="symbol">:%s/old/new/gc</span>
+</code></pre><ul>
+<li>8、设置vim</li>
+</ul>
+<p>　 　显示行号</p>
+<pre><code>　　:<span class="keyword">set</span> <span class="type">number</span>
+</code></pre><p>　 　取消行号显示</p>
+<pre><code>　　:<span class="keyword">set</span> nonumber
+</code></pre><p>　 　设置显示用户模式</p>
+<pre><code>　　:<span class="keyword">set</span> showmode
+</code></pre><p>　 　设置文件只读</p>
+<p>　    　:set readonly
+　    　
+　    　
+　    　
+　    　</p>
+<h4 id="登录步骤">　登录步骤</h4><pre><code>login : <span class="strong">_____</span>__ &gt; 输入 username
+password : <span class="strong">_____</span>__ &gt; 输入密码
+</code></pre><h4 id="登出步骤">登出步骤</h4><pre><code><span class="preprocessor">%</span> logout 或 <span class="preprocessor">%</span> exit 或 <span class="preprocessor">%</span> 或按[Ctrl-D]
+</code></pre><h4 id="更改帐号密码">更改帐号密码</h4><p>passwd &gt; 执行后将会出现下列信息 Changing NIS password for user on ice.</p>
+<pre><code> Old <span class="string">password:</span> ______ &gt; 输入旧密码
+
+ New <span class="string">password:</span> ______ &gt; 输入新密码(最好<span class="number">6</span>-<span class="number">8</span>字，英文字母与数字混合)
+
+Retype <span class="keyword">new</span> <span class="string">password:</span> ______ &gt; 再输入一次密码
 </code></pre></span>
       
     </div>
@@ -268,13 +357,13 @@ pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0'</s
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/30/如何制作想淘宝口令一样的链接/" rel="prev">关于iOS的剪贴板基本知识</a>
+              <a href="/2015/01/20/iOS-延展-类目-代理协议/" rel="prev">iOS--延展,类目,代理协议</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/28/使用WKWebView替换UIWebView/" rel="next">使用WKWebView替换UIWebView</a>
+              <a href="/2014/12/28/hexo如何写博客/" rel="next">hexo如何写博客</a>
             
           </div>
         </div>
@@ -379,7 +468,7 @@ pod <span class="string">'AFNetworking'</span>, <span class="string">'~&gt;0'</s
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CocoaPods是什么"><span class="nav-number">1.</span> <span class="nav-text">CocoaPods是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装CocoaPods"><span class="nav-number">2.</span> <span class="nav-text">安装CocoaPods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用CocoaPods"><span class="nav-number">3.</span> <span class="nav-text">使用CocoaPods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库："><span class="nav-number">3.1.</span> <span class="nav-text">下面创建空的项目，然后使用CocoaPods往项目中导入SDWebImage类库：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意最后一句话：”Please_close_any_current_Xcode_sessions_and_use_‘CocoaPods_Test-xcworkspace’for_this_project_from_now_on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的-xcodeproj"><span class="nav-number">3.2.</span> <span class="nav-text">注意最后一句话：”Please close any current Xcode sessions and use ‘CocoaPods_Test.xcworkspace’for this project from now on”。这就是告诉我们，从现在开始需要使用这个文件来打开项目，而不在是之前的.xcodeproj</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它"><span class="nav-number">3.3.</span> <span class="nav-text">其它</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令模式"><span class="nav-number">1.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入模式"><span class="nav-number">2.</span> <span class="nav-text">输入模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#末行模式"><span class="nav-number">3.</span> <span class="nav-text">末行模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim编辑器的启动与退出"><span class="nav-number">4.</span> <span class="nav-text">vim编辑器的启动与退出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-_vim的启动"><span class="nav-number">4.1.</span> <span class="nav-text">1. vim的启动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#(1)_vim"><span class="nav-number">4.1.1.</span> <span class="nav-text">(1) vim</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(2)_vim_file1"><span class="nav-number">4.1.2.</span> <span class="nav-text">(2) vim file1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(3)_vim_+_file1"><span class="nav-number">4.1.3.</span> <span class="nav-text">(3) vim + file1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(4)_vim_+N_file1(N：为数字)"><span class="nav-number">4.1.4.</span> <span class="nav-text">(4) vim +N file1(N：为数字)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(5)_vim_+/string_file1"><span class="nav-number">4.1.5.</span> <span class="nav-text">(5) vim +/string file1</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-_退出vim(末行模式（last_line_mode）)"><span class="nav-number">4.2.</span> <span class="nav-text">2. 退出vim(末行模式（last line mode）)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录步骤"><span class="nav-number">4.3.</span> <span class="nav-text">　登录步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登出步骤"><span class="nav-number">4.4.</span> <span class="nav-text">登出步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改帐号密码"><span class="nav-number">4.5.</span> <span class="nav-text">更改帐号密码</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

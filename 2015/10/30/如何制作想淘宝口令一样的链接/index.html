@@ -35,31 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="##vim编辑器
-发表于 2015-6-20   |   分类于 linux
-
-
-
-###vi(vim)简介vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想">
+<meta name="description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vi编辑器的使用">
-<meta property="og:url" content="http://yoursite.com/2015/06/29/vi编辑器的使用/index.html">
+<meta property="og:title" content="关于iOS的剪贴板基本知识">
+<meta property="og:url" content="http://yoursite.com/2015/10/30/如何制作想淘宝口令一样的链接/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="##vim编辑器
-发表于 2015-6-20   |   分类于 linux
-
-
-
-###vi(vim)简介vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想">
-<meta property="og:updated_time" content="2015-11-28T11:47:10.000Z">
+<meta property="og:description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
+<meta property="og:updated_time" content="2015-12-04T02:55:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vi编辑器的使用">
-<meta name="twitter:description" content="##vim编辑器
-发表于 2015-6-20   |   分类于 linux
-
-
-
-###vi(vim)简介vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想">
+<meta name="twitter:title" content="关于iOS的剪贴板基本知识">
+<meta name="twitter:description" content="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -69,7 +54,7 @@
   };
 </script>
 
-    <title> vi编辑器的使用 // 张天琦 </title>
+    <title> 关于iOS的剪贴板基本知识 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -190,7 +175,7 @@
           
           
             
-              vi编辑器的使用
+              关于iOS的剪贴板基本知识
             
           
         </h1>
@@ -199,8 +184,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-06-29T09:51:56+08:00" content="2015-06-29">
-            2015-06-29
+          <time itemprop="dateCreated" datetime="2015-10-30T09:18:10+08:00" content="2015-10-30">
+            2015-10-30
           </time>
         </span>
 
@@ -218,135 +203,123 @@
       
 
       
-        <span itemprop="articleBody"><p>##<center>vim编辑器</center></p>
-<center>发表于 2015-6-20   |   分类于 linux</center>
-
-
-<hr>
-<p>###vi(vim)简介<br>vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想使用代码加亮的话可以使用vim。下面是vi的使用教程：包含vi的基本介绍、使用模式、文件的打开关闭保存、插入文本或新建行、移动光标、删除、恢复字符或行、搜索等等，算是一篇比较适合新手学习vi的教程。<br><a id="more"></a></p>
-<p>##vim编辑器的三种模式</p>
-<h3 id="命令模式">命令模式</h3><p>在该模式中，可以输入命令来执行许多种功能。控制屏幕光标的移动，字符、字或行的删除，移动复制某区段及进入Insert mode下，或者到 last line mode。</p>
-<h3 id="输入模式">输入模式</h3><p>vim被运行时，通常处在命令模式下，键入以下命令 可以使vim退出命令模式，进入输入模式：I（i）、A（a）、O（o）。</p>
-<h3 id="末行模式">末行模式</h3><p>将文件保存或退出vim，也可以设置编辑环境，如寻找字符串、列出行号……等。不过一般我们在使用时把vim简化成两个模式，就是将末行模式（last line mode）也算入命令行模式command mode）。</p>
-<h3 id="vim编辑器的启动与退出">vim编辑器的启动与退出</h3><h4 id="1-_vim的启动">1. vim的启动</h4><p>　　输入vim命令后，便进入全屏幕编辑环境，此时的状态为命令模式。</p>
-<h5 id="(1)_vim">(1) vim</h5><p>　　进入vi的一个临时缓冲区，光标定位在该缓冲区第1行第1列的位置上。</p>
-<h5 id="(2)_vim_file1">(2) vim file1</h5><p>　　如果file1文件不存在，将建立此文件；如该文件存在，则将其拷贝到一个临时缓冲区。光标定位在该缓冲区第1行第1列的位置上。</p>
-<h5 id="(3)_vim_+_file1">(3) vim + file1</h5><p>　　如果file1文件不存在，将建立此文件；如该文件存在，则将其拷贝到一个临时缓冲区。光标定位在文件最后1行第1列的位置上。</p>
-<h5 id="(4)_vim_+N_file1(N：为数字)">(4) vim +N file1(N：为数字)</h5><p>　　如果file1文件不存在，将建立此文件；如该文件存在，则将其拷贝到一个临时缓冲区。光标定位在文件第N行第1列的位置上。</p>
-<h5 id="(5)_vim_+/string_file1">(5) vim +/string file1</h5><p>　　如果file1文件不存在将建立此文件；如该文件存在则将其拷贝到一个临时缓冲区。光标定位在文件中第一次出现字符串string的行首位置。</p>
-<h4 id="2-_退出vim(末行模式（last_line_mode）)">2. 退出vim(末行模式（last line mode）)</h4><p>　　建议在退出vim前，先按ESC键，以确保当前vim的状态为命令方式，然后再键入“：”(冒号)，输入下列命令，退出vi。</p>
-<p>#####　(1) :w</p>
-<p>　　将编辑缓冲区的内容写入文件，则新的内容就替代了原始文件。这时并没有退出vim，必须进一步输入下述命令才能退出vi：</p>
-<pre><code>　　<span class="pseudo">:w</span> <span class="tag">filename</span>(存入指定文件)
-
-　　<span class="pseudo">:q</span>
-</code></pre><p>#####　　(2) :wq</p>
-<p>　　即将上面的两步操作可以合成一步来完成，先执行w，后执行q。</p>
-<p>#####　　(3) :x和ZZ(注意： ZZ前面没有“:”)</p>
-<p>　　功能与(2)等价。</p>
-<p>#####　　(4) :q!(或:quit)</p>
-<p>　　强行退出vim，使被更新的内容不写回文件中。仅键入命令:q时，如vim发现文本内容已被更改，将提示用户使用“:quit”命令退出。</p>
-<p>###vim编辑器常用命令</p>
-<ul>
-<li><p>1、在文件中移动光标</p>
-<p>  　　h：向左移动一个字符</p>
-<p>  　　l：向右移动一个字符</p>
-<p>  　　j：向下移动一行</p>
-<p>  　　k：向上移动一行</p>
-<p>  　　^（即Shift+6）：移动到当前行的开头处</p>
-<p>  　　$（即Shift+4）：移动到当前行的结尾处</p>
-<p>  　　H（大写）:使光标移动到屏幕的顶部</p>
-<p>  　　M（大写）:使光标移动到屏幕的中间</p>
-<p>  　　L（大写）:使光标移动到屏幕的底部</p>
-<p>  　　Ctrl+b：上滚一屏。</p>
-<p>  　　Ctrl+f：下滚一屏。</p>
-<p>  　　Ctrl+d：下滚半屏。</p>
-<p>  　　Ctrl+u: 上滚半屏。</p>
-</li>
-<li><p>2、插入文本</p>
+        <span itemprop="articleBody"><h3 id="[转]关于制作一个像淘宝那样复制链接就可以生成一条链接">[转]关于制作一个像淘宝那样复制链接就可以生成一条链接</h3><a id="more"></a>
+<h4 id="在iOS中下面三个控件，自身就有复制-粘贴的功能：">在iOS中下面三个控件，自身就有复制-粘贴的功能：</h4><ul>
+<li>1、UITextView</li>
+<li>2、UITextField</li>
+<li>3、UIWebView</li>
+</ul>
+<h4 id="UIKit_framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。">UIKit framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。</h4><ul>
+<li>1、UIPasteboard：我们可以向其中写入数据，也可以读取数据<ul>
+<li>2、UIMenuController：显示一个快捷菜单，用来展示复制、剪贴、粘贴等选择的项。</li>
+<li>3、UIResponder中的 canPerformAction:withSender:用于控制哪些命令显示在快捷菜单中。</li>
+<li>4、当快捷菜单上的命令点击的时候，UIResponderStandardEditActions将会被调用。</li>
+</ul>
 </li>
 </ul>
-<p>　　（1）添加：</p>
-<p>　  　  输入a后，在光标的右边插入文本</p>
-<p>　　    输入A，在一行的结尾处添加文本</p>
-<p>　　（2）插入：</p>
-<p>　　    通过在命令模式下输入i，在光标的左边插入文本</p>
-<p>　　    通过在命令模式下输入I，在行首插入文本</p>
-<p>　　（3）插入新行：</p>
-<p>　    　输入o，在当前光标位置下面打开一行</p>
-<p>　      　输入O，在当前光标位置上面打开一行
-　      　</p>
-<ul>
-<li>3、撤消更改</li>
+<h4 id="下面这些项能被放置到剪贴板中">下面这些项能被放置到剪贴板中</h4><ul>
+<li>1、UIPasteboardTypeListString —   字符串数组, 包含kUTTypeUTF8PlainText</li>
+<li>2、UIPasteboardTypeListURL —   URL数组，包含kUTTypeURL</li>
+<li>3、UIPasteboardTypeListImage —   图形数组, 包含kUTTypePNG 和kUTTypeJPEG</li>
+<li><p>4、UIPasteboardTypeListColor —   颜色数组</p>
+<p>剪贴板的类型分为两种：<br>系统级：使用UIPasteboardNameGeneral和UIPasteboardNameFind，系统级应用程序关闭，或者卸载的数据不会丢失。<br>应用程序级：通过设置，可以让数据在应用程序关闭之后仍然保存在剪贴板中，但是应用程序卸载之后数据就会失去。我们可用通过pasteboardWithName:create：来创建。</p>
+</li>
 </ul>
-<p>　 　（1）撤消前一个命令：在最后一个命令之后立即输入u来撤消该命令</p>
-<p>　　 （2）重复某个命令：“.”</p>
-<p>　　 （3）撤消对一行的更改：输入U来撤消你对一行所做的所有更改，这个命令只有在你没将光标移动到该行以外时才生效。</p>
-<ul>
-<li>4、删除文本</li>
-</ul>
-<p>　 　（1）删除一个字符：</p>
-<p>　　    为删除一个字符，需将光标放置在要删除的字符上并输入x</p>
-<p>　      为删除光标之前（其左边）的一个字符，需输入X</p>
-<p>　　（2）删除一个词或词的部分内容：</p>
-<p>　    　为删除一个词，需将光标放置到该词的开头并输入dw</p>
-<p>　　    为删除词的部分内容，需将光标放置到该词要保存部分的右边。输入dw来删除该词余下的部分</p>
-<p>　　（3）删除一行：将光标放置到该行的任意处并输入dd</p>
-<p>　　（4）删除多行：ndd</p>
-<p>　　（5）删除行的部分内容：将光标放置到该行要保存部分的右边，并输入D。为删除光标左边的所有内容，须将光标放置到该行要删除部分的右边，并输入d0（d-零）。</p>
-<p>　　（6）删除到文件的结尾：为删除从当前行到文件结尾的所有内容，需输入dG</p>
-<ul>
-<li>5、复制和移动文本</li>
-</ul>
-<p>　　 复制一行命令：yy</p>
-<p>　 　粘贴命令：p</p>
-<p>　 　移动文本：先将要移动的部分用删除命令删除，然后再粘贴就可以了</p>
-<p>　 　复制指定文件的内容</p>
-<pre><code>　　: r <span class="keyword">filename</span>
-</code></pre><ul>
-<li>6、查找一个字符串</li>
-</ul>
-<p>　 　输入/，并在/后面输入要查找的串，然后按下回车</p>
-<p>　 　输入“n”跳转到该串的下一个出现处</p>
-<p>　 　输入“N”跳转到该串的上一个出现处</p>
-<ul>
-<li>7、替换一个字符串</li>
-</ul>
-<p>　 　在一行内替换头一个字符串old为新的字符串new</p>
-<pre><code>　　<span class="symbol">:s/old/new</span>
-</code></pre><p>　 　在一行内替换所有的字符串old为新的字符串new</p>
-<pre><code>　　:<span class="regexp">s/old/new/g</span>
-</code></pre><p> 　　在两行内替换所有的字符串old为新的字符串new</p>
-<pre><code>　　:#,#s<span class="regexp">/old/</span><span class="keyword">new</span><span class="regexp">/g</span>
-</code></pre><p>　 　在文件内替换所有的字符串old为新的字符串new</p>
-<pre><code>　　<span class="symbol">:%s/old/new/g</span>
-</code></pre><p>　 　进行全文替换时询问用户确认每个替换需添加c选项</p>
-<pre><code>　　<span class="symbol">:%s/old/new/gc</span>
-</code></pre><ul>
-<li>8、设置vim</li>
-</ul>
-<p>　 　显示行号</p>
-<pre><code>　　:<span class="keyword">set</span> <span class="type">number</span>
-</code></pre><p>　 　取消行号显示</p>
-<pre><code>　　:<span class="keyword">set</span> nonumber
-</code></pre><p>　 　设置显示用户模式</p>
-<pre><code>　　:<span class="keyword">set</span> showmode
-</code></pre><p>　 　设置文件只读</p>
-<p>　    　:set readonly
-　    　
-　    　
-　    　
-　    　</p>
-<h4 id="登录步骤">　登录步骤</h4><pre><code>login : <span class="strong">_____</span>__ &gt; 输入 username
-password : <span class="strong">_____</span>__ &gt; 输入密码
-</code></pre><h4 id="登出步骤">登出步骤</h4><pre><code><span class="preprocessor">%</span> logout 或 <span class="preprocessor">%</span> exit 或 <span class="preprocessor">%</span> 或按[Ctrl-D]
-</code></pre><h4 id="更改帐号密码">更改帐号密码</h4><p>passwd &gt; 执行后将会出现下列信息 Changing NIS password for user on ice.</p>
-<pre><code> Old <span class="string">password:</span> ______ &gt; 输入旧密码
+<p>例子如下：<br>有时候我们可能需要复制UILabel上的文本，或者UIImageView的图片，而UILabel和UIImageView默认是不响应Touch事件的，也无法复制，那么我们就需要自己实现一个可复制的UILabel。新添加一个类继承自UILabel：<br>[cpp] view plaincopy<br>@interface UICopyLabel : UILabel<br>@end    </p>
+<pre><code><span class="preprocessor">#import <span class="title">"UICopyLabel.h"</span>    </span>
+<span class="class"><span class="keyword">@implementation</span> <span class="title">UICopyLabel</span>    </span>
+<span class="keyword">@end</span>    
+</code></pre><p>为了能接收到事件（能成为第一响应者），我们需要覆盖一个方法：</p>
+<pre><code>-(<span class="built_in">BOOL</span>)canBecomeFirstResponder  
+{    
+<span class="keyword">return</span> <span class="literal">YES</span>;    
+}    
+</code></pre><p> 还需要针对复制的操作覆盖两个方法： </p>
+<pre><code><span class="comment">// 可以响应的方法  </span>
+-(<span class="built_in">BOOL</span>)canPerformAction:(SEL)action withSender:(<span class="keyword">id</span>)sender  
+{    
+<span class="keyword">return</span> (action == <span class="keyword">@selector</span>(<span class="keyword">copy</span>:));    
+}    
 
- New <span class="string">password:</span> ______ &gt; 输入新密码(最好<span class="number">6</span>-<span class="number">8</span>字，英文字母与数字混合)
+<span class="comment">//针对于响应方法的实现    </span>
+    -(<span class="keyword">void</span>)<span class="keyword">copy</span>:(<span class="keyword">id</span>)sender  
+{    
+<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];    
+pboard<span class="variable">.string</span> = <span class="keyword">self</span><span class="variable">.text</span>;    
+}    
+</code></pre><p>有了以上三个方法，我们就能处理copy了，当然，在能接收到事件的情况下：</p>
+<pre><code><span class="comment">//UILabel默认是不接收事件的，我们需要自己添加touch事件    </span>
+-(<span class="keyword">void</span>)attachTapHandler  
+{    
+<span class="keyword">self</span><span class="variable">.userInteractionEnabled</span> = <span class="literal">YES</span>;  <span class="comment">//用户交互的总开关    </span>
+<span class="built_in">UITapGestureRecognizer</span> *touch = [[<span class="built_in">UITapGestureRecognizer</span> alloc] initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(handleTap:)];    
+touch<span class="variable">.numberOfTapsRequired</span> = <span class="number">2</span>;    
+[<span class="keyword">self</span> addGestureRecognizer:touch];    
+[touch release];    
+}    
+<span class="comment">//绑定事件    </span>
+- (<span class="keyword">id</span>)initWithFrame:(<span class="built_in">CGRect</span>)frame    
+{    
+<span class="keyword">self</span> = [<span class="keyword">super</span> initWithFrame:frame];    
+<span class="keyword">if</span> (<span class="keyword">self</span>)  
+   {    
+    [<span class="keyword">self</span> attachTapHandler];    
+}    
+<span class="keyword">return</span> <span class="keyword">self</span>;    
+}    
+<span class="comment">//同上    </span>
+-(<span class="keyword">void</span>)awakeFromNib  
+{    
+[<span class="keyword">super</span> awakeFromNib];    
+[<span class="keyword">self</span> attachTapHandler];    
+}    
+</code></pre><p>我们已经可以接收到事件了！由于我在上方将tap数设为2，所以需要双击才能捕获，接下来，我们需要处理这个tap，以便让菜单栏弹出来：</p>
+<pre><code>-(<span class="keyword">void</span>)handleTap:(<span class="built_in">UIGestureRecognizer</span>*) recognizer  
+{    
+ [<span class="keyword">self</span> becomeFirstResponder];  
+ <span class="built_in">UIMenuItem</span> *copyLink = [[[<span class="built_in">UIMenuItemalloc</span>] initWithTitle:<span class="string">@"复制"</span>  
+                                                      action:<span class="keyword">@selector</span>(<span class="keyword">copy</span>:)]autorelease];  
+ [[<span class="built_in">UIMenuControllersharedMenuController</span>] setMenuItems:[<span class="built_in">NSArrayarrayWithObjects</span>:copyLink, <span class="literal">nil</span>]];  
+ [[<span class="built_in">UIMenuControllersharedMenuController</span>] setTargetRect:<span class="keyword">self</span><span class="variable">.frameinView</span>:<span class="keyword">self</span><span class="variable">.superview</span>];  
+ [[<span class="built_in">UIMenuControllersharedMenuController</span>] setMenuVisible:YESanimated: <span class="literal">YES</span>];  
+}    
+</code></pre><p> 这样一来，一个可复制的UILabel就诞生了！它能处理接收点击、弹出菜单栏、处理copy，这是一个很普通的可复制控件。</p>
+<p>接下来我们做一个可复制的UIImageView，创建一个新的viewController，放两个imageView，默认显示不同的图：<br>然后把上面的代码直接拷过来，改三个地方：</p>
+<pre><code>-(<span class="built_in">BOOL</span>)canPerformAction:(SEL)action withSender:(<span class="keyword">id</span>)sender  
+{    
+<span class="keyword">return</span> (action == <span class="keyword">@selector</span>(<span class="keyword">copy</span>:) || action == <span class="keyword">@selector</span>(paste:));    
+}    
 
-Retype <span class="keyword">new</span> <span class="string">password:</span> ______ &gt; 再输入一次密码
-</code></pre></span>
+-(<span class="keyword">void</span>)<span class="keyword">copy</span>:(<span class="keyword">id</span>)sender  
+{    
+<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];   
+<span class="built_in">NSData</span> *imgData = <span class="built_in">UIImagePNGRepresentation</span>(<span class="keyword">self</span><span class="variable">.image</span>);
+pboard<span class="variable">.image</span> = [<span class="built_in">UIImage</span> imageWithData:imgData];   
+}    
+
+-(<span class="keyword">void</span>)paste:(<span class="keyword">id</span>)sender  
+{    
+<span class="built_in">UIPasteboard</span> *pboard = [<span class="built_in">UIPasteboard</span> generalPasteboard];    
+<span class="keyword">self</span><span class="variable">.image</span> = pboard<span class="variable">.image</span>;    
+}    
+</code></pre><p> UIPasteboard有系统级别和应用级别两种类型，所以不仅可以在应用程序内通信，还能在应用程序间通信，比如我复制一个url，然后打开safari，粘贴到地址栏去，而我们可以在应用程序间通信、共享数据。</p>
+<p>在PasteBoardWrite里面点“写入”后把textField中的文本写入粘贴板，然后切换到PasteBoardRead的时候显示出来。如果我们的粘贴板只想给“自己人”用的话，就不能用系统的通用粘贴板，需要我们自己创建一个：</p>
+<pre><code><span class="comment">//需要提供一个唯一的名字，一般使用倒写的域名：com.mycompany.myapp.pboard    </span>
+<span class="comment">//后面的参数表示，如果不存在，是否创建一个    </span>
+<span class="built_in">UIPasteboard</span> *pb = [<span class="built_in">UIPasteboard</span>     pasteboardWithName:<span class="string">@"testBoard"</span> create:<span class="literal">YES</span>];    
+</code></pre><p>使用这个粘贴板，我们可以把文本存进去，然后在另一个app里面读出来，一些常用的类型已经被设置为属性了： </p>
+<p>除此之外，如果是能够转换成plist的数据类型（NSString, NSArray, NSDictionary, NSDate, NSNumber 和 NSURL），我们可以调用setValue:forPasteboardType:方法去存储数据，其他类型只能调用setData:forPasteboardType:方法（plist数据类型也可使用），类似于这样：</p>
+<pre><code><span class="comment">//存储数据  </span>
+NSDictionary *dict = [NSDictionary <span class="string">dictionaryWithObject:</span>textField.text <span class="string">forKey:</span>@<span class="string">"content"</span>];    
+NSData *dictData = [NSKeyedArchiver <span class="string">archivedDataWithRootObject:</span>dict];    
+[pb <span class="string">setData:</span>dictData <span class="string">forPasteboardType:</span>@<span class="string">"myType"</span>];    
+
+<span class="comment">//获取就类似于这样：   </span>
+UIPasteboard *pb = [UIPasteboard <span class="string">pasteboardWithName:</span>@<span class="string">"testBoard"</span> <span class="string">create:</span>YES];    
+NSDictionary *dict = [NSKeyedUnarchiver <span class="string">unarchiveObjectWithData:</span>[pb <span class="string">dataForPasteboardType:</span>@<span class="string">"myType"</span>]];    
+caption.text = [dict <span class="string">objectForKey:</span>@<span class="string">"content"</span>];    
+</code></pre><p>上面提到了一个PasteboardType，这是一个统一类型标识符（Uniform Type Identifier  UTI）,能帮助app获取自己能处理的数据。比如你只能处理文本的粘贴，那给你一个UIImage显然是无用的。你可以使用公用的UTI，也可以使用任意字符，苹果建议使用倒写的域名加上类型名：com.myCompany.myApp.myType</p>
+</span>
       
     </div>
 
@@ -357,13 +330,13 @@ Retype <span class="keyword">new</span> <span class="string">password:</span> __
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/28/iOS编程细节整理/" rel="prev">iOS编程细节整理</a>
+              <a href="/2015/11/20/使用WKWebView替换UIWebView/" rel="prev">使用WKWebView替换UIWebView</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/28/hexo如何写博客/" rel="next">hexo如何写博客</a>
+              <a href="/2015/04/28/数据持久化的几种方式/" rel="next">数据持久化的几种方式</a>
             
           </div>
         </div>
@@ -468,7 +441,7 @@ Retype <span class="keyword">new</span> <span class="string">password:</span> __
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令模式"><span class="nav-number">1.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入模式"><span class="nav-number">2.</span> <span class="nav-text">输入模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#末行模式"><span class="nav-number">3.</span> <span class="nav-text">末行模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim编辑器的启动与退出"><span class="nav-number">4.</span> <span class="nav-text">vim编辑器的启动与退出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-_vim的启动"><span class="nav-number">4.1.</span> <span class="nav-text">1. vim的启动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#(1)_vim"><span class="nav-number">4.1.1.</span> <span class="nav-text">(1) vim</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(2)_vim_file1"><span class="nav-number">4.1.2.</span> <span class="nav-text">(2) vim file1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(3)_vim_+_file1"><span class="nav-number">4.1.3.</span> <span class="nav-text">(3) vim + file1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(4)_vim_+N_file1(N：为数字)"><span class="nav-number">4.1.4.</span> <span class="nav-text">(4) vim +N file1(N：为数字)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(5)_vim_+/string_file1"><span class="nav-number">4.1.5.</span> <span class="nav-text">(5) vim +/string file1</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-_退出vim(末行模式（last_line_mode）)"><span class="nav-number">4.2.</span> <span class="nav-text">2. 退出vim(末行模式（last line mode）)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录步骤"><span class="nav-number">4.3.</span> <span class="nav-text">　登录步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登出步骤"><span class="nav-number">4.4.</span> <span class="nav-text">登出步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改帐号密码"><span class="nav-number">4.5.</span> <span class="nav-text">更改帐号密码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#[转]关于制作一个像淘宝那样复制链接就可以生成一条链接"><span class="nav-number">1.</span> <span class="nav-text">[转]关于制作一个像淘宝那样复制链接就可以生成一条链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在iOS中下面三个控件，自身就有复制-粘贴的功能："><span class="nav-number">1.1.</span> <span class="nav-text">在iOS中下面三个控件，自身就有复制-粘贴的功能：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIKit_framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。"><span class="nav-number">1.2.</span> <span class="nav-text">UIKit framework提供了几个类和协议方便我们在自己的应用程序中实现剪贴板的功能。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下面这些项能被放置到剪贴板中"><span class="nav-number">1.3.</span> <span class="nav-text">下面这些项能被放置到剪贴板中</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
