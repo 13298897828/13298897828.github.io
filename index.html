@@ -207,7 +207,8 @@
 
       
         
-          <span itemprop="articleBody"><p>属性关键字 </p>
+          <span itemprop="articleBody"><a id="more"></a>
+<p>属性关键字 </p>
 <p> <img src="http://i5.tietuku.com/d886f72d0f04079e.png" alt=""></p>
 <p>补充</p>
 <p>关于nonatomic,如果我们能确定不需要多线程访问时，强烈推荐使用这个关键字，因为atomic对于性能的损失相对较大。<br>nonatomic 决定比编译器生成的setter、getter 方法是否是原子操作。<br>如果是类的delegate，推荐使用assign关键字，原因是避免了retain的死循环造成的对象无法真正的释放<br>strong 、weak 补充<br>ARC 下新加 strong、weak</p>
