@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/03/07/KVO/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="一、概述KVO,即：Key-Value Observing，它提供一种机制，当指定的对象的属性被修改后，则对象就会接受到通知。简单的说就是每次指定的被观察的对象的属性被修改后，KVO就会自动通知相应的观察者了。KVO其实也是“观察者”设计模式的一种应用。我的看法是，这种模式有利于两个类间的解耦合，尤其是对于 业务逻辑 M与视图控制 C 这两个功能的解耦合。">
-<meta property="og:updated_time" content="2015-12-07T08:23:10.000Z">
+<meta property="og:updated_time" content="2015-12-07T08:23:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVO">
 <meta name="twitter:description" content="一、概述KVO,即：Key-Value Observing，它提供一种机制，当指定的对象的属性被修改后，则对象就会接受到通知。简单的说就是每次指定的被观察的对象的属性被修改后，KVO就会自动通知相应的观察者了。KVO其实也是“观察者”设计模式的一种应用。我的看法是，这种模式有利于两个类间的解耦合，尤其是对于 业务逻辑 M与视图控制 C 这两个功能的解耦合。">
@@ -204,6 +204,16 @@
 
       
         <span itemprop="articleBody"><h3 id="一、概述">一、概述</h3><p>KVO,即：Key-Value Observing，它提供一种机制，当指定的对象的属性被修改后，则对象就会接受到通知。简单的说就是每次指定的被观察的对象的属性被修改后，KVO就会自动通知相应的观察者了。<br>KVO其实也是“观察者”设计模式的一种应用。我的看法是，这种模式有利于两个类间的解耦合，尤其是对于 业务逻辑 M与视图控制 C 这两个功能的解耦合。</p>
+<a id="more"></a>
+<p>KVO使⽤用步骤:</p>
+<ul>
+<li>1、注册观察者(为被观察者指定观察者以及被观察属性)</li>
+<li>2、实现回调⽅方法</li>
+<li>3、触发回调⽅方法(被观察属性发⽣生更改)</li>
+<li>4、移除观察者</li>
+</ul>
+<p>KVO使⽤用场景:MVC中M与C通信,M发⽣生变化通知C。其中M是被<br>观察者,C是观察者。</p>
+<p>KVO注意事项:观察者销毁之前,移除观察者,否则会出现程序异 常(给已经销毁的对象发送消息)</p>
 </span>
       
     </div>
