@@ -35,19 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。
-假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.st">
+<meta name="description" content="一、概述KVO,即：Key-Value Observing，它提供一种机制，当指定的对象的属性被修改后，则对象就会接受到通知。简单的说就是每次指定的被观察的对象的属性被修改后，KVO就会自动通知相应的观察者了。KVO其实也是“观察者”设计模式的一种应用。我的看法是，这种模式有利于两个类间的解耦合，尤其是对于 业务逻辑 M与视图控制 C 这两个功能的解耦合。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="@synthesize 与@dynamic 的不同">
-<meta property="og:url" content="http://yoursite.com/2015/02/10/synthesize-与-dynamic-的不同/index.html">
+<meta property="og:title" content="KVO">
+<meta property="og:url" content="http://yoursite.com/2015/03/07/KVO/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。
-假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.st">
-<meta property="og:updated_time" content="2015-12-04T03:05:39.000Z">
+<meta property="og:description" content="一、概述KVO,即：Key-Value Observing，它提供一种机制，当指定的对象的属性被修改后，则对象就会接受到通知。简单的说就是每次指定的被观察的对象的属性被修改后，KVO就会自动通知相应的观察者了。KVO其实也是“观察者”设计模式的一种应用。我的看法是，这种模式有利于两个类间的解耦合，尤其是对于 业务逻辑 M与视图控制 C 这两个功能的解耦合。">
+<meta property="og:updated_time" content="2015-12-07T08:23:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="@synthesize 与@dynamic 的不同">
-<meta name="twitter:description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。
-假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.st">
+<meta name="twitter:title" content="KVO">
+<meta name="twitter:description" content="一、概述KVO,即：Key-Value Observing，它提供一种机制，当指定的对象的属性被修改后，则对象就会接受到通知。简单的说就是每次指定的被观察的对象的属性被修改后，KVO就会自动通知相应的观察者了。KVO其实也是“观察者”设计模式的一种应用。我的看法是，这种模式有利于两个类间的解耦合，尤其是对于 业务逻辑 M与视图控制 C 这两个功能的解耦合。">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +54,7 @@
   };
 </script>
 
-    <title> @synthesize 与@dynamic 的不同 // 张天琦 </title>
+    <title> KVO // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -178,7 +175,7 @@
           
           
             
-              @synthesize 与@dynamic 的不同
+              KVO
             
           
         </h1>
@@ -187,8 +184,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-02-10T12:03:10+08:00" content="2015-02-10">
-            2015-02-10
+          <time itemprop="dateCreated" datetime="2015-03-07T15:53:28+08:00" content="2015-03-07">
+            2015-03-07
           </time>
         </span>
 
@@ -206,29 +203,8 @@
       
 
       
-        <span itemprop="articleBody"><p>一、SDK中描述是在声明property的时候，有2个选择<br>1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。<br>2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。</p>
-<pre><code>假如一个属性被声明为<span class="variable">@dynamic</span> str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.str = @”jasehruer”,由于缺setter方法导致程序崩溃，或者运行到 someValue = instance.var 时，由于缺少getter 方法同样导致程序崩溃。
-
-编译时没有问题，运行时才执行相应的方法,这就是所谓的动态绑定。<span class="variable">@dynamic</span> 可用于在分类中添加属性，（需要用objc_getAssociateObject 和objc_setAssiociatedObject 函数）。
-
-有些存取是在运行时动态创建的，如在CoreData的NSManagedObject类使用的某些。如果你想这些情况下，声明和使用属性，但要避免缺少方法在编译时的警告，你可以使用<span class="variable">@dynamic</span>动态指令，而不是<span class="variable">@synthesize</span>合成指令。例如
-</code></pre><p>代码演示：</p>
-<p>.h 文件</p>
-<pre><code><span class="preprocessor">#import <span class="title">&lt;UIKit/UIKit.h&gt;</span></span>
-<span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span>
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">NSString</span> *string;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">NSString</span> *str;
-<span class="keyword">@end</span>
-</code></pre><p>.m 文件</p>
-<pre><code><span class="preprocessor">#import <span class="title">"ViewController.h"</span></span>
-<span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span>
-<span class="keyword">@synthesize</span> string = _string;
-<span class="keyword">@dynamic</span> str;
-- (<span class="keyword">void</span>)viewDidLoad {
-[<span class="keyword">super</span> viewDidLoad];
-<span class="keyword">self</span><span class="variable">.str</span> = <span class="string">@"asdf"</span>;
-}
-</code></pre></span>
+        <span itemprop="articleBody"><h3 id="一、概述">一、概述</h3><p>KVO,即：Key-Value Observing，它提供一种机制，当指定的对象的属性被修改后，则对象就会接受到通知。简单的说就是每次指定的被观察的对象的属性被修改后，KVO就会自动通知相应的观察者了。<br>KVO其实也是“观察者”设计模式的一种应用。我的看法是，这种模式有利于两个类间的解耦合，尤其是对于 业务逻辑 M与视图控制 C 这两个功能的解耦合。</p>
+</span>
       
     </div>
 
@@ -239,13 +215,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/03/07/KVO/" rel="prev">KVO</a>
+              <a href="/2015/03/10/转-关于应用程序生命周期的问题/" rel="prev">[转]关于应用程序生命周期的问题</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/01/20/cocopods使用/" rel="next">cocopods使用</a>
+              <a href="/2015/02/10/synthesize-与-dynamic-的不同/" rel="next">@synthesize 与@dynamic 的不同</a>
             
           </div>
         </div>
@@ -350,7 +326,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-number">1.</span> <span class="nav-text">一、概述</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
