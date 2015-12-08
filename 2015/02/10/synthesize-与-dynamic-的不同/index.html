@@ -35,19 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。
-假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.st">
+<meta name="description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="@synthesize 与@dynamic 的不同">
 <meta property="og:url" content="http://yoursite.com/2015/02/10/synthesize-与-dynamic-的不同/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。
-假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.st">
-<meta property="og:updated_time" content="2015-12-04T03:05:39.000Z">
+<meta property="og:description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。">
+<meta property="og:updated_time" content="2015-12-08T08:35:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="@synthesize 与@dynamic 的不同">
-<meta name="twitter:description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。
-假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.st">
+<meta name="twitter:description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -206,10 +203,8 @@
       
 
       
-        <span itemprop="articleBody"><p>一、SDK中描述是在声明property的时候，有2个选择<br>1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。<br>2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。</p>
-<pre><code>假如一个属性被声明为<span class="variable">@dynamic</span> str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.str = @”jasehruer”,由于缺setter方法导致程序崩溃，或者运行到 someValue = instance.var 时，由于缺少getter 方法同样导致程序崩溃。
-
-编译时没有问题，运行时才执行相应的方法,这就是所谓的动态绑定。<span class="variable">@dynamic</span> 可用于在分类中添加属性，（需要用objc_getAssociateObject 和objc_setAssiociatedObject 函数）。
+        <span itemprop="articleBody"><p>一、SDK中描述是在声明property的时候，有2个选择<br>1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。<br>2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。<br><a id="more"></a><br>    假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.str = @”jasehruer”,由于缺setter方法导致程序崩溃，或者运行到 someValue = instance.var 时，由于缺少getter 方法同样导致程序崩溃。</p>
+<pre><code>编译时没有问题，运行时才执行相应的方法,这就是所谓的动态绑定。<span class="variable">@dynamic</span> 可用于在分类中添加属性，（需要用objc_getAssociateObject 和objc_setAssiociatedObject 函数）。
 
 有些存取是在运行时动态创建的，如在CoreData的NSManagedObject类使用的某些。如果你想这些情况下，声明和使用属性，但要避免缺少方法在编译时的警告，你可以使用<span class="variable">@dynamic</span>动态指令，而不是<span class="variable">@synthesize</span>合成指令。例如
 </code></pre><p>代码演示：</p>
