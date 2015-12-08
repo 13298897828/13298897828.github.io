@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/11/28/iOS编程细节整理/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="关于iOS开发中遇到的一些小问题及其解决方法">
-<meta property="og:updated_time" content="2015-11-28T13:57:15.000Z">
+<meta property="og:updated_time" content="2015-12-08T08:52:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS编程细节整理">
 <meta name="twitter:description" content="关于iOS开发中遇到的一些小问题及其解决方法">
@@ -299,6 +299,60 @@ NSString * text = nil;
 </code></pre><h4 id="解决tableView的head不会和cell一起滚动的问题">解决tableView的head不会和cell一起滚动的问题</h4><pre><code><span class="keyword">self</span><span class="variable">.tableView</span> = [[<span class="built_in">UITableView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>,<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.height</span>) style: <span class="built_in">UITableViewStyleGrouped</span>];
 </code></pre><h4 id="解决有navigationbar的情况下，下面的tableView与navigationbar有一段距离的问题">解决有navigationbar的情况下，下面的tableView与navigationbar有一段距离的问题</h4><pre><code><span class="keyword">self</span><span class="variable">.automaticallyAdjustsScrollViewInsets</span> = <span class="literal">NO</span>;
 </code></pre><h4 id="数据再cell中解析，给cell做自适应高度时，无法实现">数据再cell中解析，给cell做自适应高度时，无法实现</h4><p>可能是因为cell出现时，自适应高度已经实现了，但是还没有内容，所以想办法先刷新一下数据（使用block块可以在cellForRow……方法中实现）</p>
+<h4 id="如何获取UIWebView中Button事件">如何获取UIWebView中Button事件</h4><pre><code><span class="comment">//通过在网页中添加js脚本函数，当button单击时触发该函数</span>
+<span class="comment">//在UIWebView中会自动回调代理方法</span>
+<span class="comment">//shouldStartLoadWithRequest:navigationType</span>
+</code></pre><h4 id="批量上传和下载实现">批量上传和下载实现</h4><pre><code><span class="comment">//网页的实现方式</span>
+<span class="comment">//mutipart-formdata post表单</span>
+<span class="comment">//iOS的实现方式</span>
+<span class="comment">//通过在线程技术中完成批量上传的功能</span>
+</code></pre><h4 id="如何使用SDWebImage中的方法实现实时个人头像更新">如何使用SDWebImage中的方法实现实时个人头像更新</h4><pre><code><span class="comment">//通过修改个人信息Model类中的个人头像字符串</span>
+<span class="comment">//因为SDWebImage中存储图片时的原理，是将url字符串进行md5加密后作为iOS本地缓存文件的文件名存储的</span>
+<span class="comment">//所以当，个人头像没有发生改变时，即个人头像的url字符串没有发生改变，当个人头像发生改变时，个人信息Model类中的url同时也发生变化，就好了</span>
+</code></pre><h4 id="极光推送的思路">极光推送的思路</h4><pre><code>![<span class="link_label">http://docs.jpush.io/guideline/ios_guide/</span>](<span class="link_url"></span>)
+</code></pre><h4 id="股票K线图?画线?">股票K线图?画线?</h4><pre><code>![<span class="link_label">https://github.com/zhiyu/chartee</span>](<span class="link_url"></span>)
+</code></pre><h4 id="给一个NSDate对象，获取到一年中的第几个月中的第几天">给一个NSDate对象，获取到一年中的第几个月中的第几天</h4><pre><code>NSDate *<span class="operator">date</span> = [NSDate <span class="operator">date</span>];
+//获取对应属性
+NSDateComponents *comp = [[NSCalendar currentCalendar] componentsInTimeZone:[NSTimeZone defaultTimeZone] fromDate:<span class="operator">date</span>];
+/*
+ @interface NSDateComponents : NSObject <span class="tag">&lt;NSCopying, NSSecureCoding&gt;</span>
+ @<span class="keyword">property</span><span class="title"> </span>(nullable, copy) NSCalendar *calendar NS_AVAILABLE(<span class="number">10</span>_7, <span class="number">4</span>_0);
+ @<span class="keyword">property</span><span class="title"> </span>(nullable, copy) NSTimeZone *timeZone NS_AVAILABLE(<span class="number">10</span>_7, <span class="number">4</span>_0);
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger era;
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger year;
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger month;
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger day;
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger hour;
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger minute;
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger second;
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger nanosecond NS_AVAILABLE(<span class="number">10</span>_7, <span class="number">5</span>_0);
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger weekday;
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger weekdayOrdinal;
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger quarter NS_AVAILABLE(<span class="number">10</span>_6, <span class="number">4</span>_0);
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger weekOfMonth NS_AVAILABLE(<span class="number">10</span>_7, <span class="number">5</span>_0);
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger weekOfYear NS_AVAILABLE(<span class="number">10</span>_7, <span class="number">5</span>_0);
+ @<span class="keyword">property</span><span class="title"> </span>NSInteger yearForWeekOfYear NS_AVAILABLE(<span class="number">10</span>_7, <span class="number">5</span>_0);
+ @<span class="keyword">property</span><span class="title"> </span>(<span class="variable">getter=</span>isLeapMonth) BOOL leapMonth NS_AVAILABLE(<span class="number">10</span>_8, <span class="number">6</span>_0);
+ @<span class="keyword">property</span><span class="title"> </span>(nullable, readonly, copy) NSDate *<span class="operator">date</span> NS_AVAILABLE(<span class="number">10</span>_7, <span class="number">4</span>_0);
+ */
+//获取一年中的第几天
+//小范围参数:NSCalendarUnitDay
+//大范围参数:NSCalendarUnitYear
+/*
+ NSCalendarUnitEra = kCFCalendarUnitEra,
+ NSCalendarUnitYear = kCFCalendarUnitYear,
+ NSCalendarUnitMonth = kCFCalendarUnitMonth,
+ NSCalendarUnitDay = kCFCalendarUnitDay,
+ NSCalendarUnitHour = kCFCalendarUnitHour,
+ NSCalendarUnitMinute = kCFCalendarUnitMinute,
+ NSCalendarUnitSecond = kCFCalendarUnitSecond,
+ NSCalendarUnitWeekday = kCFCalendarUnitWeekday,
+ NSCalendarUnitWeekdayOrdinal = kCFCalendarUnitWeekdayOrdinal,
+ */
+NSInteger day = [[NSCalendar currentCalendar] ordinalityOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitYear forDate:<span class="operator">date</span>];
+NSLog(@<span class="string">"%ld"</span>,day);
+</code></pre><h4 id="runtime的实现原理">runtime的实现原理</h4><pre><code>链接: <span class="string">http:</span><span class="comment">//pan.baidu.com/s/1i4ijIsP 密码: k661</span>
+</code></pre><h4 id="tableView滑动时卡顿的处理办法">tableView滑动时卡顿的处理办法</h4><p>//一般遇到卡顿时候，会出现的原因<br>//1、在单元格中使用了同步下载图片，解决方法是使用多线程技术<br>//2、在单元格中自定义高度布局时，进行了大量的计算，解决方法是使用缓存技术，在下载完数据后，自动生成一个对象应该所占的高度</p>
 </span>
       
     </div>
@@ -421,7 +475,7 @@ NSString * text = nil;
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于iOS开发中遇到的一些小问题及其解决方法"><span class="nav-number">1.</span> <span class="nav-text">关于iOS开发中遇到的一些小问题及其解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决有的图片显示时只是一块颜色，而显示不正常的问题"><span class="nav-number">2.</span> <span class="nav-text">解决有的图片显示时只是一块颜色，而显示不正常的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#毛玻璃效果"><span class="nav-number">3.</span> <span class="nav-text">毛玻璃效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图截圆角"><span class="nav-number">4.</span> <span class="nav-text">视图截圆角</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用NSURLSession请求网络数据"><span class="nav-number">5.</span> <span class="nav-text">使用NSURLSession请求网络数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#播放语音"><span class="nav-number">6.</span> <span class="nav-text">播放语音</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webView"><span class="nav-number">7.</span> <span class="nav-text">webView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用第三方SDWevImage解析图片"><span class="nav-number">8.</span> <span class="nav-text">使用第三方SDWevImage解析图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置cell的自适应高度"><span class="nav-number">9.</span> <span class="nav-text">设置cell的自适应高度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用此方法必须要设置cell中的最后一个控件与cell的距离"><span class="nav-number">10.</span> <span class="nav-text">使用此方法必须要设置cell中的最后一个控件与cell的距离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#让音乐在后台播放"><span class="nav-number">11.</span> <span class="nav-text">让音乐在后台播放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将URL中的汉字转换成utf-8格式，拼接到URL字符串中"><span class="nav-number">12.</span> <span class="nav-text">将URL中的汉字转换成utf-8格式，拼接到URL字符串中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去除解析出来的数据带的_HTML_标记"><span class="nav-number">13.</span> <span class="nav-text">去除解析出来的数据带的 HTML 标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去广告"><span class="nav-number">14.</span> <span class="nav-text">去广告</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#先到网页，找到开发者平台，依次输入并提交"><span class="nav-number">14.1.</span> <span class="nav-text">先到网页，找到开发者平台，依次输入并提交</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片自适应"><span class="nav-number">15.</span> <span class="nav-text">图片自适应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决tableView的head不会和cell一起滚动的问题"><span class="nav-number">16.</span> <span class="nav-text">解决tableView的head不会和cell一起滚动的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决有navigationbar的情况下，下面的tableView与navigationbar有一段距离的问题"><span class="nav-number">17.</span> <span class="nav-text">解决有navigationbar的情况下，下面的tableView与navigationbar有一段距离的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据再cell中解析，给cell做自适应高度时，无法实现"><span class="nav-number">18.</span> <span class="nav-text">数据再cell中解析，给cell做自适应高度时，无法实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于iOS开发中遇到的一些小问题及其解决方法"><span class="nav-number">1.</span> <span class="nav-text">关于iOS开发中遇到的一些小问题及其解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决有的图片显示时只是一块颜色，而显示不正常的问题"><span class="nav-number">2.</span> <span class="nav-text">解决有的图片显示时只是一块颜色，而显示不正常的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#毛玻璃效果"><span class="nav-number">3.</span> <span class="nav-text">毛玻璃效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图截圆角"><span class="nav-number">4.</span> <span class="nav-text">视图截圆角</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用NSURLSession请求网络数据"><span class="nav-number">5.</span> <span class="nav-text">使用NSURLSession请求网络数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#播放语音"><span class="nav-number">6.</span> <span class="nav-text">播放语音</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webView"><span class="nav-number">7.</span> <span class="nav-text">webView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用第三方SDWevImage解析图片"><span class="nav-number">8.</span> <span class="nav-text">使用第三方SDWevImage解析图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置cell的自适应高度"><span class="nav-number">9.</span> <span class="nav-text">设置cell的自适应高度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用此方法必须要设置cell中的最后一个控件与cell的距离"><span class="nav-number">10.</span> <span class="nav-text">使用此方法必须要设置cell中的最后一个控件与cell的距离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#让音乐在后台播放"><span class="nav-number">11.</span> <span class="nav-text">让音乐在后台播放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将URL中的汉字转换成utf-8格式，拼接到URL字符串中"><span class="nav-number">12.</span> <span class="nav-text">将URL中的汉字转换成utf-8格式，拼接到URL字符串中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去除解析出来的数据带的_HTML_标记"><span class="nav-number">13.</span> <span class="nav-text">去除解析出来的数据带的 HTML 标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#去广告"><span class="nav-number">14.</span> <span class="nav-text">去广告</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#先到网页，找到开发者平台，依次输入并提交"><span class="nav-number">14.1.</span> <span class="nav-text">先到网页，找到开发者平台，依次输入并提交</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图片自适应"><span class="nav-number">15.</span> <span class="nav-text">图片自适应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决tableView的head不会和cell一起滚动的问题"><span class="nav-number">16.</span> <span class="nav-text">解决tableView的head不会和cell一起滚动的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决有navigationbar的情况下，下面的tableView与navigationbar有一段距离的问题"><span class="nav-number">17.</span> <span class="nav-text">解决有navigationbar的情况下，下面的tableView与navigationbar有一段距离的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据再cell中解析，给cell做自适应高度时，无法实现"><span class="nav-number">18.</span> <span class="nav-text">数据再cell中解析，给cell做自适应高度时，无法实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何获取UIWebView中Button事件"><span class="nav-number">19.</span> <span class="nav-text">如何获取UIWebView中Button事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批量上传和下载实现"><span class="nav-number">20.</span> <span class="nav-text">批量上传和下载实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何使用SDWebImage中的方法实现实时个人头像更新"><span class="nav-number">21.</span> <span class="nav-text">如何使用SDWebImage中的方法实现实时个人头像更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#极光推送的思路"><span class="nav-number">22.</span> <span class="nav-text">极光推送的思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#股票K线图?画线?"><span class="nav-number">23.</span> <span class="nav-text">股票K线图?画线?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#给一个NSDate对象，获取到一年中的第几个月中的第几天"><span class="nav-number">24.</span> <span class="nav-text">给一个NSDate对象，获取到一年中的第几个月中的第几天</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#runtime的实现原理"><span class="nav-number">25.</span> <span class="nav-text">runtime的实现原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tableView滑动时卡顿的处理办法"><span class="nav-number">26.</span> <span class="nav-text">tableView滑动时卡顿的处理办法</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
