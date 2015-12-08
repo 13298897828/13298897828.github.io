@@ -45,7 +45,13 @@
 <meta property="og:image" content="http://i5.tietuku.com/7a53b5e748c5bd74.gif">
 <meta property="og:image" content="http://i5.tietuku.com/247e758c006bae1d.gif">
 <meta property="og:image" content="http://i5.tietuku.com/298f5438c31b7af9.png">
-<meta property="og:updated_time" content="2015-12-07T11:15:22.000Z">
+<meta property="og:image" content="http://i5.tietuku.com/539572505edf5187.gif">
+<meta property="og:image" content="http://i12.tietuku.com/943ea1dd58863f66.png">
+<meta property="og:image" content="http://i12.tietuku.com/7e25c4d9135cefc0.gif">
+<meta property="og:image" content="http://i12.tietuku.com/c04deb76d57b159f.gif">
+<meta property="og:image" content="http://i12.tietuku.com/1a779203a76cc569.png">
+<meta property="og:image" content="http://i12.tietuku.com/ec1788c70314968a.gif">
+<meta property="og:updated_time" content="2015-12-08T08:32:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="QuartzCore核心动画框架">
 <meta name="twitter:description" content="核心动画框架 QuartzCoreCALayer就是UIView上的图层，很多的CALayer组成了UIView。CALayer与UIView是两个完全不同的类UIView动画就是简单动画，可以实现改变，偏移，形变，翻转，旋转，翻页">
@@ -442,39 +448,133 @@ _layer<span class="variable">.position</span>=[[anim valueForKey:<span class="st
 <li>这个过程中真正起到暂停动画和恢复动画的其实是动画速度的调整，媒体时间偏移量以及恢复时的开始时间设置主要为了让动画更加连贯。</li>
 </ul>
 <p>下面的代码演示了移动动画结束后旋转动画暂停，并且当再次点击动画时旋转恢复的过程(注意在移动过程中如果再次点击屏幕可以暂停移动和旋转动画，再次点击可以恢复两种动画。但是当移动结束后触发了移动动画的完成事件如果再次点击屏幕则只能恢复旋转动画，因为此时移动动画已经结束而不是暂停，无法再恢复)。</p>
-<p>#import “KCMainViewController.h；<br>@interface KCMainViewController (){<br>    CALayer *_layer;<br>}<br>@end<br>@implementation KCMainViewController</p>
-<ul>
-<li><p>(void)viewDidLoad {<br>  [super viewDidLoad];</p>
-<p>  //设置背景(注意这个图片其实在根图层)<br>  UIImage *backgroundImage=[UIImage imageNamed:@”background.jpg”];<br>  self.view.backgroundColor=[UIColor colorWithPatternImage:backgroundImage];</p>
-<p>  //自定义一个图层<br>  _layer=[[CALayer alloc]init];<br>  _layer.bounds=CGRectMake(0, 0, 10, 20);<br>  _layer.position=CGPointMake(50, 150);<br>  _layer.anchorPoint=CGPointMake(0.5, 0.6);//设置锚点<br>  _layer.contents=(id)[UIImage imageNamed:@”petal.png”].CGImage;<br>  [self.view.layer addSublayer:_layer];<br>  }</p>
-<p>  #pragma mark 移动动画<br>  -(void)translatonAnimation:(CGPoint)location{<br>  //1.创建动画并指定动画属性<br>  CABasicAnimation *basicAnimation=[CABasicAnimation animationWithKeyPath:@”position”];<br>  //2.设置动画属性初始值、结束值<br>  //    basicAnimation.fromValue=[NSNumber     numberWithInteger:50];//可以不设置，默认为图层初始状态<br>  basicAnimation.toValue=[NSValue valueWithCGPoint:location];<br>  //设置其他动画属性<br>  basicAnimation.duration=5.0;//动画时间5秒<br>  //    basicAnimation.repeatCount=HUGE_VALF;//设置重复次数,HUGE_VALF可看做无穷大，起到循环动画的效果<br>  basicAnimation.removedOnCompletion=NO;//运行一次是否移除动画<br>  basicAnimation.delegate=self;<br>  //存储当前位置在动画结束后使用<br>  [basicAnimation setValue:[NSValue valueWithCGPoint:location] forKey:@”KCBasicAnimationLocation”];</p>
-<p>  //3.添加动画到图层，注意key相当于给动画进行命名，以后获得该图层时可以使用此名称获取<br>  [_layer addAnimation:basicAnimation forKey:@”KCBasicAnimation_Translation”];<br>  }</p>
-<p>  #pragma mark 旋转动画<br>  -(void)rotationAnimation{<br>  //1.创建动画并指定动画属性<br>  CABasicAnimation *basicAnimation=[CABasicAnimation animationWithKeyPath:@”transform.rotation.z”];</p>
-<p>  //2.设置动画属性初始值、结束值<br>  //    basicAnimation.fromValue=[NSNumber numberWithInt:M_PI_2];<br>  basicAnimation.toValue=[NSNumber numberWithFloat:M_PI_2*3];</p>
-<p>  //设置其他动画属性<br>  basicAnimation.duration=6.0;<br>  basicAnimation.autoreverses=true;//旋转后在旋转到原来的位置<br>  basicAnimation.repeatCount=HUGE_VALF;//设置无限循环<br>  basicAnimation.removedOnCompletion=NO;<br>  //    basicAnimation.delegate=self;</p>
-<p>  //4.添加动画到图层，注意key相当于给动画进行命名，以后获得该动画时可以使用此名称获取<br>  [_layer addAnimation:basicAnimation forKey:@”KCBasicAnimation_Rotation”];<br>}</p>
-<p>  #pragma mark 点击事件<br>  -(void)touchesBegan:(NSSet <em>)touches withEvent:(UIEvent </em>)event{<br>  UITouch <em>touch=touches.anyObject;<br>  CGPoint location= [touch locationInView:self.view];<br>  //判断是否已经常见过动画，如果已经创建则不再创建动画<br>  CAAnimation </em>animation= [_layer animationForKey:@”KCBasicAnimation_Translation”];<br>  if(animation){</p>
-<pre><code><span class="tag">if</span> (_layer.speed==<span class="number">0</span>) {
-<span class="comment">// 动画恢复</span>
-    <span class="attr_selector">[self animationResume]</span>;
-}<span class="tag">else</span>{
-<span class="comment">// 动画暂停</span>
-    <span class="attr_selector">[self animationPause]</span>;
+<pre><code><span class="comment">#import "KCMainViewController.h；</span>
+@interface KCMainViewController (){
+CALayer *_layer;
 }
-</code></pre><p>  }else{</p>
-<pre><code><span class="comment">//创建并开始动画</span>
-<span class="attr_selector">[self translatonAnimation:location]</span>;
+@end
+@implementation KCMainViewController
+- (void)viewDidLoad {
+[super viewDidLoad];
 
-<span class="attr_selector">[self rotationAnimation]</span>;
-</code></pre><p>  }<br>  }</p>
-<p>  #pragma mark 动画暂停<br>  -(void)animationPause{<br>  //取得指定图层动画的媒体时间，后面参数用于指定子图层，这里不需要<br>  CFTimeInterval interval=[_layer convertTime:CACurrentMediaTime() fromLayer:nil];<br>  //设置时间偏移量，保证暂停时停留在旋转的位置<br>  [_layer setTimeOffset:interval];<br>  //速度设置为0，暂停动画<br>  _layer.speed=0;<br>  }</p>
-<p>  #pragma mark 动画恢复<br>  -(void)animationResume{<br>  //获得暂停的时间<br>  CFTimeInterval beginTime= CACurrentMediaTime()- _layer.timeOffset;<br>  //设置偏移量<br>  _layer.timeOffset=0;<br>  //设置开始时间<br>  _layer.beginTime=beginTime;<br>  //设置动画速度，开始运动<br>  _layer.speed=1.0;<br>  }</p>
-<p>  #pragma mark - 动画代理方法<br>  #pragma mark 动画开始<br>  -(void)animationDidStart:(CAAnimation *)anim{<br>  NSLog(@”animation(%@) start.\r_layer.frame=%@”,anim,NSStringFromCGRect(_layer.frame));<br>  NSLog(@”%@”,[_layer animationForKey:@”KCBasicAnimation_Translation”]);//通过前面的设置的key获得动画<br>  }</p>
-<p>  #pragma mark 动画结束<br>  -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{<br>  NSLog(@”animation(%@) stop.\r_layer.frame=%@”,anim,NSStringFromCGRect(_layer.frame));</p>
-<p>  //开启事务<br>  [CATransaction begin];<br>  //禁用隐式动画<br>  [CATransaction setDisableActions:YES];<br>  _layer.position=[[anim valueForKey:@”KCBasicAnimationLocation”] CGPointValue];<br>  //提交事务<br>  [CATransaction commit];<br>  //暂停动画<br>  [self animationPause];<br>  }<br>  @end</p>
-</li>
-</ul>
-<p><img src="http://i5.tietuku.com/247e758c006bae1d.gif" alt=""></p>
+//设置背景(注意这个图片其实在根图层)
+UIImage *backgroundImage=[UIImage imageNamed:@<span class="string">"background.jpg"</span>];
+<span class="literal">self</span>.view.backgroundColor=[UIColor colorWithPatternImage:backgroundImage];
+
+//自定义一个图层
+_layer=[[CALayer alloc]init];
+_layer.bounds=CGRectMake(<span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">20</span>);
+_layer.position=CGPointMake(<span class="number">50</span>, <span class="number">150</span>);
+_layer.<span class="built_in">anchor</span>Point=CGPointMake(<span class="number">0.5</span>, <span class="number">0.6</span>);//设置锚点
+_layer.contents=(id)[UIImage imageNamed:@<span class="string">"petal.png"</span>].CGImage;
+[<span class="literal">self</span>.view.layer addSublayer:_layer];
+}
+
+<span class="comment">#pragma mark 移动动画</span>
+-(void)translatonAnimation:(CGPoint)location{
+//<span class="number">1</span>.创建动画并指定动画属性
+CABasicAnimation *<span class="keyword">basic</span>Animation=[CABasicAnimation animationWithKeyPath:@<span class="string">"position"</span>];
+//<span class="number">2</span>.设置动画属性初始值、结束值
+//    <span class="keyword">basic</span>Animation.<span class="keyword">from</span>Value=[NSNumber     numberWithInteger:<span class="number">50</span>];//可以不设置，默认为图层初始状态
+<span class="keyword">basic</span>Animation.<span class="keyword">to</span>Value=[NSValue valueWithCGPoint:location];
+//设置其他动画属性
+<span class="keyword">basic</span>Animation.duration=<span class="number">5.0</span>;//动画时间<span class="number">5</span>秒
+//    <span class="keyword">basic</span>Animation.repeatCount=HUGE_VALF;//设置重复次数,HUGE_VALF可看做无穷大，起到循环动画的效果
+<span class="keyword">basic</span>Animation.removedOnCompletion=NO;//运行一次是否移除动画
+<span class="keyword">basic</span>Animation.delegate=<span class="literal">self</span>;
+//存储当前位置在动画结束后使用
+[<span class="keyword">basic</span>Animation <span class="built_in">set</span>Value:[NSValue valueWithCGPoint:location] <span class="keyword">for</span>Key:@<span class="string">"KCBasicAnimationLocation"</span>];
+
+//<span class="number">3</span>.添加动画到图层，注意key相当于给动画进行命名，以后获得该图层时可以使用此名称获取
+[_layer addAnimation:<span class="keyword">basic</span>Animation <span class="keyword">for</span>Key:@<span class="string">"KCBasicAnimation_Translation"</span>];
+}
+
+<span class="comment">#pragma mark 旋转动画</span>
+-(void)rotationAnimation{
+//<span class="number">1</span>.创建动画并指定动画属性
+CABasicAnimation *<span class="keyword">basic</span>Animation=[CABasicAnimation animationWithKeyPath:@<span class="string">"transform.rotation.z"</span>];
+
+//<span class="number">2</span>.设置动画属性初始值、结束值
+//    <span class="keyword">basic</span>Animation.<span class="keyword">from</span>Value=[NSNumber numberWithInt:M_PI_2];
+<span class="keyword">basic</span>Animation.<span class="keyword">to</span>Value=[NSNumber numberWithFloat:M_PI_2*<span class="number">3</span>];
+
+//设置其他动画属性
+<span class="keyword">basic</span>Animation.duration=<span class="number">6.0</span>;
+<span class="keyword">basic</span>Animation.autoreverses=true;//旋转后在旋转到原来的位置
+<span class="keyword">basic</span>Animation.repeatCount=HUGE_VALF;//设置无限循环
+<span class="keyword">basic</span>Animation.removedOnCompletion=NO;
+//    <span class="keyword">basic</span>Animation.delegate=<span class="literal">self</span>;
+
+//<span class="number">4</span>.添加动画到图层，注意key相当于给动画进行命名，以后获得该动画时可以使用此名称获取
+[_layer addAnimation:<span class="keyword">basic</span>Animation <span class="keyword">for</span>Key:@<span class="string">"KCBasicAnimation_Rotation"</span>];
+</code></pre><p>}</p>
+<pre><code><span class="preprocessor">#pragma mark 点击事件</span>
+-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span> *)touches withEvent:(<span class="built_in">UIEvent</span> *)event{
+<span class="built_in">UITouch</span> *touch=touches<span class="variable">.anyObject</span>;
+<span class="built_in">CGPoint</span> location= [touch locationInView:<span class="keyword">self</span><span class="variable">.view</span>];
+<span class="comment">//判断是否已经常见过动画，如果已经创建则不再创建动画</span>
+<span class="built_in">CAAnimation</span> *animation= [_layer animationForKey:<span class="string">@"KCBasicAnimation_Translation"</span>];
+<span class="keyword">if</span>(animation){
+    <span class="keyword">if</span> (_layer<span class="variable">.speed</span>==<span class="number">0</span>) {
+    <span class="comment">// 动画恢复</span>
+        [<span class="keyword">self</span> animationResume];
+    }<span class="keyword">else</span>{
+    <span class="comment">// 动画暂停</span>
+        [<span class="keyword">self</span> animationPause];
+    }
+}<span class="keyword">else</span>{
+    <span class="comment">//创建并开始动画</span>
+    [<span class="keyword">self</span> translatonAnimation:location];
+
+    [<span class="keyword">self</span> rotationAnimation];
+}
+}
+
+<span class="preprocessor">#pragma mark 动画暂停</span>
+-(<span class="keyword">void</span>)animationPause{
+<span class="comment">//取得指定图层动画的媒体时间，后面参数用于指定子图层，这里不需要</span>
+<span class="built_in">CFTimeInterval</span> interval=[_layer convertTime:<span class="built_in">CACurrentMediaTime</span>() fromLayer:<span class="literal">nil</span>];
+<span class="comment">//设置时间偏移量，保证暂停时停留在旋转的位置</span>
+[_layer setTimeOffset:interval];
+<span class="comment">//速度设置为0，暂停动画</span>
+_layer<span class="variable">.speed</span>=<span class="number">0</span>;
+}
+
+<span class="preprocessor">#pragma mark 动画恢复</span>
+-(<span class="keyword">void</span>)animationResume{
+<span class="comment">//获得暂停的时间</span>
+<span class="built_in">CFTimeInterval</span> beginTime= <span class="built_in">CACurrentMediaTime</span>()- _layer<span class="variable">.timeOffset</span>;
+<span class="comment">//设置偏移量</span>
+_layer<span class="variable">.timeOffset</span>=<span class="number">0</span>;
+<span class="comment">//设置开始时间</span>
+_layer<span class="variable">.beginTime</span>=beginTime;
+<span class="comment">//设置动画速度，开始运动</span>
+_layer<span class="variable">.speed</span>=<span class="number">1.0</span>;
+}
+
+<span class="preprocessor">#pragma mark - 动画代理方法</span>
+<span class="preprocessor">#pragma mark 动画开始</span>
+-(<span class="keyword">void</span>)animationDidStart:(<span class="built_in">CAAnimation</span> *)anim{
+<span class="built_in">NSLog</span>(<span class="string">@"animation(%@) start.\r_layer.frame=%@"</span>,anim,<span class="built_in">NSStringFromCGRect</span>(_layer<span class="variable">.frame</span>));
+<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,[_layer animationForKey:<span class="string">@"KCBasicAnimation_Translation"</span>]);<span class="comment">//通过前面的设置的key获得动画</span>
+}
+
+<span class="preprocessor">#pragma mark 动画结束</span>
+-(<span class="keyword">void</span>)animationDidStop:(<span class="built_in">CAAnimation</span> *)anim finished:(<span class="built_in">BOOL</span>)flag{
+<span class="built_in">NSLog</span>(<span class="string">@"animation(%@) stop.\r_layer.frame=%@"</span>,anim,<span class="built_in">NSStringFromCGRect</span>(_layer<span class="variable">.frame</span>));
+
+<span class="comment">//开启事务</span>
+[<span class="built_in">CATransaction</span> begin];
+<span class="comment">//禁用隐式动画</span>
+[<span class="built_in">CATransaction</span> setDisableActions:<span class="literal">YES</span>];
+_layer<span class="variable">.position</span>=[[anim valueForKey:<span class="string">@"KCBasicAnimationLocation"</span>] <span class="built_in">CGPointValue</span>];
+<span class="comment">//提交事务</span>
+[<span class="built_in">CATransaction</span> commit];
+<span class="comment">//暂停动画</span>
+[<span class="keyword">self</span> animationPause];
+}
+<span class="keyword">@end</span>
+</code></pre><p><img src="http://i5.tietuku.com/247e758c006bae1d.gif" alt=""></p>
 <p>注意：</p>
 <ul>
 <li>动画暂停针对的是图层而不是图层中的某个动画。</li>
@@ -483,20 +583,41 @@ _layer<span class="variable">.position</span>=[[anim valueForKey:<span class="st
 <li>path：可以设置一个CGPathRef\CGMutablePathRef,让层跟着路径移动。path只对CALayer的anchorPoint和position起作用。如果你设置了path，那么values将被忽略 </li>
 <li>keyTimes：可以为对应的关键帧指定对应的时间点,其取值范围为0到1.0,keyTimes中的每一个时间值都对应values中的每一帧.当keyTimes没有设置的时候,各个关键帧的时间是平分的</li>
 </ul>
-<p>关键帧动画就是在动画控制过程中开发者指定主要的动画状态，至于各个状态间动画如何进行则由系统自动运算补充（每两个关键帧之间系统形成的动画称为“补间动画”），这种动画的好处就是开发者不用逐个控制每个动画帧，而只要关心几个关键帧的状态即可。<br>关键帧动画开发分为两种形式：一种是通过设置不同的属性值进行关键帧控制，另一种是通过绘制路径进行关键帧控制。后者优先级高于前者，如果设置了路径则属性值就不再起作用。<br>对于前面的落花动画效果而言其实落花的过程并不自然，很显然实际生活中它不可能沿着直线下落，这里我们不妨通过关键帧动画的values属性控制它在下落过程中的属性。假设下落过程如图：<br><img src="http://i5.tietuku.com/298f5438c31b7af9.png" alt=""><br>————————————————————————————————————————<br>在这里需要设置四个关键帧（如图中四个关键点），具体代码如下（动画创建过程同基本动画基本完全一致）：</p>
-<p>#import “KCMainViewController.h”</p>
-<p>@interface KCMainViewController (){<br>    CALayer *_layer;<br>}</p>
-<p>@end</p>
-<p>@implementation KCMainViewController</p>
-<ul>
-<li><p>(void)viewDidLoad {<br>  [super viewDidLoad];</p>
-<p>  //设置背景(注意这个图片其实在根图层)<br>  UIImage *backgroundImage=[UIImage imageNamed:@”background.jpg”];<br>  self.view.backgroundColor=[UIColor colorWithPatternImage:backgroundImage];</p>
-<p>  //自定义一个图层<br>  _layer=[[CALayer alloc]init];<br>  _layer.bounds=CGRectMake(0, 0, 10, 20);<br>  _layer.position=CGPointMake(50, 150);<br>  _layer.contents=(id)[UIImage imageNamed:@”petal.png”].CGImage;<br>  [self.view.layer addSublayer:_layer];</p>
-<p>  //创建动画<br>  [self translationAnimation];<br>}</p>
-</li>
-</ul>
-<p>#pragma mark 关键帧动画<br>-(void)translationAnimation{<br>    //1.创建关键帧动画并设置动画属性<br>    CAKeyframeAnimation *keyframeAnimation=[CAKeyframeAnimation animationWithKeyPath:@”position”];</p>
-<pre><code><span class="comment">//2.设置关键帧,这里有四个关键帧</span>
+<p>关键帧动画就是在动画控制过程中开发者指定主要的动画状态，至于各个状态间动画如何进行则由系统自动运算补充（每两个关键帧之间系统形成的动画称为“补间动画”），这种动画的好处就是开发者不用逐个控制每个动画帧，而只要关心几个关键帧的状态即可。<br>关键帧动画开发分为两种形式：一种是通过设置不同的属性值进行关键帧控制，另一种是通过绘制路径进行关键帧控制。后者优先级高于前者，如果设置了路径则属性值就不再起作用。<br>对于前面的落花动画效果而言其实落花的过程并不自然，很显然实际生活中它不可能沿着直线下落，这里我们不妨通过关键帧动画的values属性控制它在下落过程中的属性。假设下落过程如图：<br><img src="http://i5.tietuku.com/298f5438c31b7af9.png" alt=""><br>——————————————————————————————————————<br>在这里需要设置四个关键帧（如图中四个关键点），具体代码如下（动画创建过程同基本动画基本完全一致）：</p>
+<pre><code><span class="preprocessor">#import <span class="title">"KCMainViewController.h"</span></span>
+
+<span class="class"><span class="keyword">@interface</span> <span class="title">KCMainViewController</span> ()</span>{
+<span class="built_in">CALayer</span> *_layer;
+}
+
+<span class="keyword">@end</span>
+
+<span class="class"><span class="keyword">@implementation</span> <span class="title">KCMainViewController</span></span>
+
+- (<span class="keyword">void</span>)viewDidLoad {
+[<span class="keyword">super</span> viewDidLoad];
+
+<span class="comment">//设置背景(注意这个图片其实在根图层)</span>
+<span class="built_in">UIImage</span> *backgroundImage=[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"background.jpg"</span>];
+<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.backgroundColor</span>=[<span class="built_in">UIColor</span> colorWithPatternImage:backgroundImage];
+
+<span class="comment">//自定义一个图层</span>
+_layer=[[<span class="built_in">CALayer</span> alloc]init];
+_layer<span class="variable">.bounds</span>=<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">20</span>);
+_layer<span class="variable">.position</span>=<span class="built_in">CGPointMake</span>(<span class="number">50</span>, <span class="number">150</span>);
+_layer<span class="variable">.contents</span>=(<span class="keyword">id</span>)[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"petal.png"</span>]<span class="variable">.CGImage</span>;
+[<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.layer</span> addSublayer:_layer];
+
+<span class="comment">//创建动画</span>
+[<span class="keyword">self</span> translationAnimation];
+}
+
+<span class="preprocessor">#pragma mark 关键帧动画</span>
+-(<span class="keyword">void</span>)translationAnimation{
+<span class="comment">//1.创建关键帧动画并设置动画属性</span>
+<span class="built_in">CAKeyframeAnimation</span> *keyframeAnimation=[<span class="built_in">CAKeyframeAnimation</span> animationWithKeyPath:<span class="string">@"position"</span>];
+
+<span class="comment">//2.设置关键帧,这里有四个关键帧</span>
 <span class="built_in">NSValue</span> *key1=[<span class="built_in">NSValue</span> valueWith<span class="built_in">CGPoint</span>:_layer<span class="variable">.position</span>];<span class="comment">//对于关键帧动画初始值不能省略</span>
 <span class="built_in">NSValue</span> *key2=[<span class="built_in">NSValue</span> valueWith<span class="built_in">CGPoint</span>:<span class="built_in">CGPointMake</span>(<span class="number">80</span>, <span class="number">220</span>)];
 <span class="built_in">NSValue</span> *key3=[<span class="built_in">NSValue</span> valueWith<span class="built_in">CGPoint</span>:<span class="built_in">CGPointMake</span>(<span class="number">45</span>, <span class="number">300</span>)];
@@ -510,29 +631,53 @@ keyframeAnimation<span class="variable">.beginTime</span>=<span class="built_in"
 
 <span class="comment">//3.添加动画到图层，添加动画后就会执行动画</span>
 [_layer addAnimation:keyframeAnimation forKey:<span class="string">@"KCKeyframeAnimation_Position"</span>];
-</code></pre><p>}<br>@end<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>运行效果(注意运行结束没有设置图层位置为动画运动结束位置)：<br>这里写图片描述</p>
-<p>上面的方式固然比前面使用基础动画效果要好一些，但其实还是存在问题，那就是落花飞落的路径是直线的，当然这个直线是根据程序中设置的四个关键帧自动形成的，那么如何让它沿着曲线飘落呢？这就是第二种类型的关键帧动画，通过描绘路径进行关键帧动画控制。假设让落花沿着下面的曲线路径飘落：<br>这里写图片描述<br>————————————————————————————————————————<br>这是一条贝塞尔曲线</p>
-<p>#import “KCMainViewController.h”<br>@interface KCMainViewController (){<br>    CALayer *_layer;<br>}<br>@end<br>@implementation KCMainViewController</p>
-<ul>
-<li><p>(void)viewDidLoad {<br>  [super viewDidLoad];<br>  //设置背景(注意这个图片其实在根图层)<br>  UIImage *backgroundImage=[UIImage imageNamed:@”background.jpg”];<br>  self.view.backgroundColor=[UIColor colorWithPatternImage:backgroundImage];</p>
-<p>  //自定义一个图层<br>  _layer=[[CALayer alloc]init];<br>  _layer.bounds=CGRectMake(0, 0, 10, 20);<br>  _layer.position=CGPointMake(50, 150);<br>  _layer.contents=(id)[UIImage imageNamed:@”petal.png”].CGImage;<br>  [self.view.layer addSublayer:_layer];<br>  //创建动画<br>  [self translationAnimation];<br>}</p>
-</li>
-</ul>
-<p>#pragma mark 关键帧动画<br>-(void)translationAnimation{<br>    //1.创建关键帧动画并设置动画属性<br>    CAKeyframeAnimation *keyframeAnimation=[CAKeyframeAnimation animationWithKeyPath:@”position”];</p>
-<pre><code><span class="comment">//2.设置路径</span>
+}
+<span class="keyword">@end</span>
+</code></pre><p>运行效果(注意运行结束没有设置图层位置为动画运动结束位置)：<br><img src="http://i5.tietuku.com/539572505edf5187.gif" alt=""></p>
+<p>上面的方式固然比前面使用基础动画效果要好一些，但其实还是存在问题，那就是落花飞落的路径是直线的，当然这个直线是根据程序中设置的四个关键帧自动形成的，那么如何让它沿着曲线飘落呢？这就是第二种类型的关键帧动画，通过描绘路径进行关键帧动画控制。假设让落花沿着下面的曲线路径飘落：<br><img src="http://i12.tietuku.com/943ea1dd58863f66.png" alt=""><br>————————————————————————————————————————<br>这是一条贝塞尔曲线</p>
+<pre><code><span class="preprocessor">#import <span class="title">"KCMainViewController.h"</span></span>
+<span class="class"><span class="keyword">@interface</span> <span class="title">KCMainViewController</span> ()</span>{
+<span class="built_in">CALayer</span> *_layer;
+}
+<span class="keyword">@end</span>
+<span class="class"><span class="keyword">@implementation</span> <span class="title">KCMainViewController</span></span>
+- (<span class="keyword">void</span>)viewDidLoad {
+[<span class="keyword">super</span> viewDidLoad];
+<span class="comment">//设置背景(注意这个图片其实在根图层)</span>
+<span class="built_in">UIImage</span> *backgroundImage=[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"background.jpg"</span>];
+<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.backgroundColor</span>=[<span class="built_in">UIColor</span> colorWithPatternImage:backgroundImage];
+
+<span class="comment">//自定义一个图层</span>
+_layer=[[<span class="built_in">CALayer</span> alloc]init];
+_layer<span class="variable">.bounds</span>=<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">20</span>);
+_layer<span class="variable">.position</span>=<span class="built_in">CGPointMake</span>(<span class="number">50</span>, <span class="number">150</span>);
+_layer<span class="variable">.contents</span>=(<span class="keyword">id</span>)[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"petal.png"</span>]<span class="variable">.CGImage</span>;
+[<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.layer</span> addSublayer:_layer];
+<span class="comment">//创建动画</span>
+[<span class="keyword">self</span> translationAnimation];
+}
+
+<span class="preprocessor">#pragma mark 关键帧动画</span>
+-(<span class="keyword">void</span>)translationAnimation{
+<span class="comment">//1.创建关键帧动画并设置动画属性</span>
+<span class="built_in">CAKeyframeAnimation</span> *keyframeAnimation=[<span class="built_in">CAKeyframeAnimation</span> animationWithKeyPath:<span class="string">@"position"</span>];
+
+<span class="comment">//2.设置路径</span>
 <span class="comment">//绘制贝塞尔曲线</span>
-CGPathRef path=CGPathCreateMutable();
-CGPathMoveToPoint(path, <span class="literal">NULL</span>, _layer.position.x, _layer.position.y);<span class="comment">//移动到起始点</span>
-CGPathAddCurveToPoint(path, <span class="literal">NULL</span>, <span class="number">160</span>, <span class="number">280</span>, -<span class="number">30</span>, <span class="number">300</span>, <span class="number">55</span>, <span class="number">400</span>);<span class="comment">//绘制二次贝塞尔曲线</span>
-keyframeAnimation.path=path;<span class="comment">//设置path属性</span>
-CGPathRelease(path);<span class="comment">//释放路径对象</span>
+<span class="built_in">CGPathRef</span> path=<span class="built_in">CGPathCreateMutable</span>();
+<span class="built_in">CGPathMoveToPoint</span>(path, <span class="literal">NULL</span>, _layer<span class="variable">.position</span><span class="variable">.x</span>, _layer<span class="variable">.position</span><span class="variable">.y</span>);<span class="comment">//移动到起始点</span>
+<span class="built_in">CGPathAddCurveToPoint</span>(path, <span class="literal">NULL</span>, <span class="number">160</span>, <span class="number">280</span>, -<span class="number">30</span>, <span class="number">300</span>, <span class="number">55</span>, <span class="number">400</span>);<span class="comment">//绘制二次贝塞尔曲线</span>
+keyframeAnimation<span class="variable">.path</span>=path;<span class="comment">//设置path属性</span>
+<span class="built_in">CGPathRelease</span>(path);<span class="comment">//释放路径对象</span>
 <span class="comment">//设置其他属性</span>
-keyframeAnimation.duration=<span class="number">8.0</span>;
-keyframeAnimation.beginTime=CACurrentMediaTime()+<span class="number">5</span>;<span class="comment">//设置延迟2秒执行</span>
+keyframeAnimation<span class="variable">.duration</span>=<span class="number">8.0</span>;
+keyframeAnimation<span class="variable">.beginTime</span>=<span class="built_in">CACurrentMediaTime</span>()+<span class="number">5</span>;<span class="comment">//设置延迟2秒执行</span>
 
 <span class="comment">//3.添加动画到图层，添加动画后就会执行动画</span>
-[_layer addAnimation:keyframeAnimation forKey:@<span class="string">"KCKeyframeAnimation_Position"</span>];
-</code></pre><p>}<br>@end<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>运行效果(注意运行结束没有设置图层位置为动画运动结束位置)：<br>这里写图片描述</p>
+[_layer addAnimation:keyframeAnimation forKey:<span class="string">@"KCKeyframeAnimation_Position"</span>];
+}
+<span class="keyword">@end</span>
+</code></pre><p> 运行效果(注意运行结束没有设置图层位置为动画运动结束位置)：<br><img src="http://i12.tietuku.com/7e25c4d9135cefc0.gif" alt=""></p>
 <p>看起来动画不会那么生硬了，但是这里需要注意，对于路径类型的关键帧动画系统是从描绘路径的位置开始路径，直到路径结束。如果上面的路径不是贝塞尔曲线而是矩形路径那么它会从矩形的左上角开始运行，顺时针一周回到左上角；如果指定的路径是一个椭圆，那么动画运行的路径是从椭圆右侧开始（0度）顺时针一周回到右侧。 </p>
 <ul>
 <li>补充–其他属性 *<br>keyTimes：各个关键帧的时间控制 ， 时间是占比 0~1。（运行完此帧之后占总时间的多少）</li>
@@ -631,11 +776,11 @@ _layer<span class="variable">.transform</span>=<span class="built_in">CATransfor
 [<span class="built_in">CATransaction</span> commit];
 }
 <span class="keyword">@end</span>
-</code></pre><p>这里写图片描述</p>
+</code></pre><p><img src="http://i12.tietuku.com/c04deb76d57b159f.gif" alt=""></p>
 <p>CATransition转场动画</p>
 <p>属性解析:<br>type：动画过渡类型<br>subtype：动画过渡方向<br>startProgress：动画起点(在整体动画的百分比)<br>endProgress：动画终点(在整体动画的百分比)</p>
 <p>转场动画就是从一个场景以动画的形式过渡到另一个场景。转场动画的使用一般分为以下几个步骤：</p>
-<p>1.创建转场动画<br>2.设置转场类型、子类型（可选）及其他属性<br>3.设置转场后的新视图并添加动画到图层<br>下表列出了常用的转场类型(注意私有API是苹果官方没有公开的动画类型，但是目前通过仍然可以使用)：<br>这里写图片描述</p>
+<p>1.创建转场动画<br>2.设置转场类型、子类型（可选）及其他属性<br>3.设置转场后的新视图并添加动画到图层<br>下表列出了常用的转场类型(注意私有API是苹果官方没有公开的动画类型，但是目前通过仍然可以使用)：<br><img src="http://i12.tietuku.com/1a779203a76cc569.png" alt=""></p>
 <pre><code><span class="preprocessor">#import <span class="title">"LayerTransitionAnimationVC.h"</span></span>
 <span class="preprocessor">#define IMAGE_COUNT 5</span>
 <span class="class"><span class="keyword">@interface</span> <span class="title">LayerTransitionAnimationVC</span> ()</span>{
@@ -703,7 +848,8 @@ _imageView<span class="variable">.image</span>=[<span class="keyword">self</span
 <span class="keyword">return</span> [<span class="built_in">UIImage</span> imageNamed:imageName];
 }
 <span class="keyword">@end</span>
-</code></pre></span>
+</code></pre><p><img src="http://i12.tietuku.com/ec1788c70314968a.gif" alt=""></p>
+</span>
       
     </div>
 
