@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/11/10/NSURLSession下载与缓存/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="NSURLSession下载与缓存iOS9要求网络请求需要使用NSURLSession,那么本篇文章就使用NSURLsession来实现视频的下载,图片的下载、取消下载、恢复下载和缓存功能，期望与大家一起学习。">
-<meta property="og:updated_time" content="2015-12-10T02:06:56.000Z">
+<meta property="og:updated_time" content="2015-12-10T08:33:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSURLSession下载与缓存">
 <meta name="twitter:description" content="NSURLSession下载与缓存iOS9要求网络请求需要使用NSURLSession,那么本篇文章就使用NSURLsession来实现视频的下载,图片的下载、取消下载、恢复下载和缓存功能，期望与大家一起学习。">
@@ -245,7 +245,7 @@
 <span class="comment">//网络会话  </span>
 <span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>)<span class="built_in">NSURLSession</span> * downLoadSession;
 </code></pre><h4 id="配置相关参数并下载">配置相关参数并下载</h4><pre><code>    <span class="comment">//参数设置类  简单的网络下载使用             </span>
-      defaultSessionConfiguration即可
+defaultSessionConfiguration即可
 <span class="built_in">NSURLSessionConfiguration</span>          *sessionConfig =        
 [<span class="built_in">NSURLSessionConfiguration</span>
 defaultSessionConfiguration];
@@ -259,21 +259,21 @@ defaultSessionConfiguration];
   *@param URL 资源url  
   *@param timeoutInterval 超时时长
   */</span>
-<span class="built_in">NSURLRequest</span> *imgRequest = [<span class="built_in">NSURLRequest</span> requestWithURL:[<span class="built_in">NSURL</span> URLWithString:<span class="built_in">MP3URL</span>] cachePolicy:<span class="number">5</span> timeoutInterval:<span class="number">60.</span>f];
+ <span class="built_in">NSURLRequest</span> *imgRequest = [<span class="built_in">NSURLRequest</span> requestWithURL:[<span class="built_in">NSURL</span> URLWithString:<span class="built_in">MP3URL</span>] cachePolicy:<span class="number">5</span> timeoutInterval:<span class="number">60.</span>f];
 
  <span class="comment">//创建下载任务  </span>
-<span class="keyword">self</span><span class="variable">.downTask</span> = [<span class="keyword">self</span><span class="variable">.downLoadSession</span> downloadTaskWithRequest:imgRequest];
+ <span class="keyword">self</span><span class="variable">.downTask</span> = [<span class="keyword">self</span><span class="variable">.downLoadSession</span> downloadTaskWithRequest:imgRequest];
 
  <span class="comment">//启动下载任务  </span>
-[<span class="keyword">self</span><span class="variable">.downTask</span> resume];
+ [<span class="keyword">self</span><span class="variable">.downTask</span> resume];
 </code></pre><h4 id="实现代理方法">实现代理方法</h4><pre><code>  <span class="preprocessor">#pragma mark 下载过程</span>
 
   -(<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)sessiondownloadTask:(<span class="built_in">NSURLSessionDownloadTask</span> *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
    <span class="comment">//获取下载进度</span>
-<span class="keyword">double</span> currentProgress = totalBytesWritten / (<span class="keyword">double</span>)totalBytesExpectedToWrite;
+  <span class="keyword">double</span> currentProgress = totalBytesWritten / (<span class="keyword">double</span>)totalBytesExpectedToWrite;
 
-<span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^{
+  <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^{
 
    <span class="comment">//进行UI操作  设置进度条</span>
 
@@ -309,10 +309,10 @@ defaultSessionConfiguration];
    <span class="comment">//3.将下载好的视频资源存储在路径下</span>
 
   <span class="comment">//删除之前相同路径的文件</span>
-  <span class="built_in">BOOL</span> remove  = [manager removeItemAtPath:file error:<span class="literal">nil</span>];
+    <span class="built_in">BOOL</span> remove  = [manager removeItemAtPath:file error:<span class="literal">nil</span>];
 
   <span class="comment">//将视频资源从原有路径移动到自己指定的路径</span>
-  <span class="built_in">BOOL</span> success = [manager copyItemAtPath:location<span class="variable">.path</span> toPath:file error:<span class="literal">nil</span>];
+    <span class="built_in">BOOL</span> success = [manager copyItemAtPath:location<span class="variable">.path</span> toPath:file error:<span class="literal">nil</span>];
 
     <span class="keyword">if</span> (success) {
 
@@ -325,7 +325,7 @@ defaultSessionConfiguration];
     <span class="built_in">NSURL</span> *url = [[<span class="built_in">NSURL</span> alloc]initFileURLWithPath:file];
 
     *** 此方法创建的路径无法播放 不是一个完整的路径
-    <span class="comment">//NSURL *url2 = [[NSURL alloc]initWithString:file];</span>
+   <span class="comment">//NSURL *url2 = [[NSURL alloc]initWithString:file];</span>
 
     <span class="comment">//系统的视频播放器</span>
     <span class="built_in">AVPlayerViewController</span> *controller = [[<span class="built_in">AVPlayerViewController</span> alloc]init];
@@ -346,14 +346,14 @@ defaultSessionConfiguration];
 <span class="built_in">NSURLSessionDownloadTask</span>支持取消下载，可以在下载过程中随时取消继续下载，同时也可以实现恢复下载。
 </code></pre><h4 id="取消下载_cancelByProducingResumeData">取消下载 cancelByProducingResumeData</h4><pre><code><span class="comment">//用当前NSURLSessionDownloadTask对象去调用取消下载</span>
 
-   [<span class="keyword">self</span><span class="variable">.downTask</span> cancelByProducingResumeData:
+ [<span class="keyword">self</span><span class="variable">.downTask</span> cancelByProducingResumeData:
 ^(<span class="built_in">NSData</span> * _Nullable resumeData) {
 
-<span class="comment">//全局变量 接收当前下载的资源</span>
-<span class="keyword">self</span><span class="variable">.data</span> = resumeData;
+ <span class="comment">//全局变量 接收当前下载的资源</span>
+  <span class="keyword">self</span><span class="variable">.data</span> = resumeData;
 }
-<span class="comment">//将当前下载任务置为空</span>
-<span class="keyword">self</span><span class="variable">.downTask</span> = <span class="literal">nil</span>;
+ <span class="comment">//将当前下载任务置为空</span>
+  <span class="keyword">self</span><span class="variable">.downTask</span> = <span class="literal">nil</span>;
 </code></pre><h4 id="恢复下载_downloadTaskWithResumeData">恢复下载 downloadTaskWithResumeData</h4><pre><code><span class="comment">//恢复下载 实际上是建立了一个新的下载任务 去继续之前的下载</span>
 
 <span class="built_in">self</span><span class="built_in">.</span>downTask = <span class="preprocessor">[</span><span class="built_in">self</span><span class="built_in">.</span>downLoadSession downloadTaskWithResumeData:<span class="built_in">self</span><span class="built_in">.</span><span class="built_in">data</span><span class="preprocessor">]</span><span class="markup">;
@@ -383,35 +383,35 @@ defaultSessionConfiguration];
 <p>代码：</p>
 <pre><code>      <span class="comment">//创建一个UIImageView+MyImageView.h的类目，</span>
   在<span class="variable">.h</span>添加一个方法
-  - (<span class="keyword">void</span>)loadIamgeWithURL:(<span class="built_in">NSString</span> *)urlString
+ - (<span class="keyword">void</span>)loadIamgeWithURL:(<span class="built_in">NSString</span> *)urlString
   <span class="comment">//在.m去实现此方法  </span>
-  - (<span class="keyword">void</span>)loadIamgeWithURL:(<span class="built_in">NSString</span> *)urlString
+ - (<span class="keyword">void</span>)loadIamgeWithURL:(<span class="built_in">NSString</span> *)urlString
 {
 
 <span class="comment">//创建下载图片的url</span>
-<span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:urlString];
+  <span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:urlString];
 
 <span class="comment">//创建网络请求配置类</span>
-<span class="built_in">NSURLSessionConfiguration</span> * configuration = [<span class="built_in">NSURLSessionConfiguration</span> defaultSessionConfiguration];
+  <span class="built_in">NSURLSessionConfiguration</span> * configuration = [<span class="built_in">NSURLSessionConfiguration</span> defaultSessionConfiguration];
 
 <span class="comment">//创建网络会话</span>
-<span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sessionWithConfiguration:configuration delegate:<span class="literal">nil</span> delegateQueue:[<span class="built_in">NSOperationQueue</span> new]];
+  <span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sessionWithConfiguration:configuration delegate:<span class="literal">nil</span> delegateQueue:[<span class="built_in">NSOperationQueue</span> new]];
 
 <span class="comment">//创建请求并设置缓存策略以及超时时长</span>
-<span class="built_in">NSURLRequest</span> *imgRequest = [<span class="built_in">NSURLRequest</span> requestWithURL:url cachePolicy:<span class="number">0</span> timeoutInterval:<span class="number">30.</span>f];
+  <span class="built_in">NSURLRequest</span> *imgRequest = [<span class="built_in">NSURLRequest</span> requestWithURL:url cachePolicy:<span class="number">0</span> timeoutInterval:<span class="number">30.</span>f];
    <span class="comment">//*也可通过configuration.requestCachePolicy 设置缓存策略</span>
 
 <span class="comment">//创建一个下载任务</span>
-<span class="built_in">NSURLSessionDownloadTask</span> *task = [session downloadTaskWithRequest:imgRequest completionHandler:^(<span class="built_in">NSURL</span> * _Nullable location, <span class="built_in">NSURLResponse</span> * _Nullable response, <span class="built_in">NSError</span> * _Nullable error) {
+  <span class="built_in">NSURLSessionDownloadTask</span> *task = [session downloadTaskWithRequest:imgRequest completionHandler:^(<span class="built_in">NSURL</span> * _Nullable location, <span class="built_in">NSURLResponse</span> * _Nullable response, <span class="built_in">NSError</span> * _Nullable error) {
 
   <span class="comment">//下载完成后获取数据 此时已经自动缓存到本地，下次会直接从本地缓存获取，不再进行网络请求</span>
- <span class="built_in">NSData</span> * data = [<span class="built_in">NSData</span> dataWithContentsOfURL:location];
+  <span class="built_in">NSData</span> * data = [<span class="built_in">NSData</span> dataWithContentsOfURL:location];
 
   <span class="comment">//回到主线程  </span>
-<span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^{
+   <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^{
 
   <span class="comment">//设置图片      </span>
- <span class="keyword">self</span><span class="variable">.image</span> = [<span class="built_in">UIImage</span> imageWithData:data];
+   <span class="keyword">self</span><span class="variable">.image</span> = [<span class="built_in">UIImage</span> imageWithData:data];
  });
 
 
@@ -419,7 +419,7 @@ defaultSessionConfiguration];
 
 
 <span class="comment">//启动下载任务</span>
-[task resume];
+ [task resume];
 </code></pre><p>  }<br>通过这种缓存策略，我们就可以实现图片下载并自动缓存，当我们需要再次使用此资源的时候，它就会自动去本地缓存查找是否有已经下载好的图片资源，如果有就会直接去本地的，从而不需要再去进行网络请求。可以在下载完成后，将网络断开进行测试。<br>总结<br>本次主要是讲解了NSURLSession的下载，以及自动缓存策略。它的功能非常强大，还有很多没来得及细细研究，如果你也喜欢它😍，那就抓紧时间去研究吧~</p>
 </span>
       
