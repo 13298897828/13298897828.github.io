@@ -284,7 +284,7 @@
 
       
         
-          <h2 id="WKWebView替换UIWebView">WKWebView替换UIWebView</h2><h3 id="开发App的过程中，常常会遇到在App内部加载网页，通常用UIWebView加载。这个自iOS2开始使用的网页加载器一直是开发的心病：加载速度慢，占用内存多，优化困难。如果加载网页多，还可能因为过量占用内存而给系统kill掉。各种优化的方法效果也不那么明显iOS8以后，苹果推出了新框架Wekkit，提供了替换UIWebView的组件WKWebView。各种UIWebView的问题没有了，速度更快了，占用内存少了，一句话，WKWebView是App内部加载网页的最佳选择！">开发App的过程中，常常会遇到在App内部加载网页，通常用UIWebView加载。这个自iOS2开始使用的网页加载器一直是开发的心病：加载速度慢，占用内存多，优化困难。如果加载网页多，还可能因为过量占用内存而给系统kill掉。各种优化的方法效果也不那么明显iOS8以后，苹果推出了新框架Wekkit，提供了替换UIWebView的组件WKWebView。各种UIWebView的问题没有了，速度更快了，占用内存少了，一句话，WKWebView是App内部加载网页的最佳选择！</h3>
+          <h2 id="WKWebView替换UIWebView">WKWebView替换UIWebView</h2><p> 开发App的过程中，常常会遇到在App内部加载网页，通常用UIWebView加载。这个自iOS2开始使用的网页加载器一直是开发的心病：加载速度慢，占用内存多，优化困难。如果加载网页多，还可能因为过量占用内存而给系统kill掉。各种优化的方法效果也不那么明显iOS8以后，苹果推出了新框架Wekkit，提供了替换UIWebView的组件WKWebView。各种UIWebView的问题没有了，速度更快了，占用内存少了，一句话，WKWebView是App内部加载网页的最佳选择！</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/11/20/使用WKWebView替换UIWebView/#more" rel="contents">
               阅读全文 &raquo;
@@ -350,148 +350,12 @@
 
       
         
-          <span itemprop="articleBody"><h3 id="3DTouch">3DTouch</h3><p><img src="http://i12.tietuku.com/14bc7ec46d5364ab.jpg" alt=""></p>
-<h4 id="UITouch类里API的变化">UITouch类里API的变化</h4><h5 id="iOS9中添加的属性">iOS9中添加的属性</h5><p><code>altitudeAngle</code></p>
-<ul>
-<li><p>当笔平行于平面时,该值为0</p>
-</li>
-<li><p>当笔垂直于平面时,该值为Pi / 2</p>
-</li>
-</ul>
-<p><code>estimatedProperties</code></p>
-<ul>
-<li><p>当前触摸对象估计的触摸特性</p>
-</li>
-<li><p>返回值是UITouchPropertyies</p>
-</li>
-</ul>
-<p><code>updatedProperties</code></p>
-<ul>
-<li><p>当前触摸对象已经更新的触摸特性</p>
-</li>
-<li><p>返回值是UITouchPropertyies</p>
-</li>
-</ul>
-<p><code>estimationUpdateIndex</code></p>
-<ul>
-<li><p>当每个触摸对象的触摸特性发生变化时，该值将会单独增加</p>
-</li>
-<li><p>返回值是NSNumber</p>
-</li>
-</ul>
-<h5 id="iOS9中添加的方法">iOS9中添加的方法</h5><p><code>- PreciseLocationInView:</code></p>
-<ul>
-<li><p>当前触摸对象的坐标<br><code>- PrecisePreviousLocationInView:</code></p>
-</li>
-<li><p>当前触摸对象的前置坐标<br><code>- azimuthAngleInview:</code></p>
-</li>
-<li><p>沿着x轴正向的方位角</p>
-</li>
-<li><p>当与x轴正向方向相同时,该值为0</p>
-</li>
-<li><p>当view参数为nil时，默认为keyWindow</p>
-</li>
-</ul>
-<p><code>- azimuthUnitVectorInView:</code></p>
-<ul>
-<li><p>当前触摸对象的方向上的单位向量</p>
-</li>
-<li><p>当view参数为nil时，默认为keyWindow</p>
-</li>
-</ul>
-<h4 id="UIForceTouchCapability">UIForceTouchCapability</h4><p><code>UIForceTouchCapabilityUnknown</code></p>
-<ul>
-<li>不能确定是否支持压力感应<br><code>UIForceTouchCapabilityUnavailable</code></li>
-<li>不能支持压力感应<br><code>UIForceTouchCapabilityAvailable</code></li>
-<li><p>可以支持压力感应</p>
-<h4 id="UITouchType">UITouchType</h4><p><code>UITouchTypeDirect</code></p>
-</li>
-<li><p>垂直的触摸类型<br><code>UITouchTypeIndirect</code></p>
-</li>
-<li>非初值的触摸类型<br><code>UITouchTypeStylus</code></li>
-<li>水平的触摸类型<br><code>UITouchProperties</code><br><code>UITouchPropertyForce</code></li>
-</ul>
-<hr>
-<h3 id="ShortcutItem">ShortcutItem</h3><hr>
-<p><img src="http://i12.tietuku.com/3aa54dab286d6e1c.jpg" alt=""></p>
-<h4 id="静态方式">静态方式</h4><ul>
-<li>打开Info.plist文件</li>
-<li><p>在对应UIApplicationShortcutItems关键字下添加item</p>
-<h4 id="动态方式">动态方式</h4><h5 id="修改当前应用程序的某个shortcutItem">修改当前应用程序的某个shortcutItem</h5><pre><code><span class="comment">//获取第0个shortcutItem  </span>
-id oldItem = [existingShortcutItems <span class="string">objectAtIndex:</span> <span class="number">0</span>];  
-<span class="comment">//将旧的shortcutItem改变为可修改类型shortcutItem  </span>
-id mutableItem = [oldItem mutableCopy];  
-<span class="comment">//修改shortcutItem的显示标题  </span>
-[mutableItem <span class="string">setLocalizedTitle:</span> @“Click Lewis”];
-</code></pre><h5 id="获取当前应用程序的shortcutItems">获取当前应用程序的shortcutItems</h5><pre><code><span class="comment">//获取当前应用程序对象  </span>
-<span class="built_in">UIApplication</span> *app = [<span class="built_in">UIApplication</span> sharedApplication];  
-<span class="comment">//获取一个应用程序对象的shortcutItem列表  </span>
-<span class="keyword">id</span> existingShortcutItems = [app shortcutItems];
-</code></pre><h5 id="重置当前应用程序的shortcutItems">重置当前应用程序的shortcutItems</h5><pre><code><span class="comment">//根据旧的shortcutItems生成可变shortcutItems数组  </span>
-id updatedShortcutItems = [existingShortcutItems mutableCopy];  
-<span class="comment">//修改可变shortcutItems数组中对应index下的元素为新的shortcutItem  </span>
-[updatedShortcutItems <span class="string">replaceObjectAtIndex:</span> <span class="number">0</span> <span class="string">withObject:</span> mutableItem];  
-<span class="comment">//修改应用程序对象的shortcutItems为新的数组  </span>
-[app <span class="string">setShortcutItems:</span> updatedShortcutItems];
-</code></pre><h5 id="创建一个新的UIApplicationShortcutItem">创建一个新的UIApplicationShortcutItem</h5></li>
-<li><p>初始化函数</p>
-<ul>
-<li>initWithType:localizedTitle:localizedSubtitle:icon:userInfo:</li>
-<li>initWithType:localizedTitle:</li>
-</ul>
-</li>
-<li><p>属性</p>
-<ul>
-<li><p>localizedTitle:NSString</p>
-</li>
-<li><p>localizedSubtitle:NSString</p>
-</li>
-<li><p>type:NSString</p>
-</li>
-<li><p>icon:UIApplicationShortcutIcon</p>
-</li>
-<li><p>userInfo:NSDictionary</p>
-</li>
-<li><p>只有只读特性，想要进行修改时，需要通过mutableCopy方法转变为<br>NSMutableApplicationShortcutItem</p>
-<h4 id="创建一个新的Item图标">创建一个新的Item图标</h4></li>
-</ul>
-</li>
-<li><p>初始化函数</p>
-<ul>
-<li><p>iconWithType:</p>
-</li>
-<li><p>iconWithTemplateImageName:</p>
-</li>
-<li><p>iconWithContact:</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="当程序启动时">当程序启动时</h4><ul>
-<li>判断launchOptions字典内的UIApplicationLaunchOptionsShortcutItemKey是否为空</li>
-<li>当不为空时,application:didFinishLaunchWithOptions方法返回false，否则返回true</li>
-<li>在application:performActionForShortcutItem:completionHandler方法内处理点击事件</li>
-</ul>
-<hr>
-<h3 id="Peek_and_Pop">Peek and Pop</h3><hr>
-<p><img src="http://i12.tietuku.com/544e882ddf85ae59.jpg" alt=""><br>注册预览功能的代理对象和源视图<br>代理对象需要接受UIViewControllerPreviewingDelegate协议<br>  @interface RootVC<uiviewcontrollerpreviewingdelegate><br>  {}<br>  @end<br>代理对象实现协议内的Peek和Pop方法</uiviewcontrollerpreviewingdelegate></p>
-<pre><code><span class="class"><span class="keyword">@implementation</span> <span class="title">RootVC</span>  </span>
-- (<span class="built_in">UIViewController</span> *)previewingContext:(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)context viewControllerForLocation:(<span class="built_in">CGPoint</span>) point  
-{  
-<span class="built_in">UIViewController</span> *childVC = [[<span class="built_in">UIViewController</span> alloc] init];  
-childVC<span class="variable">.preferredContentSize</span> = <span class="built_in">CGSizeMake</span>(<span class="number">0.0</span>f,<span class="number">300</span>f);  
-
-<span class="built_in">CGRect</span> rect = <span class="built_in">CGRectMake</span>(<span class="number">10</span>, point<span class="variable">.y</span> - <span class="number">10</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> - <span class="number">20</span>,<span class="number">20</span>);  
-context<span class="variable">.sourceRect</span> = rect;  
-<span class="keyword">return</span> childVC;  
-}  
-- (<span class="keyword">void</span>)previewContext:(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)context commitViewController:(<span class="built_in">UIViewController</span>*)vc  
-{  
-[<span class="keyword">self</span> showViewController:vc sender:<span class="keyword">self</span>];  
-}  
-<span class="keyword">@end</span>
-</code></pre><h4 id="注册方法声明在UIViewController类内">注册方法声明在UIViewController类内</h4><pre><code>[<span class="keyword">self </span>registerForPreviewingWithDelegate:<span class="keyword">self </span>sourceView:<span class="keyword">self.view]; </span>      
-</code></pre></span>
+          <h3 id="3DTouch">3DTouch</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/10/3DTouch、ShortcutItem、Peek-And-Pop/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
