@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/04/28/iOS编程细节整理/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="关于iOS开发中遇到的一些小问题及其解决方法">
-<meta property="og:updated_time" content="2015-12-10T06:37:45.000Z">
+<meta property="og:updated_time" content="2015-12-10T06:43:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS编程细节整理">
 <meta name="twitter:description" content="关于iOS开发中遇到的一些小问题及其解决方法">
@@ -470,11 +470,13 @@ NSLog(@<span class="string">"%ld"</span>,day);
  rangeOfString:<span class="string">@"iPad"</span>]<span class="variable">.location</span> != <span class="built_in">NSNotFound</span>) { 
   <span class="built_in">NSLog</span>(<span class="string">@"This is an iPad!"</span>); 
 </code></pre><p>}<br>用UI_USER_INTERFACE_IDIOM()方法，这是系统定义的一条宏。使用方法也很简单。</p>
-<pre><code><span class="keyword">if</span> (<span class="function"><span class="title">UI_USER_INTERFACE_IDIOM</span><span class="params">()</span></span> ＝＝ UIUserInterfaceIdiomPad)      
-</code></pre><p>{<br> NSLog(@”This is an iPad!”);<br> }</p>
-<h4 id="九-并发编程">九.并发编程</h4><ul>
+<pre><code> <span class="keyword">if</span> (<span class="built_in">UI_USER_INTERFACE_IDIOM</span>() ＝＝ <span class="built_in">UIUserInterfaceIdiomPad</span>)      
+{ 
+ <span class="built_in">NSLog</span>(<span class="string">@"This is an iPad!"</span>); 
+ }
+</code></pre><h4 id="九-并发编程">九.并发编程</h4><ul>
 <li>1-GCD-Grand Central Dispatch，GCD使用队列来管理多个任务，而每个任务是以块（其定义类似于函数）来描述的。GCD从队列中读取这些要完成的任务，然后其多核执行 引擎负责将这些任务分配给它所管理的线程。和手动线程管理相比，GCD能极大地优化线程管理，并极大地减少创建和销毁线程所带来的额外开销。除了在多核系 统上得性能改进之外，GCD还能帮助提高应用的响应速度，并让代码更为干净，易于维护。</li>
-<li>2-NSOperationQueue-操作队列，可以极大地减少开发者在并发编程中的负担，并且操作队列有一套Objective-C的API，使用起来方便。<br>基本操作单位-NSOperation，操作。<br>操作是封装了一个与任务有关的代码与数据的抽象类，需要继承NSOperation，并且描述相关的任务。操作对象是一次性的，它只能执行一次，下一次，需要创建一个新的实例。<br>可以通过addDependency:方法为操作添加相互依赖性。假设操作A依赖于操作B，如果操作B没有结束，操作A就不会开始执行。完成是指 执行完，或者取消了操作。有时需要对操作是否成功作出判断。通过removeDependency:方法来移除操作的相互依赖性。<br>操作的一个属性是isConcurrent。当使用操作队列来管理这些操作时，isConcurrent应当设置为NO，这时应当重载 NSOperation的main函数（在类中保存controller对象-weak，并在main中调用controller的方法）。 isReady属性用于描述操作是否已经可以开始执行，isExecuting属性表示操作是否正在执行当中，isFinished属性表示操作是否顺利 完成，isCancelled属性则表示操作已经取消。<br>可以在操作运行中取消它的运行，只需要给它发送cancel消息即可。在继承NSOperation类时，也需要支持cancel方法。<br>如果只需要简单的操作，不想继承NSOperation类，可以使用NSInvocationOperation类，这个类中的-initWithTarget:selector:object:方法能帮助你方便地选择人物的对象和相应的功能。<br>操作的执行顺序取决于各自的优先级和相互之间的依赖性。<br>操作队列有两种方式来执行其中的操作。第一种是开辟新线程来运行这些操作，第二种则是通过GCD来运行这些操作。但是无论如何，都不需要手动管理 线程。尽量使用操作队列，只有在操作队列的效率明显不足时才转向GCD。因为操作队列是封装在GCD的基础之上的，虽然增加了一些额外开销，但是也具有更 加完善的功能。例子是TestNSOperation。</li>
+<li>2-NSOperationQueue-操作队列，可以极大地减少开发者在并发编程中的负担，并且操作队列有一套Objective-C的API，使用起来方便。<br>基本操作单位-NSOperation，操作。<br>操作是封装了一个与任务有关的代码与数据的抽象类，需要继承NSOperation，并且描述相关的任务。操作对象是一次性的，它只能执行一次，下一次，需要创建一个新的实例。<br>可以通过addDependency:方法为操作添加相互依赖性。假设操作A依赖于操作B，如果操作B没有结束，操作A就不会开始执行。完成是指 执行完，或者取消了操作。有时需要对操作是否成功作出判断。通过removeDependency:方法来移除操作的相互依赖性。<br>操作的一个属性是isConcurrent。当使用操作队列来管理这些操作时，isConcurrent应当设置为NO，这时应当重载 NSOperation的main函数（在类中保存controller对象-weak，并在main中调用controller的方法）。 isReady属性用于描述操作是否已经可以开始执行，isExecuting属性表示操作是否正在执行当中，isFinished属性表示操作是否顺利 完成，isCancelled属性则表示操作已经取消。<br>可以在操作运行中取消它的运行，只需要给它发送cancel消息即可。在继承NSOperation类时，也需要支持cancel方法。<br>如果只需要简单的操作，不想继承NSOperation类，可以使用<code>NSInvocationOperation</code>类，这个类中的-<code>initWithTarget:selector:object:</code>方法能帮助你方便地选择人物的对象和相应的功能。<br>操作的执行顺序取决于各自的优先级和相互之间的依赖性。<br>操作队列有两种方式来执行其中的操作。第一种是开辟新线程来运行这些操作，第二种则是通过GCD来运行这些操作。但是无论如何，都不需要手动管理 线程。尽量使用操作队列，只有在操作队列的效率明显不足时才转向GCD。因为操作队列是封装在GCD的基础之上的，虽然增加了一些额外开销，但是也具有更 加完善的功能。例子是<code>TestNSOperation</code>。</li>
 </ul>
 <h4 id="十-忙碌指示器">十.忙碌指示器</h4><pre><code>UIActivityIndicator。
 UIActivityIndicatorView *activityIndicatior = ［UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleWhiteLarge]<span class="comment">; </span>
@@ -484,9 +486,14 @@ activityIndicator.center = CGPointMake(512, 384)<span class="comment">; </span>
 [activityIndicator stopAnimating]<span class="comment">; </span>
 [activityIndicator removeFromSuperView]<span class="comment">;</span>
 </code></pre><h4 id="十一-媒体播放">十一.媒体播放</h4><ul>
-<li>1- 音频<br>[1] 音乐往往是存储在iPod曲库（注意位置）中的，可以通过媒体选择器（media picker）或者媒体查询（media query）读取，然后用音乐播放器MPMusicPlayerController播放。</li>
+<li>1- 音频<br>[1] 音乐往往是存储在iPod曲库（注意位置）中的，可以通过媒体选择器<code>media picker</code>或者媒体查询<code>media query</code>读取，然后用音乐播放器<code>MPMusicPlayerController</code>播放。</li>
 </ul>
-<p>MPMusicPlayerController *musicPlayer = [MPMusicPlayerController applicationMusicPlayer];<br>[musicPlayer setShufleMode: MPMusicShuffleModeSongs];<br>[musicPlayer setRepeatMode: MPMusicRepeatModeAll];<br>[musicPlayer setQueueWithQuery: [MPMediaQuery songsQuery］;<br>[musicPlayer play];<br>applicationMusicPlayer返回的播放器，在你的应用中播放音乐。它不会影响到iPod播放器，也不能从iPod播放器重获取信息。<br>iPodMusicPlayer返回的是iPod播放器，在你推出应用后，所有的设置都会影响到之后设备上的iPod播放器。<br>获得音乐播放器后，需要为它设置一个播放队列。可以用setQueueWithQuery:放方法，通过媒体查询MPMediaQuery来设置 播放队列，也可以用setQueueWithItemCollection:方法，通过MPMdiaItemCollection来设置播放队列。<br>重复模式repeatMode可以设置为不重复、重复当前曲目、或整个播放列表；乱序播放shuffleMode可以设置为不乱序、乱序播放曲目或乱序播放专辑；音量volume的设置与音频播放器一样。<br>skipToNextItem跳到下一首，skipToPreviousItem跳到上一首，skipToBegin跳到第一首。<br>对应的宏都是以MPMusic开头。</p>
+<pre><code>MPMusicPlayerController *musicPlayer = [MPMusicPlayerController applicationMusicPlayer]<span class="comment">; </span>
+[musicPlayer setShufleMode: MPMusicShuffleModeSongs]<span class="comment">; </span>
+[musicPlayer setRepeatMode: MPMusicRepeatModeAll]<span class="comment">; </span>
+[musicPlayer setQueueWithQuery: [MPMediaQuery songsQuery］<span class="comment">; </span>
+[musicPlayer play]<span class="comment">;</span>
+</code></pre><p>applicationMusicPlayer返回的播放器，在你的应用中播放音乐。它不会影响到iPod播放器，也不能从iPod播放器重获取信息。<br>iPodMusicPlayer返回的是iPod播放器，在你推出应用后，所有的设置都会影响到之后设备上的iPod播放器。<br>获得音乐播放器后，需要为它设置一个播放队列。可以用setQueueWithQuery:放方法，通过媒体查询MPMediaQuery来设置 播放队列，也可以用setQueueWithItemCollection:方法，通过MPMdiaItemCollection来设置播放队列。<br>重复模式repeatMode可以设置为不重复、重复当前曲目、或整个播放列表；乱序播放shuffleMode可以设置为不乱序、乱序播放曲目或乱序播放专辑；音量volume的设置与音频播放器一样。<br>skipToNextItem跳到下一首，skipToPreviousItem跳到上一首，skipToBegin跳到第一首。<br>对应的宏都是以MPMusic开头。</p>
 <p>   [2] 利用系统声音服务来播放短暂音效（时长30秒以内），并震动：   </p>
 <pre><code>AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);  
 播放指定音效：
@@ -509,7 +516,7 @@ AudioServicesPlaySystemSound(soundID);
 
 duration表示音频的时间长度， currentTime表示当前播放到的时间。播放结束后可以通过代理方法audioPlayerDidFinishPlaying:来处理播放后设置。
 </code></pre><ul>
-<li>2- 视频<br>视频播放可以采用网页视图（UIWebView）进行嵌入式播放（能播放YouTube视频），或者采用电影播放器（MPMoviePlayerController）进行播放。<br>[1] 电影播放器</li>
+<li>2- 视频<br>视频播放可以采用网页视图<code>UIWebView</code>进行嵌入式播放（能播放YouTube视频），或者采用电影播放器<code>MPMoviePlayerController</code>进行播放。<br>[1] 电影播放器</li>
 </ul>
 <pre><code>MPMoviePlayerController *player =     ［MPMoviePlayerController alloc]<span class="string">initWithContentURL:</span> url]; 
 <span class="comment">// 设置播放器的大小，并将其加入视图中 </span>
