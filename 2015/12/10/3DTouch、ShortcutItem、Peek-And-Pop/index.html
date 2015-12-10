@@ -35,16 +35,46 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。">
+<meta name="description" content="3DTouch
+UITouch类里API的变化iOS9中添加的属性altitudeAngle
+当笔平行于平面时,该值为0
+当笔垂直于平面时,该值为Pi / 2
+estimatedProperties
+当前触摸对象估计的触摸特性
+返回值是UITouchPropertyies
+updatedProperties
+当前触摸对象已经更新的触摸特性
+返回值是UITouchPropertyies
+estima">
 <meta property="og:type" content="article">
-<meta property="og:title" content="@synthesize 与@dynamic 的不同">
-<meta property="og:url" content="http://yoursite.com/2015/02/10/synthesize-与-dynamic-的不同/index.html">
+<meta property="og:title" content="3DTouch、ShortcutItem、Peek And Pop">
+<meta property="og:url" content="http://yoursite.com/2015/12/10/3DTouch、ShortcutItem、Peek-And-Pop/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。">
-<meta property="og:updated_time" content="2015-12-08T08:35:52.000Z">
+<meta property="og:description" content="3DTouch
+UITouch类里API的变化iOS9中添加的属性altitudeAngle
+当笔平行于平面时,该值为0
+当笔垂直于平面时,该值为Pi / 2
+estimatedProperties
+当前触摸对象估计的触摸特性
+返回值是UITouchPropertyies
+updatedProperties
+当前触摸对象已经更新的触摸特性
+返回值是UITouchPropertyies
+estima">
+<meta property="og:updated_time" content="2015-12-10T03:14:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="@synthesize 与@dynamic 的不同">
-<meta name="twitter:description" content="一、SDK中描述是在声明property的时候，有2个选择1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。">
+<meta name="twitter:title" content="3DTouch、ShortcutItem、Peek And Pop">
+<meta name="twitter:description" content="3DTouch
+UITouch类里API的变化iOS9中添加的属性altitudeAngle
+当笔平行于平面时,该值为0
+当笔垂直于平面时,该值为Pi / 2
+estimatedProperties
+当前触摸对象估计的触摸特性
+返回值是UITouchPropertyies
+updatedProperties
+当前触摸对象已经更新的触摸特性
+返回值是UITouchPropertyies
+estima">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +84,7 @@
   };
 </script>
 
-    <title> @synthesize 与@dynamic 的不同 // 张天琦 </title>
+    <title> 3DTouch、ShortcutItem、Peek And Pop // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -175,7 +205,7 @@
           
           
             
-              @synthesize 与@dynamic 的不同
+              3DTouch、ShortcutItem、Peek And Pop
             
           
         </h1>
@@ -184,8 +214,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-02-10T12:03:10+08:00" content="2015-02-10">
-            2015-02-10
+          <time itemprop="dateCreated" datetime="2015-12-10T11:01:28+08:00" content="2015-12-10">
+            2015-12-10
           </time>
         </span>
 
@@ -203,27 +233,77 @@
       
 
       
-        <span itemprop="articleBody"><p>一、SDK中描述是在声明property的时候，有2个选择<br>1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。<br>2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。<br><a id="more"></a><br>    假如一个属性被声明为@dynamic str， 然后没有提供setter和getter方法，编译的时候没有问题，但是当程序运行到 instacnce.str = @”jasehruer”,由于缺setter方法导致程序崩溃，或者运行到 someValue = instance.var 时，由于缺少getter 方法同样导致程序崩溃。</p>
-<pre><code>编译时没有问题，运行时才执行相应的方法,这就是所谓的动态绑定。<span class="variable">@dynamic</span> 可用于在分类中添加属性，（需要用objc_getAssociateObject 和objc_setAssiociatedObject 函数）。
-
-有些存取是在运行时动态创建的，如在CoreData的NSManagedObject类使用的某些。如果你想这些情况下，声明和使用属性，但要避免缺少方法在编译时的警告，你可以使用<span class="variable">@dynamic</span>动态指令，而不是<span class="variable">@synthesize</span>合成指令。例如
-</code></pre><p>代码演示：</p>
-<p>.h 文件</p>
-<pre><code><span class="preprocessor">#import <span class="title">&lt;UIKit/UIKit.h&gt;</span></span>
-<span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span>
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">NSString</span> *string;
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="built_in">NSString</span> *str;
-<span class="keyword">@end</span>
-</code></pre><p>.m 文件</p>
-<pre><code><span class="preprocessor">#import <span class="title">"ViewController.h"</span></span>
-<span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span>
-<span class="keyword">@synthesize</span> string = _string;
-<span class="keyword">@dynamic</span> str;
-- (<span class="keyword">void</span>)viewDidLoad {
-[<span class="keyword">super</span> viewDidLoad];
-<span class="keyword">self</span><span class="variable">.str</span> = <span class="string">@"asdf"</span>;
-}
-</code></pre></span>
+        <span itemprop="articleBody"><p>3DTouch</p>
+<p>UITouch类里API的变化<br>iOS9中添加的属性<br>altitudeAngle</p>
+<p>当笔平行于平面时,该值为0</p>
+<p>当笔垂直于平面时,该值为Pi / 2</p>
+<p>estimatedProperties</p>
+<p>当前触摸对象估计的触摸特性</p>
+<p>返回值是UITouchPropertyies</p>
+<p>updatedProperties</p>
+<p>当前触摸对象已经更新的触摸特性</p>
+<p>返回值是UITouchPropertyies</p>
+<p>estimationUpdateIndex</p>
+<p>当每个触摸对象的触摸特性发生变化时，该值将会单独增加</p>
+<p>返回值是NSNumber</p>
+<p>iOS9中添加的方法</p>
+<ul>
+<li>PreciseLocationInView:</li>
+</ul>
+<p>当前触摸对象的坐标</p>
+<ul>
+<li>PrecisePreviousLocationInView:</li>
+</ul>
+<p>当前触摸对象的前置坐标</p>
+<ul>
+<li>azimuthAngleInview:</li>
+</ul>
+<p>沿着x轴正向的方位角</p>
+<p>当与x轴正向方向相同时,该值为0</p>
+<p>当view参数为nil时，默认为keyWindow</p>
+<ul>
+<li>azimuthUnitVectorInView:</li>
+</ul>
+<p>当前触摸对象的方向上的单位向量</p>
+<p>当view参数为nil时，默认为keyWindow</p>
+<p>UIForceTouchCapability<br>UIForceTouchCapabilityUnknown</p>
+<p>不能确定是否支持压力感应<br>UIForceTouchCapabilityUnavailable<br>不能支持压力感应<br>UIForceTouchCapabilityAvailable<br>可以支持压力感应<br>UITouchType<br>UITouchTypeDirect</p>
+<p>垂直的触摸类型<br>UITouchTypeIndirect<br>非初值的触摸类型<br>UITouchTypeStylus<br>水平的触摸类型<br>UITouchProperties<br>UITouchPropertyForce</p>
+<p>ShortcutItem</p>
+<p>静态方式<br>打开Info.plist文件<br>在对应UIApplicationShortcutItems关键字下添加item<br>动态方式<br>修改当前应用程序的某个shortcutItem<br>  //获取第0个shortcutItem<br>  id oldItem = [existingShortcutItems objectAtIndex: 0];<br>  //将旧的shortcutItem改变为可修改类型shortcutItem<br>  id mutableItem = [oldItem mutableCopy];<br>  //修改shortcutItem的显示标题<br>  [mutableItem setLocalizedTitle: @“Click Lewis”];<br>获取当前应用程序的shortcutItems<br>  //获取当前应用程序对象<br>  UIApplication *app = [UIApplication sharedApplication];<br>  //获取一个应用程序对象的shortcutItem列表<br>  id existingShortcutItems = [app shortcutItems];<br>重置当前应用程序的shortcutItems<br>  //根据旧的shortcutItems生成可变shortcutItems数组<br>  id updatedShortcutItems = [existingShortcutItems mutableCopy];<br>  //修改可变shortcutItems数组中对应index下的元素为新的shortcutItem<br>  [updatedShortcutItems replaceObjectAtIndex: 0 withObject: mutableItem];<br>  //修改应用程序对象的shortcutItems为新的数组<br>  [app setShortcutItems: updatedShortcutItems];<br>创建一个新的UIApplicationShortcutItem<br>初始化函数</p>
+<ul>
+<li>initWithType:localizedTitle:localizedSubtitle:icon:userInfo:</li>
+<li>initWithType:localizedTitle:<br>属性</li>
+</ul>
+<p>localizedTitle:NSString</p>
+<ul>
+<li><p>localizedSubtitle:NSString</p>
+</li>
+<li><p>type:NSString</p>
+</li>
+<li><p>icon:UIApplicationShortcutIcon</p>
+</li>
+<li><p>userInfo:NSDictionary</p>
+</li>
+</ul>
+<p>只有只读特性，想要进行修改时，需要通过mutableCopy方法转变为<br>NSMutableApplicationShortcutItem<br>创建一个新的Item图标<br>初始化函数</p>
+<ul>
+<li><p>iconWithType:</p>
+</li>
+<li><p>iconWithTemplateImageName:</p>
+</li>
+<li><p>iconWithContact:</p>
+</li>
+</ul>
+<p>当程序启动时<br>判断launchOptions字典内的UIApplicationLaunchOptionsShortcutItemKey是否为空<br>当不为空时,application:didFinishLaunchWithOptions方法返回false，否则返回true<br>在application:performActionForShortcutItem:completionHandler方法内处理点击事件<br>Peek and Pop</p>
+<p>注册预览功能的代理对象和源视图<br>代理对象需要接受UIViewControllerPreviewingDelegate协议<br>  @interface RootVC<uiviewcontrollerpreviewingdelegate><br>  {}<br>  @end<br>代理对象实现协议内的Peek和Pop方法<br>  @implementation RootVC  </uiviewcontrollerpreviewingdelegate></p>
+<ul>
+<li><p>(UIViewController <em>)previewingContext:(id<uiviewcontrollerpreviewing>)context viewControllerForLocation:(CGPoint) point<br>{<br>  UIViewController </uiviewcontrollerpreviewing></em>childVC = [[UIViewController alloc] init];<br>  childVC.preferredContentSize = CGSizeMake(0.0f,300f);  </p>
+<p>  CGRect rect = CGRectMake(10, point.y - 10, self.view.frame.size.width - 20,20);<br>  context.sourceRect = rect;<br>  return childVC;<br>}  </p>
+</li>
+<li>(void)previewContext:(id<uiviewcontrollerpreviewing>)context commitViewController:(UIViewController*)vc<br>{<br>  [self showViewController:vc sender:self];<br>}<br>@end<br>注册方法声明在UIViewController类内<br>[self registerForPreviewingWithDelegate:self sourceView:self.view];       </uiviewcontrollerpreviewing></li>
+</ul>
+</span>
       
     </div>
 
@@ -234,13 +314,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/03/07/KVO/" rel="prev">KVO</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/01/20/cocopods使用/" rel="next">cocopods使用</a>
+              <a href="/2015/12/07/QuartzCore核心动画框架/" rel="next">QuartzCore核心动画框架</a>
             
           </div>
         </div>

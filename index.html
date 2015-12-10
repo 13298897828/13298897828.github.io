@@ -176,6 +176,137 @@
           
           
             
+              <a class="post-title-link" href="/2015/12/10/3DTouch、ShortcutItem、Peek-And-Pop/" itemprop="url">
+                3DTouch、ShortcutItem、Peek And Pop
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-10T11:01:28+08:00" content="2015-12-10">
+            2015-12-10
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>3DTouch</p>
+<p>UITouch类里API的变化<br>iOS9中添加的属性<br>altitudeAngle</p>
+<p>当笔平行于平面时,该值为0</p>
+<p>当笔垂直于平面时,该值为Pi / 2</p>
+<p>estimatedProperties</p>
+<p>当前触摸对象估计的触摸特性</p>
+<p>返回值是UITouchPropertyies</p>
+<p>updatedProperties</p>
+<p>当前触摸对象已经更新的触摸特性</p>
+<p>返回值是UITouchPropertyies</p>
+<p>estimationUpdateIndex</p>
+<p>当每个触摸对象的触摸特性发生变化时，该值将会单独增加</p>
+<p>返回值是NSNumber</p>
+<p>iOS9中添加的方法</p>
+<ul>
+<li>PreciseLocationInView:</li>
+</ul>
+<p>当前触摸对象的坐标</p>
+<ul>
+<li>PrecisePreviousLocationInView:</li>
+</ul>
+<p>当前触摸对象的前置坐标</p>
+<ul>
+<li>azimuthAngleInview:</li>
+</ul>
+<p>沿着x轴正向的方位角</p>
+<p>当与x轴正向方向相同时,该值为0</p>
+<p>当view参数为nil时，默认为keyWindow</p>
+<ul>
+<li>azimuthUnitVectorInView:</li>
+</ul>
+<p>当前触摸对象的方向上的单位向量</p>
+<p>当view参数为nil时，默认为keyWindow</p>
+<p>UIForceTouchCapability<br>UIForceTouchCapabilityUnknown</p>
+<p>不能确定是否支持压力感应<br>UIForceTouchCapabilityUnavailable<br>不能支持压力感应<br>UIForceTouchCapabilityAvailable<br>可以支持压力感应<br>UITouchType<br>UITouchTypeDirect</p>
+<p>垂直的触摸类型<br>UITouchTypeIndirect<br>非初值的触摸类型<br>UITouchTypeStylus<br>水平的触摸类型<br>UITouchProperties<br>UITouchPropertyForce</p>
+<p>ShortcutItem</p>
+<p>静态方式<br>打开Info.plist文件<br>在对应UIApplicationShortcutItems关键字下添加item<br>动态方式<br>修改当前应用程序的某个shortcutItem<br>  //获取第0个shortcutItem<br>  id oldItem = [existingShortcutItems objectAtIndex: 0];<br>  //将旧的shortcutItem改变为可修改类型shortcutItem<br>  id mutableItem = [oldItem mutableCopy];<br>  //修改shortcutItem的显示标题<br>  [mutableItem setLocalizedTitle: @“Click Lewis”];<br>获取当前应用程序的shortcutItems<br>  //获取当前应用程序对象<br>  UIApplication *app = [UIApplication sharedApplication];<br>  //获取一个应用程序对象的shortcutItem列表<br>  id existingShortcutItems = [app shortcutItems];<br>重置当前应用程序的shortcutItems<br>  //根据旧的shortcutItems生成可变shortcutItems数组<br>  id updatedShortcutItems = [existingShortcutItems mutableCopy];<br>  //修改可变shortcutItems数组中对应index下的元素为新的shortcutItem<br>  [updatedShortcutItems replaceObjectAtIndex: 0 withObject: mutableItem];<br>  //修改应用程序对象的shortcutItems为新的数组<br>  [app setShortcutItems: updatedShortcutItems];<br>创建一个新的UIApplicationShortcutItem<br>初始化函数</p>
+<ul>
+<li>initWithType:localizedTitle:localizedSubtitle:icon:userInfo:</li>
+<li>initWithType:localizedTitle:<br>属性</li>
+</ul>
+<p>localizedTitle:NSString</p>
+<ul>
+<li><p>localizedSubtitle:NSString</p>
+</li>
+<li><p>type:NSString</p>
+</li>
+<li><p>icon:UIApplicationShortcutIcon</p>
+</li>
+<li><p>userInfo:NSDictionary</p>
+</li>
+</ul>
+<p>只有只读特性，想要进行修改时，需要通过mutableCopy方法转变为<br>NSMutableApplicationShortcutItem<br>创建一个新的Item图标<br>初始化函数</p>
+<ul>
+<li><p>iconWithType:</p>
+</li>
+<li><p>iconWithTemplateImageName:</p>
+</li>
+<li><p>iconWithContact:</p>
+</li>
+</ul>
+<p>当程序启动时<br>判断launchOptions字典内的UIApplicationLaunchOptionsShortcutItemKey是否为空<br>当不为空时,application:didFinishLaunchWithOptions方法返回false，否则返回true<br>在application:performActionForShortcutItem:completionHandler方法内处理点击事件<br>Peek and Pop</p>
+<p>注册预览功能的代理对象和源视图<br>代理对象需要接受UIViewControllerPreviewingDelegate协议<br>  @interface RootVC<uiviewcontrollerpreviewingdelegate><br>  {}<br>  @end<br>代理对象实现协议内的Peek和Pop方法<br>  @implementation RootVC  </uiviewcontrollerpreviewingdelegate></p>
+<ul>
+<li><p>(UIViewController <em>)previewingContext:(id<uiviewcontrollerpreviewing>)context viewControllerForLocation:(CGPoint) point<br>{<br>  UIViewController </uiviewcontrollerpreviewing></em>childVC = [[UIViewController alloc] init];<br>  childVC.preferredContentSize = CGSizeMake(0.0f,300f);  </p>
+<p>  CGRect rect = CGRectMake(10, point.y - 10, self.view.frame.size.width - 20,20);<br>  context.sourceRect = rect;<br>  return childVC;<br>}  </p>
+</li>
+<li>(void)previewContext:(id<uiviewcontrollerpreviewing>)context commitViewController:(UIViewController*)vc<br>{<br>  [self showViewController:vc sender:self];<br>}<br>@end<br>注册方法声明在UIViewController类内<br>[self registerForPreviewingWithDelegate:self sourceView:self.view];       </uiviewcontrollerpreviewing></li>
+</ul>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/12/07/QuartzCore核心动画框架/" itemprop="url">
                 QuartzCore核心动画框架
               </a>
@@ -803,72 +934,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/02/10/synthesize-与-dynamic-的不同/" itemprop="url">
-                @synthesize 与@dynamic 的不同
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-02-10T12:03:10+08:00" content="2015-02-10">
-            2015-02-10
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>一、SDK中描述是在声明property的时候，有2个选择<br>1：通过@synthesize 指令告诉编译器在编译期间产生getter/setter方法。<br>2：通过@dynamic指令，告诉编译器属性的setter与getter 方法由用户自己实现。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/02/10/synthesize-与-dynamic-的不同/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -908,7 +973,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-count">17</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
