@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/04/28/数据持久化的几种方式/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="数据持久化是我们开发中经常涉及的问题,以下是本人对于数据持久化使用的基本了解,和大家分享下">
-<meta property="og:updated_time" content="2015-12-04T03:00:00.000Z">
+<meta property="og:updated_time" content="2015-12-10T09:06:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据持久化的几种方式">
 <meta name="twitter:description" content="数据持久化是我们开发中经常涉及的问题,以下是本人对于数据持久化使用的基本了解,和大家分享下">
@@ -227,21 +227,26 @@
 <li>1.数据持久化的本质：数据保存成文件，存储到程序的沙盒中</li>
 <li>2.沙盒机制：沙盒的本质就是一个文件夹，名字是随机分配的 </li>
 <li>3.模拟器路径内有可能包含多个系统版本的路径 </li>
-<li>4.构成：document、library（cache、preference）、tmp、app程序包</li>
+<li><p>4.构成：document、library（cache、preference）、tmp、app程序包</p>
+<p>  通过代码查找各个文件的相对路径： </p>
+<pre><code><span class="built_in">NSHomeDirectory</span>（）—沙盒主路径 
+<span class="built_in">NSDocumentDirectory</span>—documents文件夹 
+<span class="built_in">NSLibraryDirectory</span>—Library文件夹 
+<span class="built_in">NSCacheDirectory</span>—caches文件夹 
+<span class="built_in">NSTemporaryDirectory</span>—tmp文件夹
+</code></pre></li>
 </ul>
-<p>通过代码查找各个文件的相对路径：<br>NSHomeDirectory（）—沙盒主路径<br>NSDocumentDirectory—documents文件夹<br>NSLibraryDirectory—Library文件夹<br>NSCacheDirectory—caches文件夹<br>NSTemporaryDirectory—tmp文件夹</p>
-<pre><code><span class="comment">//获取沙盒主路径</span>
-<span class="built_in">NSString</span> *homePath = <span class="built_in">NSHomeDirectory</span>();
-<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,homePath);
+<pre><code>  <span class="comment">//获取沙盒主路径</span>
 
-pragma mark - objectAtIndex:<span class="number">0</span>、firstObject、lastObject、[<span class="number">0</span>] 使用任意一个都是同一个文件(手机)
+  <span class="built_in">NSString</span> *homePath = <span class="built_in">NSHomeDirectory</span>();
+  <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,homePath);
 
-
-<span class="comment">//document路径 (通常存放应用程序需要持久化使用的关键数据（用户数据），比如本地数据库等，iTunes在备份的时候会自动备份此文件夹)</span>
-<span class="built_in">NSString</span> *documentPath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">NO</span>) objectAtIndex:<span class="number">0</span>];
-<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,documentPath);
+  pragma mark - objectAtIndex:<span class="number">0</span>、firstObject、    lastObject、[<span class="number">0</span>] 使用任意一个都是同一个文件(手机)
 
 
+ <span class="comment">//document路径 (通常存放应用程序需要持久化使用的关键数据（用户数据），比如本地数据库等，iTunes在备份的时候会自动备份此文件夹)</span>
+  <span class="built_in">NSString</span> *documentPath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">NO</span>) objectAtIndex:<span class="number">0</span>];
+  <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,documentPath);
 
 <span class="comment">//library路径 （通常用来存储应用程序运行期间生成的持久数据，比如用户账户名等。应用程序退出后不会被删除文件夹内数据，但是iTunes备份时，不会备份此文件夹）</span>
 <span class="built_in">NSString</span> *libraryPath = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSLibraryDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) firstObject];
@@ -272,7 +277,7 @@ pragma mark - objectAtIndex:<span class="number">0</span>、firstObject、lastOb
 
 <span class="comment">//NSString *image = [bundle pathForResource:@"image" ofType:@"png"];</span>
 
-<span class="comment">//    NSString *interfacePath = [bundle pathForResource:@"news" ofType:@"txt"];</span>
+<span class="comment">//NSString *interfacePath = [bundle pathForResource:@"news" ofType:@"txt"];</span>
 <span class="comment">//NSLog(@"%@",image);</span>
 </code></pre><h3 id="3-简单对象写入文件（字符串、数组、字典、图片）">3.简单对象写入文件（字符串、数组、字典、图片）</h3><h4 id="字符串写入文件">字符串写入文件</h4><pre><code><span class="built_in">NSString</span> *incantation = <span class="string">@"等闲变却故人心，却道故人心易变"</span>;
 
@@ -285,43 +290,52 @@ path = [path stringByAppendingString:<span class="string">@"/纳兰容若.txt"</
 [incantation writeToFile:path atomically:<span class="literal">YES</span> encoding:<span class="built_in">NSUTF8StringEncoding</span> error:<span class="literal">nil</span>];<span class="comment">//（atomically：YES 指的是原子性，和我们声明属性时候的nonatomic非原子性类似的道理，选择YES意思就是说不能被中断，实际操作写入文件的时候，系统会先开辟一个内存空间，将字符串存入这个缓存中，再写入文件，而不是直接写入文件，这样就保证不会出现写入过程中突然中断导致只写入一部分的情况。选择NO即直接写入文件，可以被中断）</span>
 
 
-<span class="comment">//从文件中获取字符串</span>
+ <span class="comment">//从文件中获取字符串</span>
 <span class="built_in">NSString</span> *resultString = [<span class="built_in">NSString</span> stringWithContentsOfFile:path encoding:<span class="built_in">NSUTF8StringEncoding</span> error:<span class="literal">nil</span>];
-<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultString);
+        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultString);
 </code></pre><h4 id="数组写入文件">数组写入文件</h4><pre><code><span class="built_in">NSArray</span> *array = @[<span class="string">@"相怜相念倍相亲"</span>,<span class="string">@"一生一世一双人"</span>];
 <span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();
 path = [path stringByAppendingPathComponent:<span class="string">@"王安石.txt"</span>];
+
 <span class="comment">//写入</span>
 [array writeToFile:path atomically:<span class="literal">YES</span>];
 
 <span class="comment">//读取</span>
 <span class="built_in">NSArray</span> *resultArr = [<span class="built_in">NSArray</span> arrayWithContentsOfFile:path];
 <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultArr[<span class="number">0</span>]);
-</code></pre><h4 id="字典写入文件">字典写入文件</h4><pre><code><span class="built_in">NSDictionary</span> *dict = @{<span class="string">@"周议"</span>:<span class="string">@"宁可我付天下人，不可天下人负我"</span>};
-<span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();
-path = [path stringByAppendingString:<span class="string">@"/南阳.txt"</span>];
+</code></pre><h4 id="字典写入文件">字典写入文件</h4><pre><code> <span class="built_in">NSDictionary</span> *dict = @{<span class="string">@"周议"</span>:<span class="string">@"宁可我付天下人，不可天下人负我"</span>};
+ <span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();
+ path = [path stringByAppendingString:<span class="string">@"/南阳.txt"</span>];
 <span class="comment">//写入文件</span>
-[dict writeToFile:path atomically:<span class="literal">YES</span>];
+ [dict writeToFile:path atomically:<span class="literal">YES</span>];
 
-<span class="comment">//读取文件</span>
-<span class="built_in">NSDictionary</span> *resultDict = [<span class="built_in">NSDictionary</span> dictionaryWithContentsOfFile:path];
-<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultDict); 
-</code></pre><h4 id="图片写入文件">图片写入文件</h4><pre><code><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"image"</span>];
+ <span class="comment">//读取文件</span>
+ <span class="built_in">NSDictionary</span> *resultDict = [<span class="built_in">NSDictionary</span> dictionaryWithContentsOfFile:path];
+ <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultDict); 
+</code></pre><h4 id="图片写入文件">图片写入文件</h4><pre><code> <span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"image"</span>];
 
 <span class="comment">//NSData *data = UIImagePNGRepresentation(image);</span>
-<span class="built_in">NSData</span> *data1 = <span class="built_in">UIImageJPEGRepresentation</span>(image, <span class="number">1</span>);<span class="comment">//“1”表示图片压缩质量（不超过1，越小质量越差）</span>
+ <span class="built_in">NSData</span> *data1 = <span class="built_in">UIImageJPEGRepresentation</span>(image, <span class="number">1</span>);<span class="comment">//“1”表示图片压缩质量（不超过1，越小质量越差）</span>
 
-<span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();
-path = [path stringByAppendingString:<span class="string">@"/gir.jpg"</span>];
-<span class="comment">//写入文件</span>
-[data1 writeToFile:path atomically:<span class="literal">YES</span>];
-<span class="comment">//取出</span>
-<span class="built_in">UIImage</span> *resultImg = [<span class="built_in">UIImage</span> imageWithContentsOfFile:path];
-<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultImg); 
-</code></pre><h4 id="复杂对象写入文件">复杂对象写入文件</h4><p>1）复杂对象即Foundation 框架下不存在的数据类，例如自己创建的类<br>2）复杂对象至少包含一个实例对象<br>3）无法在程序内通过writeToFile 类型的方法写入文件中，只能转换为NSData，再通过writeToFile进行数据持久化 </p>
-<p>4）归档：将复杂对象转换为NSData<br>反归档：将NSData转换为复杂对象 </p>
-<p>5）要想写入文件，复杂对象要遵循NSCoding协议，并实现协议方法 </p>
-<p>6）复杂对象写入的文件在本地打不开</p>
+ <span class="built_in">NSString</span> *path = <span class="built_in">NSHomeDirectory</span>();
+ path = [path stringByAppendingString:<span class="string">@"/gir.jpg"</span>];
+ <span class="comment">//写入文件</span>
+ [data1 writeToFile:path atomically:<span class="literal">YES</span>];
+ <span class="comment">//取出</span>
+ <span class="built_in">UIImage</span> *resultImg = [<span class="built_in">UIImage</span> imageWithContentsOfFile:path];
+ <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,resultImg); 
+</code></pre><h4 id="复杂对象写入文件">复杂对象写入文件</h4><ul>
+<li>1）复杂对象即Foundation 框架下不存在的数据类，例如自己创建的类 </li>
+<li>2）复杂对象至少包含一个实例对象 </li>
+<li><p>3）无法在程序内通过writeToFile 类型的方法写入文件中，只能转换为NSData，再通过writeToFile进行数据持久化 </p>
+</li>
+<li><p>4）归档：将复杂对象转换为NSData<br>反归档：将NSData转换为复杂对象 </p>
+</li>
+<li><p>5）要想写入文件，复杂对象要遵循NSCoding协议，并实现协议方法 </p>
+</li>
+<li><p>6）复杂对象写入的文件在本地打不开</p>
+</li>
+</ul>
 <p>注意：归档和反归档，只是辅助完成数据持久化的功能，本身不能数据持久化</p>
 <pre><code><span class="preprocessor">#import <span class="title">"Person.h"</span></span>
 
