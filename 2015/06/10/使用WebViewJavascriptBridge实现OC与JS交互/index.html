@@ -35,31 +35,22 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="##vim编辑器
-发表于 2015-6-20   |   分类于 linux
-
-
-
-###vi(vim)简介vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想">
+<meta name="description" content="前言当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。
+因此今天为大家介绍一个优秀的开源小项目,就是我们今天的主角–WebViewJavascriptBridge。它主要帮助我们优雅的实现OC与JS的交互,非常方便简洁。
+当然,有很多优秀的开发者写过Web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vi编辑器的使用">
-<meta property="og:url" content="http://yoursite.com/2015/01/03/vi编辑器的使用/index.html">
+<meta property="og:title" content="使用WebViewJavascriptBridge实现OC与JS交互">
+<meta property="og:url" content="http://yoursite.com/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="##vim编辑器
-发表于 2015-6-20   |   分类于 linux
-
-
-
-###vi(vim)简介vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想">
-<meta property="og:updated_time" content="2015-12-04T02:59:47.000Z">
+<meta property="og:description" content="前言当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。
+因此今天为大家介绍一个优秀的开源小项目,就是我们今天的主角–WebViewJavascriptBridge。它主要帮助我们优雅的实现OC与JS的交互,非常方便简洁。
+当然,有很多优秀的开发者写过Web">
+<meta property="og:updated_time" content="2015-12-10T02:25:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vi编辑器的使用">
-<meta name="twitter:description" content="##vim编辑器
-发表于 2015-6-20   |   分类于 linux
-
-
-
-###vi(vim)简介vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想">
+<meta name="twitter:title" content="使用WebViewJavascriptBridge实现OC与JS交互">
+<meta name="twitter:description" content="前言当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。
+因此今天为大家介绍一个优秀的开源小项目,就是我们今天的主角–WebViewJavascriptBridge。它主要帮助我们优雅的实现OC与JS的交互,非常方便简洁。
+当然,有很多优秀的开发者写过Web">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -69,7 +60,7 @@
   };
 </script>
 
-    <title> vi编辑器的使用 // 张天琦 </title>
+    <title> 使用WebViewJavascriptBridge实现OC与JS交互 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -190,7 +181,7 @@
           
           
             
-              vi编辑器的使用
+              使用WebViewJavascriptBridge实现OC与JS交互
             
           
         </h1>
@@ -199,22 +190,11 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-01-03T09:51:56+08:00" content="2015-01-03">
-            2015-01-03
+          <time itemprop="dateCreated" datetime="2015-06-10T10:22:27+08:00" content="2015-06-10">
+            2015-06-10
           </time>
         </span>
 
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/UNIX/" itemprop="url" rel="index"><span itemprop="name">UNIX</span></a></span>
-
-              
-              
-
-            
-          </span>
         
 
         
@@ -229,135 +209,90 @@
       
 
       
-        <span itemprop="articleBody"><p>##<center>vim编辑器</center></p>
-<center>发表于 2015-6-20   |   分类于 linux</center>
+        <span itemprop="articleBody"><h4 id="前言">前言</h4><p>当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。</p>
+<p>因此今天为大家介绍一个优秀的开源小项目,就是我们今天的主角–<code>WebViewJavascriptBridge</code>。它主要帮助我们优雅的实现OC与JS的交互,非常方便简洁。</p>
+<p>当然,有很多优秀的开发者写过WebViewJavascriptBridge的使用包括实现原理,首先表示感激和敬意。但是作为一个初学者或者一个急于实现功能的人来说,大部分时候我们更希望一个直奔主题的文章。所以,本文的核心就是WebViewJavascriptBridge在实际开发中的使用。<br>使用步骤<br>去Github上下载<code>WebJavaScriptBridge</code><br>解压缩包,将<code>WebViewJavascriptBridge</code>文件夹拖到你的工程中</p>
+<p>1.png<br>在需要使用<code>WebViewJavascriptBridge</code>的类文件中引入头文件<code>WebViewJavascriptBridge.h</code><br>加载UIWebView,遵守<code>&lt;UIWebViewDelegate&gt;</code>协议<br>具体使用<br>创建并初始化WebJavaScriptBridge实例</p>
+<pre><code>   <span class="preprocessor">#import <span class="title">"ExampleUIWebViewController.h"</span></span>
+   <span class="preprocessor">#import <span class="title">"WebViewJavascriptBridge.h"</span></span>
 
+  <span class="class"><span class="keyword">@interface</span> <span class="title">ExampleUIWebViewController</span> ()</span>
+  <span class="comment">//声明`WebViewJavascriptBridge`对象为属性</span>
+   <span class="keyword">@property</span> WebViewJavascriptBridge* bridge;
 
-<hr>
-<p>###vi(vim)简介<br>vi(vim)是上Linux非常常用的编辑器，很多Linux发行版都默认安装了vi(vim)。vi(vim)命令繁多但是如果使用灵活之后将会大大提高效率。vi是“visual interface”的缩写，vim是vi IMproved(增强版的vi)。在一般的系统管理维护中vi就够用，如果想使用代码加亮的话可以使用vim。下面是vi的使用教程：包含vi的基本介绍、使用模式、文件的打开关闭保存、插入文本或新建行、移动光标、删除、恢复字符或行、搜索等等，算是一篇比较适合新手学习vi的教程。<br><a id="more"></a></p>
-<p>##vim编辑器的三种模式</p>
-<h3 id="命令模式">命令模式</h3><p>在该模式中，可以输入命令来执行许多种功能。控制屏幕光标的移动，字符、字或行的删除，移动复制某区段及进入Insert mode下，或者到 last line mode。</p>
-<h3 id="输入模式">输入模式</h3><p>vim被运行时，通常处在命令模式下，键入以下命令 可以使vim退出命令模式，进入输入模式：I（i）、A（a）、O（o）。</p>
-<h3 id="末行模式">末行模式</h3><p>将文件保存或退出vim，也可以设置编辑环境，如寻找字符串、列出行号……等。不过一般我们在使用时把vim简化成两个模式，就是将末行模式（last line mode）也算入命令行模式command mode）。</p>
-<h3 id="vim编辑器的启动与退出">vim编辑器的启动与退出</h3><h4 id="1-_vim的启动">1. vim的启动</h4><p>　　输入vim命令后，便进入全屏幕编辑环境，此时的状态为命令模式。</p>
-<h5 id="(1)_vim">(1) vim</h5><p>　　进入vi的一个临时缓冲区，光标定位在该缓冲区第1行第1列的位置上。</p>
-<h5 id="(2)_vim_file1">(2) vim file1</h5><p>　　如果file1文件不存在，将建立此文件；如该文件存在，则将其拷贝到一个临时缓冲区。光标定位在该缓冲区第1行第1列的位置上。</p>
-<h5 id="(3)_vim_+_file1">(3) vim + file1</h5><p>　　如果file1文件不存在，将建立此文件；如该文件存在，则将其拷贝到一个临时缓冲区。光标定位在文件最后1行第1列的位置上。</p>
-<h5 id="(4)_vim_+N_file1(N：为数字)">(4) vim +N file1(N：为数字)</h5><p>　　如果file1文件不存在，将建立此文件；如该文件存在，则将其拷贝到一个临时缓冲区。光标定位在文件第N行第1列的位置上。</p>
-<h5 id="(5)_vim_+/string_file1">(5) vim +/string file1</h5><p>　　如果file1文件不存在将建立此文件；如该文件存在则将其拷贝到一个临时缓冲区。光标定位在文件中第一次出现字符串string的行首位置。</p>
-<h4 id="2-_退出vim(末行模式（last_line_mode）)">2. 退出vim(末行模式（last line mode）)</h4><p>　　建议在退出vim前，先按ESC键，以确保当前vim的状态为命令方式，然后再键入“：”(冒号)，输入下列命令，退出vi。</p>
-<p>#####　(1) :w</p>
-<p>　　将编辑缓冲区的内容写入文件，则新的内容就替代了原始文件。这时并没有退出vim，必须进一步输入下述命令才能退出vi：</p>
-<pre><code>　　<span class="pseudo">:w</span> <span class="tag">filename</span>(存入指定文件)
+  <span class="keyword">@end</span>
 
-　　<span class="pseudo">:q</span>
-</code></pre><p>#####　　(2) :wq</p>
-<p>　　即将上面的两步操作可以合成一步来完成，先执行w，后执行q。</p>
-<p>#####　　(3) :x和ZZ(注意： ZZ前面没有“:”)</p>
-<p>　　功能与(2)等价。</p>
-<p>#####　　(4) :q!(或:quit)</p>
-<p>　　强行退出vim，使被更新的内容不写回文件中。仅键入命令:q时，如vim发现文本内容已被更改，将提示用户使用“:quit”命令退出。</p>
-<p>###vim编辑器常用命令</p>
-<ul>
-<li><p>1、在文件中移动光标</p>
-<p>  　　h：向左移动一个字符</p>
-<p>  　　l：向右移动一个字符</p>
-<p>  　　j：向下移动一行</p>
-<p>  　　k：向上移动一行</p>
-<p>  　　^（即Shift+6）：移动到当前行的开头处</p>
-<p>  　　$（即Shift+4）：移动到当前行的结尾处</p>
-<p>  　　H（大写）:使光标移动到屏幕的顶部</p>
-<p>  　　M（大写）:使光标移动到屏幕的中间</p>
-<p>  　　L（大写）:使光标移动到屏幕的底部</p>
-<p>  　　Ctrl+b：上滚一屏。</p>
-<p>  　　Ctrl+f：下滚一屏。</p>
-<p>  　　Ctrl+d：下滚半屏。</p>
-<p>  　　Ctrl+u: 上滚半屏。</p>
-</li>
-<li><p>2、插入文本</p>
-</li>
-</ul>
-<p>　　（1）添加：</p>
-<p>　  　  输入a后，在光标的右边插入文本</p>
-<p>　　    输入A，在一行的结尾处添加文本</p>
-<p>　　（2）插入：</p>
-<p>　　    通过在命令模式下输入i，在光标的左边插入文本</p>
-<p>　　    通过在命令模式下输入I，在行首插入文本</p>
-<p>　　（3）插入新行：</p>
-<p>　    　输入o，在当前光标位置下面打开一行</p>
-<p>　      　输入O，在当前光标位置上面打开一行
-　      　</p>
-<ul>
-<li>3、撤消更改</li>
-</ul>
-<p>　 　（1）撤消前一个命令：在最后一个命令之后立即输入u来撤消该命令</p>
-<p>　　 （2）重复某个命令：“.”</p>
-<p>　　 （3）撤消对一行的更改：输入U来撤消你对一行所做的所有更改，这个命令只有在你没将光标移动到该行以外时才生效。</p>
-<ul>
-<li>4、删除文本</li>
-</ul>
-<p>　 　（1）删除一个字符：</p>
-<p>　　    为删除一个字符，需将光标放置在要删除的字符上并输入x</p>
-<p>　      为删除光标之前（其左边）的一个字符，需输入X</p>
-<p>　　（2）删除一个词或词的部分内容：</p>
-<p>　    　为删除一个词，需将光标放置到该词的开头并输入dw</p>
-<p>　　    为删除词的部分内容，需将光标放置到该词要保存部分的右边。输入dw来删除该词余下的部分</p>
-<p>　　（3）删除一行：将光标放置到该行的任意处并输入dd</p>
-<p>　　（4）删除多行：ndd</p>
-<p>　　（5）删除行的部分内容：将光标放置到该行要保存部分的右边，并输入D。为删除光标左边的所有内容，须将光标放置到该行要删除部分的右边，并输入d0（d-零）。</p>
-<p>　　（6）删除到文件的结尾：为删除从当前行到文件结尾的所有内容，需输入dG</p>
-<ul>
-<li>5、复制和移动文本</li>
-</ul>
-<p>　　 复制一行命令：yy</p>
-<p>　 　粘贴命令：p</p>
-<p>　 　移动文本：先将要移动的部分用删除命令删除，然后再粘贴就可以了</p>
-<p>　 　复制指定文件的内容</p>
-<pre><code>　　: r <span class="keyword">filename</span>
-</code></pre><ul>
-<li>6、查找一个字符串</li>
-</ul>
-<p>　 　输入/，并在/后面输入要查找的串，然后按下回车</p>
-<p>　 　输入“n”跳转到该串的下一个出现处</p>
-<p>　 　输入“N”跳转到该串的上一个出现处</p>
-<ul>
-<li>7、替换一个字符串</li>
-</ul>
-<p>　 　在一行内替换头一个字符串old为新的字符串new</p>
-<pre><code>　　<span class="symbol">:s/old/new</span>
-</code></pre><p>　 　在一行内替换所有的字符串old为新的字符串new</p>
-<pre><code>　　:<span class="regexp">s/old/new/g</span>
-</code></pre><p> 　　在两行内替换所有的字符串old为新的字符串new</p>
-<pre><code>　　:#,#s<span class="regexp">/old/</span><span class="keyword">new</span><span class="regexp">/g</span>
-</code></pre><p>　 　在文件内替换所有的字符串old为新的字符串new</p>
-<pre><code>　　<span class="symbol">:%s/old/new/g</span>
-</code></pre><p>　 　进行全文替换时询问用户确认每个替换需添加c选项</p>
-<pre><code>　　<span class="symbol">:%s/old/new/gc</span>
-</code></pre><ul>
-<li>8、设置vim</li>
-</ul>
-<p>　 　显示行号</p>
-<pre><code>　　:<span class="keyword">set</span> <span class="type">number</span>
-</code></pre><p>　 　取消行号显示</p>
-<pre><code>　　:<span class="keyword">set</span> nonumber
-</code></pre><p>　 　设置显示用户模式</p>
-<pre><code>　　:<span class="keyword">set</span> showmode
-</code></pre><p>　 　设置文件只读</p>
-<p>　    　:set readonly
-　    　
-　    　
-　    　
-　    　</p>
-<h4 id="登录步骤">　登录步骤</h4><pre><code>login : <span class="strong">_____</span>__ &gt; 输入 username
-password : <span class="strong">_____</span>__ &gt; 输入密码
-</code></pre><h4 id="登出步骤">登出步骤</h4><pre><code><span class="preprocessor">%</span> logout 或 <span class="preprocessor">%</span> exit 或 <span class="preprocessor">%</span> 或按[Ctrl-D]
-</code></pre><h4 id="更改帐号密码">更改帐号密码</h4><p>passwd &gt; 执行后将会出现下列信息 Changing NIS password for user on ice.</p>
-<pre><code> Old <span class="string">password:</span> ______ &gt; 输入旧密码
+  - (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated {
 
- New <span class="string">password:</span> ______ &gt; 输入新密码(最好<span class="number">6</span>-<span class="number">8</span>字，英文字母与数字混合)
+   <span class="comment">//用UIWebView加载web</span>
+    <span class="built_in">UIWebView</span>* webView = [[<span class="built_in">UIWebView</span> alloc] initWithFrame:<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.bounds</span>];
 
-Retype <span class="keyword">new</span> <span class="string">password:</span> ______ &gt; 再输入一次密码
-</code></pre></span>
+ <span class="comment">//设置能够进行桥接 </span>
+    [WebViewJavascriptBridge enableLogging];
+ <span class="comment">// 初始化*WebViewJavascriptBridge*实例,设置代理,进行桥接</span>
+   _bridge = [WebViewJavascriptBridge bridgeForWebView:webView webViewDelegate:<span class="keyword">self</span> handler:^(<span class="keyword">id</span>         data, WVJBResponseCallback responseCallback) {
+
+<span class="built_in">NSLog</span>(<span class="string">@"ObjC received message from JS: %@"</span>, data);
+     responseCallback(<span class="string">@"Response for message from ObjC"</span>);
+     }];
+
+}
+</code></pre><h4 id="JS调用OC">JS调用OC</h4><p>什么是JS调用OC?</p>
+<p>举个例子来说就是在网页中有一个登录按钮,点击登录按钮后,具体的登录功能是由OC端实现的,即登录功能实现需要我们在工程里有一个类似loginMethod的函数去具体操作。<br>工作流程</p>
+<p>站在实际开发的角度来解释,就是假如现在有一个网页,在网页中有个登录按钮需要通过JS调OC的方式实现。那么我们首先需要跟负责网页编码的人员(一般是后台)商定出一个方法名称,也就是给这个登录按钮点击事件取个名字,例如叫loginCallBack。然后我们需要在代码里注册这个事件并负责它的具体实现。当用户点击这个登录按钮的时候,后台就会通知给这个事件的注册者去执行,有点像block的执行顺序。<br>代码实现</p>
+<p>假如我们现在商定了一个事件名称为loginFunc,我们来看一下代码实现。</p>
+<pre><code> /<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>
+ /<span class="comment">@param registerHandler 要注册的事件名称(这里我们为loginFunc)</span>
+ /<span class="comment">@param handel 回调block函数 当后台触发这个事件的时候会执行block里面的代码</span>
+<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>/
+[_bridge registerHandler:<span class="comment">@"loginFunc" handler:^(id data, WVJBResponseCallback responseCallback) {</span>
+// data 后台传过来的参数,例如用户名、密码等
+
+  NSLog(<span class="comment">@"testObjcCallback called: %@", data);</span>
+
+//具体的登录事件的实现,这里的login代表实现登录功能的一个OC函数。
+           [self login];   
+
+// responseCallback 给后台的回复    
+
+   responseCallback(<span class="comment">@"Response from testObjcCallback");</span>
+ }];
+</code></pre><h4 id="OC调用JS">OC调用JS</h4><p>什么是OC调用JS</p>
+<p>如果你理解了JS调用OC,那么OC调用JS就应该差不多懂了。同样举个例子,我们的原生APP上有个输入框,我们输入完成后,让它显示在网页上面的用户名处。这样,我们就是OC要实现的一个事件让网页去真正实现了,也就是OC调用JS。<br>OC调用JS</p>
+<p>和JS调用OC的流程大致一样,还是需要和网页编写人员商定出一个事件名,然后在网页里面先把注册这样一个事件并把实现体写好,等到我们OC去触发这个事件(比如点击按钮)就会去网页里面找到这个事件的实现体并执行。<br>代码实现</p>
+<p>假如我们现在商定了一个注册事件,事件名称为registerFunc,我<br>们来代码实现一下    </p>
+<pre><code>   <span class="comment">//不需要传参数,不需要后台返回执行结果</span>
+  [_bridge <span class="string">callHandler:</span>@<span class="string">"registerFunc"</span>];
+
+<span class="comment">//需要传参数,不需要从后台返回执行结果</span>
+  <span class="comment">/***
+   <span class="doctag">@param</span> callHandler 商定的事件名称,用来调用网页里面相应的事件实现
+   <span class="doctag">@param</span> data id类型,相当于我们函数中的参数,向网页传递函数执行需要的参数
+ ***/</span>
+
+ [_bridge <span class="string">callHandler:</span>@<span class="string">"registerFunc"</span> <span class="string">data:</span>@<span class="string">"name"</span>];
+
+<span class="comment">//需要传参数,需要从后台返回执行结果</span>
+
+ [_bridge <span class="string">callHandler:</span>@<span class="string">"registerFunc"</span> <span class="string">data:</span>@<span class="string">"name"</span> <span class="string">responseCallback:</span>^(id responseData) {
+
+    NSLog(@<span class="string">"后台执行完成后返回的数据"</span>);
+
+  }];
+</code></pre><p>发送消息</p>
+<h4 id="概述">概述</h4><p>我们可以单纯地向JS发送数据,比如我们可以在网页加载完成后向网页发送一条加载完成的消息,或者传一个标题。<br>代码实现</p>
+<pre><code><span class="comment">//不需要后台返回执行结果或数据</span>
+[_bridge <span class="string">send:</span>@<span class="string">"红色"</span>];
+
+<span class="comment">//需要后台返回执行结果或数据</span>
+  [_bridge <span class="string">send:</span>@<span class="string">"红色"</span> <span class="string">responseCallback:</span>^(id responseData) {
+
+  NSLog(@<span class="string">"后台执行完成后返回的数据 %@"</span>, responseData);
+
+ }];
+</code></pre><h4 id="注意点">注意点</h4><p>一定要注意和网页端商定的方法名必须要保证OC代码 里和网页编码里统一。在调用之前,必须要先注册事件,写好实现体。<br>总结<br>本文只是简单地介绍了WebViewJavascriptBridge在实际开发中常用的几个方法,还有一些方法没有意义详讲,希望大家在掌握了这几个方法的使用后也去研究一下里面的其他方法。另外,本文重点是让ios工程师能快速使用,一些原理的东西还有JS方面的编码都省略了,可能文中有些地方理解不当或者不够深入,后期会再完善修改.最后,希望大家多提宝贵意见。</p>
+<p>大家可去gitHub下载demo查看源码。</p>
+</span>
       
     </div>
 
@@ -368,13 +303,13 @@ Retype <span class="keyword">new</span> <span class="string">password:</span> __
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/01/14/属性的属性/" rel="prev">属性的属性</a>
+              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="prev">关于iOS的剪贴板基本知识</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/12/28/hexo如何写博客/" rel="next">hexo如何写博客</a>
+              <a href="/2015/04/28/数据持久化的几种方式/" rel="next">数据持久化的几种方式</a>
             
           </div>
         </div>
@@ -479,7 +414,7 @@ Retype <span class="keyword">new</span> <span class="string">password:</span> __
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令模式"><span class="nav-number">1.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入模式"><span class="nav-number">2.</span> <span class="nav-text">输入模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#末行模式"><span class="nav-number">3.</span> <span class="nav-text">末行模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim编辑器的启动与退出"><span class="nav-number">4.</span> <span class="nav-text">vim编辑器的启动与退出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-_vim的启动"><span class="nav-number">4.1.</span> <span class="nav-text">1. vim的启动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#(1)_vim"><span class="nav-number">4.1.1.</span> <span class="nav-text">(1) vim</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(2)_vim_file1"><span class="nav-number">4.1.2.</span> <span class="nav-text">(2) vim file1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(3)_vim_+_file1"><span class="nav-number">4.1.3.</span> <span class="nav-text">(3) vim + file1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(4)_vim_+N_file1(N：为数字)"><span class="nav-number">4.1.4.</span> <span class="nav-text">(4) vim +N file1(N：为数字)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#(5)_vim_+/string_file1"><span class="nav-number">4.1.5.</span> <span class="nav-text">(5) vim +/string file1</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-_退出vim(末行模式（last_line_mode）)"><span class="nav-number">4.2.</span> <span class="nav-text">2. 退出vim(末行模式（last line mode）)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登录步骤"><span class="nav-number">4.3.</span> <span class="nav-text">　登录步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登出步骤"><span class="nav-number">4.4.</span> <span class="nav-text">登出步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改帐号密码"><span class="nav-number">4.5.</span> <span class="nav-text">更改帐号密码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JS调用OC"><span class="nav-number">2.</span> <span class="nav-text">JS调用OC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OC调用JS"><span class="nav-number">3.</span> <span class="nav-text">OC调用JS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">4.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点"><span class="nav-number">5.</span> <span class="nav-text">注意点</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
