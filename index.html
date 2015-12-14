@@ -725,50 +725,12 @@
 
       
         
-          <span itemprop="articleBody"><p>首先我们可以根据info.plist文件中的bundle version中获取</p>
-<pre><code><span class="title">NSDictionary</span> *<span class="built_in">info</span>Dic = [NSBundle mainBundle] <span class="built_in">info</span>Dictionary];
-<span class="title">NSSting</span> *currentVersion = [<span class="built_in">info</span>Dic objectForKey:@<span class="string">"CFBundleShortVersionString"</span>];
-</code></pre><p>其次,请求APP的相关数据<br> <a href="https://itunes.apple.com/lookup?id=XXX(其中XXX是你的app的商店ID),你过去到的数据是json数据" target="_blank" rel="external">https://itunes.apple.com/lookup?id=XXX(其中XXX是你的app的商店ID),你过去到的数据是json数据</a><br> 进行接卸,将version的数据根你从info.plist获取的数据进行比较!</p>
-<pre><code><span class="string">fileSizeBytes:</span> <span class="string">"XXXXXXX"</span>
-<span class="string">sellerUrl:</span> <span class="string">"http://cineplx.sscac.com.cn/"</span>
-taeckCensoredName             <span class="comment">//审查名称</span>
-<span class="string">trackContentRating:</span> <span class="string">"12+"</span>    <span class="comment">//评级</span>
-<span class="string">currency:</span> <span class="string">"USD"</span>                
-<span class="string">wrapperType:</span> <span class="string">"software"</span>
-<span class="string">version:</span> <span class="string">"1.0.0"</span>                <span class="comment">//版本</span>
-<span class="string">artistID:</span> XXX
-<span class="string">artistName:</span> XXX
-</code></pre><p>代码</p>
-<pre><code>-(<span class="keyword">void</span>)judgeAPPVersion
-{
-<span class="comment">//  http://itunes.apple.com/lookup?id=<span class="label">XXX</span></span>
-   <span class="built_in">NSString</span> *urlStr = <span class="string">@"https//itunes.apple.com/lookup?id=xxx"</span>;
-   <span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:urlStr];
-   <span class="built_in">NSURLRequest</span> *req = [<span class="built_in">NSURLRequest</span> requestWithURL:url];
-  [<span class="built_in">NSURLConnection</span> connectionWithRequset:req delegate:<span class="keyword">self</span>];
-}
--(<span class="keyword">void</span>)connection:(<span class="built_in">NSURLConnection</span> *)connection didReceiveData:(<span class="built_in">NSData</span> *)data{
-<span class="built_in">NSError</span> *error;
-<span class="keyword">id</span> jsonObject = [<span class="built_in">NSJSONSeralization</span> JSONObjectWithData:data options:    <span class="built_in">NSJSONReadingAllowFragments</span> error:&amp;error];
-<span class="built_in">NSDictionary</span> *appInfo =(<span class="built_in">NSDictionary</span> *)jsonObject;
- <span class="built_in">NSArray</span> *onfoContent =[appInfo objectForKey:<span class="string">@"results"</span>];
-  <span class="built_in">NSString</span> *version = [[infoContent objectAtIndex:<span class="number">0</span>]objectForKey:<span class="string">@"version"</span>];
-  <span class="built_in">NSLog</span>(<span class="string">@"商店的版本是 %@"</span>,version);
-  <span class="built_in">NSDictionary</span> *infoDic = [[<span class="built_in">NSBundle</span> mainBundle]infoDictionary];
-  <span class="built_in">NSString</span> *currentVersion =[infoDic objectForKey:<span class="string">@"CFBundleShortVersionSring"</span>];
-  <span class="built_in">NSLog</span>(<span class="string">@"当前版本是%@"</span>,currentVersion);
-}
-
-<span class="keyword">if</span>(![version isEqualToString:currentVersion])
-  {
-<span class="built_in">UIAlertView</span> *alert = [<span class="built_in">UIAlertView</span> alloc]initWithTitle:<span class="literal">nil</span> message:<span class="string">@"商店有新的版本了"</span> delegate:<span class="literal">nil</span> cancelButtonTitle:<span class="string">@"YES"</span> otherButtonTitles:<span class="literal">nil</span>];
-[alert show];
-
-  }
-}    
-</code></pre><hr>
-<p>跳转到商店更新app的接口的按钮<br>[UIApplication sharedApplication] openURL:[NSURL URLWithString:trackViewUrl]];</p>
-</span>
+          <p>首先我们可以根据info.plist文件中的bundle version中获取</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/06/14/iOS开发-判断您当前app版本和升级/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

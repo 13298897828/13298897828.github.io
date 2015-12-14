@@ -35,25 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="首先我们可以根据info.plist文件中的bundle version中获取
-NSDictionary *infoDic = [NSBundle mainBundle] infoDictionary];
-NSSting *currentVersion = [infoDic objectForKey:@&quot;CFBundleShortVersionString&quot;];
-其次,请求APP的相关数据 htt">
+<meta name="description" content="首先我们可以根据info.plist文件中的bundle version中获取">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发 判断您当前app版本和升级">
 <meta property="og:url" content="http://yoursite.com/2015/06/14/iOS开发-判断您当前app版本和升级/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="首先我们可以根据info.plist文件中的bundle version中获取
-NSDictionary *infoDic = [NSBundle mainBundle] infoDictionary];
-NSSting *currentVersion = [infoDic objectForKey:@&quot;CFBundleShortVersionString&quot;];
-其次,请求APP的相关数据 htt">
-<meta property="og:updated_time" content="2015-12-14T10:19:36.000Z">
+<meta property="og:description" content="首先我们可以根据info.plist文件中的bundle version中获取">
+<meta property="og:updated_time" content="2015-12-14T10:28:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发 判断您当前app版本和升级">
-<meta name="twitter:description" content="首先我们可以根据info.plist文件中的bundle version中获取
-NSDictionary *infoDic = [NSBundle mainBundle] infoDictionary];
-NSSting *currentVersion = [infoDic objectForKey:@&quot;CFBundleShortVersionString&quot;];
-其次,请求APP的相关数据 htt">
+<meta name="twitter:description" content="首先我们可以根据info.plist文件中的bundle version中获取">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -224,6 +215,7 @@ NSSting *currentVersion = [infoDic objectForKey:@&quot;CFBundleShortVersionStrin
 
       
         <span itemprop="articleBody"><p>首先我们可以根据info.plist文件中的bundle version中获取</p>
+<a id="more"></a>
 <pre><code><span class="title">NSDictionary</span> *<span class="built_in">info</span>Dic = [NSBundle mainBundle] <span class="built_in">info</span>Dictionary];
 <span class="title">NSSting</span> *currentVersion = [<span class="built_in">info</span>Dic objectForKey:@<span class="string">"CFBundleShortVersionString"</span>];
 </code></pre><p>其次,请求APP的相关数据<br> <a href="https://itunes.apple.com/lookup?id=XXX(其中XXX是你的app的商店ID),你过去到的数据是json数据" target="_blank" rel="external">https://itunes.apple.com/lookup?id=XXX(其中XXX是你的app的商店ID),你过去到的数据是json数据</a><br> 进行接卸,将version的数据根你从info.plist获取的数据进行比较!</p>
