@@ -55,7 +55,7 @@ socket 什么都可以传">
 长连接,http是短连接
 http协议用来做超文本传输
 socket 什么都可以传">
-<meta property="og:updated_time" content="2015-12-15T04:56:11.000Z">
+<meta property="og:updated_time" content="2015-12-15T04:59:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Socket编程">
 <meta name="twitter:description" content="Socket技术
@@ -321,7 +321,7 @@ error = listen(server_flag, <span class="number">100</span>);
     printf(<span class="string">"client say:%s\n"</span>,buff);
 
     <span class="comment">//发送消息...</span>
-    <span class="keyword">char</span> message[] = <span class="string">"Hello, my name is haoge!\n"</span>;
+    <span class="keyword">char</span> message[] = <span class="string">"Hello, c!\n"</span>;
     send([clients.lastObject intValue], message, <span class="keyword">sizeof</span>(message), <span class="number">0</span>);
 
     <span class="comment">//7.关闭取消链接的客户端标志位</span>
@@ -340,13 +340,16 @@ error = listen(server_flag, <span class="number">100</span>);
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 <span class="keyword">int</span> error = -<span class="number">1</span>;
+<span class="comment">//设置客服端表示</span>
 <span class="keyword">int</span> client_flag = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);
 server.sin_family = AF_INET;
 <span class="comment">//服务器端端口号</span>
 server.sin_port = htons(<span class="number">10000</span>);
 <span class="comment">//服务器端ip</span>
 server.sin_addr.s_addr = inet_addr(<span class="string">"172.18.16.37"</span>);
+<span class="comment">//链接服务器</span>
 error = connect(client_flag, (<span class="keyword">struct</span> sockaddr *)&amp;server, <span class="keyword">sizeof</span>(server));
+<span class="comment">//发送消息</span>
 send(client_flag, <span class="string">"nong sha lei"</span>, <span class="number">80</span>, -<span class="number">1</span>);
 <span class="keyword">char</span> buff[<span class="number">1024</span>];
 <span class="keyword">int</span> length = recv(client_flag, buff, <span class="number">1024</span>, -<span class="number">1</span>);
