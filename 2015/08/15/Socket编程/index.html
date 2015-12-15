@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="socket," />
 
 
 
@@ -35,22 +35,37 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="关于写一篇博客编写和部署的相关问题">
+<meta name="description" content="Socket技术
+基于网络通信
+
+和http协议相比
+具体实现过程
+长连接,http是短连接
+http协议用来做超文本传输
+socket 什么都可以传">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo如何写博客">
-<meta property="og:url" content="http://yoursite.com/2014/12/28/hexo如何写博客/index.html">
+<meta property="og:title" content="Socket编程">
+<meta property="og:url" content="http://yoursite.com/2015/08/15/Socket编程/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="关于写一篇博客编写和部署的相关问题">
-<meta property="og:image" content="http://m1.yea.im/4b9.png">
-<meta property="og:image" content="http://m1.yea.im/4bv.jpg">
-<meta property="og:image" content="http://m1.yea.im/4by.jpg">
-<meta property="og:image" content="http://m1.yea.im/4bz.jpg">
-<meta property="og:image" content="http://m1.yea.im/4bA.jpg">
-<meta property="og:image" content="http://m1.yea.im/4bB.jpg">
-<meta property="og:updated_time" content="2015-12-10T06:49:38.000Z">
+<meta property="og:description" content="Socket技术
+基于网络通信
+
+和http协议相比
+具体实现过程
+长连接,http是短连接
+http协议用来做超文本传输
+socket 什么都可以传">
+<meta property="og:updated_time" content="2015-12-15T04:56:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo如何写博客">
-<meta name="twitter:description" content="关于写一篇博客编写和部署的相关问题">
+<meta name="twitter:title" content="Socket编程">
+<meta name="twitter:description" content="Socket技术
+基于网络通信
+
+和http协议相比
+具体实现过程
+长连接,http是短连接
+http协议用来做超文本传输
+socket 什么都可以传">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -60,7 +75,7 @@
   };
 </script>
 
-    <title> hexo如何写博客 // 张天琦 </title>
+    <title> Socket编程 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -181,7 +196,7 @@
           
           
             
-              hexo如何写博客
+              Socket编程
             
           
         </h1>
@@ -190,11 +205,22 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2014-12-28T16:09:58+08:00" content="2014-12-28">
-            2014-12-28
+          <time itemprop="dateCreated" datetime="2015-08-15T12:35:24+08:00" content="2015-08-15">
+            2015-08-15
           </time>
         </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+              
+              
+
+            
+          </span>
         
 
         
@@ -209,51 +235,152 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="关于写一篇博客编写和部署的相关问题">关于写一篇博客编写和部署的相关问题</h2><a id="more"></a>    
-<h3 id="添加图片">添加图片</h3><p>想要添加图片的话,可以先上传到这个网站<br><a href="http://yotuku.cn" target="_blank" rel="external">七牛云</a><br><a href="http://m.yea.im" target="_blank" rel="external">外链图床</a></p>
-<h3 id="创建博客文件">创建博客文件</h3><p> Hexo使用markdown语法的纯文本编辑，文件后缀名.m ,文件存放在：我们的站点目录下/source/_post 文件夹下</p>
-<p>文件生成方式(只需在搭建博客文件夹内执行命令)：</p>
-<p><code>hexo new 文件名</code></p>
-<p> <code>例: hexo new 文件名</code></p>
-<p> 博客编辑完成之后在中端执行部署命令：(每次编辑都需要执行)</p>
-<p> <code>hexo d -g</code></p>
-<h3 id="推荐工具_–_Mou_使用markdown编辑器来写博客">推荐工具 – Mou 使用markdown编辑器来写博客</h3><p><img src="http://m1.yea.im/4b9.png" alt=""></p>
-<h3 id="关于markdown语法:">关于markdown语法:</h3><h4 id="标题:">标题:</h4><pre><code><span class="preprocessor"># 一级标题</span>
-<span class="preprocessor">## 二级标题  </span>
- <span class="preprocessor">### 三级标题</span>
- <span class="preprocessor">#### 四级标题</span>
-</code></pre><p><img src="http://m1.yea.im/4bv.jpg" alt=""> </p>
-<h3 id="列表">列表</h3><p><img src="http://m1.yea.im/4by.jpg" alt=""></p>
-<h2 id="引用">引用</h2><p><code>在文本前面添加&gt;</code><br><img src="http://m1.yea.im/4bz.jpg" alt=""></p>
-<h3 id="图片与链接">图片与链接</h3><p><img src="http://m1.yea.im/4bA.jpg" alt=""></p>
-<pre><code>图片：![<span class="link_label">空</span>](<span class="link_url">图片地址</span>) 图片地址可以使本地图片路径，或者图片网址
+        <span itemprop="articleBody"><h3 id="Socket技术">Socket技术</h3><ul>
+<li><p>基于网络通信</p>
+<ul>
+<li>和http协议相比<ul>
+<li>具体实现过程</li>
+<li>长连接,http是短连接</li>
+<li>http协议用来做超文本传输</li>
+<li>socket 什么都可以传<a id="more"></a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>iOS</p>
+<ul>
+<li>GCDAsyncSocket &lt;= CFNetWork &lt;= sys/socket.h</li>
+<li>NSNetService</li>
+</ul>
+</li>
+<li><p>socket技术</p>
+<ul>
+<li>tcp/ip和udp<ul>
+<li>tcp/ip,传输控制协议</li>
+<li>udp,广播类型协议</li>
+<li>tcp/ip,会更加安全,三次握手的过程是在传输数据前</li>
+<li>udp,传输速度更快,不可靠性就大,效率慢</li>
+</ul>
+</li>
+<li>winsock.h…windows…</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>`<span class="preprocessor">#include &lt;sys/socket.h&gt;    `</span>
 
-网址：[]()
-</code></pre><h3 id="粗体与斜体">粗体与斜体</h3><h4 id="粗体：用两个包含一段文本就是粗体。_例：*粗体">粗体：用两个<em>包含一段文本就是粗体。 例：<em>*粗体</em></em></h4><h4 id="斜体：用一个*包含一段文本就是斜体">斜体：用一个*包含一段文本就是斜体</h4><h3 id="表格">表格</h3><pre><code>|<span class="string"> Tables        </span>|<span class="string"> Are           </span>|<span class="string"> Cool  </span>|
-|<span class="string"> ------------- </span>|<span class="string">:-------------:</span>|<span class="string"> -----:</span>|
-|<span class="string"> col 3 is      </span>|<span class="string"> right-aligned </span>|<span class="string"> $1600 </span>|
-|<span class="string"> col 2 is      </span>|<span class="string"> centered      </span>|<span class="string">   $12 </span>|
-|<span class="string"> zebra stripes </span>|<span class="string"> are neat      </span>|<span class="string">    $1 </span>|
-</code></pre><h3 id="代码框">代码框</h3><h4 id="只需要用两个_`_把中间的代码包含起来">只需要用两个 ` 把中间的代码包含起来</h4><p><img src="http://m1.yea.im/4bB.jpg" alt=""></p>
-<h3 id="也可以使用tab键缩进4个空格">也可以使用tab键缩进4个空格</h3><h3 id="分割线">分割线</h3><pre><code>分割线的语法只需要加三个-号或<span class="keyword">*</span>
+`<span class="preprocessor">#include &lt;netinet/in.h`</span>
+
+
+    @implementation AppDelegate
+    {
+    <span class="comment">//服务端的标识</span>
+    <span class="keyword">int</span> server_flag;
+
+    <span class="comment">//客户端的标识</span>
+    NSMutableArray *clients;
+
+     <span class="comment">//计算机地址</span>
+          <span class="keyword">struct</span> sockaddr_in addr;
+    }
+
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+clients = [NSMutableArray array];
+<span class="keyword">int</span> error = -<span class="number">1</span>;
+<span class="comment">//服务端</span>
+<span class="comment">//1.创建服务端的标识符(int)</span>
+server_flag = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);
+
+<span class="comment">//2.将服务端的标识符,绑定到一个具体的计算机(ip,port)里 sockaddr_in</span>
+addr.sin_port = htons(<span class="number">10000</span>);
+addr.sin_family = AF_INET;
+addr.sin_addr.s_addr = htonl(INADDR_ANY);
+
+error = bind(server_flag, (<span class="keyword">struct</span> sockaddr *)&amp;addr, <span class="keyword">sizeof</span>(addr));
+
+<span class="comment">//3.服务端要做好能同时处理多少个链接的事情</span>
+error = listen(server_flag, <span class="number">100</span>);
+
+<span class="comment">//4.服务端做好等待客户端链接请求的准备</span>
+<span class="keyword">while</span> (<span class="number">1</span>)
+{
+    <span class="comment">//5.将收到的客户端链接请求生成一个标志位,作为某个客户端的标识</span>
+    <span class="keyword">int</span> client_flag = accept(server_flag, NULL, NULL);
+
+    [clients addObject:@(client_flag)];
+
+    <span class="comment">//6.通过客户端的标志位进行消息传输</span>
+    <span class="keyword">char</span> buff[<span class="number">1024</span>];
+    <span class="keyword">int</span> length = recv(client_flag, buff, <span class="keyword">sizeof</span>(buff), <span class="number">0</span>);
+    buff[length] = <span class="string">'\0'</span>;
+
+    printf(<span class="string">"client say:%s\n"</span>,buff);
+
+    <span class="comment">//发送消息...</span>
+    <span class="keyword">char</span> message[] = <span class="string">"Hello, my name is haoge!\n"</span>;
+    send([clients.lastObject intValue], message, <span class="keyword">sizeof</span>(message), <span class="number">0</span>);
+
+    <span class="comment">//7.关闭取消链接的客户端标志位</span>
+<span class="comment">//        close(client_flag);</span>
+}
+
+
+<span class="keyword">return</span> YES;
+}
+</code></pre><h3 id="客户端">客户端</h3><p>客户端和服务器端配置基本相同,不同的地方已经注释说明</p>
+<pre><code>@implementation AppDelegate
+{
+<span class="keyword">struct</span> sockaddr_in server;
+
+
+}
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+<span class="keyword">int</span> error = -<span class="number">1</span>;
+<span class="keyword">int</span> client_flag = socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);
+server.sin_family = AF_INET;
+<span class="comment">//服务器端端口号</span>
+server.sin_port = htons(<span class="number">10000</span>);
+<span class="comment">//服务器端ip</span>
+server.sin_addr.s_addr = inet_addr(<span class="string">"172.18.16.37"</span>);
+error = connect(client_flag, (<span class="keyword">struct</span> sockaddr *)&amp;server, <span class="keyword">sizeof</span>(server));
+send(client_flag, <span class="string">"nong sha lei"</span>, <span class="number">80</span>, -<span class="number">1</span>);
+<span class="keyword">char</span> buff[<span class="number">1024</span>];
+<span class="keyword">int</span> length = recv(client_flag, buff, <span class="number">1024</span>, -<span class="number">1</span>);
+buff[length] = <span class="string">'\0'</span>;
+<span class="built_in">printf</span>(<span class="string">"server say:%s\n"</span>,buff);
+close(client_flag);
+
+
+<span class="keyword">return</span> YES;
+}
 </code></pre></span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/socket/" rel="tag">#socket</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/01/03/vi编辑器的使用/" rel="prev">vi编辑器的使用</a>
+              <a href="/2015/09/10/NSURLSession下载与缓存/" rel="prev">NSURLSession下载与缓存</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/12/27/hexo博客搭建/" rel="next">hexo博客搭建</a>
+              <a href="/2015/07/13/转-iOS性能优化/" rel="next">[转]iOS性能优化</a>
             
           </div>
         </div>
@@ -358,7 +485,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于写一篇博客编写和部署的相关问题"><span class="nav-number">1.</span> <span class="nav-text">关于写一篇博客编写和部署的相关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加图片"><span class="nav-number">1.1.</span> <span class="nav-text">添加图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建博客文件"><span class="nav-number">1.2.</span> <span class="nav-text">创建博客文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐工具_–_Mou_使用markdown编辑器来写博客"><span class="nav-number">1.3.</span> <span class="nav-text">推荐工具 – Mou 使用markdown编辑器来写博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于markdown语法:"><span class="nav-number">1.4.</span> <span class="nav-text">关于markdown语法:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标题:"><span class="nav-number">1.4.1.</span> <span class="nav-text">标题:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">1.5.</span> <span class="nav-text">列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">2.</span> <span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图片与链接"><span class="nav-number">2.1.</span> <span class="nav-text">图片与链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#粗体与斜体"><span class="nav-number">2.2.</span> <span class="nav-text">粗体与斜体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#粗体：用两个包含一段文本就是粗体。_例：*粗体"><span class="nav-number">2.2.1.</span> <span class="nav-text">粗体：用两个包含一段文本就是粗体。 例：*粗体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#斜体：用一个*包含一段文本就是斜体"><span class="nav-number">2.2.2.</span> <span class="nav-text">斜体：用一个*包含一段文本就是斜体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格"><span class="nav-number">2.3.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码框"><span class="nav-number">2.4.</span> <span class="nav-text">代码框</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#只需要用两个_`_把中间的代码包含起来"><span class="nav-number">2.4.1.</span> <span class="nav-text">只需要用两个 ` 把中间的代码包含起来</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#也可以使用tab键缩进4个空格"><span class="nav-number">2.5.</span> <span class="nav-text">也可以使用tab键缩进4个空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分割线"><span class="nav-number">2.6.</span> <span class="nav-text">分割线</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Socket技术"><span class="nav-number">1.</span> <span class="nav-text">Socket技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端"><span class="nav-number">2.</span> <span class="nav-text">客户端</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
