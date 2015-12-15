@@ -372,55 +372,12 @@
 
       
         
-          <span itemprop="articleBody"><p>利用系统相机或者图库中的图片进行裁剪缩放来获取图片<br>当我们需要使用系统图库中的照片或者需要新照一张照片时，我们可以使用<code>UIImagePickerController</code>来实现<br>我们使用<code>UIImagePickerController</code>必须遵守这两个协议</p>
-<pre><code><span class="preprocessor">#pragma mark 实现—打开用户相册获取图片视图</span>
-
--(<span class="keyword">void</span>)pickImageFromAlbum {
-<span class="comment">// 初始化UIImagePickerController模态视图</span>
-<span class="built_in">UIImagePickerController</span> *imagePicker = [[<span class="built_in">UIImagePickerController</span> alloc] init];
-imagePicker<span class="variable">.delegate</span> = <span class="keyword">self</span>; <span class="comment">// 设置代理</span>
-<span class="comment">// 判断是否有照相机或者有图片</span>
-<span class="keyword">if</span> ([<span class="built_in">UIImagePickerController</span> isSourceTypeAvailable:<span class="built_in">UIImagePickerControllerSourceTypeCamera</span>]) {
-<span class="built_in">NSLog</span>(@”有照相机”);
-} <span class="keyword">else</span> {
-<span class="built_in">NSLog</span>(@”摄像头不可使用”);
-}
-imagePicker<span class="variable">.sourceType</span> = <span class="built_in">UIImagePickerControllerSourceTypePhotoLibrary</span>; <span class="comment">// 设置选取的图片库 也可以直接使用摄像头进行拍摄</span>
-imagePicker<span class="variable">.modalTransitionStyle</span> = <span class="built_in">UIModalTransitionStyleCoverVertical</span>; <span class="comment">// 模态视图动画效果</span>
-imagePicker<span class="variable">.allowsEditing</span> = <span class="literal">YES</span>; <span class="comment">// 设置用户可以自由裁剪图片</span>
-
-<span class="comment">// 打开模态视图</span>
-[<span class="keyword">self</span> presentViewController:imagePicker animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
-}
-
-<span class="preprocessor">#pragma mark - UIImagePickerController Methods</span>
-<span class="preprocessor">#pragma mark 相册模态视图取消按钮 虽然此方法是可选的，但实际上需要必须实现</span>
-
--(<span class="keyword">void</span>)imagePickerControllerDidCancel:(<span class="built_in">UIImagePickerController</span> *)picker {
-<span class="built_in">NSLog</span>(@”关闭了相册模态视图”);
-<span class="comment">// 重写了次方法必须手动取消视图</span>
-[picker dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
-}
-<span class="preprocessor">#pragma mark 获取选择的图片</span>
-(<span class="keyword">void</span>)imagePickerController:(<span class="built_in">UIImagePickerController</span> )picker didFinishPickingMediaWithInfo:(<span class="built_in">NSDictionary</span> )info {
-<span class="comment">// 获取裁剪的图片</span>
-<span class="built_in">UIImage</span> image= [info objectForKey:@”<span class="built_in">UIImagePickerControllerOriginalImage</span>”];
-<span class="built_in">UIImageView</span> imageView = [[<span class="built_in">UIImageView</span> alloc] initWithImage:image];
-imageView<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">200</span>, image<span class="variable">.size</span><span class="variable">.width</span>, image<span class="variable">.size</span><span class="variable">.height</span>);
-[<span class="keyword">self</span><span class="variable">.view</span> addSubview:imageView];
-[imageView release], imageView = <span class="literal">nil</span>;
-
-<span class="built_in">NSLog</span>(@”%@”, info);
-<span class="comment">// 返回的字典中键 只有当picker允许编辑的情况下才会返回这5个键值对</span>
-<span class="comment">// UIImagePickerControllerOriginalImage // 没有编辑的图片</span>
-<span class="comment">// UIImagePickerControllerEditedImage // 编辑过的图片</span>
-<span class="comment">// UIImagePickerControllerCropRect // 编辑过的图片的位置和大小</span>
-<span class="comment">// UIImagePickerControllerMediaType</span>
-<span class="comment">// UIImagePickerControllerReferenceURL</span>
-
-<span class="comment">// 关闭视图</span>
-</code></pre><p>[picker dismissViewControllerAnimated:YES completion:nil];</p>
-</span>
+          <p>利用系统相机或者图库中的图片进行裁剪缩放来获取图片<br>当我们需要使用系统图库中的照片或者需要新照一张照片时，我们可以使用<code>UIImagePickerController</code>来实现<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/15/使用照相机或图库中的图片来获取图片/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
