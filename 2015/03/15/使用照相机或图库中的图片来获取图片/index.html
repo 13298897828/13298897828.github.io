@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="照片获取," />
 
 
 
@@ -35,19 +35,28 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="3DTouch">
+<meta name="description" content="利用系统相机或者图库中的图片进行裁剪缩放来获取图片当我们需要使用系统图库中的照片或者需要新照一张照片时，我们可以使用UIImagePickerController来实现我们使用UIImagePickerController必须遵守这两个协议
+#pragma mark 实现—打开用户相册获取图片视图
+
+-(void)pickImageFromAlbum {
+// 初始化UIImagePickerCo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="3DTouch、ShortcutItem、Peek And Pop">
-<meta property="og:url" content="http://yoursite.com/2015/11/10/3DTouch、ShortcutItem、Peek-And-Pop/index.html">
+<meta property="og:title" content="使用照相机或图库中的图片来获取图片">
+<meta property="og:url" content="http://yoursite.com/2015/03/15/使用照相机或图库中的图片来获取图片/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="3DTouch">
-<meta property="og:image" content="http://i12.tietuku.com/14bc7ec46d5364ab.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/3aa54dab286d6e1c.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/544e882ddf85ae59.jpg">
-<meta property="og:updated_time" content="2015-12-10T07:06:13.000Z">
+<meta property="og:description" content="利用系统相机或者图库中的图片进行裁剪缩放来获取图片当我们需要使用系统图库中的照片或者需要新照一张照片时，我们可以使用UIImagePickerController来实现我们使用UIImagePickerController必须遵守这两个协议
+#pragma mark 实现—打开用户相册获取图片视图
+
+-(void)pickImageFromAlbum {
+// 初始化UIImagePickerCo">
+<meta property="og:updated_time" content="2015-12-15T09:09:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="3DTouch、ShortcutItem、Peek And Pop">
-<meta name="twitter:description" content="3DTouch">
+<meta name="twitter:title" content="使用照相机或图库中的图片来获取图片">
+<meta name="twitter:description" content="利用系统相机或者图库中的图片进行裁剪缩放来获取图片当我们需要使用系统图库中的照片或者需要新照一张照片时，我们可以使用UIImagePickerController来实现我们使用UIImagePickerController必须遵守这两个协议
+#pragma mark 实现—打开用户相册获取图片视图
+
+-(void)pickImageFromAlbum {
+// 初始化UIImagePickerCo">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +66,7 @@
   };
 </script>
 
-    <title> 3DTouch、ShortcutItem、Peek And Pop // 张天琦 </title>
+    <title> 使用照相机或图库中的图片来获取图片 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -178,7 +187,7 @@
           
           
             
-              3DTouch、ShortcutItem、Peek And Pop
+              使用照相机或图库中的图片来获取图片
             
           
         </h1>
@@ -187,11 +196,22 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-10T11:01:28+08:00" content="2015-11-10">
-            2015-11-10
+          <time itemprop="dateCreated" datetime="2015-03-15T17:06:47+08:00" content="2015-03-15">
+            2015-03-15
           </time>
         </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+              
+              
+
+            
+          </span>
         
 
         
@@ -206,166 +226,78 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="3DTouch">3DTouch</h3><a id="more"></a>
-<p><img src="http://i12.tietuku.com/14bc7ec46d5364ab.jpg" alt=""></p>
-<h4 id="UITouch类里API的变化">UITouch类里API的变化</h4><h5 id="iOS9中添加的属性">iOS9中添加的属性</h5><p><code>altitudeAngle</code></p>
-<ul>
-<li><p>当笔平行于平面时,该值为0</p>
-</li>
-<li><p>当笔垂直于平面时,该值为Pi / 2</p>
-</li>
-</ul>
-<p><code>estimatedProperties</code></p>
-<ul>
-<li><p>当前触摸对象估计的触摸特性</p>
-</li>
-<li><p>返回值是UITouchPropertyies</p>
-</li>
-</ul>
-<p><code>updatedProperties</code></p>
-<ul>
-<li><p>当前触摸对象已经更新的触摸特性</p>
-</li>
-<li><p>返回值是UITouchPropertyies</p>
-</li>
-</ul>
-<p><code>estimationUpdateIndex</code></p>
-<ul>
-<li><p>当每个触摸对象的触摸特性发生变化时，该值将会单独增加</p>
-</li>
-<li><p>返回值是NSNumber</p>
-</li>
-</ul>
-<h5 id="iOS9中添加的方法">iOS9中添加的方法</h5><p><code>- PreciseLocationInView:</code></p>
-<ul>
-<li><p>当前触摸对象的坐标<br><code>- PrecisePreviousLocationInView:</code></p>
-</li>
-<li><p>当前触摸对象的前置坐标<br><code>- azimuthAngleInview:</code></p>
-</li>
-<li><p>沿着x轴正向的方位角</p>
-</li>
-<li><p>当与x轴正向方向相同时,该值为0</p>
-</li>
-<li><p>当view参数为nil时，默认为keyWindow</p>
-</li>
-</ul>
-<p><code>- azimuthUnitVectorInView:</code></p>
-<ul>
-<li><p>当前触摸对象的方向上的单位向量</p>
-</li>
-<li><p>当view参数为nil时，默认为keyWindow</p>
-</li>
-</ul>
-<h4 id="UIForceTouchCapability">UIForceTouchCapability</h4><p><code>UIForceTouchCapabilityUnknown</code></p>
-<ul>
-<li>不能确定是否支持压力感应<br><code>UIForceTouchCapabilityUnavailable</code></li>
-<li>不能支持压力感应<br><code>UIForceTouchCapabilityAvailable</code></li>
-<li><p>可以支持压力感应</p>
-<h4 id="UITouchType">UITouchType</h4><p><code>UITouchTypeDirect</code></p>
-</li>
-<li><p>垂直的触摸类型<br><code>UITouchTypeIndirect</code></p>
-</li>
-<li>非初值的触摸类型<br><code>UITouchTypeStylus</code></li>
-<li>水平的触摸类型<br><code>UITouchProperties</code><br><code>UITouchPropertyForce</code></li>
-</ul>
-<hr>
-<h3 id="ShortcutItem">ShortcutItem</h3><hr>
-<p><img src="http://i12.tietuku.com/3aa54dab286d6e1c.jpg" alt=""></p>
-<h4 id="静态方式">静态方式</h4><ul>
-<li>打开Info.plist文件</li>
-<li><p>在对应UIApplicationShortcutItems关键字下添加item</p>
-<h4 id="动态方式">动态方式</h4><h5 id="修改当前应用程序的某个shortcutItem">修改当前应用程序的某个shortcutItem</h5><pre><code><span class="comment">//获取第0个shortcutItem  </span>
-id oldItem = [existingShortcutItems <span class="string">objectAtIndex:</span> <span class="number">0</span>];  
-<span class="comment">//将旧的shortcutItem改变为可修改类型shortcutItem  </span>
-id mutableItem = [oldItem mutableCopy];  
-<span class="comment">//修改shortcutItem的显示标题  </span>
-[mutableItem <span class="string">setLocalizedTitle:</span> @“Click Lewis”];
-</code></pre><h5 id="获取当前应用程序的shortcutItems">获取当前应用程序的shortcutItems</h5><pre><code><span class="comment">//获取当前应用程序对象  </span>
-<span class="built_in">UIApplication</span> *app = [<span class="built_in">UIApplication</span> sharedApplication];  
-<span class="comment">//获取一个应用程序对象的shortcutItem列表  </span>
-<span class="keyword">id</span> existingShortcutItems = [app shortcutItems];
-</code></pre><h5 id="重置当前应用程序的shortcutItems">重置当前应用程序的shortcutItems</h5><pre><code><span class="comment">//根据旧的shortcutItems生成可变shortcutItems数组  </span>
-id updatedShortcutItems = [existingShortcutItems mutableCopy];  
-<span class="comment">//修改可变shortcutItems数组中对应index下的元素为新的shortcutItem  </span>
-[updatedShortcutItems <span class="string">replaceObjectAtIndex:</span> <span class="number">0</span> <span class="string">withObject:</span> mutableItem];  
-<span class="comment">//修改应用程序对象的shortcutItems为新的数组  </span>
-[app <span class="string">setShortcutItems:</span> updatedShortcutItems];
-</code></pre><h5 id="创建一个新的UIApplicationShortcutItem">创建一个新的UIApplicationShortcutItem</h5></li>
-<li><p>初始化函数</p>
-<ul>
-<li>initWithType:localizedTitle:localizedSubtitle:icon:userInfo:</li>
-<li>initWithType:localizedTitle:</li>
-</ul>
-</li>
-<li><p>属性</p>
-<ul>
-<li><p>localizedTitle:NSString</p>
-</li>
-<li><p>localizedSubtitle:NSString</p>
-</li>
-<li><p>type:NSString</p>
-</li>
-<li><p>icon:UIApplicationShortcutIcon</p>
-</li>
-<li><p>userInfo:NSDictionary</p>
-</li>
-<li><p>只有只读特性，想要进行修改时，需要通过mutableCopy方法转变为<br>NSMutableApplicationShortcutItem</p>
-<h4 id="创建一个新的Item图标">创建一个新的Item图标</h4></li>
-</ul>
-</li>
-<li><p>初始化函数</p>
-<ul>
-<li><p>iconWithType:</p>
-</li>
-<li><p>iconWithTemplateImageName:</p>
-</li>
-<li><p>iconWithContact:</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="当程序启动时">当程序启动时</h4><ul>
-<li>判断launchOptions字典内的UIApplicationLaunchOptionsShortcutItemKey是否为空</li>
-<li>当不为空时,application:didFinishLaunchWithOptions方法返回false，否则返回true</li>
-<li>在application:performActionForShortcutItem:completionHandler方法内处理点击事件</li>
-</ul>
-<hr>
-<h3 id="Peek_and_Pop">Peek and Pop</h3><hr>
-<p><img src="http://i12.tietuku.com/544e882ddf85ae59.jpg" alt=""><br>注册预览功能的代理对象和源视图<br>代理对象需要接受UIViewControllerPreviewingDelegate协议<br>  @interface RootVC<uiviewcontrollerpreviewingdelegate><br>  {}<br>  @end<br>代理对象实现协议内的Peek和Pop方法</uiviewcontrollerpreviewingdelegate></p>
-<pre><code><span class="class"><span class="keyword">@implementation</span> <span class="title">RootVC</span>  </span>
-- (<span class="built_in">UIViewController</span> *)previewingContext:(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)context viewControllerForLocation:(<span class="built_in">CGPoint</span>) point  
-{  
-<span class="built_in">UIViewController</span> *childVC = [[<span class="built_in">UIViewController</span> alloc] init];  
-childVC<span class="variable">.preferredContentSize</span> = <span class="built_in">CGSizeMake</span>(<span class="number">0.0</span>f,<span class="number">300</span>f);  
+        <span itemprop="articleBody"><p>利用系统相机或者图库中的图片进行裁剪缩放来获取图片<br>当我们需要使用系统图库中的照片或者需要新照一张照片时，我们可以使用<code>UIImagePickerController</code>来实现<br>我们使用<code>UIImagePickerController</code>必须遵守这两个协议</p>
+<pre><code><span class="preprocessor">#pragma mark 实现—打开用户相册获取图片视图</span>
 
-<span class="built_in">CGRect</span> rect = <span class="built_in">CGRectMake</span>(<span class="number">10</span>, point<span class="variable">.y</span> - <span class="number">10</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> - <span class="number">20</span>,<span class="number">20</span>);  
-context<span class="variable">.sourceRect</span> = rect;  
-<span class="keyword">return</span> childVC;  
-}  
-- (<span class="keyword">void</span>)previewContext:(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)context commitViewController:(<span class="built_in">UIViewController</span>*)vc  
-{  
-[<span class="keyword">self</span> showViewController:vc sender:<span class="keyword">self</span>];  
-}  
-<span class="keyword">@end</span>
-</code></pre><h4 id="注册方法声明在UIViewController类内">注册方法声明在UIViewController类内</h4><pre><code>[<span class="keyword">self </span>registerForPreviewingWithDelegate:<span class="keyword">self </span>sourceView:<span class="keyword">self.view]; </span>      
-</code></pre></span>
+-(<span class="keyword">void</span>)pickImageFromAlbum {
+<span class="comment">// 初始化UIImagePickerController模态视图</span>
+<span class="built_in">UIImagePickerController</span> *imagePicker = [[<span class="built_in">UIImagePickerController</span> alloc] init];
+imagePicker<span class="variable">.delegate</span> = <span class="keyword">self</span>; <span class="comment">// 设置代理</span>
+<span class="comment">// 判断是否有照相机或者有图片</span>
+<span class="keyword">if</span> ([<span class="built_in">UIImagePickerController</span> isSourceTypeAvailable:<span class="built_in">UIImagePickerControllerSourceTypeCamera</span>]) {
+<span class="built_in">NSLog</span>(@”有照相机”);
+} <span class="keyword">else</span> {
+<span class="built_in">NSLog</span>(@”摄像头不可使用”);
+}
+imagePicker<span class="variable">.sourceType</span> = <span class="built_in">UIImagePickerControllerSourceTypePhotoLibrary</span>; <span class="comment">// 设置选取的图片库 也可以直接使用摄像头进行拍摄</span>
+imagePicker<span class="variable">.modalTransitionStyle</span> = <span class="built_in">UIModalTransitionStyleCoverVertical</span>; <span class="comment">// 模态视图动画效果</span>
+imagePicker<span class="variable">.allowsEditing</span> = <span class="literal">YES</span>; <span class="comment">// 设置用户可以自由裁剪图片</span>
+
+<span class="comment">// 打开模态视图</span>
+[<span class="keyword">self</span> presentViewController:imagePicker animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
+}
+
+<span class="preprocessor">#pragma mark - UIImagePickerController Methods</span>
+<span class="preprocessor">#pragma mark 相册模态视图取消按钮 虽然此方法是可选的，但实际上需要必须实现</span>
+
+-(<span class="keyword">void</span>)imagePickerControllerDidCancel:(<span class="built_in">UIImagePickerController</span> *)picker {
+<span class="built_in">NSLog</span>(@”关闭了相册模态视图”);
+<span class="comment">// 重写了次方法必须手动取消视图</span>
+[picker dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
+}
+<span class="preprocessor">#pragma mark 获取选择的图片</span>
+(<span class="keyword">void</span>)imagePickerController:(<span class="built_in">UIImagePickerController</span> )picker didFinishPickingMediaWithInfo:(<span class="built_in">NSDictionary</span> )info {
+<span class="comment">// 获取裁剪的图片</span>
+<span class="built_in">UIImage</span> image= [info objectForKey:@”<span class="built_in">UIImagePickerControllerOriginalImage</span>”];
+<span class="built_in">UIImageView</span> imageView = [[<span class="built_in">UIImageView</span> alloc] initWithImage:image];
+imageView<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">200</span>, image<span class="variable">.size</span><span class="variable">.width</span>, image<span class="variable">.size</span><span class="variable">.height</span>);
+[<span class="keyword">self</span><span class="variable">.view</span> addSubview:imageView];
+[imageView release], imageView = <span class="literal">nil</span>;
+
+<span class="built_in">NSLog</span>(@”%@”, info);
+<span class="comment">// 返回的字典中键 只有当picker允许编辑的情况下才会返回这5个键值对</span>
+<span class="comment">// UIImagePickerControllerOriginalImage // 没有编辑的图片</span>
+<span class="comment">// UIImagePickerControllerEditedImage // 编辑过的图片</span>
+<span class="comment">// UIImagePickerControllerCropRect // 编辑过的图片的位置和大小</span>
+<span class="comment">// UIImagePickerControllerMediaType</span>
+<span class="comment">// UIImagePickerControllerReferenceURL</span>
+
+<span class="comment">// 关闭视图</span>
+</code></pre><p>[picker dismissViewControllerAnimated:YES completion:nil];</p>
+</span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/照片获取/" rel="tag">#照片获取</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/10/iOS分屏多任务-Slide-Over-Split-View/" rel="prev">iOS分屏多任务(Slide Over &Split View)</a>
+              <a href="/2015/04/28/iOS编程细节整理/" rel="prev">iOS编程细节整理</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="next">关于iOS的剪贴板基本知识</a>
+              <a href="/2015/03/10/Block技术中的weak-strong/" rel="next">Block技术中的weak-strong</a>
             
           </div>
         </div>
@@ -470,7 +402,7 @@ context<span class="variable">.sourceRect</span> = rect;
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3DTouch"><span class="nav-number">1.</span> <span class="nav-text">3DTouch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UITouch类里API的变化"><span class="nav-number">1.1.</span> <span class="nav-text">UITouch类里API的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iOS9中添加的属性"><span class="nav-number">1.1.1.</span> <span class="nav-text">iOS9中添加的属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#iOS9中添加的方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">iOS9中添加的方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIForceTouchCapability"><span class="nav-number">1.2.</span> <span class="nav-text">UIForceTouchCapability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UITouchType"><span class="nav-number">1.3.</span> <span class="nav-text">UITouchType</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShortcutItem"><span class="nav-number">2.</span> <span class="nav-text">ShortcutItem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态方式"><span class="nav-number">2.1.</span> <span class="nav-text">静态方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态方式"><span class="nav-number">2.2.</span> <span class="nav-text">动态方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#修改当前应用程序的某个shortcutItem"><span class="nav-number">2.2.1.</span> <span class="nav-text">修改当前应用程序的某个shortcutItem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取当前应用程序的shortcutItems"><span class="nav-number">2.2.2.</span> <span class="nav-text">获取当前应用程序的shortcutItems</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重置当前应用程序的shortcutItems"><span class="nav-number">2.2.3.</span> <span class="nav-text">重置当前应用程序的shortcutItems</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建一个新的UIApplicationShortcutItem"><span class="nav-number">2.2.4.</span> <span class="nav-text">创建一个新的UIApplicationShortcutItem</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个新的Item图标"><span class="nav-number">2.3.</span> <span class="nav-text">创建一个新的Item图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当程序启动时"><span class="nav-number">2.4.</span> <span class="nav-text">当程序启动时</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Peek_and_Pop"><span class="nav-number">3.</span> <span class="nav-text">Peek and Pop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册方法声明在UIViewController类内"><span class="nav-number">3.1.</span> <span class="nav-text">注册方法声明在UIViewController类内</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
