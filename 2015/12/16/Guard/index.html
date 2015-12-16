@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="Guard," />
 
 
 
@@ -35,19 +35,25 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="3DTouch">
+<meta name="description" content="当你查看这篇文章时，肯定是看到了代码中使用了guard特性，这样，这篇文章能解决你的疑惑不过直接学习的也没关系，照样可以让你学会guard，开始吧。。。
+guard特性是在Swift 2.0后推出的，所以请使用Xcode 7.X版本来编写代码
+很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释
+guard语句和if..else..语句有类似的地方，都是做判断处理与if语句">
 <meta property="og:type" content="article">
-<meta property="og:title" content="3DTouch、ShortcutItem、Peek And Pop">
-<meta property="og:url" content="http://yoursite.com/2015/11/10/3DTouch、ShortcutItem、Peek-And-Pop/index.html">
+<meta property="og:title" content="Guard">
+<meta property="og:url" content="http://yoursite.com/2015/12/16/Guard/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="3DTouch">
-<meta property="og:image" content="http://i12.tietuku.com/14bc7ec46d5364ab.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/3aa54dab286d6e1c.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/544e882ddf85ae59.jpg">
-<meta property="og:updated_time" content="2015-12-10T07:06:13.000Z">
+<meta property="og:description" content="当你查看这篇文章时，肯定是看到了代码中使用了guard特性，这样，这篇文章能解决你的疑惑不过直接学习的也没关系，照样可以让你学会guard，开始吧。。。
+guard特性是在Swift 2.0后推出的，所以请使用Xcode 7.X版本来编写代码
+很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释
+guard语句和if..else..语句有类似的地方，都是做判断处理与if语句">
+<meta property="og:updated_time" content="2015-12-16T08:10:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="3DTouch、ShortcutItem、Peek And Pop">
-<meta name="twitter:description" content="3DTouch">
+<meta name="twitter:title" content="Guard">
+<meta name="twitter:description" content="当你查看这篇文章时，肯定是看到了代码中使用了guard特性，这样，这篇文章能解决你的疑惑不过直接学习的也没关系，照样可以让你学会guard，开始吧。。。
+guard特性是在Swift 2.0后推出的，所以请使用Xcode 7.X版本来编写代码
+很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释
+guard语句和if..else..语句有类似的地方，都是做判断处理与if语句">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +63,7 @@
   };
 </script>
 
-    <title> 3DTouch、ShortcutItem、Peek And Pop // 张天琦 </title>
+    <title> Guard // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -178,7 +184,7 @@
           
           
             
-              3DTouch、ShortcutItem、Peek And Pop
+              Guard
             
           
         </h1>
@@ -187,11 +193,22 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-10T11:01:28+08:00" content="2015-11-10">
-            2015-11-10
+          <time itemprop="dateCreated" datetime="2015-12-16T16:08:17+08:00" content="2015-12-16">
+            2015-12-16
           </time>
         </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a></span>
+
+              
+              
+
+            
+          </span>
         
 
         
@@ -206,166 +223,86 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="3DTouch">3DTouch</h3><a id="more"></a>
-<p><img src="http://i12.tietuku.com/14bc7ec46d5364ab.jpg" alt=""></p>
-<h4 id="UITouch类里API的变化">UITouch类里API的变化</h4><h5 id="iOS9中添加的属性">iOS9中添加的属性</h5><p><code>altitudeAngle</code></p>
-<ul>
-<li><p>当笔平行于平面时,该值为0</p>
-</li>
-<li><p>当笔垂直于平面时,该值为Pi / 2</p>
-</li>
-</ul>
-<p><code>estimatedProperties</code></p>
-<ul>
-<li><p>当前触摸对象估计的触摸特性</p>
-</li>
-<li><p>返回值是UITouchPropertyies</p>
-</li>
-</ul>
-<p><code>updatedProperties</code></p>
-<ul>
-<li><p>当前触摸对象已经更新的触摸特性</p>
-</li>
-<li><p>返回值是UITouchPropertyies</p>
-</li>
-</ul>
-<p><code>estimationUpdateIndex</code></p>
-<ul>
-<li><p>当每个触摸对象的触摸特性发生变化时，该值将会单独增加</p>
-</li>
-<li><p>返回值是NSNumber</p>
-</li>
-</ul>
-<h5 id="iOS9中添加的方法">iOS9中添加的方法</h5><p><code>- PreciseLocationInView:</code></p>
-<ul>
-<li><p>当前触摸对象的坐标<br><code>- PrecisePreviousLocationInView:</code></p>
-</li>
-<li><p>当前触摸对象的前置坐标<br><code>- azimuthAngleInview:</code></p>
-</li>
-<li><p>沿着x轴正向的方位角</p>
-</li>
-<li><p>当与x轴正向方向相同时,该值为0</p>
-</li>
-<li><p>当view参数为nil时，默认为keyWindow</p>
-</li>
-</ul>
-<p><code>- azimuthUnitVectorInView:</code></p>
-<ul>
-<li><p>当前触摸对象的方向上的单位向量</p>
-</li>
-<li><p>当view参数为nil时，默认为keyWindow</p>
-</li>
-</ul>
-<h4 id="UIForceTouchCapability">UIForceTouchCapability</h4><p><code>UIForceTouchCapabilityUnknown</code></p>
-<ul>
-<li>不能确定是否支持压力感应<br><code>UIForceTouchCapabilityUnavailable</code></li>
-<li>不能支持压力感应<br><code>UIForceTouchCapabilityAvailable</code></li>
-<li><p>可以支持压力感应</p>
-<h4 id="UITouchType">UITouchType</h4><p><code>UITouchTypeDirect</code></p>
-</li>
-<li><p>垂直的触摸类型<br><code>UITouchTypeIndirect</code></p>
-</li>
-<li>非初值的触摸类型<br><code>UITouchTypeStylus</code></li>
-<li>水平的触摸类型<br><code>UITouchProperties</code><br><code>UITouchPropertyForce</code></li>
-</ul>
-<hr>
-<h3 id="ShortcutItem">ShortcutItem</h3><hr>
-<p><img src="http://i12.tietuku.com/3aa54dab286d6e1c.jpg" alt=""></p>
-<h4 id="静态方式">静态方式</h4><ul>
-<li>打开Info.plist文件</li>
-<li><p>在对应UIApplicationShortcutItems关键字下添加item</p>
-<h4 id="动态方式">动态方式</h4><h5 id="修改当前应用程序的某个shortcutItem">修改当前应用程序的某个shortcutItem</h5><pre><code><span class="comment">//获取第0个shortcutItem  </span>
-id oldItem = [existingShortcutItems <span class="string">objectAtIndex:</span> <span class="number">0</span>];  
-<span class="comment">//将旧的shortcutItem改变为可修改类型shortcutItem  </span>
-id mutableItem = [oldItem mutableCopy];  
-<span class="comment">//修改shortcutItem的显示标题  </span>
-[mutableItem <span class="string">setLocalizedTitle:</span> @“Click Lewis”];
-</code></pre><h5 id="获取当前应用程序的shortcutItems">获取当前应用程序的shortcutItems</h5><pre><code><span class="comment">//获取当前应用程序对象  </span>
-<span class="built_in">UIApplication</span> *app = [<span class="built_in">UIApplication</span> sharedApplication];  
-<span class="comment">//获取一个应用程序对象的shortcutItem列表  </span>
-<span class="keyword">id</span> existingShortcutItems = [app shortcutItems];
-</code></pre><h5 id="重置当前应用程序的shortcutItems">重置当前应用程序的shortcutItems</h5><pre><code><span class="comment">//根据旧的shortcutItems生成可变shortcutItems数组  </span>
-id updatedShortcutItems = [existingShortcutItems mutableCopy];  
-<span class="comment">//修改可变shortcutItems数组中对应index下的元素为新的shortcutItem  </span>
-[updatedShortcutItems <span class="string">replaceObjectAtIndex:</span> <span class="number">0</span> <span class="string">withObject:</span> mutableItem];  
-<span class="comment">//修改应用程序对象的shortcutItems为新的数组  </span>
-[app <span class="string">setShortcutItems:</span> updatedShortcutItems];
-</code></pre><h5 id="创建一个新的UIApplicationShortcutItem">创建一个新的UIApplicationShortcutItem</h5></li>
-<li><p>初始化函数</p>
-<ul>
-<li>initWithType:localizedTitle:localizedSubtitle:icon:userInfo:</li>
-<li>initWithType:localizedTitle:</li>
-</ul>
-</li>
-<li><p>属性</p>
-<ul>
-<li><p>localizedTitle:NSString</p>
-</li>
-<li><p>localizedSubtitle:NSString</p>
-</li>
-<li><p>type:NSString</p>
-</li>
-<li><p>icon:UIApplicationShortcutIcon</p>
-</li>
-<li><p>userInfo:NSDictionary</p>
-</li>
-<li><p>只有只读特性，想要进行修改时，需要通过mutableCopy方法转变为<br>NSMutableApplicationShortcutItem</p>
-<h4 id="创建一个新的Item图标">创建一个新的Item图标</h4></li>
-</ul>
-</li>
-<li><p>初始化函数</p>
-<ul>
-<li><p>iconWithType:</p>
-</li>
-<li><p>iconWithTemplateImageName:</p>
-</li>
-<li><p>iconWithContact:</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="当程序启动时">当程序启动时</h4><ul>
-<li>判断launchOptions字典内的UIApplicationLaunchOptionsShortcutItemKey是否为空</li>
-<li>当不为空时,application:didFinishLaunchWithOptions方法返回false，否则返回true</li>
-<li>在application:performActionForShortcutItem:completionHandler方法内处理点击事件</li>
-</ul>
-<hr>
-<h3 id="Peek_and_Pop">Peek and Pop</h3><hr>
-<p><img src="http://i12.tietuku.com/544e882ddf85ae59.jpg" alt=""><br>注册预览功能的代理对象和源视图<br>代理对象需要接受UIViewControllerPreviewingDelegate协议<br>  @interface RootVC<uiviewcontrollerpreviewingdelegate><br>  {}<br>  @end<br>代理对象实现协议内的Peek和Pop方法</uiviewcontrollerpreviewingdelegate></p>
-<pre><code><span class="class"><span class="keyword">@implementation</span> <span class="title">RootVC</span>  </span>
-- (<span class="built_in">UIViewController</span> *)previewingContext:(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)context viewControllerForLocation:(<span class="built_in">CGPoint</span>) point  
-{  
-<span class="built_in">UIViewController</span> *childVC = [[<span class="built_in">UIViewController</span> alloc] init];  
-childVC<span class="variable">.preferredContentSize</span> = <span class="built_in">CGSizeMake</span>(<span class="number">0.0</span>f,<span class="number">300</span>f);  
+        <span itemprop="articleBody"><p>当你查看这篇文章时，肯定是看到了代码中使用了guard特性，这样，这篇文章能解决你的疑惑<br>不过直接学习的也没关系，照样可以让你学会guard，开始吧。。。</p>
+<p>guard特性是在Swift 2.0后推出的，所以请使用Xcode 7.X版本来编写代码</p>
+<p>很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释</p>
+<p>guard语句和if..else..语句有类似的地方，都是做判断处理<br>与if语句相同的是，guard也是基于一个表达式的布尔值去判断一段代码是否该被执行<br>与if语句不同的是，guard只有在条件不满足的时候才会执行这段代码<br>guard语句有且仅有else语句，当条件不成立时，执行else部分；当条件成立时，执行guard后面的代码<br>guard中声明的变量或者常量，在guard下面可以使用，但不能在else分支中使用</p>
+<h4 id="guard的使用">guard的使用</h4><p>我们以今年高考为例，在进入考场时一般都会检查身份证和准考证，我们写这样一个方法：</p>
+<pre><code><span class="func"><span class="keyword">func</span> <span class="title">checkUp</span><span class="params">(person: [String: String!])</span></span> {
+<span class="comment">// 检查身份证</span>
+<span class="keyword">guard</span> <span class="keyword">let</span> id = person[<span class="string">"id"</span>] <span class="keyword">else</span> {
+    <span class="built_in">print</span>(<span class="string">"没有携带身份证，禁止考试"</span>)
+    <span class="keyword">return</span>
+}
 
-<span class="built_in">CGRect</span> rect = <span class="built_in">CGRectMake</span>(<span class="number">10</span>, point<span class="variable">.y</span> - <span class="number">10</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> - <span class="number">20</span>,<span class="number">20</span>);  
-context<span class="variable">.sourceRect</span> = rect;  
-<span class="keyword">return</span> childVC;  
-}  
-- (<span class="keyword">void</span>)previewContext:(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)context commitViewController:(<span class="built_in">UIViewController</span>*)vc  
-{  
-[<span class="keyword">self</span> showViewController:vc sender:<span class="keyword">self</span>];  
-}  
-<span class="keyword">@end</span>
-</code></pre><h4 id="注册方法声明在UIViewController类内">注册方法声明在UIViewController类内</h4><pre><code>[<span class="keyword">self </span>registerForPreviewingWithDelegate:<span class="keyword">self </span>sourceView:<span class="keyword">self.view]; </span>      
-</code></pre></span>
+<span class="comment">// 检查准考证</span>
+<span class="keyword">guard</span> <span class="keyword">let</span> examNumber = person[<span class="string">"examNumber"</span>] <span class="keyword">else</span> {
+    <span class="built_in">print</span>(<span class="string">"没有携带准考证，禁止考试"</span>)
+    <span class="keyword">return</span>
+}
+
+<span class="comment">// 身份证和准考证齐全，可以进入考试</span>
+<span class="built_in">print</span>(<span class="string">"学号：<span class="subst">\(id)</span>  准考证号：<span class="subst">\(examNumber)</span> 可以进行考试..."</span>)
+</code></pre><p>}</p>
+<pre><code><span class="function"><span class="title">checkUp</span><span class="params">([<span class="string">"id"</span>: <span class="string">"xiaoze,maliya"</span>, <span class="string">"examNumber"</span>: <span class="string">"1302831992"</span>])</span></span>
+</code></pre><p>详细看下面的解释(慢慢体会、慢慢体会、慢慢体会)，一共6句话，相信可以让你了然：</p>
+<p>guard很奇怪，只有一个else分支。<br>guard没有条件成立的分支，确有条件不成立的分支。<br>其实是这样的：<br>当条件不成立的时候，会执行else分支，我们可以做一些执行转换语句，比如：return、break、continue或者throws<br>当条件成立的时候，会直接过掉guard语句，执行下面的代码<br>并且，我们在guard中声明的变量或者常量，在下面的区域内都可以使用。作用域看起来比较奇怪，但是非常实用<br>这段代码，比我们写if..else..会好一些，语法简洁，判断了我们想要判断的情况，并且也不需要再次强制解包的代码。</p>
+<h4 id="guard和if-else-的比较">guard和if..else..的比较</h4><p>if..else的使用</p>
+<pre><code><span class="func"><span class="keyword">func</span> <span class="title">printInfo</span><span class="params">(age: Int?)</span></span> {
+<span class="comment">// 判断age不为空，并且判断是否大于等于0</span>
+<span class="keyword">if</span> age == <span class="literal">nil</span> || age &lt; <span class="number">0</span> {
+    <span class="keyword">return</span>
+}
+
+<span class="comment">// 打印</span>
+<span class="built_in">print</span>(age!)
+}
+</code></pre><p>在OC中，这是我们正常判断的一种写法，但是这种写法，存在一些小缺陷：</p>
+<p>我们在检查一个不符合我们期望的值！而非检查我们期望的值！如果我们添加了太多这样的判断，我们的代码就会变得不好理解<br>如果前面都通过了，我们在使用参数的时候，还需要强制解包<br>可选绑定</p>
+<pre><code><span class="func"><span class="keyword">func</span> <span class="title">printInfo2</span><span class="params">(age: Int?)</span></span> {
+<span class="comment">// 判断age不为空，并且大于0再打印</span>
+<span class="keyword">if</span> <span class="keyword">let</span> age = age <span class="keyword">where</span> age &gt; <span class="number">0</span> {
+
+    <span class="comment">// 如果条件满足，执行这里</span>
+    <span class="built_in">print</span>(age)
+}
+
+<span class="comment">// 如果条件值不符合，就会执行这里的代码</span>
+}
+</code></pre><p>这种写法虽然解决了第一种写法的问题，但却引入了新问题<br>把要写的代码放在了条件中，而不是之后，当条件很多的时候，代码可读性会非常的差</p>
+<h4 id="通过guard解决问题">通过guard解决问题</h4><pre><code><span class="func"><span class="keyword">func</span> <span class="title">printInfo3</span><span class="params">(age: Int?)</span></span> {
+<span class="comment">// 判断age不为空，并且大于0再打印</span>
+<span class="keyword">guard</span> <span class="keyword">let</span> age = age <span class="keyword">where</span> age &gt; <span class="number">0</span> <span class="keyword">else</span> {
+    <span class="comment">// 如果条件不成立，则执行这里，直接返回</span>
+    <span class="keyword">return</span>
+}
+
+<span class="comment">// 当条件符合的时候，执行这里，并且还不需要强制解包了</span>
+<span class="built_in">print</span>(age)
+}
+</code></pre><h4 id="guard的好处">guard的好处</h4><p>是对你所期望的条件做检查，而不是非期望值<br>如果通过了条件判断，可选类型的变量在guard语句被调用的范围内会被自动的拆包，并且可选变量的作用域是函数内，非常方便<br>对你所不期望的情况早做检查，使得你写的函数更易读，更易维护</p>
+</span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Guard/" rel="tag">#Guard</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/10/iOS分屏多任务-Slide-Over-Split-View/" rel="prev">iOS分屏多任务(Slide Over &Split View)</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="next">关于iOS的剪贴板基本知识</a>
+              <a href="/2015/12/07/QuartzCore核心动画框架/" rel="next">QuartzCore核心动画框架</a>
             
           </div>
         </div>
@@ -470,7 +407,7 @@ context<span class="variable">.sourceRect</span> = rect;
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3DTouch"><span class="nav-number">1.</span> <span class="nav-text">3DTouch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UITouch类里API的变化"><span class="nav-number">1.1.</span> <span class="nav-text">UITouch类里API的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iOS9中添加的属性"><span class="nav-number">1.1.1.</span> <span class="nav-text">iOS9中添加的属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#iOS9中添加的方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">iOS9中添加的方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIForceTouchCapability"><span class="nav-number">1.2.</span> <span class="nav-text">UIForceTouchCapability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UITouchType"><span class="nav-number">1.3.</span> <span class="nav-text">UITouchType</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShortcutItem"><span class="nav-number">2.</span> <span class="nav-text">ShortcutItem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态方式"><span class="nav-number">2.1.</span> <span class="nav-text">静态方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态方式"><span class="nav-number">2.2.</span> <span class="nav-text">动态方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#修改当前应用程序的某个shortcutItem"><span class="nav-number">2.2.1.</span> <span class="nav-text">修改当前应用程序的某个shortcutItem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取当前应用程序的shortcutItems"><span class="nav-number">2.2.2.</span> <span class="nav-text">获取当前应用程序的shortcutItems</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重置当前应用程序的shortcutItems"><span class="nav-number">2.2.3.</span> <span class="nav-text">重置当前应用程序的shortcutItems</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建一个新的UIApplicationShortcutItem"><span class="nav-number">2.2.4.</span> <span class="nav-text">创建一个新的UIApplicationShortcutItem</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个新的Item图标"><span class="nav-number">2.3.</span> <span class="nav-text">创建一个新的Item图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当程序启动时"><span class="nav-number">2.4.</span> <span class="nav-text">当程序启动时</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Peek_and_Pop"><span class="nav-number">3.</span> <span class="nav-text">Peek and Pop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册方法声明在UIViewController类内"><span class="nav-number">3.1.</span> <span class="nav-text">注册方法声明在UIViewController类内</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#guard的使用"><span class="nav-number">1.</span> <span class="nav-text">guard的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#guard和if-else-的比较"><span class="nav-number">2.</span> <span class="nav-text">guard和if..else..的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过guard解决问题"><span class="nav-number">3.</span> <span class="nav-text">通过guard解决问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#guard的好处"><span class="nav-number">4.</span> <span class="nav-text">guard的好处</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
