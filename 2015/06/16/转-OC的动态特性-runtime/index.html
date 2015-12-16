@@ -36,18 +36,18 @@
 
 
 <meta name="description" content="Objective-C的动态特性
-这是一篇译文，原文在此，上一篇文章就是受这篇文章启发，这次干脆都翻译过来。">
+这篇文章主要是来领略下Objective-C的运行时(runtime)，同时解释是什么让Objective-C如此动态，然后感受下这些动态化的技术细节。希望这回让你对Objective-C和Cocoa是如何运行的有更好的了解。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC的动态特性(runtime)">
-<meta property="og:url" content="http://yoursite.com/2015/12/16/转-OC的动态特性-runtime/index.html">
+<meta property="og:url" content="http://yoursite.com/2015/06/16/转-OC的动态特性-runtime/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="Objective-C的动态特性
-这是一篇译文，原文在此，上一篇文章就是受这篇文章启发，这次干脆都翻译过来。">
-<meta property="og:updated_time" content="2015-12-16T06:57:01.000Z">
+这篇文章主要是来领略下Objective-C的运行时(runtime)，同时解释是什么让Objective-C如此动态，然后感受下这些动态化的技术细节。希望这回让你对Objective-C和Cocoa是如何运行的有更好的了解。">
+<meta property="og:updated_time" content="2015-12-16T06:57:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC的动态特性(runtime)">
 <meta name="twitter:description" content="Objective-C的动态特性
-这是一篇译文，原文在此，上一篇文章就是受这篇文章启发，这次干脆都翻译过来。">
+这篇文章主要是来领略下Objective-C的运行时(runtime)，同时解释是什么让Objective-C如此动态，然后感受下这些动态化的技术细节。希望这回让你对Objective-C和Cocoa是如何运行的有更好的了解。">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -187,8 +187,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-16T14:51:18+08:00" content="2015-12-16">
-            2015-12-16
+          <time itemprop="dateCreated" datetime="2015-06-16T14:51:18+08:00" content="2015-06-16">
+            2015-06-16
           </time>
         </span>
 
@@ -218,8 +218,7 @@
 
       
         <span itemprop="articleBody"><p>Objective-C的动态特性</p>
-<p>这是一篇译文，原文在此，上一篇文章就是受这篇文章启发，这次干脆都翻译过来。<br><a id="more"></a></p>
-<p>这篇文章主要是来领略下Objective-C的运行时(runtime)，同时解释是什么让Objective-C如此动态，然后感受下这些动态化的技术细节。希望这回让你对Objective-C和Cocoa是如何运行的有更好的了解。</p>
+<p>这篇文章主要是来领略下Objective-C的运行时(runtime)，同时解释是什么让Objective-C如此动态，然后感受下这些动态化的技术细节。希望这回让你对Objective-C和Cocoa是如何运行的有更好的了解。<br><a id="more"></a></p>
 <h3 id="The_Runtime">The Runtime</h3><p>Objective-C是一门简单的语言，95%是C。只是在语言层面上加了些关键字和语法。真正让Objective-C如此强大的是它的运行时。它很小但却很强大。它的核心是消息分发。</p>
 <h3 id="Messages">Messages</h3><p>如果你是从动态语言如Ruby或Python转过来的，可能知道什么是消息，可以直接跳过进入下一节。那些从其他语言转过来的，继续看。</p>
 <p>执行一个方法，有些语言，编译器会执行一些额外的优化和错误检查，因为调用关系很直接也很明显。但对于消息分发来说，就不那么明显了。在发消息前不必知道某个对象是否能够处理消息。你把消息发给它，它可能会处理，也可能转给其他的Object来处理。一个消息不必对应一个方法，一个对象可能实现一个方法来处理多条消息。</p>
@@ -347,11 +346,13 @@ class_addMethod([MYclass class], <span class="keyword">@selector</span>(sayHello
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2015/07/13/转-iOS性能优化/" rel="prev">[转]iOS性能优化</a>
+            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/07/QuartzCore核心动画框架/" rel="next">QuartzCore核心动画框架</a>
+              <a href="/2015/06/14/iOS开发-判断您当前app版本和升级/" rel="next">iOS开发 判断您当前app版本和升级</a>
             
           </div>
         </div>
