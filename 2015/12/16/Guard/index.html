@@ -37,23 +37,20 @@
 
 <meta name="description" content="当你查看这篇文章时，肯定是看到了代码中使用了guard特性，这样，这篇文章能解决你的疑惑不过直接学习的也没关系，照样可以让你学会guard，开始吧。。。
 guard特性是在Swift 2.0后推出的，所以请使用Xcode 7.X版本来编写代码
-很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释
-guard语句和if..else..语句有类似的地方，都是做判断处理与if语句">
+很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Guard">
 <meta property="og:url" content="http://yoursite.com/2015/12/16/Guard/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="当你查看这篇文章时，肯定是看到了代码中使用了guard特性，这样，这篇文章能解决你的疑惑不过直接学习的也没关系，照样可以让你学会guard，开始吧。。。
 guard特性是在Swift 2.0后推出的，所以请使用Xcode 7.X版本来编写代码
-很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释
-guard语句和if..else..语句有类似的地方，都是做判断处理与if语句">
-<meta property="og:updated_time" content="2015-12-16T08:10:53.000Z">
+很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释">
+<meta property="og:updated_time" content="2015-12-17T03:33:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Guard">
 <meta name="twitter:description" content="当你查看这篇文章时，肯定是看到了代码中使用了guard特性，这样，这篇文章能解决你的疑惑不过直接学习的也没关系，照样可以让你学会guard，开始吧。。。
 guard特性是在Swift 2.0后推出的，所以请使用Xcode 7.X版本来编写代码
-很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释
-guard语句和if..else..语句有类似的地方，都是做判断处理与if语句">
+很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -225,8 +222,7 @@ guard语句和if..else..语句有类似的地方，都是做判断处理与if语
       
         <span itemprop="articleBody"><p>当你查看这篇文章时，肯定是看到了代码中使用了guard特性，这样，这篇文章能解决你的疑惑<br>不过直接学习的也没关系，照样可以让你学会guard，开始吧。。。</p>
 <p>guard特性是在Swift 2.0后推出的，所以请使用Xcode 7.X版本来编写代码</p>
-<p>很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释</p>
-<p>guard语句和if..else..语句有类似的地方，都是做判断处理<br>与if语句相同的是，guard也是基于一个表达式的布尔值去判断一段代码是否该被执行<br>与if语句不同的是，guard只有在条件不满足的时候才会执行这段代码<br>guard语句有且仅有else语句，当条件不成立时，执行else部分；当条件成立时，执行guard后面的代码<br>guard中声明的变量或者常量，在guard下面可以使用，但不能在else分支中使用</p>
+<p>很多人都疑惑guard和if..else..到底有什么瓜葛，向下看，慢慢解释<br><a id="more"></a><br>guard语句和if..else..语句有类似的地方，都是做判断处理<br>与if语句相同的是，guard也是基于一个表达式的布尔值去判断一段代码是否该被执行<br>与if语句不同的是，guard只有在条件不满足的时候才会执行这段代码<br>guard语句有且仅有else语句，当条件不成立时，执行else部分；当条件成立时，执行guard后面的代码<br>guard中声明的变量或者常量，在guard下面可以使用，但不能在else分支中使用</p>
 <h4 id="guard的使用">guard的使用</h4><p>我们以今年高考为例，在进入考场时一般都会检查身份证和准考证，我们写这样一个方法：</p>
 <pre><code><span class="func"><span class="keyword">func</span> <span class="title">checkUp</span><span class="params">(person: [String: String!])</span></span> {
 <span class="comment">// 检查身份证</span>
