@@ -1,0 +1,717 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+    
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.4"/>
+
+
+
+
+  <meta name="keywords" content="iOS,手势," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
+
+
+<meta name="description" content="手势识别是具有互斥的原则的，比如单击和双击，如果它识别出一种手势，其后的手势将不被识别
+// 添加单击的手势
+UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手势控制的使用">
+<meta property="og:url" content="http://yoursite.com/2014/10/04/手势控制的使用/index.html">
+<meta property="og:site_name" content="张天琦">
+<meta property="og:description" content="手势识别是具有互斥的原则的，比如单击和双击，如果它识别出一种手势，其后的手势将不被识别
+// 添加单击的手势
+UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
+<meta property="og:updated_time" content="2015-12-18T09:58:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手势控制的使用">
+<meta name="twitter:description" content="手势识别是具有互斥的原则的，比如单击和双击，如果它识别出一种手势，其后的手势将不被识别
+// 添加单击的手势
+UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide'
+  };
+</script>
+
+    <title> 手势控制的使用 // 张天琦 </title>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+
+
+
+
+<div class="container one-column page-post-detail">
+    <div class="headband"></div>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-logo"></i>
+      </span>
+      <span class="site-title">张天琦</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+<form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'b7iqRs3RWh8rQLW-PNvz','2.0.0');
+</script>
+
+<div class="site-search-toggle"></div>
+    </div>
+  
+</nav>
+
+
+        </div>
+    </header>
+
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div id="content" class="content">
+                
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              手势控制的使用
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2014-10-04T18:20:05+08:00" content="2014-10-04">
+            2014-10-04
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/技术篇/" itemprop="url" rel="index"><span itemprop="name">技术篇</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>手势识别是具有互斥的原则的，比如单击和双击，如果它识别出一种手势，其后的手势将不被识别</p>
+<pre><code><span class="comment">// 添加单击的手势</span>
+<span class="built_in">UITapGestureRecognizer</span> *tapGestureRecognizer = [[<span class="built_in">UITapGestureRecognizer</span> alloc] init];
+tapGestureRecognizer<span class="variable">.numberOfTapsRequired</span> = <span class="number">1</span>; <span class="comment">// 设置单击几次才触发方法</span>
+[tapGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(tapGestureAction:)]; <span class="comment">// 添加点击手势的方法</span>
+[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:tapGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
+[tapGestureRecognizer release], tapGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
+</code></pre> <a id="more"></a>
+<pre><code><span class="comment">// 添加长按的手势 注意：会调用两次方法，开始长按调用一次  松开后再调用一次  当长按并且滑动的时候，会多次调用长按的方法</span>
+<span class="built_in">UILongPressGestureRecognizer</span> *pressLongGestureRecognizer = [[<span class="built_in">UILongPressGestureRecognizer</span> alloc] init];
+[pressLongGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(pressLongGestureAction:)]; <span class="comment">// 给长按手势添加方法</span>
+[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:pressLongGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
+[pressLongGestureRecognizer release], pressLongGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
+
+
+
+<span class="comment">// 添加捏合的手势  注意：捏合手势不是捏合一次调用一次方法，而是在捏合的过程中不停的调用方法</span>
+<span class="built_in">UIPinchGestureRecognizer</span> *pinchGestureRecognizer = [[<span class="built_in">UIPinchGestureRecognizer</span> alloc] init];
+[pinchGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(pinchGestureAction:)]; <span class="comment">// 添加捏合手势的方法</span>
+[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:pinchGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
+[pinchGestureRecognizer release], pinchGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
+
+
+
+<span class="comment">// 添加旋转的手势 注意：旋转手势是两指同时进行旋转</span>
+<span class="built_in">UIRotationGestureRecognizer</span> *rotationGestureRecognizer = [[<span class="built_in">UIRotationGestureRecognizer</span> alloc] init];
+[rotationGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(rotationGestureAction:)]; <span class="comment">// 给旋转手势添加方法</span>
+[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:rotationGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
+[rotationGestureRecognizer release], rotationGestureRecognizer = <span class="literal">nil</span>;
+
+
+
+<span class="comment">// 添加滑动的手势  注意： 快速移动，是用于监测滑动的方向的</span>
+<span class="built_in">UISwipeGestureRecognizer</span> *swipGestureRecognizer = [[<span class="built_in">UISwipeGestureRecognizer</span> alloc] init];
+swipGestureRecognizer<span class="variable">.direction</span> = <span class="built_in">UISwipeGestureRecognizerDirectionUp</span>; <span class="comment">// 添加手势的方法</span>
+<span class="comment">// 以下是设置滑动的方向</span>
+<span class="comment">// typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {</span>
+<span class="comment">//    UISwipeGestureRecognizerDirectionRight = 1 &lt;&lt; 0, // 从左向右滑动</span>
+<span class="comment">//    UISwipeGestureRecognizerDirectionLeft  = 1 &lt;&lt; 1, // 从右向左滑动</span>
+<span class="comment">//    UISwipeGestureRecognizerDirectionUp    = 1 &lt;&lt; 2, // 从下向上滑动</span>
+<span class="comment">//    UISwipeGestureRecognizerDirectionDown  = 1 &lt;&lt; 3  // 从上向下滑动</span>
+<span class="comment">// };</span>
+[swipGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(swipGestureAction:)]; <span class="comment">// 给滑动手势添加方法</span>
+[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:swipGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
+[swipGestureRecognizer release], swipGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
+
+
+
+<span class="comment">// 添加拖移手势  注意：慢速移动，是用于监测偏移的量的</span>
+<span class="built_in">UIPanGestureRecognizer</span> *panGestureRecognizer = [[<span class="built_in">UIPanGestureRecognizer</span> alloc] init];
+[panGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(panGestureAction:)]; <span class="comment">// 添加托移收拾的方法</span>
+[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:panGestureRecognizer]; <span class="comment">// 添加到当前的View</span>
+[panGestureRecognizer release], panGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
+
+
+<span class="preprocessor">#pragma mark - 实现单击手势的方法</span>
+- (<span class="keyword">void</span>)tapGestureAction:(<span class="built_in">UITapGestureRecognizer</span> *) sender {
+<span class="built_in">NSLog</span>(<span class="string">@"您  轻拍   了屏幕"</span>);
+</code></pre><p>}</p>
+<pre><code><span class="preprocessor">#pragma mark - 实现长按手势的方法</span>
+- (<span class="keyword">void</span>)pressLongGestureAction:(<span class="built_in">UILongPressGestureRecognizer</span> *) sender {
+<span class="built_in">NSLog</span>(<span class="string">@"您   长按   了屏幕"</span>);
+</code></pre><p>}</p>
+<pre><code><span class="preprocessor">#pragma mark - 实现了捏合手势的方法</span>
+- (<span class="keyword">void</span>)pinchGestureAction:(<span class="built_in">UIPinchGestureRecognizer</span> *) sender {
+<span class="built_in">NSLog</span>(<span class="string">@"您   捏合   了屏幕"</span>);
+</code></pre><p>}</p>
+<pre><code><span class="preprocessor">#pragma mark - 实现旋转手势的方法</span>
+- (<span class="keyword">void</span>)rotationGestureAction:(<span class="built_in">UIRotationGestureRecognizer</span> *) sender {
+<span class="built_in">NSLog</span>(<span class="string">@"您使用了   旋转   手势"</span>);
+</code></pre><p>}</p>
+<pre><code><span class="preprocessor">#pragma mark - 实现滑动手势的方法</span>
+- (<span class="keyword">void</span>)swipGestureAction:(<span class="built_in">UISwipeGestureRecognizer</span> *) sender {   
+<span class="built_in">NSLog</span>(<span class="string">@"您   滑动    了屏幕"</span>);
+</code></pre><p>}</p>
+<pre><code><span class="preprocessor">#pragma mark - 实现了托移手势的方法</span>
+- (<span class="keyword">void</span>)panGestureAction:(<span class="built_in">UIPanGestureRecognizer</span> *) sender {
+<span class="built_in">NSLog</span>(<span class="string">@"您   托移   了。。。。"</span>);
+</code></pre><p>}</p>
+<pre><code>- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions
+{
+application<span class="variable">.applicationSupportsShakeToEdit</span> = <span class="literal">YES</span>;
+<span class="keyword">return</span> <span class="literal">YES</span>;
+}
+-(<span class="built_in">BOOL</span>)canBecomeFirstResponder {
+<span class="keyword">return</span> <span class="literal">YES</span>;
+}
+-(<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated {
+[<span class="keyword">super</span> viewDidAppear:animated];
+[<span class="keyword">self</span> becomeFirstResponder];
+}
+- (<span class="keyword">void</span>)viewWillDisappear:(<span class="built_in">BOOL</span>)animated {
+[<span class="keyword">self</span> resignFirstResponder];
+[<span class="keyword">super</span> viewWillDisappear:animated];
+}
+- (<span class="keyword">void</span>)motionEnded:(<span class="built_in">UIEventSubtype</span>)motion withEvent:(<span class="built_in">UIEvent</span> *)event
+{
+<span class="keyword">if</span> (motion == <span class="built_in">UIEventSubtypeMotionShake</span>) {
+    <span class="built_in">NSLog</span>(<span class="string">@"检测到晃动"</span>);
+}
+}
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/手势/" rel="tag">#手势</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/12/27/hexo博客搭建/" rel="prev">hexo博客搭建</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/10/01/Swiftype添加站内搜索/" rel="next">Swiftype添加站内搜索</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+            </div>
+
+            
+
+            
+              <div class="comments" id="comments">
+                
+              </div>
+            
+        </div>
+
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/avatar.jpg" alt="张天琦" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">张天琦</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="copyright" >
+  
+  &copy; &nbsp;  2014 - 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">张天琦</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+        </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+</div>
+
+<script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.4"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.4"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.4" id="motion.global"></script>
+
+
+
+  <script type="text/javascript" src="/js/search-toggle.js"></script>
+
+
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.4" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (CONFIG.sidebar === 'always') {
+            displaySidebar();
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+<!-- lazyload -->
+<script type="text/javascript" src="/js/lazyload.js"></script>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery("#posts img").lazyload({
+            placeholder: "/images/loading.gif",
+            effect: "fadeIn"
+        });
+    });
+</script>
+</body>
+</html>
