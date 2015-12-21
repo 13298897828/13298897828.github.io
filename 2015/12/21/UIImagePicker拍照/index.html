@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="拍照," />
 
 
 
@@ -35,16 +35,31 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="前言当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。">
+<meta name="description" content="关于如何使用UIImagePickerController来拍照和录制视频，下面的程序中只要将_isVideo设置为YES就是视频录制模式，录制完后在主视图控制器中自动播放；如果将_isVideo设置为NO则为拍照模式，拍照完成之后在主视图控制器中显示拍摄的照片：
+//
+//  ViewController.m
+//  UIImagePickerController
+//
+//  Created">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用WebViewJavascriptBridge实现OC与JS交互">
-<meta property="og:url" content="http://yoursite.com/2015/06/10/使用WebViewJavascriptBridge实现OC与JS交互/index.html">
+<meta property="og:title" content="UIImagePicker拍照">
+<meta property="og:url" content="http://yoursite.com/2015/12/21/UIImagePicker拍照/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="前言当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。">
-<meta property="og:updated_time" content="2015-12-10T07:53:06.000Z">
+<meta property="og:description" content="关于如何使用UIImagePickerController来拍照和录制视频，下面的程序中只要将_isVideo设置为YES就是视频录制模式，录制完后在主视图控制器中自动播放；如果将_isVideo设置为NO则为拍照模式，拍照完成之后在主视图控制器中显示拍摄的照片：
+//
+//  ViewController.m
+//  UIImagePickerController
+//
+//  Created">
+<meta property="og:updated_time" content="2015-12-21T13:18:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用WebViewJavascriptBridge实现OC与JS交互">
-<meta name="twitter:description" content="前言当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。">
+<meta name="twitter:title" content="UIImagePicker拍照">
+<meta name="twitter:description" content="关于如何使用UIImagePickerController来拍照和录制视频，下面的程序中只要将_isVideo设置为YES就是视频录制模式，录制完后在主视图控制器中自动播放；如果将_isVideo设置为NO则为拍照模式，拍照完成之后在主视图控制器中显示拍摄的照片：
+//
+//  ViewController.m
+//  UIImagePickerController
+//
+//  Created">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +69,7 @@
   };
 </script>
 
-    <title> 使用WebViewJavascriptBridge实现OC与JS交互 // 张天琦 </title>
+    <title> UIImagePicker拍照 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -175,7 +190,7 @@
           
           
             
-              使用WebViewJavascriptBridge实现OC与JS交互
+              UIImagePicker拍照
             
           
         </h1>
@@ -184,11 +199,22 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-06-10T10:22:27+08:00" content="2015-06-10">
-            2015-06-10
+          <time itemprop="dateCreated" datetime="2015-12-21T21:15:45+08:00" content="2015-12-21">
+            2015-12-21
           </time>
         </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+              
+              
+
+            
+          </span>
         
 
         
@@ -203,108 +229,129 @@
       
 
       
-        <span itemprop="articleBody"><h4 id="前言">前言</h4><p>当下,很多APP里面都会有HTML5网页,我们除了简单的用WebView加载显示外，很多情况下，我们还需要和WebView进行交互,比如点击WebView上面的按钮调用OC端的函数实现具体操作。</p>
-<a id="more"></a>
-<p>因此今天为大家介绍一个优秀的开源小项目,就是我们今天的主角–<code>WebViewJavascriptBridge</code>。它主要帮助我们优雅的实现OC与JS的交互,非常方便简洁。</p>
-<p>当然,有很多优秀的开发者写过WebViewJavascriptBridge的使用包括实现原理,首先表示感激和敬意。但是作为一个初学者或者一个急于实现功能的人来说,大部分时候我们更希望一个直奔主题的文章。所以,本文的核心就是WebViewJavascriptBridge在实际开发中的使用。<br>使用步骤<br>去Github上下载<code>WebJavaScriptBridge</code><br>解压缩包,将<code>WebViewJavascriptBridge</code>文件夹拖到你的工程中</p>
-<p>在需要使用<code>WebViewJavascriptBridge</code>的类文件中引入头文件<code>WebViewJavascriptBridge.h</code><br>加载UIWebView,遵守<code>&lt;UIWebViewDelegate&gt;</code>协议<br>具体使用<br>创建并初始化WebJavaScriptBridge实例</p>
-<pre><code>   <span class="preprocessor">#import <span class="title">"ExampleUIWebViewController.h"</span></span>
-   <span class="preprocessor">#import <span class="title">"WebViewJavascriptBridge.h"</span></span>
+        <span itemprop="articleBody"><p>关于如何使用UIImagePickerController来拍照和录制视频，下面的程序中只要将_isVideo设置为YES就是视频录制模式，录制完后在主视图控制器中自动播放；如果将_isVideo设置为NO则为拍照模式，拍照完成之后在主视图控制器中显示拍摄的照片：</p>
+<pre><code><span class="comment">//</span>
+<span class="comment">//  ViewController.m</span>
+<span class="comment">//  UIImagePickerController</span>
+<span class="comment">//</span>
+<span class="comment">//  Created by Zhangtianqi  on 15/12/21.</span>
 
-  <span class="class"><span class="keyword">@interface</span> <span class="title">ExampleUIWebViewController</span> ()</span>
-  <span class="comment">//声明`WebViewJavascriptBridge`对象为属性</span>
-   <span class="keyword">@property</span> WebViewJavascriptBridge* bridge;
+<span class="preprocessor">#import <span class="title">"ViewController.h"</span></span>
+<span class="preprocessor">#import         <span class="title">&lt;MobileCoreServices/    MobileCoreServices.h&gt;</span></span>
+<span class="preprocessor">#import <span class="title">&lt;AVFoundation/AVFoundation.h&gt;</span></span>
 
-  <span class="keyword">@end</span>
+<span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span>     ()&lt;<span class="title">UIImagePickerControllerDelegate</span>,<span class="title">UINavigationControllerDelegate</span>&gt;</span>
+<span class="keyword">@property</span> (<span class="keyword">assign</span>,<span class="keyword">nonatomic</span>) <span class="keyword">int</span> isVideo;<span class="comment">//是否录制视频，如果为1表示录制视频，0代表拍照</span>
+<span class="keyword">@property</span> (<span class="keyword">strong</span>,<span class="keyword">nonatomic</span>) <span class="built_in">UIImagePickerController</span> *imagePicker;
+<span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIImageView</span> *photo;<span class="comment">//照片展示视图</span>
+<span class="keyword">@property</span> (<span class="keyword">strong</span> ,<span class="keyword">nonatomic</span>) <span class="built_in">AVPlayer</span> *player;<span class="comment">//播放器，用于录制完视频后播放视频</span>
 
-  - (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated {
+<span class="keyword">@end</span>
 
-   <span class="comment">//用UIWebView加载web</span>
-    <span class="built_in">UIWebView</span>* webView = [[<span class="built_in">UIWebView</span> alloc] initWithFrame:<span class="keyword">self</span><span class="variable">.view</span><span class="variable">.bounds</span>];
+<span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span>
 
- <span class="comment">//设置能够进行桥接 </span>
-    [WebViewJavascriptBridge enableLogging];
- <span class="comment">// 初始化*WebViewJavascriptBridge*实例,设置代理,进行桥接</span>
-   _bridge = [WebViewJavascriptBridge bridgeForWebView:webView webViewDelegate:<span class="keyword">self</span> handler:^(<span class="keyword">id</span>         data, WVJBResponseCallback responseCallback) {
-
-<span class="built_in">NSLog</span>(<span class="string">@"ObjC received message from JS: %@"</span>, data);
-     responseCallback(<span class="string">@"Response for message from ObjC"</span>);
-     }];
-
+<span class="preprocessor">#pragma mark - 控制器视图事件</span>
+- (<span class="keyword">void</span>)viewDidLoad {
+    [<span class="keyword">super</span> viewDidLoad];
+    <span class="comment">//通过这里设置当前程序是拍照还是录制视频</span>
+    _isVideo=<span class="literal">YES</span>;
 }
-</code></pre><h4 id="JS调用OC">JS调用OC</h4><p>什么是JS调用OC?</p>
-<p>举个例子来说就是在网页中有一个登录按钮,点击登录按钮后,具体的登录功能是由OC端实现的,即登录功能实现需要我们在工程里有一个类似loginMethod的函数去具体操作。<br>工作流程</p>
-<p>站在实际开发的角度来解释,就是假如现在有一个网页,在网页中有个登录按钮需要通过JS调OC的方式实现。那么我们首先需要跟负责网页编码的人员(一般是后台)商定出一个方法名称,也就是给这个登录按钮点击事件取个名字,例如叫loginCallBack。然后我们需要在代码里注册这个事件并负责它的具体实现。当用户点击这个登录按钮的时候,后台就会通知给这个事件的注册者去执行,有点像block的执行顺序。<br>代码实现</p>
-<p>假如我们现在商定了一个事件名称为loginFunc,我们来看一下代码实现。</p>
-<pre><code> /<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>
- /<span class="comment">@param registerHandler 要注册的事件名称(这里我们为loginFunc)</span>
- /<span class="comment">@param handel 回调block函数 当后台触发这个事件的时候会执行block里面的代码</span>
-<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>/
-[_bridge registerHandler:<span class="comment">@"loginFunc" handler:^(id data, WVJBResponseCallback responseCallback) {</span>
-// data 后台传过来的参数,例如用户名、密码等
 
-  NSLog(<span class="comment">@"testObjcCallback called: %@", data);</span>
+<span class="preprocessor">#pragma mark - UI事件</span>
+<span class="comment">//点击拍照按钮</span>
+- (<span class="keyword">IBAction</span>)takeClick:(<span class="built_in">UIButton</span> *)sender {
+    [<span class="keyword">self</span> presentViewController:<span class="keyword">self</span><span class="variable">.imagePicker</span>     animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
+}
 
-//具体的登录事件的实现,这里的login代表实现登录功能的一个OC函数。
-           [self login];   
+<span class="preprocessor">#pragma mark -         UIImagePickerController代理方法</span>
+<span class="comment">//完成</span>
+-(<span class="keyword">void</span>)imagePickerController:(<span class="built_in">UIImagePickerController</span> *)picker didFinishPickingMediaWithInfo:(<span class="built_in">NSDictionary</span> *)info{
+    <span class="built_in">NSString</span> *mediaType=[info objectForKey:<span class="built_in">UIImagePickerControllerMediaType</span>];
+    <span class="keyword">if</span> ([mediaType isEqualToString:(<span class="built_in">NSString</span> *)kUTTypeImage]) {<span class="comment">//如果是拍照</span>
+        <span class="built_in">UIImage</span> *image;
+        <span class="comment">//如果允许编辑则获得编辑后的照片，否则获取原始照片</span>
+        <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.imagePicker</span><span class="variable">.allowsEditing</span>) {
+            image=[info objectForKey:<span class="built_in">UIImagePickerControllerEditedImage</span>];<span class="comment">//获取编辑后的照片</span>
+        }<span class="keyword">else</span>{
+            image=[info objectForKey:<span class="built_in">UIImagePickerControllerOriginalImage</span>];<span class="comment">//获取原始照片</span>
+        }
+        [<span class="keyword">self</span><span class="variable">.photo</span> setImage:image];<span class="comment">//显示照片</span>
+        <span class="built_in">UIImageWriteToSavedPhotosAlbum</span>(image, <span class="literal">nil</span>, <span class="literal">nil</span>, <span class="literal">nil</span>);<span class="comment">//保存到相簿</span>
+    }<span class="keyword">else</span> <span class="keyword">if</span>([mediaType isEqualToString:(<span class="built_in">NSString</span> *)kUTTypeMovie]){<span class="comment">//如果是录制视频</span>
+        <span class="built_in">NSLog</span>(<span class="string">@"video..."</span>);
+        <span class="built_in">NSURL</span> *url=[info objectForKey:<span class="built_in">UIImagePickerControllerMediaURL</span>];<span class="comment">//视频路径</span>
+        <span class="built_in">NSString</span> *urlStr=[url path];
+        <span class="keyword">if</span> (<span class="built_in">UIVideoAtPathIsCompatibleWithSavedPhotosAlbum</span>(urlStr)) {
+            <span class="comment">//保存视频到相簿，注意也可以使用ALAssetsLibrary来保存</span>
+            <span class="built_in">UISaveVideoAtPathToSavedPhotosAlbum</span>(urlStr, <span class="keyword">self</span>, <span class="keyword">@selector</span>(video:didFinishSavingWithError:contextInfo:), <span class="literal">nil</span>);<span class="comment">//保存视频到相簿</span>
+        }
 
-// responseCallback 给后台的回复    
+    }
 
-   responseCallback(<span class="comment">@"Response from testObjcCallback");</span>
- }];
-</code></pre><h4 id="OC调用JS">OC调用JS</h4><p>什么是OC调用JS</p>
-<p>如果你理解了JS调用OC,那么OC调用JS就应该差不多懂了。同样举个例子,我们的原生APP上有个输入框,我们输入完成后,让它显示在网页上面的用户名处。这样,我们就是OC要实现的一个事件让网页去真正实现了,也就是OC调用JS。<br>OC调用JS</p>
-<p>和JS调用OC的流程大致一样,还是需要和网页编写人员商定出一个事件名,然后在网页里面先把注册这样一个事件并把实现体写好,等到我们OC去触发这个事件(比如点击按钮)就会去网页里面找到这个事件的实现体并执行。<br>代码实现</p>
-<p>假如我们现在商定了一个注册事件,事件名称为registerFunc,我<br>们来代码实现一下    </p>
-<pre><code>   <span class="comment">//不需要传参数,不需要后台返回执行结果</span>
-  [_bridge <span class="string">callHandler:</span>@<span class="string">"registerFunc"</span>];
+    [<span class="keyword">self</span> dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
+}
+-(<span class="keyword">void</span>)imagePickerControllerDidCancel:(<span class="built_in">UIImagePickerController</span> *)picker{
+    <span class="built_in">NSLog</span>(<span class="string">@"取消"</span>);
+}
 
-<span class="comment">//需要传参数,不需要从后台返回执行结果</span>
-  <span class="comment">/***
-   <span class="doctag">@param</span> callHandler 商定的事件名称,用来调用网页里面相应的事件实现
-   <span class="doctag">@param</span> data id类型,相当于我们函数中的参数,向网页传递函数执行需要的参数
- ***/</span>
+<span class="preprocessor">#pragma mark - 私有方法</span>
+-(<span class="built_in">UIImagePickerController</span> *)imagePicker{
+    <span class="keyword">if</span> (!_imagePicker) {
+        _imagePicker=[[<span class="built_in">UIImagePickerController</span> alloc]init];
+        _imagePicker<span class="variable">.sourceType</span>=<span class="built_in">UIImagePickerControllerSourceTypeCamera</span>;<span class="comment">//设置image picker的来源，这里设置为摄像头</span>
+        _imagePicker<span class="variable">.cameraDevice</span>=<span class="built_in">UIImagePickerControllerCameraDeviceRear</span>;<span class="comment">//设置使用哪个摄像头，这里设置为后置摄像头</span>
+        <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.isVideo</span>) {
+            _imagePicker<span class="variable">.mediaTypes</span>=@[(<span class="built_in">NSString</span> *)kUTTypeMovie];
+            _imagePicker<span class="variable">.videoQuality</span>=<span class="built_in">UIImagePickerControllerQualityTypeIFrame1280x720</span>;
+            _imagePicker<span class="variable">.cameraCaptureMode</span>=<span class="built_in">UIImagePickerControllerCameraCaptureModeVideo</span>;<span class="comment">//设置摄像头模式（拍照，录制视频）</span>
 
- [_bridge <span class="string">callHandler:</span>@<span class="string">"registerFunc"</span> <span class="string">data:</span>@<span class="string">"name"</span>];
+        }<span class="keyword">else</span>{
+            _imagePicker<span class="variable">.cameraCaptureMode</span>=<span class="built_in">UIImagePickerControllerCameraCaptureModePhoto</span>;
+        }
+        _imagePicker<span class="variable">.allowsEditing</span>=<span class="literal">YES</span>;<span class="comment">//允许编辑</span>
+        _imagePicker<span class="variable">.delegate</span>=<span class="keyword">self</span>;<span class="comment">//设置代理，检测操作</span>
+    }
+    <span class="keyword">return</span> _imagePicker;
+}
 
-<span class="comment">//需要传参数,需要从后台返回执行结果</span>
+<span class="comment">//视频保存后的回调</span>
+- (<span class="keyword">void</span>)video:(<span class="built_in">NSString</span> *)videoPath didFinishSavingWithError:(<span class="built_in">NSError</span> *)error contextInfo:(<span class="keyword">void</span> *)contextInfo{
+    <span class="keyword">if</span> (error) {
+        <span class="built_in">NSLog</span>(<span class="string">@"保存视频过程中发生错误，错误信息:%@"</span>,error<span class="variable">.localizedDescription</span>);
+    }<span class="keyword">else</span>{
+        <span class="built_in">NSLog</span>(<span class="string">@"视频保存成功."</span>);
+        <span class="comment">//录制完之后自动播放</span>
+        <span class="built_in">NSURL</span> *url=[<span class="built_in">NSURL</span> fileURLWithPath:videoPath];
+        _player=[<span class="built_in">AVPlayer</span> playerWithURL:url];
+        <span class="built_in">AVPlayerLayer</span> *playerLayer=[<span class="built_in">AVPlayerLayer</span> playerLayerWithPlayer:_player];
+        playerLayer<span class="variable">.frame</span>=<span class="keyword">self</span><span class="variable">.photo</span><span class="variable">.frame</span>;
+        [<span class="keyword">self</span><span class="variable">.photo</span><span class="variable">.layer</span> addSublayer:playerLayer];
+        [_player play];
 
- [_bridge <span class="string">callHandler:</span>@<span class="string">"registerFunc"</span> <span class="string">data:</span>@<span class="string">"name"</span> <span class="string">responseCallback:</span>^(id responseData) {
-
-    NSLog(@<span class="string">"后台执行完成后返回的数据"</span>);
-
-  }];
-</code></pre><p>发送消息</p>
-<h4 id="概述">概述</h4><p>我们可以单纯地向JS发送数据,比如我们可以在网页加载完成后向网页发送一条加载完成的消息,或者传一个标题。<br>代码实现</p>
-<pre><code><span class="comment">//不需要后台返回执行结果或数据</span>
-[_bridge <span class="string">send:</span>@<span class="string">"红色"</span>];
-
-<span class="comment">//需要后台返回执行结果或数据</span>
-  [_bridge <span class="string">send:</span>@<span class="string">"红色"</span> <span class="string">responseCallback:</span>^(id responseData) {
-
-  NSLog(@<span class="string">"后台执行完成后返回的数据 %@"</span>, responseData);
-
- }];
-</code></pre><h4 id="注意点">注意点</h4><p>一定要注意和网页端商定的方法名必须要保证OC代码 里和网页编码里统一。在调用之前,必须要先注册事件,写好实现体。<br>总结<br>本文只是简单地介绍了WebViewJavascriptBridge在实际开发中常用的几个方法,还有一些方法没有意义详讲,希望大家在掌握了这几个方法的使用后也去研究一下里面的其他方法。另外,本文重点是让ios工程师能快速使用,一些原理的东西还有JS方面的编码都省略了,可能文中有些地方理解不当或者不够深入,后期会再完善修改.最后,希望大家多提宝贵意见。</p>
-<p>大家可去gitHub下载demo查看源码。</p>
-</span>
+    }
+}
+</code></pre></span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/拍照/" rel="tag">#拍照</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/06/14/iOS开发-判断您当前app版本和升级/" rel="prev">iOS开发 判断您当前app版本和升级</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/06/06/iOS开发常用控件总结/" rel="next">iOS开发常用控件总结</a>
+              <a href="/2015/12/16/Guard/" rel="next">Guard</a>
             
           </div>
         </div>
@@ -409,7 +456,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JS调用OC"><span class="nav-number">2.</span> <span class="nav-text">JS调用OC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OC调用JS"><span class="nav-number">3.</span> <span class="nav-text">OC调用JS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">4.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点"><span class="nav-number">5.</span> <span class="nav-text">注意点</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

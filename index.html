@@ -176,6 +176,179 @@
           
           
             
+              <a class="post-title-link" href="/2015/12/21/UIImagePicker拍照/" itemprop="url">
+                UIImagePicker拍照
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-21T21:15:45+08:00" content="2015-12-21">
+            2015-12-21
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>关于如何使用UIImagePickerController来拍照和录制视频，下面的程序中只要将_isVideo设置为YES就是视频录制模式，录制完后在主视图控制器中自动播放；如果将_isVideo设置为NO则为拍照模式，拍照完成之后在主视图控制器中显示拍摄的照片：</p>
+<pre><code><span class="comment">//</span>
+<span class="comment">//  ViewController.m</span>
+<span class="comment">//  UIImagePickerController</span>
+<span class="comment">//</span>
+<span class="comment">//  Created by Zhangtianqi  on 15/12/21.</span>
+
+<span class="preprocessor">#import <span class="title">"ViewController.h"</span></span>
+<span class="preprocessor">#import         <span class="title">&lt;MobileCoreServices/    MobileCoreServices.h&gt;</span></span>
+<span class="preprocessor">#import <span class="title">&lt;AVFoundation/AVFoundation.h&gt;</span></span>
+
+<span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span>     ()&lt;<span class="title">UIImagePickerControllerDelegate</span>,<span class="title">UINavigationControllerDelegate</span>&gt;</span>
+<span class="keyword">@property</span> (<span class="keyword">assign</span>,<span class="keyword">nonatomic</span>) <span class="keyword">int</span> isVideo;<span class="comment">//是否录制视频，如果为1表示录制视频，0代表拍照</span>
+<span class="keyword">@property</span> (<span class="keyword">strong</span>,<span class="keyword">nonatomic</span>) <span class="built_in">UIImagePickerController</span> *imagePicker;
+<span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIImageView</span> *photo;<span class="comment">//照片展示视图</span>
+<span class="keyword">@property</span> (<span class="keyword">strong</span> ,<span class="keyword">nonatomic</span>) <span class="built_in">AVPlayer</span> *player;<span class="comment">//播放器，用于录制完视频后播放视频</span>
+
+<span class="keyword">@end</span>
+
+<span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span>
+
+<span class="preprocessor">#pragma mark - 控制器视图事件</span>
+- (<span class="keyword">void</span>)viewDidLoad {
+    [<span class="keyword">super</span> viewDidLoad];
+    <span class="comment">//通过这里设置当前程序是拍照还是录制视频</span>
+    _isVideo=<span class="literal">YES</span>;
+}
+
+<span class="preprocessor">#pragma mark - UI事件</span>
+<span class="comment">//点击拍照按钮</span>
+- (<span class="keyword">IBAction</span>)takeClick:(<span class="built_in">UIButton</span> *)sender {
+    [<span class="keyword">self</span> presentViewController:<span class="keyword">self</span><span class="variable">.imagePicker</span>     animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
+}
+
+<span class="preprocessor">#pragma mark -         UIImagePickerController代理方法</span>
+<span class="comment">//完成</span>
+-(<span class="keyword">void</span>)imagePickerController:(<span class="built_in">UIImagePickerController</span> *)picker didFinishPickingMediaWithInfo:(<span class="built_in">NSDictionary</span> *)info{
+    <span class="built_in">NSString</span> *mediaType=[info objectForKey:<span class="built_in">UIImagePickerControllerMediaType</span>];
+    <span class="keyword">if</span> ([mediaType isEqualToString:(<span class="built_in">NSString</span> *)kUTTypeImage]) {<span class="comment">//如果是拍照</span>
+        <span class="built_in">UIImage</span> *image;
+        <span class="comment">//如果允许编辑则获得编辑后的照片，否则获取原始照片</span>
+        <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.imagePicker</span><span class="variable">.allowsEditing</span>) {
+            image=[info objectForKey:<span class="built_in">UIImagePickerControllerEditedImage</span>];<span class="comment">//获取编辑后的照片</span>
+        }<span class="keyword">else</span>{
+            image=[info objectForKey:<span class="built_in">UIImagePickerControllerOriginalImage</span>];<span class="comment">//获取原始照片</span>
+        }
+        [<span class="keyword">self</span><span class="variable">.photo</span> setImage:image];<span class="comment">//显示照片</span>
+        <span class="built_in">UIImageWriteToSavedPhotosAlbum</span>(image, <span class="literal">nil</span>, <span class="literal">nil</span>, <span class="literal">nil</span>);<span class="comment">//保存到相簿</span>
+    }<span class="keyword">else</span> <span class="keyword">if</span>([mediaType isEqualToString:(<span class="built_in">NSString</span> *)kUTTypeMovie]){<span class="comment">//如果是录制视频</span>
+        <span class="built_in">NSLog</span>(<span class="string">@"video..."</span>);
+        <span class="built_in">NSURL</span> *url=[info objectForKey:<span class="built_in">UIImagePickerControllerMediaURL</span>];<span class="comment">//视频路径</span>
+        <span class="built_in">NSString</span> *urlStr=[url path];
+        <span class="keyword">if</span> (<span class="built_in">UIVideoAtPathIsCompatibleWithSavedPhotosAlbum</span>(urlStr)) {
+            <span class="comment">//保存视频到相簿，注意也可以使用ALAssetsLibrary来保存</span>
+            <span class="built_in">UISaveVideoAtPathToSavedPhotosAlbum</span>(urlStr, <span class="keyword">self</span>, <span class="keyword">@selector</span>(video:didFinishSavingWithError:contextInfo:), <span class="literal">nil</span>);<span class="comment">//保存视频到相簿</span>
+        }
+
+    }
+
+    [<span class="keyword">self</span> dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
+}
+-(<span class="keyword">void</span>)imagePickerControllerDidCancel:(<span class="built_in">UIImagePickerController</span> *)picker{
+    <span class="built_in">NSLog</span>(<span class="string">@"取消"</span>);
+}
+
+<span class="preprocessor">#pragma mark - 私有方法</span>
+-(<span class="built_in">UIImagePickerController</span> *)imagePicker{
+    <span class="keyword">if</span> (!_imagePicker) {
+        _imagePicker=[[<span class="built_in">UIImagePickerController</span> alloc]init];
+        _imagePicker<span class="variable">.sourceType</span>=<span class="built_in">UIImagePickerControllerSourceTypeCamera</span>;<span class="comment">//设置image picker的来源，这里设置为摄像头</span>
+        _imagePicker<span class="variable">.cameraDevice</span>=<span class="built_in">UIImagePickerControllerCameraDeviceRear</span>;<span class="comment">//设置使用哪个摄像头，这里设置为后置摄像头</span>
+        <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.isVideo</span>) {
+            _imagePicker<span class="variable">.mediaTypes</span>=@[(<span class="built_in">NSString</span> *)kUTTypeMovie];
+            _imagePicker<span class="variable">.videoQuality</span>=<span class="built_in">UIImagePickerControllerQualityTypeIFrame1280x720</span>;
+            _imagePicker<span class="variable">.cameraCaptureMode</span>=<span class="built_in">UIImagePickerControllerCameraCaptureModeVideo</span>;<span class="comment">//设置摄像头模式（拍照，录制视频）</span>
+
+        }<span class="keyword">else</span>{
+            _imagePicker<span class="variable">.cameraCaptureMode</span>=<span class="built_in">UIImagePickerControllerCameraCaptureModePhoto</span>;
+        }
+        _imagePicker<span class="variable">.allowsEditing</span>=<span class="literal">YES</span>;<span class="comment">//允许编辑</span>
+        _imagePicker<span class="variable">.delegate</span>=<span class="keyword">self</span>;<span class="comment">//设置代理，检测操作</span>
+    }
+    <span class="keyword">return</span> _imagePicker;
+}
+
+<span class="comment">//视频保存后的回调</span>
+- (<span class="keyword">void</span>)video:(<span class="built_in">NSString</span> *)videoPath didFinishSavingWithError:(<span class="built_in">NSError</span> *)error contextInfo:(<span class="keyword">void</span> *)contextInfo{
+    <span class="keyword">if</span> (error) {
+        <span class="built_in">NSLog</span>(<span class="string">@"保存视频过程中发生错误，错误信息:%@"</span>,error<span class="variable">.localizedDescription</span>);
+    }<span class="keyword">else</span>{
+        <span class="built_in">NSLog</span>(<span class="string">@"视频保存成功."</span>);
+        <span class="comment">//录制完之后自动播放</span>
+        <span class="built_in">NSURL</span> *url=[<span class="built_in">NSURL</span> fileURLWithPath:videoPath];
+        _player=[<span class="built_in">AVPlayer</span> playerWithURL:url];
+        <span class="built_in">AVPlayerLayer</span> *playerLayer=[<span class="built_in">AVPlayerLayer</span> playerLayerWithPlayer:_player];
+        playerLayer<span class="variable">.frame</span>=<span class="keyword">self</span><span class="variable">.photo</span><span class="variable">.frame</span>;
+        [<span class="keyword">self</span><span class="variable">.photo</span><span class="variable">.layer</span> addSublayer:playerLayer];
+        [_player play];
+
+    }
+}
+</code></pre></span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/12/16/Guard/" itemprop="url">
                 Guard
               </a>
@@ -835,84 +1008,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/16/转-OC的动态特性-runtime/" itemprop="url">
-                OC的动态特性(runtime)
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-06-16T14:51:18+08:00" content="2015-06-16">
-            2015-06-16
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>Objective-C的动态特性<br><img src="http://limboy.me/ios/2013/08/03/dynamic-tips-and-tricks-with-objective-c.html" alt="转"></p>
-<p>这篇文章主要是来领略下Objective-C的运行时(runtime)，同时解释是什么让Objective-C如此动态，然后感受下这些动态化的技术细节。希望这回让你对Objective-C和Cocoa是如何运行的有更好的了解。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/06/16/转-OC的动态特性-runtime/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -952,7 +1047,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -966,7 +1061,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

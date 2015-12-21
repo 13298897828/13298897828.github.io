@@ -176,6 +176,72 @@
           
           
             
+              <a class="post-title-link" href="/2015/03/10/Block技术中的weak-strong/" itemprop="url">
+                Block技术中的weak-strong
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-03-10T15:30:00+08:00" content="2015-03-10">
+            2015-03-10
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h3 id="一、看一看什么是Block">一、看一看什么是Block</h3><p>我们使用^运算符来声明一个Block变量，而且在声明完一个Block变量后要像声明普通变量一样，最后要加;。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/03/10/Block技术中的weak-strong/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/03/10/转-关于应用程序生命周期的问题/" itemprop="url">
                 [转]关于应用程序生命周期的问题
               </a>
@@ -775,90 +841,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2014/10/04/手势控制的使用/" itemprop="url">
-                手势控制的使用
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2014-10-04T18:20:05+08:00" content="2014-10-04">
-            2014-10-04
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/技术篇/" itemprop="url" rel="index"><span itemprop="name">技术篇</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>手势识别是具有互斥的原则的，比如单击和双击，如果它识别出一种手势，其后的手势将不被识别</p>
-<pre><code><span class="comment">// 添加单击的手势</span>
-<span class="built_in">UITapGestureRecognizer</span> *tapGestureRecognizer = [[<span class="built_in">UITapGestureRecognizer</span> alloc] init];
-tapGestureRecognizer<span class="variable">.numberOfTapsRequired</span> = <span class="number">1</span>; <span class="comment">// 设置单击几次才触发方法</span>
-[tapGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(tapGestureAction:)]; <span class="comment">// 添加点击手势的方法</span>
-[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:tapGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
-[tapGestureRecognizer release], tapGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/10/04/手势控制的使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -898,7 +880,7 @@ tapGestureRecognizer<span class="variable">.numberOfTapsRequired</span> = <span 
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -912,7 +894,7 @@ tapGestureRecognizer<span class="variable">.numberOfTapsRequired</span> = <span 
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
