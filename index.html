@@ -176,6 +176,150 @@
           
           
             
+              <a class="post-title-link" href="/2016/01/04/Swift-lazy-延迟存储属性/" itemprop="url">
+                Swift_lazy()延迟存储属性
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-04T10:28:37+08:00" content="2016-01-04">
+            2016-01-04
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。</p>
+<p>在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒加载对象，只有当我们使用的时候才会被创建。除了这些，我们自己也可以写很多。</p>
+<p>那么，在Swift中，如何实现所谓的懒加载对象呢？</p>
+<p>在Swift中，只需要一个lazy关键字即可实现，叫做延迟存储属性!</p>
+<p>首先看看OC中如何实现懒加载对象的吧。。。</p>
+<pre><code><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span>
+
+<span class="comment">// 声明可变数组属性</span>
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span>     *allDataArray;
+
+<span class="keyword">@end</span>
+
+
+
+<span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span>
+
+<span class="comment">// 重写getter方法，成为懒加载对象</span>
+- (<span class="built_in">NSMutableArray</span> *)allDataArray
+{
+<span class="keyword">if</span> (_allDataArray == <span class="literal">nil</span>) {
+    <span class="keyword">self</span><span class="variable">.allDataArray</span> = [<span class="built_in">NSMutableArray</span> array];
+}
+<span class="keyword">return</span> _allDataArray;
+}
+
+- (<span class="keyword">void</span>)viewDidLoad
+{
+[<span class="keyword">super</span> viewDidLoad];
+    <span class="comment">// 当我们访问allDataArray的getter方法的时候，数组才被创建</span>
+    [<span class="keyword">self</span><span class="variable">.allDataArray</span> addObject:<span class="string">@"first object"</span>];
+}
+
+<span class="keyword">@end</span>
+</code></pre><p>在Swift中，普通的存储属性这样声明，当我们创建当前类的对象时候，属性也被创建了</p>
+<pre><code><span class="keyword">class</span> <span class="title">DataManager</span>: <span class="title">NSObject</span> {
+
+<span class="comment">// 声明可变数组属性</span>
+<span class="keyword">let</span> allDataArray = NSMutableArray()
+
+}
+
+<span class="comment">// 创建对象</span>
+<span class="keyword">let</span> manager = DataManager()
+</code></pre><p>当manager对象被创建的时候，allDataArray数组就被创建，如果我们长时间不使用allDataArray数组，这块空间就被浪费了，可以改成如下写法：在属性声明前面添加lazy关键字</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">DataManager2</span>: <span class="typename">NSObject {</span></span>
+
+<span class="comment">// 声明可变数组属性</span>
+lazy <span class="variable"><span class="keyword">var</span> allDataArray</span> = NSMutableArray()
+
+}
+
+<span class="comment">// 创建对象</span>
+let manager2 = DataManager2()
+
+<span class="comment">// 使用allDataArray属性</span>
+manager2.allDataArray.addObject(<span class="string">"first obj"</span>)
+</code></pre><p>在属性前面添加一个lazy关键字，这个属性就成了延迟存储属性，或者叫做懒加载对象。意思就是：只有当我们使用这个属性的时候，这个对象才被创建。如果我们不使用这个对象，也不会造成我们内存的浪费了。</p>
+<p>注意:延迟存储属性必须是变量(var),不可以是常量(let)</p>
+<p>还可以有如下写法：</p>
+<pre><code>class DataManager3: NSObject {
+
+// 声明延迟存储属性，当调用的时候才被创建
+lazy var allDataArray: NSMutableArray = {
+
+        let<span class="instruction"> array </span>=<span class="function"> NSMutableArray(</span><span class="function">)</span>
+       <span class="function"> array.addObject(</span><span class="string">"first"</span><span class="function">)</span>
+       <span class="function"> array.addObject(</span><span class="string">"second"</span><span class="function">)</span>
+       <span class="instruction"> return </span>array
+
+   <span class="function"> }(</span><span class="function">)</span>
+}
+</code></pre><p>   在项目中，某些地方使用延迟存储属性可以提高我们的代码质量，慢慢习惯使用吧</p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/12/22/动态归档/" itemprop="url">
                 动态归档
               </a>
@@ -295,108 +439,12 @@
 
       
         
-          <span itemprop="articleBody"><p>关于如何使用UIImagePickerController来拍照和录制视频，下面的程序中只要将_isVideo设置为YES就是视频录制模式，录制完后在主视图控制器中自动播放；如果将_isVideo设置为NO则为拍照模式，拍照完成之后在主视图控制器中显示拍摄的照片：</p>
-<pre><code><span class="comment">//</span>
-<span class="comment">//  ViewController.m</span>
-<span class="comment">//  UIImagePickerController</span>
-<span class="comment">//</span>
-<span class="comment">//  Created by Zhangtianqi  on 15/12/21.</span>
-
-<span class="preprocessor">#import <span class="title">"ViewController.h"</span></span>
-<span class="preprocessor">#import         <span class="title">&lt;MobileCoreServices/    MobileCoreServices.h&gt;</span></span>
-<span class="preprocessor">#import <span class="title">&lt;AVFoundation/AVFoundation.h&gt;</span></span>
-
-<span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span>     ()&lt;<span class="title">UIImagePickerControllerDelegate</span>,<span class="title">UINavigationControllerDelegate</span>&gt;</span>
-<span class="keyword">@property</span> (<span class="keyword">assign</span>,<span class="keyword">nonatomic</span>) <span class="keyword">int</span> isVideo;<span class="comment">//是否录制视频，如果为1表示录制视频，0代表拍照</span>
-<span class="keyword">@property</span> (<span class="keyword">strong</span>,<span class="keyword">nonatomic</span>) <span class="built_in">UIImagePickerController</span> *imagePicker;
-<span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UIImageView</span> *photo;<span class="comment">//照片展示视图</span>
-<span class="keyword">@property</span> (<span class="keyword">strong</span> ,<span class="keyword">nonatomic</span>) <span class="built_in">AVPlayer</span> *player;<span class="comment">//播放器，用于录制完视频后播放视频</span>
-
-<span class="keyword">@end</span>
-
-<span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span>
-
-<span class="preprocessor">#pragma mark - 控制器视图事件</span>
-- (<span class="keyword">void</span>)viewDidLoad {
-    [<span class="keyword">super</span> viewDidLoad];
-    <span class="comment">//通过这里设置当前程序是拍照还是录制视频</span>
-    _isVideo=<span class="literal">YES</span>;
-}
-
-<span class="preprocessor">#pragma mark - UI事件</span>
-<span class="comment">//点击拍照按钮</span>
-- (<span class="keyword">IBAction</span>)takeClick:(<span class="built_in">UIButton</span> *)sender {
-    [<span class="keyword">self</span> presentViewController:<span class="keyword">self</span><span class="variable">.imagePicker</span>     animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
-}
-
-<span class="preprocessor">#pragma mark -         UIImagePickerController代理方法</span>
-<span class="comment">//完成</span>
--(<span class="keyword">void</span>)imagePickerController:(<span class="built_in">UIImagePickerController</span> *)picker didFinishPickingMediaWithInfo:(<span class="built_in">NSDictionary</span> *)info{
-    <span class="built_in">NSString</span> *mediaType=[info objectForKey:<span class="built_in">UIImagePickerControllerMediaType</span>];
-    <span class="keyword">if</span> ([mediaType isEqualToString:(<span class="built_in">NSString</span> *)kUTTypeImage]) {<span class="comment">//如果是拍照</span>
-        <span class="built_in">UIImage</span> *image;
-        <span class="comment">//如果允许编辑则获得编辑后的照片，否则获取原始照片</span>
-        <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.imagePicker</span><span class="variable">.allowsEditing</span>) {
-            image=[info objectForKey:<span class="built_in">UIImagePickerControllerEditedImage</span>];<span class="comment">//获取编辑后的照片</span>
-        }<span class="keyword">else</span>{
-            image=[info objectForKey:<span class="built_in">UIImagePickerControllerOriginalImage</span>];<span class="comment">//获取原始照片</span>
-        }
-        [<span class="keyword">self</span><span class="variable">.photo</span> setImage:image];<span class="comment">//显示照片</span>
-        <span class="built_in">UIImageWriteToSavedPhotosAlbum</span>(image, <span class="literal">nil</span>, <span class="literal">nil</span>, <span class="literal">nil</span>);<span class="comment">//保存到相簿</span>
-    }<span class="keyword">else</span> <span class="keyword">if</span>([mediaType isEqualToString:(<span class="built_in">NSString</span> *)kUTTypeMovie]){<span class="comment">//如果是录制视频</span>
-        <span class="built_in">NSLog</span>(<span class="string">@"video..."</span>);
-        <span class="built_in">NSURL</span> *url=[info objectForKey:<span class="built_in">UIImagePickerControllerMediaURL</span>];<span class="comment">//视频路径</span>
-        <span class="built_in">NSString</span> *urlStr=[url path];
-        <span class="keyword">if</span> (<span class="built_in">UIVideoAtPathIsCompatibleWithSavedPhotosAlbum</span>(urlStr)) {
-            <span class="comment">//保存视频到相簿，注意也可以使用ALAssetsLibrary来保存</span>
-            <span class="built_in">UISaveVideoAtPathToSavedPhotosAlbum</span>(urlStr, <span class="keyword">self</span>, <span class="keyword">@selector</span>(video:didFinishSavingWithError:contextInfo:), <span class="literal">nil</span>);<span class="comment">//保存视频到相簿</span>
-        }
-
-    }
-
-    [<span class="keyword">self</span> dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
-}
--(<span class="keyword">void</span>)imagePickerControllerDidCancel:(<span class="built_in">UIImagePickerController</span> *)picker{
-    <span class="built_in">NSLog</span>(<span class="string">@"取消"</span>);
-}
-
-<span class="preprocessor">#pragma mark - 私有方法</span>
--(<span class="built_in">UIImagePickerController</span> *)imagePicker{
-    <span class="keyword">if</span> (!_imagePicker) {
-        _imagePicker=[[<span class="built_in">UIImagePickerController</span> alloc]init];
-        _imagePicker<span class="variable">.sourceType</span>=<span class="built_in">UIImagePickerControllerSourceTypeCamera</span>;<span class="comment">//设置image picker的来源，这里设置为摄像头</span>
-        _imagePicker<span class="variable">.cameraDevice</span>=<span class="built_in">UIImagePickerControllerCameraDeviceRear</span>;<span class="comment">//设置使用哪个摄像头，这里设置为后置摄像头</span>
-        <span class="keyword">if</span> (<span class="keyword">self</span><span class="variable">.isVideo</span>) {
-            _imagePicker<span class="variable">.mediaTypes</span>=@[(<span class="built_in">NSString</span> *)kUTTypeMovie];
-            _imagePicker<span class="variable">.videoQuality</span>=<span class="built_in">UIImagePickerControllerQualityTypeIFrame1280x720</span>;
-            _imagePicker<span class="variable">.cameraCaptureMode</span>=<span class="built_in">UIImagePickerControllerCameraCaptureModeVideo</span>;<span class="comment">//设置摄像头模式（拍照，录制视频）</span>
-
-        }<span class="keyword">else</span>{
-            _imagePicker<span class="variable">.cameraCaptureMode</span>=<span class="built_in">UIImagePickerControllerCameraCaptureModePhoto</span>;
-        }
-        _imagePicker<span class="variable">.allowsEditing</span>=<span class="literal">YES</span>;<span class="comment">//允许编辑</span>
-        _imagePicker<span class="variable">.delegate</span>=<span class="keyword">self</span>;<span class="comment">//设置代理，检测操作</span>
-    }
-    <span class="keyword">return</span> _imagePicker;
-}
-
-<span class="comment">//视频保存后的回调</span>
-- (<span class="keyword">void</span>)video:(<span class="built_in">NSString</span> *)videoPath didFinishSavingWithError:(<span class="built_in">NSError</span> *)error contextInfo:(<span class="keyword">void</span> *)contextInfo{
-    <span class="keyword">if</span> (error) {
-        <span class="built_in">NSLog</span>(<span class="string">@"保存视频过程中发生错误，错误信息:%@"</span>,error<span class="variable">.localizedDescription</span>);
-    }<span class="keyword">else</span>{
-        <span class="built_in">NSLog</span>(<span class="string">@"视频保存成功."</span>);
-        <span class="comment">//录制完之后自动播放</span>
-        <span class="built_in">NSURL</span> *url=[<span class="built_in">NSURL</span> fileURLWithPath:videoPath];
-        _player=[<span class="built_in">AVPlayer</span> playerWithURL:url];
-        <span class="built_in">AVPlayerLayer</span> *playerLayer=[<span class="built_in">AVPlayerLayer</span> playerLayerWithPlayer:_player];
-        playerLayer<span class="variable">.frame</span>=<span class="keyword">self</span><span class="variable">.photo</span><span class="variable">.frame</span>;
-        [<span class="keyword">self</span><span class="variable">.photo</span><span class="variable">.layer</span> addSublayer:playerLayer];
-        [_player play];
-
-    }
-}
-</code></pre></span>
+          <p>关于如何使用UIImagePickerController来拍照和录制视频，下面的程序中只要将_isVideo设置为YES就是视频录制模式，录制完后在主视图控制器中自动播放；如果将_isVideo设置为NO则为拍照模式，拍照完成之后在主视图控制器中显示拍摄的照片：<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/21/UIImagePicker拍照/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -923,90 +971,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/08/15/Socket编程/" itemprop="url">
-                Socket编程
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-08-15T12:35:24+08:00" content="2015-08-15">
-            2015-08-15
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h3 id="Socket技术">Socket技术</h3><ul>
-<li><p>基于网络通信</p>
-<ul>
-<li>和http协议相比<ul>
-<li>具体实现过程</li>
-<li>长连接,http是短连接</li>
-<li>http协议用来做超文本传输</li>
-<li>socket 什么都可以传
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/15/Socket编程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1046,7 +1010,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1060,7 +1024,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -1095,7 +1059,7 @@
             <div class="copyright" >
   
   &copy; &nbsp;  2014 - 
-  <span itemprop="copyrightYear">2015</span>
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>

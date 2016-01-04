@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="归档," />
+  <meta name="keywords" content="延迟加载," />
 
 
 
@@ -35,16 +35,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="自定义归档,可以实现对象内包含对象等的动态判断,方便使用">
+<meta name="description" content="所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。
+在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动态归档">
-<meta property="og:url" content="http://yoursite.com/2015/12/22/动态归档/index.html">
+<meta property="og:title" content="Swift_lazy()延迟存储属性">
+<meta property="og:url" content="http://yoursite.com/2016/01/04/Swift-lazy-延迟存储属性/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="自定义归档,可以实现对象内包含对象等的动态判断,方便使用">
-<meta property="og:updated_time" content="2015-12-22T14:04:40.000Z">
+<meta property="og:description" content="所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。
+在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒">
+<meta property="og:updated_time" content="2016-01-04T02:31:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动态归档">
-<meta name="twitter:description" content="自定义归档,可以实现对象内包含对象等的动态判断,方便使用">
+<meta name="twitter:title" content="Swift_lazy()延迟存储属性">
+<meta name="twitter:description" content="所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。
+在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +57,7 @@
   };
 </script>
 
-    <title> 动态归档 // 张天琦 </title>
+    <title> Swift_lazy()延迟存储属性 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -175,7 +178,7 @@
           
           
             
-              动态归档
+              Swift_lazy()延迟存储属性
             
           
         </h1>
@@ -184,8 +187,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-22T22:02:02+08:00" content="2015-12-22">
-            2015-12-22
+          <time itemprop="dateCreated" datetime="2016-01-04T10:28:37+08:00" content="2016-01-04">
+            2016-01-04
           </time>
         </span>
 
@@ -214,50 +217,79 @@
       
 
       
-        <span itemprop="articleBody"><p>自定义归档,可以实现对象内包含对象等的动态判断,方便使用<br><a id="more"></a></p>
-<pre><code><span class="preprocessor">#import <span class="title">&lt;objc/runtime.h&gt;</span></span>
-<span class="class"><span class="keyword">@implementation</span> <span class="title">NSObject</span> (<span class="title">AutoEncoding</span>)</span>
+        <span itemprop="articleBody"><p>所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。</p>
+<p>在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒加载对象，只有当我们使用的时候才会被创建。除了这些，我们自己也可以写很多。</p>
+<p>那么，在Swift中，如何实现所谓的懒加载对象呢？</p>
+<p>在Swift中，只需要一个lazy关键字即可实现，叫做延迟存储属性!</p>
+<p>首先看看OC中如何实现懒加载对象的吧。。。</p>
+<pre><code><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span>
 
--(instancetype)initWithCoder:(<span class="built_in">NSCoder</span> *)aDecoder{
- <span class="comment">//记录类中实例变量个数</span>
+<span class="comment">// 声明可变数组属性</span>
+<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span>     *allDataArray;
 
- <span class="keyword">unsigned</span> <span class="keyword">int</span> ivarCount = <span class="number">0</span>;
-
-Ivar *vars = class_copyIvarList(object_getClass(<span class="keyword">self</span>), &amp;ivarCount);
+<span class="keyword">@end</span>
 
 
-    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">self</span> init]) {
 
-        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ivarCount; i ++) {
+<span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span>
 
-            Ivar var = vars[i];
-<span class="comment">//                NSString *type = [NSString stringWithUTF8String:ivar_getTypeEncoding(var)];</span>
-            <span class="built_in">NSString</span> *name = [<span class="built_in">NSString</span> stringWithUTF8String:ivar_getName(var)];
-            [<span class="keyword">self</span> setValue:[aDecoder decodeObjectForKey:name] forKey:name];
-        }
-
-    }
-
-free(vars);
-<span class="keyword">return</span> <span class="keyword">self</span>;
+<span class="comment">// 重写getter方法，成为懒加载对象</span>
+- (<span class="built_in">NSMutableArray</span> *)allDataArray
+{
+<span class="keyword">if</span> (_allDataArray == <span class="literal">nil</span>) {
+    <span class="keyword">self</span><span class="variable">.allDataArray</span> = [<span class="built_in">NSMutableArray</span> array];
+}
+<span class="keyword">return</span> _allDataArray;
 }
 
--(<span class="keyword">void</span>)encodeWithCoder:(<span class="built_in">NSCoder</span> *)aCoder{
-<span class="comment">//    记录中 实例变量的个数</span>
-<span class="keyword">unsigned</span> <span class="keyword">int</span> ivarCount = <span class="number">0</span>;
-Ivar * vars = class_copyIvarList(object_getClass(<span class="keyword">self</span>), &amp;ivarCount);
-<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ivarCount; i ++) {
-    Ivar var = vars[i];
-<span class="comment">//        NSString *type = [NSString stringWithUTF8String:ivar_getTypeEncoding(var)];</span>
-    <span class="built_in">NSString</span> *name = [<span class="built_in">NSString</span> stringWithUTF8String:ivar_getName(var)];
-    <span class="keyword">id</span> value = [<span class="keyword">self</span> valueForKey:name];
-    [aCoder encodeObject:value forKey:name];
+- (<span class="keyword">void</span>)viewDidLoad
+{
+[<span class="keyword">super</span> viewDidLoad];
+    <span class="comment">// 当我们访问allDataArray的getter方法的时候，数组才被创建</span>
+    [<span class="keyword">self</span><span class="variable">.allDataArray</span> addObject:<span class="string">@"first object"</span>];
 }
 
-free(vars);
+<span class="keyword">@end</span>
+</code></pre><p>在Swift中，普通的存储属性这样声明，当我们创建当前类的对象时候，属性也被创建了</p>
+<pre><code><span class="keyword">class</span> <span class="title">DataManager</span>: <span class="title">NSObject</span> {
+
+<span class="comment">// 声明可变数组属性</span>
+<span class="keyword">let</span> allDataArray = NSMutableArray()
 
 }
-</code></pre></span>
+
+<span class="comment">// 创建对象</span>
+<span class="keyword">let</span> manager = DataManager()
+</code></pre><p>当manager对象被创建的时候，allDataArray数组就被创建，如果我们长时间不使用allDataArray数组，这块空间就被浪费了，可以改成如下写法：在属性声明前面添加lazy关键字</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">DataManager2</span>: <span class="typename">NSObject {</span></span>
+
+<span class="comment">// 声明可变数组属性</span>
+lazy <span class="variable"><span class="keyword">var</span> allDataArray</span> = NSMutableArray()
+
+}
+
+<span class="comment">// 创建对象</span>
+let manager2 = DataManager2()
+
+<span class="comment">// 使用allDataArray属性</span>
+manager2.allDataArray.addObject(<span class="string">"first obj"</span>)
+</code></pre><p>在属性前面添加一个lazy关键字，这个属性就成了延迟存储属性，或者叫做懒加载对象。意思就是：只有当我们使用这个属性的时候，这个对象才被创建。如果我们不使用这个对象，也不会造成我们内存的浪费了。</p>
+<p>注意:延迟存储属性必须是变量(var),不可以是常量(let)</p>
+<p>还可以有如下写法：</p>
+<pre><code>class DataManager3: NSObject {
+
+// 声明延迟存储属性，当调用的时候才被创建
+lazy var allDataArray: NSMutableArray = {
+
+        let<span class="instruction"> array </span>=<span class="function"> NSMutableArray(</span><span class="function">)</span>
+       <span class="function"> array.addObject(</span><span class="string">"first"</span><span class="function">)</span>
+       <span class="function"> array.addObject(</span><span class="string">"second"</span><span class="function">)</span>
+       <span class="instruction"> return </span>array
+
+   <span class="function"> }(</span><span class="function">)</span>
+}
+</code></pre><p>   在项目中，某些地方使用延迟存储属性可以提高我们的代码质量，慢慢习惯使用吧</p>
+</span>
       
     </div>
 
@@ -265,7 +297,7 @@ free(vars);
       
         <div class="post-tags">
           
-            <a href="/tags/归档/" rel="tag">#归档</a>
+            <a href="/tags/延迟加载/" rel="tag">#延迟加载</a>
           
         </div>
       
@@ -274,13 +306,11 @@ free(vars);
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/04/Swift-lazy-延迟存储属性/" rel="prev">Swift_lazy()延迟存储属性</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/21/UIImagePicker拍照/" rel="next">UIImagePicker拍照</a>
+              <a href="/2015/12/22/动态归档/" rel="next">动态归档</a>
             
           </div>
         </div>
