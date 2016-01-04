@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="iOS,手势," />
+  <meta name="keywords" content="mutating," />
 
 
 
@@ -35,25 +35,25 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="手势识别是具有互斥的原则的，比如单击和双击，如果它识别出一种手势，其后的手势将不被识别
-// 添加单击的手势
-UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
-tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
+<meta name="description" content="方法添加 mutating 关键字
+在swift中，enum和struct与C语言中的不同是：在Swift中我们可以给枚举和结构体添加方法，而C语言中不可以在这些方法中，我们可以任意获取属性的值，但是默认情况下不允许修改属性的值。我们需要添加mutating关键字，这样就可以对属性进行修改
+示例代码在结构体中的方法中添加mutating关键字，实现在方法内部修改属性的值
+struct Point">
 <meta property="og:type" content="article">
-<meta property="og:title" content="手势控制的使用">
-<meta property="og:url" content="http://yoursite.com/2014/10/04/手势控制的使用/index.html">
+<meta property="og:title" content="Swift_mutating">
+<meta property="og:url" content="http://yoursite.com/2016/01/04/Swift-mutating/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="手势识别是具有互斥的原则的，比如单击和双击，如果它识别出一种手势，其后的手势将不被识别
-// 添加单击的手势
-UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
-tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
-<meta property="og:updated_time" content="2015-12-18T09:58:18.000Z">
+<meta property="og:description" content="方法添加 mutating 关键字
+在swift中，enum和struct与C语言中的不同是：在Swift中我们可以给枚举和结构体添加方法，而C语言中不可以在这些方法中，我们可以任意获取属性的值，但是默认情况下不允许修改属性的值。我们需要添加mutating关键字，这样就可以对属性进行修改
+示例代码在结构体中的方法中添加mutating关键字，实现在方法内部修改属性的值
+struct Point">
+<meta property="og:updated_time" content="2016-01-04T02:34:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="手势控制的使用">
-<meta name="twitter:description" content="手势识别是具有互斥的原则的，比如单击和双击，如果它识别出一种手势，其后的手势将不被识别
-// 添加单击的手势
-UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
-tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
+<meta name="twitter:title" content="Swift_mutating">
+<meta name="twitter:description" content="方法添加 mutating 关键字
+在swift中，enum和struct与C语言中的不同是：在Swift中我们可以给枚举和结构体添加方法，而C语言中不可以在这些方法中，我们可以任意获取属性的值，但是默认情况下不允许修改属性的值。我们需要添加mutating关键字，这样就可以对属性进行修改
+示例代码在结构体中的方法中添加mutating关键字，实现在方法内部修改属性的值
+struct Point">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -63,7 +63,7 @@ tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
   };
 </script>
 
-    <title> 手势控制的使用 // 张天琦 </title>
+    <title> Swift_mutating // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -184,7 +184,7 @@ tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
           
           
             
-              手势控制的使用
+              Swift_mutating
             
           
         </h1>
@@ -193,8 +193,8 @@ tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2014-10-04T18:20:05+08:00" content="2014-10-04">
-            2014-10-04
+          <time itemprop="dateCreated" datetime="2016-01-04T10:33:02+08:00" content="2016-01-04">
+            2016-01-04
           </time>
         </span>
 
@@ -202,7 +202,7 @@ tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
           <span class="post-category" >
             &nbsp; | &nbsp; 分类于
             
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/技术篇/" itemprop="url" rel="index"><span itemprop="name">技术篇</span></a></span>
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/swift/" itemprop="url" rel="index"><span itemprop="name">swift</span></a></span>
 
               
               
@@ -223,106 +223,58 @@ tapGestureRecognizer.numberOfTapsRequired = 1; // 设置单击几次才触发">
       
 
       
-        <span itemprop="articleBody"><p>手势识别是具有互斥的原则的，比如单击和双击，如果它识别出一种手势，其后的手势将不被识别</p>
-<pre><code><span class="comment">// 添加单击的手势</span>
-<span class="built_in">UITapGestureRecognizer</span> *tapGestureRecognizer = [[<span class="built_in">UITapGestureRecognizer</span> alloc] init];
-tapGestureRecognizer<span class="variable">.numberOfTapsRequired</span> = <span class="number">1</span>; <span class="comment">// 设置单击几次才触发方法</span>
-[tapGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(tapGestureAction:)]; <span class="comment">// 添加点击手势的方法</span>
-[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:tapGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
-[tapGestureRecognizer release], tapGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
-</code></pre> <a id="more"></a>
-<pre><code><span class="comment">// 添加长按的手势 注意：会调用两次方法，开始长按调用一次  松开后再调用一次  当长按并且滑动的时候，会多次调用长按的方法</span>
-<span class="built_in">UILongPressGestureRecognizer</span> *pressLongGestureRecognizer = [[<span class="built_in">UILongPressGestureRecognizer</span> alloc] init];
-[pressLongGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(pressLongGestureAction:)]; <span class="comment">// 给长按手势添加方法</span>
-[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:pressLongGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
-[pressLongGestureRecognizer release], pressLongGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
+        <span itemprop="articleBody"><p>方法添加 mutating 关键字</p>
+<p>在swift中，enum和struct与C语言中的不同是：在Swift中我们可以给枚举和结构体添加方法，而C语言中不可以<br>在这些方法中，我们可以任意获取属性的值，但是默认情况下不允许修改属性的值。我们需要添加mutating关键字，这样就可以对属性进行修改</p>
+<p>示例代码<br>在结构体中的方法中添加mutating关键字，实现在方法内部修改属性的值</p>
+<pre><code><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>{
 
+<span class="keyword">var</span> x = <span class="number">0</span>, y = <span class="number">0</span>
 
-
-<span class="comment">// 添加捏合的手势  注意：捏合手势不是捏合一次调用一次方法，而是在捏合的过程中不停的调用方法</span>
-<span class="built_in">UIPinchGestureRecognizer</span> *pinchGestureRecognizer = [[<span class="built_in">UIPinchGestureRecognizer</span> alloc] init];
-[pinchGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(pinchGestureAction:)]; <span class="comment">// 添加捏合手势的方法</span>
-[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:pinchGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
-[pinchGestureRecognizer release], pinchGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
-
-
-
-<span class="comment">// 添加旋转的手势 注意：旋转手势是两指同时进行旋转</span>
-<span class="built_in">UIRotationGestureRecognizer</span> *rotationGestureRecognizer = [[<span class="built_in">UIRotationGestureRecognizer</span> alloc] init];
-[rotationGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(rotationGestureAction:)]; <span class="comment">// 给旋转手势添加方法</span>
-[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:rotationGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
-[rotationGestureRecognizer release], rotationGestureRecognizer = <span class="literal">nil</span>;
-
-
-
-<span class="comment">// 添加滑动的手势  注意： 快速移动，是用于监测滑动的方向的</span>
-<span class="built_in">UISwipeGestureRecognizer</span> *swipGestureRecognizer = [[<span class="built_in">UISwipeGestureRecognizer</span> alloc] init];
-swipGestureRecognizer<span class="variable">.direction</span> = <span class="built_in">UISwipeGestureRecognizerDirectionUp</span>; <span class="comment">// 添加手势的方法</span>
-<span class="comment">// 以下是设置滑动的方向</span>
-<span class="comment">// typedef NS_OPTIONS(NSUInteger, UISwipeGestureRecognizerDirection) {</span>
-<span class="comment">//    UISwipeGestureRecognizerDirectionRight = 1 &lt;&lt; 0, // 从左向右滑动</span>
-<span class="comment">//    UISwipeGestureRecognizerDirectionLeft  = 1 &lt;&lt; 1, // 从右向左滑动</span>
-<span class="comment">//    UISwipeGestureRecognizerDirectionUp    = 1 &lt;&lt; 2, // 从下向上滑动</span>
-<span class="comment">//    UISwipeGestureRecognizerDirectionDown  = 1 &lt;&lt; 3  // 从上向下滑动</span>
-<span class="comment">// };</span>
-[swipGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(swipGestureAction:)]; <span class="comment">// 给滑动手势添加方法</span>
-[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:swipGestureRecognizer]; <span class="comment">// 添加到当前的View上</span>
-[swipGestureRecognizer release], swipGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
-
-
-
-<span class="comment">// 添加拖移手势  注意：慢速移动，是用于监测偏移的量的</span>
-<span class="built_in">UIPanGestureRecognizer</span> *panGestureRecognizer = [[<span class="built_in">UIPanGestureRecognizer</span> alloc] init];
-[panGestureRecognizer addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(panGestureAction:)]; <span class="comment">// 添加托移收拾的方法</span>
-[<span class="keyword">self</span><span class="variable">.view</span> addGestureRecognizer:panGestureRecognizer]; <span class="comment">// 添加到当前的View</span>
-[panGestureRecognizer release], panGestureRecognizer = <span class="literal">nil</span>; <span class="comment">// 释放内存</span>
-
-
-<span class="preprocessor">#pragma mark - 实现单击手势的方法</span>
-- (<span class="keyword">void</span>)tapGestureAction:(<span class="built_in">UITapGestureRecognizer</span> *) sender {
-<span class="built_in">NSLog</span>(<span class="string">@"您  轻拍   了屏幕"</span>);
-</code></pre><p>}</p>
-<pre><code><span class="preprocessor">#pragma mark - 实现长按手势的方法</span>
-- (<span class="keyword">void</span>)pressLongGestureAction:(<span class="built_in">UILongPressGestureRecognizer</span> *) sender {
-<span class="built_in">NSLog</span>(<span class="string">@"您   长按   了屏幕"</span>);
-</code></pre><p>}</p>
-<pre><code><span class="preprocessor">#pragma mark - 实现了捏合手势的方法</span>
-- (<span class="keyword">void</span>)pinchGestureAction:(<span class="built_in">UIPinchGestureRecognizer</span> *) sender {
-<span class="built_in">NSLog</span>(<span class="string">@"您   捏合   了屏幕"</span>);
-</code></pre><p>}</p>
-<pre><code><span class="preprocessor">#pragma mark - 实现旋转手势的方法</span>
-- (<span class="keyword">void</span>)rotationGestureAction:(<span class="built_in">UIRotationGestureRecognizer</span> *) sender {
-<span class="built_in">NSLog</span>(<span class="string">@"您使用了   旋转   手势"</span>);
-</code></pre><p>}</p>
-<pre><code><span class="preprocessor">#pragma mark - 实现滑动手势的方法</span>
-- (<span class="keyword">void</span>)swipGestureAction:(<span class="built_in">UISwipeGestureRecognizer</span> *) sender {   
-<span class="built_in">NSLog</span>(<span class="string">@"您   滑动    了屏幕"</span>);
-</code></pre><p>}</p>
-<pre><code><span class="preprocessor">#pragma mark - 实现了托移手势的方法</span>
-- (<span class="keyword">void</span>)panGestureAction:(<span class="built_in">UIPanGestureRecognizer</span> *) sender {
-<span class="built_in">NSLog</span>(<span class="string">@"您   托移   了。。。。"</span>);
-</code></pre><p>}</p>
-<pre><code>- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions
-{
-application<span class="variable">.applicationSupportsShakeToEdit</span> = <span class="literal">YES</span>;
-<span class="keyword">return</span> <span class="literal">YES</span>;
+<span class="comment">// 不添加 mutating 关键字，不能在实例方法中修改属性值</span>
+<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">moveXBy</span><span class="params">(x: Int, yBy y: Int)</span></span> {
+    <span class="keyword">self</span>.x += x
+    <span class="keyword">self</span>.y += y
 }
--(<span class="built_in">BOOL</span>)canBecomeFirstResponder {
-<span class="keyword">return</span> <span class="literal">YES</span>;
 }
--(<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated {
-[<span class="keyword">super</span> viewDidAppear:animated];
-[<span class="keyword">self</span> becomeFirstResponder];
+</code></pre><p>在枚举中的方法中添加mutating关键字，实现在方法内部修改自身的值</p>
+<pre><code><span class="class"><span class="keyword">enum</span> <span class="title">ChangeStateSwitch</span> </span>{
+
+<span class="keyword">case</span> <span class="type">Off</span>, <span class="type">Low</span>, <span class="type">High</span>
+
+<span class="comment">// 不添加 mutating 关键字，不能在实例方法中修改属性值</span>
+<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">next</span><span class="params">()</span></span> {
+    <span class="keyword">switch</span> <span class="keyword">self</span> {
+    <span class="keyword">case</span> .<span class="type">Off</span>:
+        <span class="keyword">self</span> = .<span class="type">Low</span>
+    <span class="keyword">case</span> .<span class="type">Low</span>:
+        <span class="keyword">self</span> = .<span class="type">High</span>
+    <span class="keyword">case</span> .<span class="type">High</span>:
+        <span class="keyword">self</span> = .<span class="type">Off</span>
+    }
 }
-- (<span class="keyword">void</span>)viewWillDisappear:(<span class="built_in">BOOL</span>)animated {
-[<span class="keyword">self</span> resignFirstResponder];
-[<span class="keyword">super</span> viewWillDisappear:animated];
 }
-- (<span class="keyword">void</span>)motionEnded:(<span class="built_in">UIEventSubtype</span>)motion withEvent:(<span class="built_in">UIEvent</span> *)event
-{
-<span class="keyword">if</span> (motion == <span class="built_in">UIEventSubtypeMotionShake</span>) {
-    <span class="built_in">NSLog</span>(<span class="string">@"检测到晃动"</span>);
+</code></pre><p>将protocol的方法声明为mutating</p>
+<p>在声明协议的时候，给协议方法添加mutating关键字，针对结构体和枚举来说，会有很大的帮助，这样，结构体和枚举在这个协议方法中就可以实现修改属性的值了</p>
+<pre><code><span class="class"><span class="keyword">protocol</span> <span class="title">MyProtocol</span> </span>{
+<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">change</span><span class="params">()</span></span>
 }
+</code></pre><p>当我们的结构体遵守了协议，实现协议方法的时候，才可以在协议方法中对属性进行修改，否则直接报错</p>
+<pre><code><span class="class"><span class="keyword">struct</span> <span class="title">MyCar</span>: <span class="title">MyProtocol</span> </span>{
+<span class="keyword">var</span> price = <span class="number">3459234.23</span>
+
+<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">change</span><span class="params">()</span></span> {
+    price = <span class="number">56783.2</span>
+}
+}
+</code></pre><p>对于类来说，协议方法中添加了mutating是无意义的，因为类中的方法本身就可以修改变量</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Car</span>: <span class="title">MyProtocol</span> </span>{
+
+<span class="keyword">var</span> price = <span class="number">8923.2</span>
+
+<span class="func"><span class="keyword">func</span> <span class="title">change</span><span class="params">()</span></span> {
+    price = <span class="number">3243.2</span>
+}
+
 }
 </code></pre></span>
       
@@ -332,9 +284,7 @@ application<span class="variable">.applicationSupportsShakeToEdit</span> = <span
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
-          
-            <a href="/tags/手势/" rel="tag">#手势</a>
+            <a href="/tags/mutating/" rel="tag">#mutating</a>
           
         </div>
       
@@ -343,13 +293,11 @@ application<span class="variable">.applicationSupportsShakeToEdit</span> = <span
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/12/27/hexo博客搭建/" rel="prev">hexo博客搭建</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/10/01/Swiftype添加站内搜索/" rel="next">Swiftype添加站内搜索</a>
+              <a href="/2016/01/04/Swift-lazy-延迟存储属性/" rel="next">Swift_lazy()延迟存储属性</a>
             
           </div>
         </div>

@@ -176,6 +176,131 @@
           
           
             
+              <a class="post-title-link" href="/2016/01/04/Swift-mutating/" itemprop="url">
+                Swift_mutating
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-04T10:33:02+08:00" content="2016-01-04">
+            2016-01-04
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/swift/" itemprop="url" rel="index"><span itemprop="name">swift</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>方法添加 mutating 关键字</p>
+<p>在swift中，enum和struct与C语言中的不同是：在Swift中我们可以给枚举和结构体添加方法，而C语言中不可以<br>在这些方法中，我们可以任意获取属性的值，但是默认情况下不允许修改属性的值。我们需要添加mutating关键字，这样就可以对属性进行修改</p>
+<p>示例代码<br>在结构体中的方法中添加mutating关键字，实现在方法内部修改属性的值</p>
+<pre><code><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>{
+
+<span class="keyword">var</span> x = <span class="number">0</span>, y = <span class="number">0</span>
+
+<span class="comment">// 不添加 mutating 关键字，不能在实例方法中修改属性值</span>
+<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">moveXBy</span><span class="params">(x: Int, yBy y: Int)</span></span> {
+    <span class="keyword">self</span>.x += x
+    <span class="keyword">self</span>.y += y
+}
+}
+</code></pre><p>在枚举中的方法中添加mutating关键字，实现在方法内部修改自身的值</p>
+<pre><code><span class="class"><span class="keyword">enum</span> <span class="title">ChangeStateSwitch</span> </span>{
+
+<span class="keyword">case</span> <span class="type">Off</span>, <span class="type">Low</span>, <span class="type">High</span>
+
+<span class="comment">// 不添加 mutating 关键字，不能在实例方法中修改属性值</span>
+<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">next</span><span class="params">()</span></span> {
+    <span class="keyword">switch</span> <span class="keyword">self</span> {
+    <span class="keyword">case</span> .<span class="type">Off</span>:
+        <span class="keyword">self</span> = .<span class="type">Low</span>
+    <span class="keyword">case</span> .<span class="type">Low</span>:
+        <span class="keyword">self</span> = .<span class="type">High</span>
+    <span class="keyword">case</span> .<span class="type">High</span>:
+        <span class="keyword">self</span> = .<span class="type">Off</span>
+    }
+}
+}
+</code></pre><p>将protocol的方法声明为mutating</p>
+<p>在声明协议的时候，给协议方法添加mutating关键字，针对结构体和枚举来说，会有很大的帮助，这样，结构体和枚举在这个协议方法中就可以实现修改属性的值了</p>
+<pre><code><span class="class"><span class="keyword">protocol</span> <span class="title">MyProtocol</span> </span>{
+<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">change</span><span class="params">()</span></span>
+}
+</code></pre><p>当我们的结构体遵守了协议，实现协议方法的时候，才可以在协议方法中对属性进行修改，否则直接报错</p>
+<pre><code><span class="class"><span class="keyword">struct</span> <span class="title">MyCar</span>: <span class="title">MyProtocol</span> </span>{
+<span class="keyword">var</span> price = <span class="number">3459234.23</span>
+
+<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">change</span><span class="params">()</span></span> {
+    price = <span class="number">56783.2</span>
+}
+}
+</code></pre><p>对于类来说，协议方法中添加了mutating是无意义的，因为类中的方法本身就可以修改变量</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Car</span>: <span class="title">MyProtocol</span> </span>{
+
+<span class="keyword">var</span> price = <span class="number">8923.2</span>
+
+<span class="func"><span class="keyword">func</span> <span class="title">change</span><span class="params">()</span></span> {
+    price = <span class="number">3243.2</span>
+}
+
+}
+</code></pre></span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/01/04/Swift-lazy-延迟存储属性/" itemprop="url">
                 Swift_lazy()延迟存储属性
               </a>
@@ -905,72 +1030,6 @@ lazy var allDataArray: NSMutableArray = {
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/09/10/NSURLSession下载与缓存/" itemprop="url">
-                NSURLSession下载与缓存
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-10T10:00:25+08:00" content="2015-09-10">
-            2015-09-10
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>NSURLSession下载与缓存<br>iOS9要求网络请求需要使用NSURLSession,那么本篇文章<br>就使用NSURLsession来实现视频的下载,图片的下载、取消下载、恢复下<br>载和缓存功能，期望与大家一起学习。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/10/NSURLSession下载与缓存/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1010,21 +1069,21 @@ lazy var allDataArray: NSMutableArray = {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
