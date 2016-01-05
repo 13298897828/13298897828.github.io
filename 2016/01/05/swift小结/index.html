@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="分屏," />
+  <meta name="keywords" content="swift总结," />
 
 
 
@@ -35,29 +35,34 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="这边那边，两边都兼顾(简介)Slide Over现在，你不必离开正在使用的 app，便可以打开另一个 app。这样，你就能快速浏览网页，回复文本信息，或是随手记下一条备忘，然后将它们滑向一边，回到之前使用的 app 中。">
+<meta name="description" content="数组相关语法更新var array = [1,4,7]
+// 数组内插入一个新的数组
+array.insertContentsOf([9,6], at:1)
+// 替换某个位置为一个新的数组
+array.replaceRange(0...2, with: [1,1,0])
+// 排序
+array.sortInPlace { $0 &amp;lt; $1 }">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS分屏多任务(Slide Over &Split View)">
-<meta property="og:url" content="http://yoursite.com/2015/11/10/iOS分屏多任务-Slide-Over-Split-View/index.html">
+<meta property="og:title" content="swift小结">
+<meta property="og:url" content="http://yoursite.com/2016/01/05/swift小结/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="这边那边，两边都兼顾(简介)Slide Over现在，你不必离开正在使用的 app，便可以打开另一个 app。这样，你就能快速浏览网页，回复文本信息，或是随手记下一条备忘，然后将它们滑向一边，回到之前使用的 app 中。">
-<meta property="og:image" content="http://i12.tietuku.com/3363b86b517cdf5d.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/6a79d875927189b6.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/3c2a436b0a5aacb9.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/a69f450ad37d72a4.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/08f603ea59b6987d.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/e35849f51c99738a.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/9755851da6d211c3.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/29602df68e0ef1ea.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/0be5ba72463b5d96.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/b56c74cd48058164.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/79cc37867326f03a.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/14c7e780815681ef.jpg">
-<meta property="og:image" content="http://i5.tietuku.com/68a7c8f1a962527d.jpg">
-<meta property="og:updated_time" content="2015-12-12T05:19:55.000Z">
+<meta property="og:description" content="数组相关语法更新var array = [1,4,7]
+// 数组内插入一个新的数组
+array.insertContentsOf([9,6], at:1)
+// 替换某个位置为一个新的数组
+array.replaceRange(0...2, with: [1,1,0])
+// 排序
+array.sortInPlace { $0 &amp;lt; $1 }">
+<meta property="og:updated_time" content="2016-01-05T05:26:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS分屏多任务(Slide Over &Split View)">
-<meta name="twitter:description" content="这边那边，两边都兼顾(简介)Slide Over现在，你不必离开正在使用的 app，便可以打开另一个 app。这样，你就能快速浏览网页，回复文本信息，或是随手记下一条备忘，然后将它们滑向一边，回到之前使用的 app 中。">
+<meta name="twitter:title" content="swift小结">
+<meta name="twitter:description" content="数组相关语法更新var array = [1,4,7]
+// 数组内插入一个新的数组
+array.insertContentsOf([9,6], at:1)
+// 替换某个位置为一个新的数组
+array.replaceRange(0...2, with: [1,1,0])
+// 排序
+array.sortInPlace { $0 &amp;lt; $1 }">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -67,7 +72,7 @@
   };
 </script>
 
-    <title> iOS分屏多任务(Slide Over &Split View) // 张天琦 </title>
+    <title> swift小结 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -188,7 +193,7 @@
           
           
             
-              iOS分屏多任务(Slide Over &Split View)
+              swift小结
             
           
         </h1>
@@ -197,8 +202,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-10T13:05:19+08:00" content="2015-11-10">
-            2015-11-10
+          <time itemprop="dateCreated" datetime="2016-01-05T13:22:26+08:00" content="2016-01-05">
+            2016-01-05
           </time>
         </span>
 
@@ -206,7 +211,7 @@
           <span class="post-category" >
             &nbsp; | &nbsp; 分类于
             
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/swift/" itemprop="url" rel="index"><span itemprop="name">swift</span></a></span>
 
               
               
@@ -227,60 +232,14 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="这边那边，两边都兼顾(简介)">这边那边，两边都兼顾(简介)</h3><h4 id="Slide_Over">Slide Over</h4><p>现在，你不必离开正在使用的 app，便可以打开另一个 app。这样，你就能快速浏览网页，回复文本信息，或是随手记下一条备忘，然后将它们滑向一边，回到之前使用的 app 中。<br><img src="http://i12.tietuku.com/3363b86b517cdf5d.jpg" alt=""></p>
-<a id="more"></a>
-<h4 id="Split_View">Split View</h4><p>有了 Split View，你可以更进一步，同时让两个 app 保持开启和激活。你可以一边画画，一边把照片摆在旁边作为参考，或是在撰写论文时，从 iBooks 的电子书中拷贝引文。当所需的一切尽在眼前，你也就更容易保持专注了。<br><img src="http://i12.tietuku.com/6a79d875927189b6.jpg" alt=""></p>
-<h3 id="打开方式">打开方式</h3><p>大家都知道，从屏幕上方滑入，可以打开通知栏。从屏幕下方滑入，可以显示控制栏。<code>Slide Over</code>和<code>Split View</code>打开的方式就是在打开某个应用程序的状态下，从屏幕右侧滑入。</p>
-<hr>
-<p>在iOS9中，Slide Over和Split View可以让我们实现多任务处理了。一直期盼的功能终于出现了.</p>
-<h3 id="关于支持的设备">关于支持的设备</h3><p><code>Slide Over</code> 支持: <code>iPad mini2、iPad mini3、iPad Air、iPad Air2</code><br><code>Split View</code> 支持: <code>iPad Air2</code>，应该还会支持过几天要发布的iPad Pro哦</p>
-<h3 id="对于开发">对于开发</h3><p>注意：这两个功能只适用于<code>iPad</code>项目，不支持iPhone项目的<br>当我们创建好了一个iPad项目之后，这两个功能都是默认支持的。可以直接使用。<br><img src="http://i12.tietuku.com/3c2a436b0a5aacb9.jpg" alt=""><br>那么，如果项目只需要全屏使用的话，是可以把这个功能关掉的。只需要在<code>Info.plist</code>文件中添加<code>UIRequiresFullScreenRow</code>，并设置为YES，即可。</p>
-<h3 id="Slide_Over开发">Slide Over开发</h3><p><img src="http://i12.tietuku.com/a69f450ad37d72a4.jpg" alt=""></p>
-<p>对于<code>Slide Over</code>来说，并不是同时运行两个程序，这种状态下，只能操作右侧的地图程序，左侧的通讯录其实是处于后台状态的，当我们触碰通讯录区域，右侧地图会自动消失。只是右侧的程序覆盖了左侧的程序而已。<br>如果想要程序支持<code>Slide Over</code>，最起码也要支持4个方向的旋转:</p>
-<ul>
-<li>1.打开你工程的设置，4个方向全部勾选（iPad项目，默认就是全部勾选的）<br><img src="http://i12.tietuku.com/08f603ea59b6987d.jpg" alt=""></li>
-<li>2.借助<code>Size Classes</code>和<code>AutoLayout</code>，来实现Demo</li>
-<li>3.先来看下<code>视图分隔布局种类</code>示意图:<br><img src="http://i12.tietuku.com/e35849f51c99738a.jpg" alt=""></li>
-</ul>
-<pre><code>竖屏: [<span class="string">W:</span> Regular <span class="string">H:</span> Regular]
-横屏: [<span class="string">W:</span> Regular <span class="string">H:</span> Regular]
-竖屏Slide <span class="string">Over:</span> 左侧[<span class="string">W:</span> Compact <span class="string">H:</span> Regular] 右侧[<span class="string">W:</span> Compact <span class="string">H:</span> Regular]
-横屏Split View(<span class="number">2</span>:<span class="number">1</span>): 左侧[<span class="string">W:</span> Regular <span class="string">H:</span> Regular] 右侧[<span class="string">W:</span> Compact <span class="string">H:</span> Regular]
-横屏Split View(<span class="number">1</span>:<span class="number">1</span>): 左侧[<span class="string">W:</span> Compact <span class="string">H:</span> Regular] 右侧[<span class="string">W:</span> Compact <span class="string">H:</span> Regular]
-</code></pre><p>关于<code>Size Classes</code>中的布局种类，大家只有熟记于心，开发的时候才能非常快速</p>
-<ul>
-<li><p>4.打开项目的<code>Main.Storyboard</code>文件<br>添加三个View视图，在<code>W: Any H: Any</code>情况下添加约束如下：<br><img src="http://i12.tietuku.com/9755851da6d211c3.jpg" alt=""><br>三个视图等宽，平分屏幕的宽度。<br>在我们运行的过程中，会看到如下效果:<br><img src="http://i12.tietuku.com/29602df68e0ef1ea.jpg" alt=""><br>如果我们想要在<code>Slide Over</code>中，布局是横向的，该如何处理呢？继续向下看~</p>
-</li>
-<li><p>5.回到<code>Main.Storyboard</code>文件中，选择<code>W: Compact H: Regular</code>布局</p>
-</li>
-</ul>
-<p>清空所有的约束<br><img src="http://i12.tietuku.com/0be5ba72463b5d96.jpg" alt=""><br>调整三个View的位置，重新添加如下约束：<br><img src="http://i12.tietuku.com/b56c74cd48058164.jpg" alt=""><br>三个View横向摆放，平分屏幕的高度<br>运行之后，看到如下效果：</p>
-<p><img src="http://i12.tietuku.com/79cc37867326f03a.jpg" alt=""><br>这样，就实现了<code>Slide Over</code>状态和正常状态不同的布局。很简单的，无非就是通过<code>Size Classes</code>添加了两套约束而已。</p>
-<h4 id="Split_View-1">Split View</h4><p>这个更简单啦。<br>因为你已经做完了，刚刚添加的约束在Split View状态下，也起作用。<br>如果左侧的应用也支持Split View的话，直接通过这个<br><img src="http://i12.tietuku.com/14c7e780815681ef.jpg" alt=""><br>向左拖拽即可。便可看到如下效果：<br><img src="http://i5.tietuku.com/68a7c8f1a962527d.jpg" alt=""></p>
-<p>在Split View情况下，两个应用是可以同时进行操作的。这就实现了多任务处理。</p>
-<h4 id="代码处理">代码处理</h4><p>本人不推荐使用代码进行布局，原因：太麻烦、太麻烦、太麻烦(重要事情说三遍)。<br>和我一样想法的同学请忽略下面的代码。<br>在控制器中重写如下方法：</p>
-<pre><code><span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">willTransitionToTraitCollection</span><span class="params">(newCollection: UITraitCollection, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)</span></span> {
-
-<span class="comment">// 通过判断，做不同处理</span>
-<span class="keyword">if</span> newCollection.horizontalSizeClass == <span class="type">UIUserInterfaceSizeClass</span>.<span class="type">Compact</span> {
-
-    <span class="comment">// 处理Slide Over 和 Split View 约束的更新</span>
-    <span class="comment">// ...</span>
-
-} <span class="keyword">else</span> { 
-
-    <span class="comment">// 处理正常状态的约束的更新</span>
-    <span class="comment">// ...</span>
-
-}
-}
-</code></pre><h3 id="注意细节">注意细节</h3><ul>
-<li>UIScreen.bounds 和 UIWindow.bounds 的尺寸大小不再相同，UIWindow可能只有屏幕的 1/2 或 1/3了</li>
-<li>如果你的App不使用Slide Over和Split View功能，那么你的App也不能出现在Slide Over 区域中，尽管你的App 运行在多任务环境中</li>
-<li>即使是Split View模式，App也得继续在各自的沙盒（Sandbox）中运行</li>
-<li>需要考虑App支持的版本，如果还需要支持 iOS 6 神马的，做好哭得准备吧，版本判断</li>
-</ul>
-</span>
+        <span itemprop="articleBody"><h3 id="数组相关语法更新">数组相关语法更新</h3><pre><code>var <span class="built_in">array</span> = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>]
+<span class="comment">// 数组内插入一个新的数组</span>
+<span class="built_in">array</span>.insertContentsOf([<span class="number">9</span>,<span class="number">6</span>], at:<span class="number">1</span>)
+<span class="comment">// 替换某个位置为一个新的数组</span>
+<span class="built_in">array</span>.replaceRange(<span class="number">0.</span>.<span class="number">.2</span>, with: [<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>])
+<span class="comment">// 排序</span>
+<span class="built_in">array</span>.sortInPlace { $<span class="number">0</span> &lt; $<span class="number">1</span> }
+</code></pre></span>
       
     </div>
 
@@ -288,7 +247,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/分屏/" rel="tag">#分屏</a>
+            <a href="/tags/swift总结/" rel="tag">#swift总结</a>
           
         </div>
       
@@ -297,13 +256,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/20/使用WKWebView替换UIWebView/" rel="prev">使用WKWebView替换UIWebView</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/10/3DTouch、ShortcutItem、Peek-And-Pop/" rel="next">3DTouch、ShortcutItem、Peek And Pop</a>
+              <a href="/2016/01/04/Swift-mutating/" rel="next">Swift_mutating</a>
             
           </div>
         </div>
@@ -408,7 +365,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#这边那边，两边都兼顾(简介)"><span class="nav-number">1.</span> <span class="nav-text">这边那边，两边都兼顾(简介)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Slide_Over"><span class="nav-number">1.1.</span> <span class="nav-text">Slide Over</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Split_View"><span class="nav-number">1.2.</span> <span class="nav-text">Split View</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开方式"><span class="nav-number">2.</span> <span class="nav-text">打开方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于支持的设备"><span class="nav-number">3.</span> <span class="nav-text">关于支持的设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于开发"><span class="nav-number">4.</span> <span class="nav-text">对于开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Slide_Over开发"><span class="nav-number">5.</span> <span class="nav-text">Slide Over开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Split_View-1"><span class="nav-number">5.1.</span> <span class="nav-text">Split View</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码处理"><span class="nav-number">5.2.</span> <span class="nav-text">代码处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意细节"><span class="nav-number">6.</span> <span class="nav-text">注意细节</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数组相关语法更新"><span class="nav-number">1.</span> <span class="nav-text">数组相关语法更新</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
