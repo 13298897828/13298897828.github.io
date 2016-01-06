@@ -41,7 +41,8 @@ array.insertContentsOf([9,6], at:1)
 // 替换某个位置为一个新的数组
 array.replaceRange(0...2, with: [1,1,0])
 // 排序
-array.sortInPlace { $0 &amp;lt; $1 }">
+
+//    数组排序还可以调用 sort方法,与sorted不一样的是,sort排序是修改数组本身排序且不会返回">
 <meta property="og:type" content="article">
 <meta property="og:title" content="swift小结">
 <meta property="og:url" content="http://yoursite.com/2016/01/05/swift小结/index.html">
@@ -52,8 +53,9 @@ array.insertContentsOf([9,6], at:1)
 // 替换某个位置为一个新的数组
 array.replaceRange(0...2, with: [1,1,0])
 // 排序
-array.sortInPlace { $0 &amp;lt; $1 }">
-<meta property="og:updated_time" content="2016-01-05T05:26:54.000Z">
+
+//    数组排序还可以调用 sort方法,与sorted不一样的是,sort排序是修改数组本身排序且不会返回">
+<meta property="og:updated_time" content="2016-01-05T06:39:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="swift小结">
 <meta name="twitter:description" content="数组相关语法更新var array = [1,4,7]
@@ -62,7 +64,8 @@ array.insertContentsOf([9,6], at:1)
 // 替换某个位置为一个新的数组
 array.replaceRange(0...2, with: [1,1,0])
 // 排序
-array.sortInPlace { $0 &amp;lt; $1 }">
+
+//    数组排序还可以调用 sort方法,与sorted不一样的是,sort排序是修改数组本身排序且不会返回">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -238,6 +241,8 @@ array.sortInPlace { $0 &amp;lt; $1 }">
 <span class="comment">// 替换某个位置为一个新的数组</span>
 <span class="built_in">array</span>.replaceRange(<span class="number">0.</span>.<span class="number">.2</span>, with: [<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>])
 <span class="comment">// 排序</span>
+
+<span class="comment">//    数组排序还可以调用 sort方法,与sorted不一样的是,sort排序是修改数组本身排序且不会返回结果,sorted则返回排序后的结果但不修改数组本身。所以调用sort方法的数组只能为var定义的变量</span>
 <span class="built_in">array</span>.sortInPlace { $<span class="number">0</span> &lt; $<span class="number">1</span> }
 </code></pre></span>
       
@@ -255,6 +260,8 @@ array.sortInPlace { $0 &amp;lt; $1 }">
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/06/解决和StoryBoard问题/" rel="prev">解决和StoryBoard问题</a>
             
           </div>
 
@@ -323,21 +330,21 @@ array.sortInPlace { $0 &amp;lt; $1 }">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

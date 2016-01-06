@@ -176,6 +176,90 @@
           
           
             
+              <a class="post-title-link" href="/2016/01/06/解决和StoryBoard问题/" itemprop="url">
+                解决和StoryBoard问题
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-01-06T10:07:30+08:00" content="2016-01-06">
+            2016-01-06
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS可视化/" itemprop="url" rel="index"><span itemprop="name">iOS可视化</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><h3 id="Storyboard_Refactor">Storyboard Refactor</h3><p>Refactor这个功能，让我们团队开发使用Storyboard更加的方便与便捷！</p>
+<p>iOS9推出的新特性，但是现在才发现如何使用，真的是浪费啊。。。</p>
+<p>我个人比较喜欢使用可视化编程进行项目的研发，但是有一些操作是不太友好的。在团队开发中，每个成员使用了一个Storyboard，这样项目就存在了很多个Storyboard，最后我们需要通过代码，将多个Storyboard整合在一起的，实在是非常的麻烦。有了这个Storyboard Refactor，这将变得超级简单。</p>
+<p>本教程以微信框架作为示例：</p>
+<p>看下图：<br><img src="http://i4.tietuku.com/b5eda942c920224c.jpg" alt=""><br>使用Storyboard搭建的微信框架，只是搭建了一部分，Storyboard中就存在了很多的控制器，操作起来也非常的麻烦。并且在团队开发的过程中，同时处理这一个Storyboard无异于作死啊。</p>
+<p>比较好的方法是：把每一个模块都抽成一个Storyboard，然后分别在自己里面处理，团队开发的时候，也不至于修改了别人的文件。</p>
+<p>之前我们都是通过代码进行关联，相当的烦人，现在好了，很简单：</p>
+<p>1.选中要抽出去的控制器们<br><img src="http://i4.tietuku.com/ba9ef9f79ee6ecf5.jpg" alt=""></p>
+<p>2.选择命令执行<br><img src="http://m1.yea.im/4VJ.jpg" alt=""></p>
+<p>3.输入名称，按回车搞定<br><img src="http://i4.tietuku.com/853746681bb2fc33.jpg" alt=""><br>4.原来得Main.storyboard就变成了这个样子：<br><img src="http://i4.tietuku.com/7517e8d124ba0d68.jpg" alt=""></p>
+<p>大家看到圈中的这个就是：Storyboard Reference，它代表了一个Storyboard，这样就可以从一个Storyboard关联到另一个Storyboard了</p>
+<p>5.这是刚刚创建的Find.storyboard<br><img src="http://i4.tietuku.com/a21770ed42b858e0.jpg" alt=""><br>开发者只需要在自己的Storyboard中进行自己的处理就好了，省去了合代码的时候的麻烦</p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/01/05/swift小结/" itemprop="url">
                 swift小结
               </a>
@@ -224,6 +308,8 @@
 <span class="comment">// 替换某个位置为一个新的数组</span>
 <span class="built_in">array</span>.replaceRange(<span class="number">0.</span>.<span class="number">.2</span>, with: [<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>])
 <span class="comment">// 排序</span>
+
+<span class="comment">//    数组排序还可以调用 sort方法,与sorted不一样的是,sort排序是修改数组本身排序且不会返回结果,sorted则返回排序后的结果但不修改数组本身。所以调用sort方法的数组只能为var定义的变量</span>
 <span class="built_in">array</span>.sortInPlace { $<span class="number">0</span> &lt; $<span class="number">1</span> }
 </code></pre></span>
         
@@ -966,72 +1052,6 @@ lazy var allDataArray: NSMutableArray = {
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2015/11/10/3DTouch、ShortcutItem、Peek-And-Pop/" itemprop="url">
-                3DTouch、ShortcutItem、Peek And Pop
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-11-10T11:01:28+08:00" content="2015-11-10">
-            2015-11-10
-          </time>
-        </span>
-
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h3 id="3DTouch">3DTouch</h3>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/10/3DTouch、ShortcutItem、Peek-And-Pop/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1071,21 +1091,21 @@ lazy var allDataArray: NSMutableArray = {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">38</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

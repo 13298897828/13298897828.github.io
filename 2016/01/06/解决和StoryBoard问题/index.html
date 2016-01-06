@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="和storyBoard," />
 
 
 
@@ -35,19 +35,28 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="3DTouch">
+<meta name="description" content="Storyboard RefactorRefactor这个功能，让我们团队开发使用Storyboard更加的方便与便捷！
+iOS9推出的新特性，但是现在才发现如何使用，真的是浪费啊。。。
+我个人比较喜欢使用可视化编程进行项目的研发，但是有一些操作是不太友好的。在团队开发中，每个成员使用了一个Storyboard，这样项目就存在了很多个Storyboard，最后我们需要通过代码，将多个Storybo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="3DTouch、ShortcutItem、Peek And Pop">
-<meta property="og:url" content="http://yoursite.com/2015/11/10/3DTouch、ShortcutItem、Peek-And-Pop/index.html">
+<meta property="og:title" content="解决和StoryBoard问题">
+<meta property="og:url" content="http://yoursite.com/2016/01/06/解决和StoryBoard问题/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="3DTouch">
-<meta property="og:image" content="http://i12.tietuku.com/14bc7ec46d5364ab.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/3aa54dab286d6e1c.jpg">
-<meta property="og:image" content="http://i12.tietuku.com/544e882ddf85ae59.jpg">
-<meta property="og:updated_time" content="2015-12-10T07:06:13.000Z">
+<meta property="og:description" content="Storyboard RefactorRefactor这个功能，让我们团队开发使用Storyboard更加的方便与便捷！
+iOS9推出的新特性，但是现在才发现如何使用，真的是浪费啊。。。
+我个人比较喜欢使用可视化编程进行项目的研发，但是有一些操作是不太友好的。在团队开发中，每个成员使用了一个Storyboard，这样项目就存在了很多个Storyboard，最后我们需要通过代码，将多个Storybo">
+<meta property="og:image" content="http://i4.tietuku.com/b5eda942c920224c.jpg">
+<meta property="og:image" content="http://i4.tietuku.com/ba9ef9f79ee6ecf5.jpg">
+<meta property="og:image" content="http://m1.yea.im/4VJ.jpg">
+<meta property="og:image" content="http://i4.tietuku.com/853746681bb2fc33.jpg">
+<meta property="og:image" content="http://i4.tietuku.com/7517e8d124ba0d68.jpg">
+<meta property="og:image" content="http://i4.tietuku.com/a21770ed42b858e0.jpg">
+<meta property="og:updated_time" content="2016-01-06T02:14:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="3DTouch、ShortcutItem、Peek And Pop">
-<meta name="twitter:description" content="3DTouch">
+<meta name="twitter:title" content="解决和StoryBoard问题">
+<meta name="twitter:description" content="Storyboard RefactorRefactor这个功能，让我们团队开发使用Storyboard更加的方便与便捷！
+iOS9推出的新特性，但是现在才发现如何使用，真的是浪费啊。。。
+我个人比较喜欢使用可视化编程进行项目的研发，但是有一些操作是不太友好的。在团队开发中，每个成员使用了一个Storyboard，这样项目就存在了很多个Storyboard，最后我们需要通过代码，将多个Storybo">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -57,7 +66,7 @@
   };
 </script>
 
-    <title> 3DTouch、ShortcutItem、Peek And Pop // 张天琦 </title>
+    <title> 解决和StoryBoard问题 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -178,7 +187,7 @@
           
           
             
-              3DTouch、ShortcutItem、Peek And Pop
+              解决和StoryBoard问题
             
           
         </h1>
@@ -187,11 +196,22 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-10T11:01:28+08:00" content="2015-11-10">
-            2015-11-10
+          <time itemprop="dateCreated" datetime="2016-01-06T10:07:30+08:00" content="2016-01-06">
+            2016-01-06
           </time>
         </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS可视化/" itemprop="url" rel="index"><span itemprop="name">iOS可视化</span></a></span>
+
+              
+              
+
+            
+          </span>
         
 
         
@@ -206,166 +226,40 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="3DTouch">3DTouch</h3><a id="more"></a>
-<p><img src="http://i12.tietuku.com/14bc7ec46d5364ab.jpg" alt=""></p>
-<h4 id="UITouch类里API的变化">UITouch类里API的变化</h4><h5 id="iOS9中添加的属性">iOS9中添加的属性</h5><p><code>altitudeAngle</code></p>
-<ul>
-<li><p>当笔平行于平面时,该值为0</p>
-</li>
-<li><p>当笔垂直于平面时,该值为Pi / 2</p>
-</li>
-</ul>
-<p><code>estimatedProperties</code></p>
-<ul>
-<li><p>当前触摸对象估计的触摸特性</p>
-</li>
-<li><p>返回值是UITouchPropertyies</p>
-</li>
-</ul>
-<p><code>updatedProperties</code></p>
-<ul>
-<li><p>当前触摸对象已经更新的触摸特性</p>
-</li>
-<li><p>返回值是UITouchPropertyies</p>
-</li>
-</ul>
-<p><code>estimationUpdateIndex</code></p>
-<ul>
-<li><p>当每个触摸对象的触摸特性发生变化时，该值将会单独增加</p>
-</li>
-<li><p>返回值是NSNumber</p>
-</li>
-</ul>
-<h5 id="iOS9中添加的方法">iOS9中添加的方法</h5><p><code>- PreciseLocationInView:</code></p>
-<ul>
-<li><p>当前触摸对象的坐标<br><code>- PrecisePreviousLocationInView:</code></p>
-</li>
-<li><p>当前触摸对象的前置坐标<br><code>- azimuthAngleInview:</code></p>
-</li>
-<li><p>沿着x轴正向的方位角</p>
-</li>
-<li><p>当与x轴正向方向相同时,该值为0</p>
-</li>
-<li><p>当view参数为nil时，默认为keyWindow</p>
-</li>
-</ul>
-<p><code>- azimuthUnitVectorInView:</code></p>
-<ul>
-<li><p>当前触摸对象的方向上的单位向量</p>
-</li>
-<li><p>当view参数为nil时，默认为keyWindow</p>
-</li>
-</ul>
-<h4 id="UIForceTouchCapability">UIForceTouchCapability</h4><p><code>UIForceTouchCapabilityUnknown</code></p>
-<ul>
-<li>不能确定是否支持压力感应<br><code>UIForceTouchCapabilityUnavailable</code></li>
-<li>不能支持压力感应<br><code>UIForceTouchCapabilityAvailable</code></li>
-<li><p>可以支持压力感应</p>
-<h4 id="UITouchType">UITouchType</h4><p><code>UITouchTypeDirect</code></p>
-</li>
-<li><p>垂直的触摸类型<br><code>UITouchTypeIndirect</code></p>
-</li>
-<li>非初值的触摸类型<br><code>UITouchTypeStylus</code></li>
-<li>水平的触摸类型<br><code>UITouchProperties</code><br><code>UITouchPropertyForce</code></li>
-</ul>
-<hr>
-<h3 id="ShortcutItem">ShortcutItem</h3><hr>
-<p><img src="http://i12.tietuku.com/3aa54dab286d6e1c.jpg" alt=""></p>
-<h4 id="静态方式">静态方式</h4><ul>
-<li>打开Info.plist文件</li>
-<li><p>在对应UIApplicationShortcutItems关键字下添加item</p>
-<h4 id="动态方式">动态方式</h4><h5 id="修改当前应用程序的某个shortcutItem">修改当前应用程序的某个shortcutItem</h5><pre><code><span class="comment">//获取第0个shortcutItem  </span>
-id oldItem = [existingShortcutItems <span class="string">objectAtIndex:</span> <span class="number">0</span>];  
-<span class="comment">//将旧的shortcutItem改变为可修改类型shortcutItem  </span>
-id mutableItem = [oldItem mutableCopy];  
-<span class="comment">//修改shortcutItem的显示标题  </span>
-[mutableItem <span class="string">setLocalizedTitle:</span> @“Click Lewis”];
-</code></pre><h5 id="获取当前应用程序的shortcutItems">获取当前应用程序的shortcutItems</h5><pre><code><span class="comment">//获取当前应用程序对象  </span>
-<span class="built_in">UIApplication</span> *app = [<span class="built_in">UIApplication</span> sharedApplication];  
-<span class="comment">//获取一个应用程序对象的shortcutItem列表  </span>
-<span class="keyword">id</span> existingShortcutItems = [app shortcutItems];
-</code></pre><h5 id="重置当前应用程序的shortcutItems">重置当前应用程序的shortcutItems</h5><pre><code><span class="comment">//根据旧的shortcutItems生成可变shortcutItems数组  </span>
-id updatedShortcutItems = [existingShortcutItems mutableCopy];  
-<span class="comment">//修改可变shortcutItems数组中对应index下的元素为新的shortcutItem  </span>
-[updatedShortcutItems <span class="string">replaceObjectAtIndex:</span> <span class="number">0</span> <span class="string">withObject:</span> mutableItem];  
-<span class="comment">//修改应用程序对象的shortcutItems为新的数组  </span>
-[app <span class="string">setShortcutItems:</span> updatedShortcutItems];
-</code></pre><h5 id="创建一个新的UIApplicationShortcutItem">创建一个新的UIApplicationShortcutItem</h5></li>
-<li><p>初始化函数</p>
-<ul>
-<li>initWithType:localizedTitle:localizedSubtitle:icon:userInfo:</li>
-<li>initWithType:localizedTitle:</li>
-</ul>
-</li>
-<li><p>属性</p>
-<ul>
-<li><p>localizedTitle:NSString</p>
-</li>
-<li><p>localizedSubtitle:NSString</p>
-</li>
-<li><p>type:NSString</p>
-</li>
-<li><p>icon:UIApplicationShortcutIcon</p>
-</li>
-<li><p>userInfo:NSDictionary</p>
-</li>
-<li><p>只有只读特性，想要进行修改时，需要通过mutableCopy方法转变为<br>NSMutableApplicationShortcutItem</p>
-<h4 id="创建一个新的Item图标">创建一个新的Item图标</h4></li>
-</ul>
-</li>
-<li><p>初始化函数</p>
-<ul>
-<li><p>iconWithType:</p>
-</li>
-<li><p>iconWithTemplateImageName:</p>
-</li>
-<li><p>iconWithContact:</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="当程序启动时">当程序启动时</h4><ul>
-<li>判断launchOptions字典内的UIApplicationLaunchOptionsShortcutItemKey是否为空</li>
-<li>当不为空时,application:didFinishLaunchWithOptions方法返回false，否则返回true</li>
-<li>在application:performActionForShortcutItem:completionHandler方法内处理点击事件</li>
-</ul>
-<hr>
-<h3 id="Peek_and_Pop">Peek and Pop</h3><hr>
-<p><img src="http://i12.tietuku.com/544e882ddf85ae59.jpg" alt=""><br>注册预览功能的代理对象和源视图<br>代理对象需要接受UIViewControllerPreviewingDelegate协议<br>  @interface RootVC<uiviewcontrollerpreviewingdelegate><br>  {}<br>  @end<br>代理对象实现协议内的Peek和Pop方法</uiviewcontrollerpreviewingdelegate></p>
-<pre><code><span class="class"><span class="keyword">@implementation</span> <span class="title">RootVC</span>  </span>
-- (<span class="built_in">UIViewController</span> *)previewingContext:(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)context viewControllerForLocation:(<span class="built_in">CGPoint</span>) point  
-{  
-<span class="built_in">UIViewController</span> *childVC = [[<span class="built_in">UIViewController</span> alloc] init];  
-childVC<span class="variable">.preferredContentSize</span> = <span class="built_in">CGSizeMake</span>(<span class="number">0.0</span>f,<span class="number">300</span>f);  
-
-<span class="built_in">CGRect</span> rect = <span class="built_in">CGRectMake</span>(<span class="number">10</span>, point<span class="variable">.y</span> - <span class="number">10</span>, <span class="keyword">self</span><span class="variable">.view</span><span class="variable">.frame</span><span class="variable">.size</span><span class="variable">.width</span> - <span class="number">20</span>,<span class="number">20</span>);  
-context<span class="variable">.sourceRect</span> = rect;  
-<span class="keyword">return</span> childVC;  
-}  
-- (<span class="keyword">void</span>)previewContext:(<span class="keyword">id</span>&lt;<span class="built_in">UIViewControllerPreviewing</span>&gt;)context commitViewController:(<span class="built_in">UIViewController</span>*)vc  
-{  
-[<span class="keyword">self</span> showViewController:vc sender:<span class="keyword">self</span>];  
-}  
-<span class="keyword">@end</span>
-</code></pre><h4 id="注册方法声明在UIViewController类内">注册方法声明在UIViewController类内</h4><pre><code>[<span class="keyword">self </span>registerForPreviewingWithDelegate:<span class="keyword">self </span>sourceView:<span class="keyword">self.view]; </span>      
-</code></pre></span>
+        <span itemprop="articleBody"><h3 id="Storyboard_Refactor">Storyboard Refactor</h3><p>Refactor这个功能，让我们团队开发使用Storyboard更加的方便与便捷！</p>
+<p>iOS9推出的新特性，但是现在才发现如何使用，真的是浪费啊。。。</p>
+<p>我个人比较喜欢使用可视化编程进行项目的研发，但是有一些操作是不太友好的。在团队开发中，每个成员使用了一个Storyboard，这样项目就存在了很多个Storyboard，最后我们需要通过代码，将多个Storyboard整合在一起的，实在是非常的麻烦。有了这个Storyboard Refactor，这将变得超级简单。</p>
+<p>本教程以微信框架作为示例：</p>
+<p>看下图：<br><img src="http://i4.tietuku.com/b5eda942c920224c.jpg" alt=""><br>使用Storyboard搭建的微信框架，只是搭建了一部分，Storyboard中就存在了很多的控制器，操作起来也非常的麻烦。并且在团队开发的过程中，同时处理这一个Storyboard无异于作死啊。</p>
+<p>比较好的方法是：把每一个模块都抽成一个Storyboard，然后分别在自己里面处理，团队开发的时候，也不至于修改了别人的文件。</p>
+<p>之前我们都是通过代码进行关联，相当的烦人，现在好了，很简单：</p>
+<p>1.选中要抽出去的控制器们<br><img src="http://i4.tietuku.com/ba9ef9f79ee6ecf5.jpg" alt=""></p>
+<p>2.选择命令执行<br><img src="http://m1.yea.im/4VJ.jpg" alt=""></p>
+<p>3.输入名称，按回车搞定<br><img src="http://i4.tietuku.com/853746681bb2fc33.jpg" alt=""><br>4.原来得Main.storyboard就变成了这个样子：<br><img src="http://i4.tietuku.com/7517e8d124ba0d68.jpg" alt=""></p>
+<p>大家看到圈中的这个就是：Storyboard Reference，它代表了一个Storyboard，这样就可以从一个Storyboard关联到另一个Storyboard了</p>
+<p>5.这是刚刚创建的Find.storyboard<br><img src="http://i4.tietuku.com/a21770ed42b858e0.jpg" alt=""><br>开发者只需要在自己的Storyboard中进行自己的处理就好了，省去了合代码的时候的麻烦</p>
+</span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/和storyBoard/" rel="tag">#和storyBoard</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/10/iOS分屏多任务-Slide-Over-Split-View/" rel="prev">iOS分屏多任务(Slide Over &Split View)</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/30/如何制作想淘宝口令一样的链接/" rel="next">关于iOS的剪贴板基本知识</a>
+              <a href="/2016/01/05/swift小结/" rel="next">swift小结</a>
             
           </div>
         </div>
@@ -470,7 +364,7 @@ context<span class="variable">.sourceRect</span> = rect;
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#3DTouch"><span class="nav-number">1.</span> <span class="nav-text">3DTouch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UITouch类里API的变化"><span class="nav-number">1.1.</span> <span class="nav-text">UITouch类里API的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iOS9中添加的属性"><span class="nav-number">1.1.1.</span> <span class="nav-text">iOS9中添加的属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#iOS9中添加的方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">iOS9中添加的方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIForceTouchCapability"><span class="nav-number">1.2.</span> <span class="nav-text">UIForceTouchCapability</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UITouchType"><span class="nav-number">1.3.</span> <span class="nav-text">UITouchType</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ShortcutItem"><span class="nav-number">2.</span> <span class="nav-text">ShortcutItem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态方式"><span class="nav-number">2.1.</span> <span class="nav-text">静态方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态方式"><span class="nav-number">2.2.</span> <span class="nav-text">动态方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#修改当前应用程序的某个shortcutItem"><span class="nav-number">2.2.1.</span> <span class="nav-text">修改当前应用程序的某个shortcutItem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取当前应用程序的shortcutItems"><span class="nav-number">2.2.2.</span> <span class="nav-text">获取当前应用程序的shortcutItems</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重置当前应用程序的shortcutItems"><span class="nav-number">2.2.3.</span> <span class="nav-text">重置当前应用程序的shortcutItems</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建一个新的UIApplicationShortcutItem"><span class="nav-number">2.2.4.</span> <span class="nav-text">创建一个新的UIApplicationShortcutItem</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个新的Item图标"><span class="nav-number">2.3.</span> <span class="nav-text">创建一个新的Item图标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当程序启动时"><span class="nav-number">2.4.</span> <span class="nav-text">当程序启动时</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Peek_and_Pop"><span class="nav-number">3.</span> <span class="nav-text">Peek and Pop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注册方法声明在UIViewController类内"><span class="nav-number">3.1.</span> <span class="nav-text">注册方法声明在UIViewController类内</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Storyboard_Refactor"><span class="nav-number">1.</span> <span class="nav-text">Storyboard Refactor</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
