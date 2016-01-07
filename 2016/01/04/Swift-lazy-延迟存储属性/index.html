@@ -35,19 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。
-在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒">
+<meta name="description" content="所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift_lazy()延迟存储属性">
 <meta property="og:url" content="http://yoursite.com/2016/01/04/Swift-lazy-延迟存储属性/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。
-在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒">
-<meta property="og:updated_time" content="2016-01-04T02:31:13.000Z">
+<meta property="og:description" content="所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。">
+<meta property="og:updated_time" content="2016-01-06T09:45:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift_lazy()延迟存储属性">
-<meta name="twitter:description" content="所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。
-在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒">
+<meta name="twitter:description" content="所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -217,8 +214,7 @@
       
 
       
-        <span itemprop="articleBody"><p>所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。</p>
-<p>在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒加载对象，只有当我们使用的时候才会被创建。除了这些，我们自己也可以写很多。</p>
+        <span itemprop="articleBody"><p>所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。<br><a id="more"></a><br>在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒加载对象，只有当我们使用的时候才会被创建。除了这些，我们自己也可以写很多。</p>
 <p>那么，在Swift中，如何实现所谓的懒加载对象呢？</p>
 <p>在Swift中，只需要一个lazy关键字即可实现，叫做延迟存储属性!</p>
 <p>首先看看OC中如何实现懒加载对象的吧。。。</p>

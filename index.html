@@ -218,19 +218,12 @@
 
       
         
-          <span itemprop="articleBody"><h3 id="Storyboard_Refactor">Storyboard Refactor</h3><p>Refactor这个功能，让我们团队开发使用Storyboard更加的方便与便捷！</p>
-<p>iOS9推出的新特性，但是现在才发现如何使用，真的是浪费啊。。。</p>
-<p>我个人比较喜欢使用可视化编程进行项目的研发，但是有一些操作是不太友好的。在团队开发中，每个成员使用了一个Storyboard，这样项目就存在了很多个Storyboard，最后我们需要通过代码，将多个Storyboard整合在一起的，实在是非常的麻烦。有了这个Storyboard Refactor，这将变得超级简单。</p>
-<p>本教程以微信框架作为示例：</p>
-<p>看下图：<br><img src="http://i4.tietuku.com/b5eda942c920224c.jpg" alt=""><br>使用Storyboard搭建的微信框架，只是搭建了一部分，Storyboard中就存在了很多的控制器，操作起来也非常的麻烦。并且在团队开发的过程中，同时处理这一个Storyboard无异于作死啊。</p>
-<p>比较好的方法是：把每一个模块都抽成一个Storyboard，然后分别在自己里面处理，团队开发的时候，也不至于修改了别人的文件。</p>
-<p>之前我们都是通过代码进行关联，相当的烦人，现在好了，很简单：</p>
-<p>1.选中要抽出去的控制器们<br><img src="http://i4.tietuku.com/ba9ef9f79ee6ecf5.jpg" alt=""></p>
-<p>2.选择命令执行<br><img src="http://m1.yea.im/4VJ.jpg" alt=""></p>
-<p>3.输入名称，按回车搞定<br><img src="http://i4.tietuku.com/853746681bb2fc33.jpg" alt=""><br>4.原来得Main.storyboard就变成了这个样子：<br><img src="http://i4.tietuku.com/7517e8d124ba0d68.jpg" alt=""></p>
-<p>大家看到圈中的这个就是：Storyboard Reference，它代表了一个Storyboard，这样就可以从一个Storyboard关联到另一个Storyboard了</p>
-<p>5.这是刚刚创建的Find.storyboard<br><img src="http://i4.tietuku.com/a21770ed42b858e0.jpg" alt=""><br>开发者只需要在自己的Storyboard中进行自己的处理就好了，省去了合代码的时候的麻烦</p>
-</span>
+          <h3 id="Storyboard_Refactor">Storyboard Refactor</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/06/解决和StoryBoard问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -302,16 +295,12 @@
 
       
         
-          <span itemprop="articleBody"><h3 id="数组相关语法更新">数组相关语法更新</h3><pre><code>var <span class="built_in">array</span> = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">7</span>]
-<span class="comment">// 数组内插入一个新的数组</span>
-<span class="built_in">array</span>.insertContentsOf([<span class="number">9</span>,<span class="number">6</span>], at:<span class="number">1</span>)
-<span class="comment">// 替换某个位置为一个新的数组</span>
-<span class="built_in">array</span>.replaceRange(<span class="number">0.</span>.<span class="number">.2</span>, with: [<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>])
-<span class="comment">// 排序</span>
-
-<span class="comment">//    数组排序还可以调用 sort方法,与sorted不一样的是,sort排序是修改数组本身排序且不会返回结果,sorted则返回排序后的结果但不修改数组本身。所以调用sort方法的数组只能为var定义的变量</span>
-<span class="built_in">array</span>.sortInPlace { $<span class="number">0</span> &lt; $<span class="number">1</span> }
-</code></pre></span>
+          <h3 id="数组相关语法更新">数组相关语法更新</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/05/swift小结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -383,60 +372,12 @@
 
       
         
-          <span itemprop="articleBody"><p>方法添加 mutating 关键字</p>
-<p>在swift中，enum和struct与C语言中的不同是：在Swift中我们可以给枚举和结构体添加方法，而C语言中不可以<br>在这些方法中，我们可以任意获取属性的值，但是默认情况下不允许修改属性的值。我们需要添加mutating关键字，这样就可以对属性进行修改</p>
-<p>示例代码<br>在结构体中的方法中添加mutating关键字，实现在方法内部修改属性的值</p>
-<pre><code><span class="class"><span class="keyword">struct</span> <span class="title">Point</span> </span>{
-
-<span class="keyword">var</span> x = <span class="number">0</span>, y = <span class="number">0</span>
-
-<span class="comment">// 不添加 mutating 关键字，不能在实例方法中修改属性值</span>
-<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">moveXBy</span><span class="params">(x: Int, yBy y: Int)</span></span> {
-    <span class="keyword">self</span>.x += x
-    <span class="keyword">self</span>.y += y
-}
-}
-</code></pre><p>在枚举中的方法中添加mutating关键字，实现在方法内部修改自身的值</p>
-<pre><code><span class="class"><span class="keyword">enum</span> <span class="title">ChangeStateSwitch</span> </span>{
-
-<span class="keyword">case</span> <span class="type">Off</span>, <span class="type">Low</span>, <span class="type">High</span>
-
-<span class="comment">// 不添加 mutating 关键字，不能在实例方法中修改属性值</span>
-<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">next</span><span class="params">()</span></span> {
-    <span class="keyword">switch</span> <span class="keyword">self</span> {
-    <span class="keyword">case</span> .<span class="type">Off</span>:
-        <span class="keyword">self</span> = .<span class="type">Low</span>
-    <span class="keyword">case</span> .<span class="type">Low</span>:
-        <span class="keyword">self</span> = .<span class="type">High</span>
-    <span class="keyword">case</span> .<span class="type">High</span>:
-        <span class="keyword">self</span> = .<span class="type">Off</span>
-    }
-}
-}
-</code></pre><p>将protocol的方法声明为mutating</p>
-<p>在声明协议的时候，给协议方法添加mutating关键字，针对结构体和枚举来说，会有很大的帮助，这样，结构体和枚举在这个协议方法中就可以实现修改属性的值了</p>
-<pre><code><span class="class"><span class="keyword">protocol</span> <span class="title">MyProtocol</span> </span>{
-<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">change</span><span class="params">()</span></span>
-}
-</code></pre><p>当我们的结构体遵守了协议，实现协议方法的时候，才可以在协议方法中对属性进行修改，否则直接报错</p>
-<pre><code><span class="class"><span class="keyword">struct</span> <span class="title">MyCar</span>: <span class="title">MyProtocol</span> </span>{
-<span class="keyword">var</span> price = <span class="number">3459234.23</span>
-
-<span class="keyword">mutating</span> <span class="func"><span class="keyword">func</span> <span class="title">change</span><span class="params">()</span></span> {
-    price = <span class="number">56783.2</span>
-}
-}
-</code></pre><p>对于类来说，协议方法中添加了mutating是无意义的，因为类中的方法本身就可以修改变量</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Car</span>: <span class="title">MyProtocol</span> </span>{
-
-<span class="keyword">var</span> price = <span class="number">8923.2</span>
-
-<span class="func"><span class="keyword">func</span> <span class="title">change</span><span class="params">()</span></span> {
-    price = <span class="number">3243.2</span>
-}
-
-}
-</code></pre></span>
+          <h3 id="方法添加_mutating_关键字">方法添加 mutating 关键字</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/04/Swift-mutating/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -508,79 +449,12 @@
 
       
         
-          <span itemprop="articleBody"><p>所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。</p>
-<p>在OC中，UIViewController的view属性是懒加载对象，还有，UITableViewCell的textLabel、detailTextLabel、imageView属性也都是懒加载对象，只有当我们使用的时候才会被创建。除了这些，我们自己也可以写很多。</p>
-<p>那么，在Swift中，如何实现所谓的懒加载对象呢？</p>
-<p>在Swift中，只需要一个lazy关键字即可实现，叫做延迟存储属性!</p>
-<p>首先看看OC中如何实现懒加载对象的吧。。。</p>
-<pre><code><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span>
-
-<span class="comment">// 声明可变数组属性</span>
-<span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableArray</span>     *allDataArray;
-
-<span class="keyword">@end</span>
-
-
-
-<span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span>
-
-<span class="comment">// 重写getter方法，成为懒加载对象</span>
-- (<span class="built_in">NSMutableArray</span> *)allDataArray
-{
-<span class="keyword">if</span> (_allDataArray == <span class="literal">nil</span>) {
-    <span class="keyword">self</span><span class="variable">.allDataArray</span> = [<span class="built_in">NSMutableArray</span> array];
-}
-<span class="keyword">return</span> _allDataArray;
-}
-
-- (<span class="keyword">void</span>)viewDidLoad
-{
-[<span class="keyword">super</span> viewDidLoad];
-    <span class="comment">// 当我们访问allDataArray的getter方法的时候，数组才被创建</span>
-    [<span class="keyword">self</span><span class="variable">.allDataArray</span> addObject:<span class="string">@"first object"</span>];
-}
-
-<span class="keyword">@end</span>
-</code></pre><p>在Swift中，普通的存储属性这样声明，当我们创建当前类的对象时候，属性也被创建了</p>
-<pre><code><span class="keyword">class</span> <span class="title">DataManager</span>: <span class="title">NSObject</span> {
-
-<span class="comment">// 声明可变数组属性</span>
-<span class="keyword">let</span> allDataArray = NSMutableArray()
-
-}
-
-<span class="comment">// 创建对象</span>
-<span class="keyword">let</span> manager = DataManager()
-</code></pre><p>当manager对象被创建的时候，allDataArray数组就被创建，如果我们长时间不使用allDataArray数组，这块空间就被浪费了，可以改成如下写法：在属性声明前面添加lazy关键字</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">DataManager2</span>: <span class="typename">NSObject {</span></span>
-
-<span class="comment">// 声明可变数组属性</span>
-lazy <span class="variable"><span class="keyword">var</span> allDataArray</span> = NSMutableArray()
-
-}
-
-<span class="comment">// 创建对象</span>
-let manager2 = DataManager2()
-
-<span class="comment">// 使用allDataArray属性</span>
-manager2.allDataArray.addObject(<span class="string">"first obj"</span>)
-</code></pre><p>在属性前面添加一个lazy关键字，这个属性就成了延迟存储属性，或者叫做懒加载对象。意思就是：只有当我们使用这个属性的时候，这个对象才被创建。如果我们不使用这个对象，也不会造成我们内存的浪费了。</p>
-<p>注意:延迟存储属性必须是变量(var),不可以是常量(let)</p>
-<p>还可以有如下写法：</p>
-<pre><code>class DataManager3: NSObject {
-
-// 声明延迟存储属性，当调用的时候才被创建
-lazy var allDataArray: NSMutableArray = {
-
-        let<span class="instruction"> array </span>=<span class="function"> NSMutableArray(</span><span class="function">)</span>
-       <span class="function"> array.addObject(</span><span class="string">"first"</span><span class="function">)</span>
-       <span class="function"> array.addObject(</span><span class="string">"second"</span><span class="function">)</span>
-       <span class="instruction"> return </span>array
-
-   <span class="function"> }(</span><span class="function">)</span>
-}
-</code></pre><p>   在项目中，某些地方使用延迟存储属性可以提高我们的代码质量，慢慢习惯使用吧</p>
-</span>
+          <p>所谓的延迟存储属性，就是我们OC中所谓的懒加载对象，也就是把创建对象的步骤放在重写的getter方法中进行。这样，只有当我们使用这个属性的getter方法的时候，才会创建对象，可以为我们节省不必要得内存开销。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/04/Swift-lazy-延迟存储属性/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

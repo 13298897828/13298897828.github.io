@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://yoursite.com/2015/09/10/NSURLSession下载与缓存/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="NSURLSession下载与缓存iOS9要求网络请求需要使用NSURLSession,那么本篇文章就使用NSURLsession来实现视频的下载,图片的下载、取消下载、恢复下载和缓存功能，期望与大家一起学习。">
-<meta property="og:updated_time" content="2015-12-11T03:33:50.000Z">
+<meta property="og:updated_time" content="2016-01-07T08:09:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSURLSession下载与缓存">
 <meta name="twitter:description" content="NSURLSession下载与缓存iOS9要求网络请求需要使用NSURLSession,那么本篇文章就使用NSURLsession来实现视频的下载,图片的下载、取消下载、恢复下载和缓存功能，期望与大家一起学习。">
@@ -420,7 +420,89 @@ defaultSessionConfiguration];
 
 <span class="comment">//启动下载任务</span>
  [task resume];
-</code></pre><p>  }<br>通过这种缓存策略，我们就可以实现图片下载并自动缓存，当我们需要再次使用此资源的时候，它就会自动去本地缓存查找是否有已经下载好的图片资源，如果有就会直接去本地的，从而不需要再去进行网络请求。可以在下载完成后，将网络断开进行测试。<br>总结<br>本次主要是讲解了NSURLSession的下载，以及自动缓存策略。它的功能非常强大，还有很多没来得及细细研究，如果你也喜欢它😍，那就抓紧时间去研究吧~</p>
+
+  }
+</code></pre><h3 id="swift下载任务">swift下载任务</h3><p>import UIKit</p>
+<p>class ViewController: UIViewController,NSURLSessionDelegate,NSURLSessionDataDelegate {</p>
+<pre><code><span class="keyword">var</span> session:<span class="type">NSURLSession</span>!
+
+<span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> {
+    <span class="keyword">super</span>.viewDidLoad()
+
+
+    <span class="comment">//let config = NSURLSessionConfiguration.backgroundSessionConfiguration("back")//不赞成使用</span>
+    <span class="comment">//let config = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("back")//委托中不能使用,使用系统处理下载,就算APP没有运行了,也可以实现</span>
+    <span class="comment">//let config = NSURLSessionConfiguration.ephemeralSessionConfiguration();//这个是临时数据下载,适用于小数据下载</span>
+    <span class="keyword">let</span> config = <span class="type">NSURLSessionConfiguration</span>.defaultSessionConfiguration()<span class="comment">//默认配置</span>
+    config.timeoutIntervalForRequest = <span class="number">15</span> <span class="comment">//连接超时时间</span>
+
+    session = <span class="type">NSURLSession</span>(configuration: config, delegate: <span class="keyword">self</span>, delegateQueue:<span class="literal">nil</span>)<span class="comment">//队列中,如果想要程序在主线程中执行,可以使用NSOperationQueue.mainQueue()</span>
+
+    <span class="keyword">let</span> url = <span class="type">NSURL</span>(string: <span class="string">"http://www.wutongwei.com"</span>)
+
+
+    <span class="keyword">let</span> task = session.dataTaskWithURL(url!, completionHandler: { (
+        data, response, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span>
+
+
+        <span class="keyword">let</span> str = <span class="type">NSString</span>(data: data, encoding: <span class="type">NSUTF8StringEncoding</span>)
+        <span class="built_in">println</span>(<span class="string">"Done!"</span>)
+
+        <span class="keyword">self</span>.session.finishTasksAndInvalidate() <span class="comment">//确保执行完成后,释放session</span>
+
+
+        <span class="keyword">if</span> error == <span class="literal">nil</span> {
+
+            <span class="keyword">let</span> manager = <span class="type">NSFileManager</span>()
+
+            <span class="comment">//</span>
+            <span class="keyword">var</span> error:<span class="type">NSError</span>?
+            <span class="keyword">var</span> destinationPath = manager.<span class="type">URLForDirectory</span>(<span class="type">NSSearchPathDirectory</span>.<span class="type">CachesDirectory</span>, inDomain: <span class="type">NSSearchPathDomainMask</span>.<span class="type">UserDomainMask</span>, appropriateForURL: url, create: <span class="literal">true</span>, error: &amp;error)!
+            <span class="comment">//</span>
+            <span class="keyword">let</span> componenetsOfUrl = url?.absoluteString!.componentsSeparatedByString(<span class="string">"/"</span>)
+            <span class="keyword">let</span> index = componenetsOfUrl!.<span class="built_in">count</span> - <span class="number">1</span>
+            <span class="keyword">let</span> fileNameFromUrl = componenetsOfUrl![index]
+
+            destinationPath = destinationPath.<span class="type">URLByAppendingPathComponent</span>(fileNameFromUrl)
+
+
+            <span class="comment">//</span>
+            manager.moveItemAtURL(url!, toURL: destinationPath, error: <span class="literal">nil</span>)
+
+            <span class="keyword">let</span> message = <span class="string">"保存下载数据到 = <span class="subst">\(destinationPath)</span>"</span>
+
+            <span class="keyword">self</span>.displayAlertWithTitle(<span class="string">"Success"</span>, message: message)
+
+
+        }<span class="keyword">else</span>{
+            <span class="keyword">self</span>.displayAlertWithTitle(<span class="string">"Error"</span>, message: <span class="string">"不能下载这数据,一个错误抛出"</span>)
+        }
+
+
+
+    })
+
+    task.resume() <span class="comment">//这个是启动任务的,不调用,则不会执行请求</span>
+
+}
+
+
+<span class="func"><span class="keyword">func</span> <span class="title">displayAlertWithTitle</span><span class="params">(title:String,message:String)</span></span>{
+
+    <span class="keyword">let</span> controller = <span class="type">UIAlertController</span>(title: title, message: message, preferredStyle: <span class="type">UIAlertControllerStyle</span>.<span class="type">Alert</span>)
+    controller.addAction(<span class="type">UIAlertAction</span>(title: <span class="string">"OK"</span>, style: <span class="type">UIAlertActionStyle</span>.<span class="type">Default</span>, handler: <span class="literal">nil</span>))
+    presentViewController(controller, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)
+}
+
+
+<span class="comment">///</span>
+
+<span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">didReceiveMemoryWarning</span><span class="params">()</span></span> {
+    <span class="keyword">super</span>.didReceiveMemoryWarning()
+    <span class="comment">// Dispose of any resources that can be recreated.</span>
+}
+</code></pre><p>}</p>
+<p>通过这种缓存策略，我们就可以实现图片下载并自动缓存，当我们需要再次使用此资源的时候，它就会自动去本地缓存查找是否有已经下载好的图片资源，如果有就会直接去本地的，从而不需要再去进行网络请求。可以在下载完成后，将网络断开进行测试。<br>总结<br>本次主要是讲解了NSURLSession的下载，以及自动缓存策略。它的功能非常强大，还有很多没来得及细细研究，如果你也喜欢它😍，那就抓紧时间去研究吧~</p>
 </span>
       
     </div>
@@ -543,7 +625,7 @@ defaultSessionConfiguration];
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#手动下载视频"><span class="nav-number">1.</span> <span class="nav-text">手动下载视频</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤："><span class="nav-number">2.</span> <span class="nav-text">步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明相关属性"><span class="nav-number">3.</span> <span class="nav-text">声明相关属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置相关参数并下载"><span class="nav-number">4.</span> <span class="nav-text">配置相关参数并下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现代理方法"><span class="nav-number">5.</span> <span class="nav-text">实现代理方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取消下载_cancelByProducingResumeData"><span class="nav-number">6.</span> <span class="nav-text">取消下载 cancelByProducingResumeData</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#恢复下载_downloadTaskWithResumeData"><span class="nav-number">7.</span> <span class="nav-text">恢复下载 downloadTaskWithResumeData</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动缓存"><span class="nav-number">8.</span> <span class="nav-text">自动缓存</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#手动下载视频"><span class="nav-number">1.</span> <span class="nav-text">手动下载视频</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#步骤："><span class="nav-number">2.</span> <span class="nav-text">步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#声明相关属性"><span class="nav-number">3.</span> <span class="nav-text">声明相关属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置相关参数并下载"><span class="nav-number">4.</span> <span class="nav-text">配置相关参数并下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现代理方法"><span class="nav-number">5.</span> <span class="nav-text">实现代理方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取消下载_cancelByProducingResumeData"><span class="nav-number">6.</span> <span class="nav-text">取消下载 cancelByProducingResumeData</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#恢复下载_downloadTaskWithResumeData"><span class="nav-number">7.</span> <span class="nav-text">恢复下载 downloadTaskWithResumeData</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动缓存"><span class="nav-number">8.</span> <span class="nav-text">自动缓存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swift下载任务"><span class="nav-number"></span> <span class="nav-text">swift下载任务</span></a></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
