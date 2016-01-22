@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/01/18/怎么把segmentControl边框隐藏/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="segment.tintColor = [UIColor clearColor];//去掉颜色,现在整个segment都看不见">
-<meta property="og:updated_time" content="2016-01-18T06:10:22.000Z">
+<meta property="og:updated_time" content="2016-01-18T06:11:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="怎么把segmentControl边框隐藏">
 <meta name="twitter:description" content="segment.tintColor = [UIColor clearColor];//去掉颜色,现在整个segment都看不见">
@@ -214,8 +214,15 @@
       
 
       
-        <span itemprop="articleBody"><p>   segment.tintColor = [UIColor clearColor];//去掉颜色,现在整个segment都看不见<br>   <a id="more"></a><br>    NSDictionary<em> selectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16],<br>                                NSForegroundColorAttributeName: [UIColor whiteColor]};<br>    [segment setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];//设置文字属性<br>    NSDictionary</em> unselectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16],<br>                                     NSForegroundColorAttributeName: [UIColor lightTextColor]};<br>    [segment setTitleTextAttributes:unselectedTextAttributes forState:UIControlStateNormal];</p>
-</span>
+        <span itemprop="articleBody"><pre><code><span class="keyword">segment</span>.tintColor = [UIColor clearColor]<span class="comment">;//去掉颜色,现在整个segment都看不见</span>
+</code></pre>   <a id="more"></a>
+<pre><code>    <span class="built_in">NSDictionary</span>* selectedTextAttributes = @{<span class="built_in">NSFontAttributeName</span>:[<span class="built_in">UIFont</span> boldSystemFontOfSize:<span class="number">16</span>],
+                            <span class="built_in">NSForegroundColorAttributeName</span>: [<span class="built_in">UIColor</span> whiteColor]};
+    [segment setTitleTextAttributes:selectedTextAttributes forState:<span class="built_in">UIControlStateSelected</span>];<span class="comment">//设置文字属性</span>
+<span class="built_in">NSDictionary</span>* unselectedTextAttributes = @{<span class="built_in">NSFontAttributeName</span>:[<span class="built_in">UIFont</span> boldSystemFontOfSize:<span class="number">16</span>],
+                                 <span class="built_in">NSForegroundColorAttributeName</span>: [<span class="built_in">UIColor</span> lightTextColor]};
+[segment setTitleTextAttributes:unselectedTextAttributes forState:<span class="built_in">UIControlStateNormal</span>];
+</code></pre></span>
       
     </div>
 
@@ -231,6 +238,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/22/swift单例/" rel="prev">swift单例</a>
             
           </div>
 
@@ -299,7 +308,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -313,7 +322,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
