@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Object-C,占位符," />
+  <meta name="keywords" content="..," />
 
 
 
@@ -35,16 +35,31 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="在使用NSLog打印信息时，会用到很多占位符，如下：%@ 对象%d， %i 整数%u 无符号整形%f 浮点/双字%x, %X 二进制整数%o 八进制整数">
+<meta name="description" content="layoutSubviews在以下情况下会被调用：
+1、init初始化不会触发layoutSubviews。
+2、addSubview会触发layoutSubviews。
+3、设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化。
+4、滚动一个UIScrollView会触发layoutSubviews。
+5、旋转Screen会触发父UIView上的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="各种占位符">
-<meta property="og:url" content="http://yoursite.com/2014/09/15/OC-各种占位符/index.html">
+<meta property="og:title" content="UIView的layoutSubviews和drawRect方法何时调用">
+<meta property="og:url" content="http://yoursite.com/2016/01/28/UIView的layoutSubviews和drawRect方法何时调用/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="在使用NSLog打印信息时，会用到很多占位符，如下：%@ 对象%d， %i 整数%u 无符号整形%f 浮点/双字%x, %X 二进制整数%o 八进制整数">
-<meta property="og:updated_time" content="2015-12-18T09:58:18.000Z">
+<meta property="og:description" content="layoutSubviews在以下情况下会被调用：
+1、init初始化不会触发layoutSubviews。
+2、addSubview会触发layoutSubviews。
+3、设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化。
+4、滚动一个UIScrollView会触发layoutSubviews。
+5、旋转Screen会触发父UIView上的">
+<meta property="og:updated_time" content="2016-02-17T02:50:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="各种占位符">
-<meta name="twitter:description" content="在使用NSLog打印信息时，会用到很多占位符，如下：%@ 对象%d， %i 整数%u 无符号整形%f 浮点/双字%x, %X 二进制整数%o 八进制整数">
+<meta name="twitter:title" content="UIView的layoutSubviews和drawRect方法何时调用">
+<meta name="twitter:description" content="layoutSubviews在以下情况下会被调用：
+1、init初始化不会触发layoutSubviews。
+2、addSubview会触发layoutSubviews。
+3、设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化。
+4、滚动一个UIScrollView会触发layoutSubviews。
+5、旋转Screen会触发父UIView上的">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +69,7 @@
   };
 </script>
 
-    <title> 各种占位符 // 张天琦 </title>
+    <title> UIView的layoutSubviews和drawRect方法何时调用 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -175,7 +190,7 @@
           
           
             
-              各种占位符
+              UIView的layoutSubviews和drawRect方法何时调用
             
           
         </h1>
@@ -184,8 +199,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2014-09-15T17:09:50+08:00" content="2014-09-15">
-            2014-09-15
+          <time itemprop="dateCreated" datetime="2016-01-28T10:47:09+08:00" content="2016-01-28">
+            2016-01-28
           </time>
         </span>
 
@@ -193,7 +208,7 @@
           <span class="post-category" >
             &nbsp; | &nbsp; 分类于
             
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/技术篇/" itemprop="url" rel="index"><span itemprop="name">技术篇</span></a></span>
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
 
               
               
@@ -214,8 +229,27 @@
       
 
       
-        <span itemprop="articleBody"><h2 id="在使用NSLog打印信息时，会用到很多占位符，如下：">在使用NSLog打印信息时，会用到很多占位符，如下：</h2><h4 id="%@_对象">%@ 对象</h4><h4 id="%d，_%i_整数">%d， %i 整数</h4><h4 id="%u_无符号整形">%u 无符号整形</h4><h4 id="%f_浮点/双字">%f 浮点/双字</h4><h4 id="%x,_%X_二进制整数">%x, %X 二进制整数</h4><h4 id="%o_八进制整数">%o 八进制整数</h4><a id="more"></a>
-<h4 id="%zu_size_t">%zu size_t</h4><h4 id="%p_指针">%p 指针</h4><h4 id="%e_浮点/_双字_(科学计算)">%e 浮点/ 双字 (科学计算)</h4><h4 id="%g_浮点/_双字">%g 浮点/ 双字</h4><h4 id="%s_C字符串">%s C字符串</h4><h4 id="%-*s_Pascal字符串">%.*s Pascal字符串</h4><h4 id="%c_字符">%c 字符</h4><h4 id="%C_unichar">%C unichar</h4><h4 id="%lld_64位长整数（long_long）">%lld 64位长整数（long long）</h4><h4 id="%llu_无符号64位长整数">%llu 无符号64位长整数</h4><h4 id="%Lf_64位双数">%Lf  64位双数</h4></span>
+        <span itemprop="articleBody"><h4 id="layoutSubviews在以下情况下会被调用：">layoutSubviews在以下情况下会被调用：</h4><ul>
+<li>1、init初始化不会触发layoutSubviews。</li>
+<li>2、addSubview会触发layoutSubviews。</li>
+<li>3、设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化。</li>
+<li>4、滚动一个UIScrollView会触发layoutSubviews。</li>
+<li>5、旋转Screen会触发父UIView上的layoutSubviews事件。</li>
+<li>6、改变一个UIView大小的时候也会触发父UIView上的layoutSubviews事件。</li>
+<li>7、直接调用setLayoutSubviews。</li>
+</ul>
+<h4 id="drawRect在以下情况下会被调用：">drawRect在以下情况下会被调用：</h4><ul>
+<li>1、如果在UIView初始化时没有设置rect大小，将直接导致drawRect不被自动调用。drawRect 掉用是在Controller-&gt;loadView, Controller-&gt;viewDidLoad 两方法之后掉用的.所以不用担心在 控制器中,这些View的drawRect就开始画了.这样可以在控制器中设置一些值给View(如果这些View draw的时候需要用到某些变量 值).</li>
+<li>2、该方法在调用sizeToFit后被调用，所以可以先调用sizeToFit计算出size。然后系统自动调用drawRect:方法。</li>
+<li>3、通过设置contentMode属性值为UIViewContentModeRedraw。那么将在每次设置或更改frame的时候自动调用drawRect:。</li>
+<li>4、直接调用setNeedsDisplay，或者setNeedsDisplayInRect:触发drawRect:，但是有个前提条件是rect不能为0。以上1,2推荐；而3,4不提倡</li>
+</ul>
+<h4 id="drawRect方法使用注意点：">drawRect方法使用注意点：</h4><ul>
+<li>1、 若使用UIView绘图，只能在drawRect：方法中获取相应的contextRef并绘图。如果在其他方法中获取将获取到一个invalidate 的ref并且不能用于画图。drawRect：方法不能手动显示调用，必须通过调用setNeedsDisplay 或 者 setNeedsDisplayInRect，让系统自动调该方法。</li>
+<li>2、若使用calayer绘图，只能在drawInContext: 中（类似鱼drawRect）绘制，或者在delegate中的相应方法绘制。同样也是调用setNeedDisplay等间接调用以上方法</li>
+<li>3、若要实时画图，不能使用gestureRecognizer，只能使用touchbegan等方法来掉用setNeedsDisplay实时刷新屏幕</li>
+</ul>
+</span>
       
     </div>
 
@@ -223,9 +257,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Object-C/" rel="tag">#Object-C</a>
-          
-            <a href="/tags/占位符/" rel="tag">#占位符</a>
+            <a href="/tags//" rel="tag">#..</a>
           
         </div>
       
@@ -234,11 +266,13 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/10/01/Swiftype添加站内搜索/" rel="prev">Swiftype添加站内搜索</a>
+              <a href="/2016/02/16/转-使用UIBezierPath和CAShapeLayer画图/" rel="prev">[转]使用UIBezierPath和CAShapeLayer画图</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/28/如何创建一个视图然后关联一个XIB/" rel="next">如何创建一个视图然后关联一个XIB</a>
             
           </div>
         </div>
@@ -343,7 +377,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在使用NSLog打印信息时，会用到很多占位符，如下："><span class="nav-number">1.</span> <span class="nav-text">在使用NSLog打印信息时，会用到很多占位符，如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%@_对象"><span class="nav-number">1.0.1.</span> <span class="nav-text">%@ 对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%d，_%i_整数"><span class="nav-number">1.0.2.</span> <span class="nav-text">%d， %i 整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%u_无符号整形"><span class="nav-number">1.0.3.</span> <span class="nav-text">%u 无符号整形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%f_浮点/双字"><span class="nav-number">1.0.4.</span> <span class="nav-text">%f 浮点/双字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%x,_%X_二进制整数"><span class="nav-number">1.0.5.</span> <span class="nav-text">%x, %X 二进制整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%o_八进制整数"><span class="nav-number">1.0.6.</span> <span class="nav-text">%o 八进制整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%zu_size_t"><span class="nav-number">1.0.7.</span> <span class="nav-text">%zu size_t</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%p_指针"><span class="nav-number">1.0.8.</span> <span class="nav-text">%p 指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%e_浮点/_双字_(科学计算)"><span class="nav-number">1.0.9.</span> <span class="nav-text">%e 浮点/ 双字 (科学计算)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%g_浮点/_双字"><span class="nav-number">1.0.10.</span> <span class="nav-text">%g 浮点/ 双字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%s_C字符串"><span class="nav-number">1.0.11.</span> <span class="nav-text">%s C字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%-*s_Pascal字符串"><span class="nav-number">1.0.12.</span> <span class="nav-text">%.*s Pascal字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%c_字符"><span class="nav-number">1.0.13.</span> <span class="nav-text">%c 字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%C_unichar"><span class="nav-number">1.0.14.</span> <span class="nav-text">%C unichar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%lld_64位长整数（long_long）"><span class="nav-number">1.0.15.</span> <span class="nav-text">%lld 64位长整数（long long）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%llu_无符号64位长整数"><span class="nav-number">1.0.16.</span> <span class="nav-text">%llu 无符号64位长整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%Lf_64位双数"><span class="nav-number">1.0.17.</span> <span class="nav-text">%Lf  64位双数</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#layoutSubviews在以下情况下会被调用："><span class="nav-number">1.</span> <span class="nav-text">layoutSubviews在以下情况下会被调用：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#drawRect在以下情况下会被调用："><span class="nav-number">2.</span> <span class="nav-text">drawRect在以下情况下会被调用：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#drawRect方法使用注意点："><span class="nav-number">3.</span> <span class="nav-text">drawRect方法使用注意点：</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
