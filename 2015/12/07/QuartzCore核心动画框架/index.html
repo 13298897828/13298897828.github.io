@@ -41,17 +41,16 @@
 <meta property="og:url" content="http://yoursite.com/2015/12/07/QuartzCore核心动画框架/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="核心动画框架 QuartzCoreCALayer就是UIView上的图层，很多的CALayer组成了UIView。CALayer与UIView是两个完全不同的类UIView动画就是简单动画，可以实现改变，偏移，形变，翻转，旋转，翻页">
-<meta property="og:image" content="http://i5.tietuku.com/b1254ee2a8f8fd52.png">
-<meta property="og:image" content="http://i5.tietuku.com/7a53b5e748c5bd74.gif">
-<meta property="og:image" content="http://i5.tietuku.com/247e758c006bae1d.gif">
-<meta property="og:image" content="http://i5.tietuku.com/298f5438c31b7af9.png">
-<meta property="og:image" content="http://i5.tietuku.com/539572505edf5187.gif">
-<meta property="og:image" content="http://i12.tietuku.com/943ea1dd58863f66.png">
+<meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/q1.png">
+<meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/q2.gif">
+<meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/q3.gif">
+<meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/q4.png">
+<meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/q5.png">
+<meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/q6.gif">
 <meta property="og:image" content="http://i12.tietuku.com/7e25c4d9135cefc0.gif">
-<meta property="og:image" content="http://i12.tietuku.com/c04deb76d57b159f.gif">
-<meta property="og:image" content="http://i12.tietuku.com/1a779203a76cc569.png">
-<meta property="og:image" content="http://i12.tietuku.com/ec1788c70314968a.gif">
-<meta property="og:updated_time" content="2015-12-08T08:32:51.000Z">
+<meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/q8.gif">
+<meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/q9.png">
+<meta property="og:updated_time" content="2016-05-04T10:10:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="QuartzCore核心动画框架">
 <meta name="twitter:description" content="核心动画框架 QuartzCoreCALayer就是UIView上的图层，很多的CALayer组成了UIView。CALayer与UIView是两个完全不同的类UIView动画就是简单动画，可以实现改变，偏移，形变，翻转，旋转，翻页">
@@ -217,7 +216,7 @@
 <a id="more"></a>
 <p>QuartzCore.framework:<br>NSObject<br>CAAnimation：<br>CAAnimationGroup: 并行动画<br>CATransition:<br>CAPropertyAnimation: 属性动画<br>CABasicAnimation:<br>CAKeyframeAnimation:</p>
 <p>大家都知道在iOS中实现一个动画相当简单，只要调用UIView的块代码即可实现一个动画效果，这在其他系统开发中基本不可能实现。<br>使用上面UIView封装的方法进行动画设置固然十分方便，但是具体动画如何实现我们是不清楚的。</p>
-<p>这里就需要了解iOS的核心动画Core Animation（包含在Quartz Core框架中）。在iOS中核心动画分为几类：基础动画、关键帧动画、动画组、转场动画。各个类的关系大致如下：<br><img src="http://i5.tietuku.com/b1254ee2a8f8fd52.png" alt=""></p>
+<p>这里就需要了解iOS的核心动画Core Animation（包含在Quartz Core框架中）。在iOS中核心动画分为几类：基础动画、关键帧动画、动画组、转场动画。各个类的关系大致如下：<br><img src="http://7xrz94.com1.z0.glb.clouddn.com/q1.png" alt=""></p>
 <p>CAAnimation：核心动画的基础类，不能直接使用，负责动画运行时间、速度的控制，本身实现了CAMediaTiming协议。</p>
 <p>CAPropertyAnimation：属性动画的基类（通过属性进行动画设置，注意是可动画属性），不能直接使用。<br>1-1 CABasicAnimation：基础动画，通过属性修改进行动画参数控制，只有初始状态和结束状态。<br>1-2 CAKeyframeAnimation：关键帧动画，同样是通过属性进行动画参数控制，但是同基础动画不同的是它可以有多个状态控制。</p>
 <p>CAAnimationGroup：动画组，动画组是一种组合模式设计，可以通过动画组来进行所有动画行为的统一控制，组中所有动画效果可以并发执行。</p>
@@ -273,7 +272,7 @@ basicAnimation<span class="variable">.duration</span>=<span class="number">5.0</
 [_layer addAnimation:basicAnimation forKey:<span class="string">@"KCBasicAnimation_Translation"</span>];
 }
 <span class="keyword">@end</span>
-</code></pre><p><img src="http://i5.tietuku.com/7a53b5e748c5bd74.gif" alt=""></p>
+</code></pre><p><img src="http://7xrz94.com1.z0.glb.clouddn.com/q2.gif" alt=""></p>
 <p>上面实现了一个基本动画效果，但是这个动画存在一个问题：动画结束后动画图层回到了原来的位置，当然是用UIView封装的方法是没有这个问题的。如何解决这个问题呢？</p>
 <p>原因：<br>图层动画的本质就是将图层内部的内容转化为位图经硬件操作形成一种动画效果，其实图层本身并没有任何的变化。上面的动画中图层并没有因为动画效果而改变它的位置（对于缩放动画其大小也是不会改变的），所以动画完成之后图层还是在原来的显示位置没有任何变化，如果这个图层在一个UIView中你会发现在UIView移动过程中你要触发UIView的点击事件也只能点击原来的位置（即使它已经运动到了别的位置），因为它的位置从来没有变过。</p>
 <p> 解决方法之一：在动画完成之后重新设置它的位置。</p>
@@ -574,7 +573,7 @@ _layer<span class="variable">.position</span>=[[anim valueForKey:<span class="st
 [<span class="keyword">self</span> animationPause];
 }
 <span class="keyword">@end</span>
-</code></pre><p><img src="http://i5.tietuku.com/247e758c006bae1d.gif" alt=""></p>
+</code></pre><p><img src="http://7xrz94.com1.z0.glb.clouddn.com/q3.gif" alt=""></p>
 <p>注意：</p>
 <ul>
 <li>动画暂停针对的是图层而不是图层中的某个动画。</li>
@@ -583,7 +582,7 @@ _layer<span class="variable">.position</span>=[[anim valueForKey:<span class="st
 <li>path：可以设置一个CGPathRef\CGMutablePathRef,让层跟着路径移动。path只对CALayer的anchorPoint和position起作用。如果你设置了path，那么values将被忽略 </li>
 <li>keyTimes：可以为对应的关键帧指定对应的时间点,其取值范围为0到1.0,keyTimes中的每一个时间值都对应values中的每一帧.当keyTimes没有设置的时候,各个关键帧的时间是平分的</li>
 </ul>
-<p>关键帧动画就是在动画控制过程中开发者指定主要的动画状态，至于各个状态间动画如何进行则由系统自动运算补充（每两个关键帧之间系统形成的动画称为“补间动画”），这种动画的好处就是开发者不用逐个控制每个动画帧，而只要关心几个关键帧的状态即可。<br>关键帧动画开发分为两种形式：一种是通过设置不同的属性值进行关键帧控制，另一种是通过绘制路径进行关键帧控制。后者优先级高于前者，如果设置了路径则属性值就不再起作用。<br>对于前面的落花动画效果而言其实落花的过程并不自然，很显然实际生活中它不可能沿着直线下落，这里我们不妨通过关键帧动画的values属性控制它在下落过程中的属性。假设下落过程如图：<br><img src="http://i5.tietuku.com/298f5438c31b7af9.png" alt=""><br>——————————————————————————————————————<br>在这里需要设置四个关键帧（如图中四个关键点），具体代码如下（动画创建过程同基本动画基本完全一致）：</p>
+<p>关键帧动画就是在动画控制过程中开发者指定主要的动画状态，至于各个状态间动画如何进行则由系统自动运算补充（每两个关键帧之间系统形成的动画称为“补间动画”），这种动画的好处就是开发者不用逐个控制每个动画帧，而只要关心几个关键帧的状态即可。<br>关键帧动画开发分为两种形式：一种是通过设置不同的属性值进行关键帧控制，另一种是通过绘制路径进行关键帧控制。后者优先级高于前者，如果设置了路径则属性值就不再起作用。<br>对于前面的落花动画效果而言其实落花的过程并不自然，很显然实际生活中它不可能沿着直线下落，这里我们不妨通过关键帧动画的values属性控制它在下落过程中的属性。假设下落过程如图：<br><img src="http://7xrz94.com1.z0.glb.clouddn.com/q4.png" alt=""><br>——————————————————————————————————————<br>在这里需要设置四个关键帧（如图中四个关键点），具体代码如下（动画创建过程同基本动画基本完全一致）：</p>
 <pre><code><span class="preprocessor">#import <span class="title">"KCMainViewController.h"</span></span>
 
 <span class="class"><span class="keyword">@interface</span> <span class="title">KCMainViewController</span> ()</span>{
@@ -633,8 +632,8 @@ keyframeAnimation<span class="variable">.beginTime</span>=<span class="built_in"
 [_layer addAnimation:keyframeAnimation forKey:<span class="string">@"KCKeyframeAnimation_Position"</span>];
 }
 <span class="keyword">@end</span>
-</code></pre><p>运行效果(注意运行结束没有设置图层位置为动画运动结束位置)：<br><img src="http://i5.tietuku.com/539572505edf5187.gif" alt=""></p>
-<p>上面的方式固然比前面使用基础动画效果要好一些，但其实还是存在问题，那就是落花飞落的路径是直线的，当然这个直线是根据程序中设置的四个关键帧自动形成的，那么如何让它沿着曲线飘落呢？这就是第二种类型的关键帧动画，通过描绘路径进行关键帧动画控制。假设让落花沿着下面的曲线路径飘落：<br><img src="http://i12.tietuku.com/943ea1dd58863f66.png" alt=""><br>————————————————————————————————————————<br>这是一条贝塞尔曲线</p>
+</code></pre><p>运行效果(注意运行结束没有设置图层位置为动画运动结束位置)：<br><img src="http://7xrz94.com1.z0.glb.clouddn.com/q5.png" alt=""></p>
+<p>上面的方式固然比前面使用基础动画效果要好一些，但其实还是存在问题，那就是落花飞落的路径是直线的，当然这个直线是根据程序中设置的四个关键帧自动形成的，那么如何让它沿着曲线飘落呢？这就是第二种类型的关键帧动画，通过描绘路径进行关键帧动画控制。假设让落花沿着下面的曲线路径飘落：<br><img src="http://7xrz94.com1.z0.glb.clouddn.com/q6.gif" alt=""><br>————————————————————————————————————————<br>这是一条贝塞尔曲线</p>
 <pre><code><span class="preprocessor">#import <span class="title">"KCMainViewController.h"</span></span>
 <span class="class"><span class="keyword">@interface</span> <span class="title">KCMainViewController</span> ()</span>{
 <span class="built_in">CALayer</span> *_layer;
@@ -776,11 +775,11 @@ _layer<span class="variable">.transform</span>=<span class="built_in">CATransfor
 [<span class="built_in">CATransaction</span> commit];
 }
 <span class="keyword">@end</span>
-</code></pre><p><img src="http://i12.tietuku.com/c04deb76d57b159f.gif" alt=""></p>
+</code></pre><p><img src="http://7xrz94.com1.z0.glb.clouddn.com/q8.gif" alt=""></p>
 <p>CATransition转场动画</p>
 <p>属性解析:<br>type：动画过渡类型<br>subtype：动画过渡方向<br>startProgress：动画起点(在整体动画的百分比)<br>endProgress：动画终点(在整体动画的百分比)</p>
 <p>转场动画就是从一个场景以动画的形式过渡到另一个场景。转场动画的使用一般分为以下几个步骤：</p>
-<p>1.创建转场动画<br>2.设置转场类型、子类型（可选）及其他属性<br>3.设置转场后的新视图并添加动画到图层<br>下表列出了常用的转场类型(注意私有API是苹果官方没有公开的动画类型，但是目前通过仍然可以使用)：<br><img src="http://i12.tietuku.com/1a779203a76cc569.png" alt=""></p>
+<p>1.创建转场动画<br>2.设置转场类型、子类型（可选）及其他属性<br>3.设置转场后的新视图并添加动画到图层<br>下表列出了常用的转场类型(注意私有API是苹果官方没有公开的动画类型，但是目前通过仍然可以使用)：<br><img src="http://7xrz94.com1.z0.glb.clouddn.com/q9.png" alt=""></p>
 <pre><code><span class="preprocessor">#import <span class="title">"LayerTransitionAnimationVC.h"</span></span>
 <span class="preprocessor">#define IMAGE_COUNT 5</span>
 <span class="class"><span class="keyword">@interface</span> <span class="title">LayerTransitionAnimationVC</span> ()</span>{
@@ -848,8 +847,7 @@ _imageView<span class="variable">.image</span>=[<span class="keyword">self</span
 <span class="keyword">return</span> [<span class="built_in">UIImage</span> imageNamed:imageName];
 }
 <span class="keyword">@end</span>
-</code></pre><p><img src="http://i12.tietuku.com/ec1788c70314968a.gif" alt=""></p>
-</span>
+</code></pre></span>
       
     </div>
 
