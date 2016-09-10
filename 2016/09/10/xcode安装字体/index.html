@@ -35,17 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="1.首先把去苹果官网下载字体">
+<meta name="description" content="1.首先把去苹果官网下载字体 https://developer.apple.com/fonts/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xcode安装字体">
 <meta property="og:url" content="http://yoursite.com/2016/09/10/xcode安装字体/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="1.首先把去苹果官网下载字体">
-<meta property="og:image" content="https://developer.apple.com/fonts/">
-<meta property="og:updated_time" content="2016-09-10T03:25:46.000Z">
+<meta property="og:description" content="1.首先把去苹果官网下载字体 https://developer.apple.com/fonts/">
+<meta property="og:updated_time" content="2016-09-10T03:34:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xcode安装字体">
-<meta name="twitter:description" content="1.首先把去苹果官网下载字体">
+<meta name="twitter:description" content="1.首先把去苹果官网下载字体 https://developer.apple.com/fonts/">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -204,7 +203,7 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="1-首先把去苹果官网下载字体">1.首先把去苹果官网下载字体</h3><p> <img src="https://developer.apple.com/fonts/" alt="字体下载"><br><a id="more"></a></p>
+        <span itemprop="articleBody"><h3 id="1-首先把去苹果官网下载字体">1.首先把去苹果官网下载字体</h3><p> <a href="https://developer.apple.com/fonts/" target="_blank" rel="external">https://developer.apple.com/fonts/</a><br><a id="more"></a></p>
 <h3 id="2-然后把下载的-otf_/_ttf_文件导入到resouce中">2.然后把下载的.otf / ttf 文件导入到resouce中</h3><h3 id="3-在info-plist中添加字段UIAppFonts会自动转换为_Fonts_provided_by_application_字段-在Array下添加Item为下载的字体名,带后缀,字体添加完成-">3.在info.plist中添加字段UIAppFonts会自动转换为 Fonts provided by application 字段.在Array下添加Item为下载的字体名,带后缀,字体添加完成.</h3><h3 id="4-使用方法,Xcode安装字体后直接使用UIFont(name””,size””)使用-">4.使用方法,Xcode安装字体后直接使用UIFont(name””,size””)使用.</h3><p>  使用过程中可能会出现不能正确显示的问题,需要我们做处理:</p>
 <pre><code><span class="func"><span class="keyword">func</span> <span class="title">showAllFonts</span><span class="params">()</span></span> {
     <span class="keyword">let</span> familyNames = <span class="type">UIFont</span>.familyNames()
