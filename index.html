@@ -218,9 +218,12 @@
 
       
         
-          <span itemprop="articleBody"><h3 id="由于现在所写项目用’Swift’开发,_苹果要求使用’Swift’写的库,必须通过动态链接引入">由于现在所写项目用’Swift’开发, 苹果要求使用’Swift’写的库,必须通过动态链接引入</h3><p>此处好多坑,网上查到的好多都在说什么苹果不支持动态库,审核会被拒… 那是iOS8之前的事情了.swift出来之后就没有了好吗<br>以下为此观点支持理由:<br>(swift项目在 ‘Cocopods’ 内引入第三方库 需要在Podfile顶部加上”use_frameworks”,之后pod的库都会被编译成动态链接库,而以fake framework引入的pod仍然会编译到主App里面。动态库都放在App里面的Frameworks目录，Swift相关的动态库也都拷贝进来了，所以支持Swift会导致包变大。)<br>如果不添加use_framework会’Cocopods’导入会报以下错误<br>Mach-O dynamically linked shared library arm<br>Mach-O 64-bit dynamically linked shared library<br>因为fake framework和源代码pod分别会编译成静态库和动态库，这样会导致一个问题，就是如果源码pod又依赖fake framework，那就没办法了。CocoaPods发现这种情况会提示下面这个错误。<br>target has transitive dependencies that include static binaries: (xxx.framework, xxx.framework)<br>pod install时会把静态库编译到App里面，源码编译成的动态库没法依赖它。最终的解决方案只能是CocoaPods对fake framework和源码pod一视同仁，都编译成动态库，这样彼此才能依赖。不知道CocoaPods什么时候会支持这样。<br>里面有更详细的解释<img src="http://www.superqq.com/blog/2016/03/07/objective-c-swift-study/" alt="原文链接"></p>
-<h3 id="制作方法">制作方法</h3><p>xcode7的制作方法完全没有任何问题,下面这个是xcode8的<br><img src="http://m.2cto.com/kf/201610/553341.html" alt="随便给个制作framework链接"></p>
-</span>
+          <h3 id="由于现在所写项目用’Swift’开发,_苹果要求使用’Swift’写的库,必须通过动态链接引入">由于现在所写项目用’Swift’开发, 苹果要求使用’Swift’写的库,必须通过动态链接引入</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/02/swift-制作-Framework-静态-动态/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -292,49 +295,12 @@
 
       
         
-          <span itemprop="articleBody"><h3 id="1-在框架中到入swiftyJson,和objectMapper-">1.在框架中到入swiftyJson,和objectMapper.</h3><p>本人是用Cocopods到入的<br>pod ‘SwiftyJSON’<br>pod ‘ObjectMapper’<br>如果使用’Alamofire’可以换用’AlamofireObjectMapper’<br>如果框架中有多个数据解析框架的 可以像我一样 使用’SwiftyJSON’和’ObjectMapper’</p>
-<h3 id="2-利用objectMapper创建model">2.利用objectMapper创建model</h3><p>import ObjectMapper<br>class Man: Mappable {</p>
-<p>var name: String?</p>
-<p>var age: Int = -1</p>
-<p>var married: Bool = false</p>
-<p>required init?(map: Map) {</p>
-<p>}</p>
-<p>func mapping(map: Map) {</p>
-<p>name &lt;- map[“name”]<br>age &lt;- map[“age”]<br>married &lt;- map[“married”]</p>
-<p>}<br>}<br>以上是一个简单model的创建过程,需要注意的是要实现下面的两个方法.需要 ‘xxx &lt;- map[“xxx”]’ 对每个字段进行转换.</p>
-<h3 id="3-关于多层model嵌套的处理">3.关于多层model嵌套的处理</h3><ul>
-<li>1 这个是外层的model</li>
-</ul>
-<p>import ObjectMapper<br>// modelPr<br>class PrModel<pord:proddetailmodel>: Mappable {</pord:proddetailmodel></p>
-<p>var info : [[[AnyObject]]]!</p>
-<p>var name : String!</p>
-<p>var prod : [ProdDetailModel]!</p>
-<p>var step : Int!</p>
-<p>required init?(map: Map) {</p>
-<p>}</p>
-<p>func mapping(map: Map) {</p>
-<p>info &lt;- map[“info”]</p>
-<p>prod &lt;- map[“modelProdDetailModel”]</p>
-<p>name &lt;- map[“name”]</p>
-<p>step &lt;- map[“step”]</p>
-<p>}<br>}</p>
-<ul>
-<li>2 这个是在上面model中嵌套的model    </li>
-</ul>
-<p>// modelProdDetailModel<br>class ProdDetailModel:Mappable {</p>
-<p>var img : String!</p>
-<p>var name : String!</p>
-<p>var tip : [String]!</p>
-<p>required init?(map: Map) {</p>
-<p>}</p>
-<p>func mapping(map: Map) {</p>
-<p>img &lt;- map[“img”]</p>
-<p>name  &lt;- map[“name”]</p>
-<p>tip &lt;- map[“tip”]</p>
-<p>}<br>}<br>第二个model ‘ProdDetailModel’的实现方式是没有不同的,<br>第一个model嵌套了第二个model 需要注意的是要在定义class:Mapper 实现第二个model的protocol,定义变量和实现mapping方法时也需要实现.<br>多层model原理相同原理 </p>
-<h3 id="json转model">json转model</h3><h4 id="单层_model">单层 model</h4><p>如果 当数据格式为字典 获取 “man”字段下的数据<br>    let json = JSON(data: response.data)<br>    let model = Mapper<prmodel<man>().map(JSON: json[“man”]) </prmodel<man></p>
-<h4 id="多层model">多层model</h4><p>对于model嵌套解析<br>    let json = JSON(data: response.data)<br>    let model = Mapper<prmodel<pord:proddetailmodel>&gt;().map(JSON: json.rawValue as! [String : Any])<br>对于多层model解析需要注意的其实就是Mapper&lt;&gt;内所需填写的就是外层model的格式,Mapper&lt;&gt;.map(JSON:)函数只是其中一种解析方式还有对 String,Dictionary 数据的处理.这个就要大家自己去摸索了,本人只是把比较常见的解析方式列举出来.</prmodel<pord:proddetailmodel></p>
-</span>
+          <h3 id="1-在框架中到入swiftyJson,和objectMapper-">1.在框架中到入swiftyJson,和objectMapper.</h3><p>本人是用Cocopods到入的<br>pod ‘SwiftyJSON’<br>pod ‘ObjectMapper’<br>如果使用’Alamofire’可以换用’AlamofireObjectMapper’ </p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/15/Swift中利用SwiftyJson和ObjectMapper解析数据/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -380,6 +346,17 @@
           </time>
         </span>
 
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/swift/" itemprop="url" rel="index"><span itemprop="name">swift</span></a></span>
+
+              
+              
+
+            
+          </span>
         
 
         
@@ -1007,7 +984,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
