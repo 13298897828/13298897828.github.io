@@ -176,6 +176,120 @@
           
           
             
+              <a class="post-title-link" href="/2016/10/15/Swift中利用SwiftyJson和ObjectMapper解析数据/" itemprop="url">
+                Swift中利用SwiftyJson和ObjectMapper解析数据
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-10-15T11:46:57+08:00" content="2016-10-15">
+            2016-10-15
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/swift/" itemprop="url" rel="index"><span itemprop="name">swift</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><h3 id="1-在框架中到入swiftyJson,和objectMapper-">1.在框架中到入swiftyJson,和objectMapper.</h3><p>本人是用Cocopods到入的<br>pod ‘SwiftyJSON’<br>pod ‘ObjectMapper’<br>如果使用’Alamofire’可以换用’AlamofireObjectMapper’<br>如果框架中有多个数据解析框架的 可以像我一样 使用’SwiftyJSON’和’ObjectMapper’</p>
+<h3 id="2-利用objectMapper创建model">2.利用objectMapper创建model</h3><p>import ObjectMapper<br>class Man: Mappable {</p>
+<p>var name: String?</p>
+<p>var age: Int = -1</p>
+<p>var married: Bool = false</p>
+<p>required init?(map: Map) {</p>
+<p>}</p>
+<p>func mapping(map: Map) {</p>
+<p>name &lt;- map[“name”]<br>age &lt;- map[“age”]<br>married &lt;- map[“married”]</p>
+<p>}<br>}<br>以上是一个简单model的创建过程,需要注意的是要实现下面的两个方法.需要 ‘xxx &lt;- map[“xxx”]’ 对每个字段进行转换.</p>
+<h3 id="3-关于多层model嵌套的处理">3.关于多层model嵌套的处理</h3><ul>
+<li>1 这个是外层的model</li>
+</ul>
+<p>import ObjectMapper<br>// modelPr<br>class PrModel<pord:proddetailmodel>: Mappable {</pord:proddetailmodel></p>
+<p>var info : [[[AnyObject]]]!</p>
+<p>var name : String!</p>
+<p>var prod : [ProdDetailModel]!</p>
+<p>var step : Int!</p>
+<p>required init?(map: Map) {</p>
+<p>}</p>
+<p>func mapping(map: Map) {</p>
+<p>info &lt;- map[“info”]</p>
+<p>prod &lt;- map[“modelProdDetailModel”]</p>
+<p>name &lt;- map[“name”]</p>
+<p>step &lt;- map[“step”]</p>
+<p>}<br>}</p>
+<ul>
+<li>2 这个是在上面model中嵌套的model    </li>
+</ul>
+<p>// modelProdDetailModel<br>class ProdDetailModel:Mappable {</p>
+<p>var img : String!</p>
+<p>var name : String!</p>
+<p>var tip : [String]!</p>
+<p>required init?(map: Map) {</p>
+<p>}</p>
+<p>func mapping(map: Map) {</p>
+<p>img &lt;- map[“img”]</p>
+<p>name  &lt;- map[“name”]</p>
+<p>tip &lt;- map[“tip”]</p>
+<p>}<br>}<br>第二个model ‘ProdDetailModel’的实现方式是没有不同的,<br>第一个model嵌套了第二个model 需要注意的是要在定义class:Mapper 实现第二个model的protocol,定义变量和实现mapping方法时也需要实现.<br>多层model原理相同原理 </p>
+<h3 id="json转model">json转model</h3><h4 id="单层_model">单层 model</h4><p>如果 当数据格式为字典 获取 “man”字段下的数据<br>    let json = JSON(data: response.data)<br>    let model = Mapper<prmodel<man>().map(JSON: json[“man”]) </prmodel<man></p>
+<h4 id="多层model">多层model</h4><p>对于model嵌套解析<br>    let json = JSON(data: response.data)<br>    let model = Mapper<prmodel<pord:proddetailmodel>&gt;().map(JSON: json.rawValue as! [String : Any])<br>对于多层model解析需要注意的其实就是Mapper&lt;&gt;内所需填写的就是外层model的格式,Mapper&lt;&gt;.map(JSON:)函数只是其中一种解析方式还有对 String,Dictionary 数据的处理.这个就要大家自己去摸索了,本人只是把比较常见的解析方式列举出来.</prmodel<pord:proddetailmodel></p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/05/10/xcode安装字体/" itemprop="url">
                 xcode安装字体
               </a>
@@ -843,84 +957,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/18/怎么把segmentControl边框隐藏/" itemprop="url">
-                怎么把segmentControl边框隐藏
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-18T14:09:04+08:00" content="2016-01-18">
-            2016-01-18
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <pre><code><span class="keyword">segment</span>.tintColor = [UIColor clearColor]<span class="comment">;//去掉颜色,现在整个segment都看不见</span>
-</code></pre>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/18/怎么把segmentControl边框隐藏/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -960,7 +996,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">48</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -974,7 +1010,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
