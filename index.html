@@ -218,33 +218,12 @@
 
       
         
-          <span itemprop="articleBody"><h4 id="对于swift_2-0_中的引入了新的异常处理机制">对于swift 2.0 中的引入了新的异常处理机制</h4><p>基本用法:</p>
-<h4 id="自定义错误类型">自定义错误类型</h4><p>enum MyError: Error {<br>case ErrorTypeA<br>case ErrorTypeB<br>}</p>
-<h4 id="无返回值">无返回值</h4><p>func testMethod() throws   {</p>
-<p>guard let xx = xxx else {</p>
-<p>throw ErrorTypeA</p>
-<p>}</p>
-<p>}</p>
-<h4 id="有返回值">有返回值</h4><p>func testMethod() throws -&gt; String  {</p>
-<p>guard let xx = xxx else {</p>
-<p>throw ErrorTypeA</p>
-<p>}</p>
-<p>}</p>
-<h4 id="调用方法">调用方法</h4><p>do {</p>
-<p>let str =  try testMethod()</p>
-<p>}catch let error {</p>
-<p>print(error)</p>
-<p>}</p>
-<h4 id="抛出异常后_testMethod后面的部分不会执行">抛出异常后 testMethod后面的部分不会执行</h4><p>func testMethod() throws  {<br>defer {<br>print(“step 1”)<br>}<br>print(“step 2”)<br>let b = “2”<br>guard let xx = xxx else {</p>
-<p>throw ErrorTypeA</p>
-<p>}</p>
-<p>print(“step 3”)</p>
-<p>}<br>do {</p>
-<p>let str =  try testMethod()</p>
-<p>}catch let error {</p>
-<p>print(error)</p>
-<p>}<br>以上代码输出的顺序为<br>当抛出异常时: step 2 , 1 , error<br>不抛出异常时: step 2 , 3 , 1</p>
-</span>
+          <h4 id="对于swift_2-0_中的引入了新的异常处理机制">对于swift 2.0 中的引入了新的异常处理机制</h4>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/07/Swift-throws-Error/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
