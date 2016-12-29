@@ -35,18 +35,18 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="由于现在所写项目用’Swift’开发, 苹果要求使用’Swift’写的库,必须通过动态链接引入此处好多坑,网上查到的好多都在说什么苹果不支持动态库,审核会被拒… 那是iOS8之前的事情了.swift出来之后就没有了好吗以下为此观点支持理由:(swift项目在 ‘Cocopods’ 内引入第三方库 需要在Podfile顶部加上”use_frameworks”,之后pod的库都会被编译成动态链接库,而">
+<meta name="description" content="由于现在所写项目用’Swift’开发, 苹果要求使用’Swift’写的库,必须通过动态链接引入">
 <meta property="og:type" content="article">
 <meta property="og:title" content="swift 制作 Framework 静态?动态?">
 <meta property="og:url" content="http://yoursite.com/2016/11/02/swift-制作-Framework-静态-动态/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="由于现在所写项目用’Swift’开发, 苹果要求使用’Swift’写的库,必须通过动态链接引入此处好多坑,网上查到的好多都在说什么苹果不支持动态库,审核会被拒… 那是iOS8之前的事情了.swift出来之后就没有了好吗以下为此观点支持理由:(swift项目在 ‘Cocopods’ 内引入第三方库 需要在Podfile顶部加上”use_frameworks”,之后pod的库都会被编译成动态链接库,而">
+<meta property="og:description" content="由于现在所写项目用’Swift’开发, 苹果要求使用’Swift’写的库,必须通过动态链接引入">
 <meta property="og:image" content="http://www.superqq.com/blog/2016/03/07/objective-c-swift-study/">
 <meta property="og:image" content="http://m.2cto.com/kf/201610/553341.html">
-<meta property="og:updated_time" content="2016-11-02T04:28:31.000Z">
+<meta property="og:updated_time" content="2016-11-02T05:22:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="swift 制作 Framework 静态?动态?">
-<meta name="twitter:description" content="由于现在所写项目用’Swift’开发, 苹果要求使用’Swift’写的库,必须通过动态链接引入此处好多坑,网上查到的好多都在说什么苹果不支持动态库,审核会被拒… 那是iOS8之前的事情了.swift出来之后就没有了好吗以下为此观点支持理由:(swift项目在 ‘Cocopods’ 内引入第三方库 需要在Podfile顶部加上”use_frameworks”,之后pod的库都会被编译成动态链接库,而">
+<meta name="twitter:description" content="由于现在所写项目用’Swift’开发, 苹果要求使用’Swift’写的库,必须通过动态链接引入">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -216,7 +216,8 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="由于现在所写项目用’Swift’开发,_苹果要求使用’Swift’写的库,必须通过动态链接引入">由于现在所写项目用’Swift’开发, 苹果要求使用’Swift’写的库,必须通过动态链接引入</h3><p>此处好多坑,网上查到的好多都在说什么苹果不支持动态库,审核会被拒… 那是iOS8之前的事情了.swift出来之后就没有了好吗<br>以下为此观点支持理由:<br>(swift项目在 ‘Cocopods’ 内引入第三方库 需要在Podfile顶部加上”use_frameworks”,之后pod的库都会被编译成动态链接库,而以fake framework引入的pod仍然会编译到主App里面。动态库都放在App里面的Frameworks目录，Swift相关的动态库也都拷贝进来了，所以支持Swift会导致包变大。)<br>如果不添加use_framework会’Cocopods’导入会报以下错误<br>Mach-O dynamically linked shared library arm<br>Mach-O 64-bit dynamically linked shared library<br>因为fake framework和源代码pod分别会编译成静态库和动态库，这样会导致一个问题，就是如果源码pod又依赖fake framework，那就没办法了。CocoaPods发现这种情况会提示下面这个错误。<br>target has transitive dependencies that include static binaries: (xxx.framework, xxx.framework)<br>pod install时会把静态库编译到App里面，源码编译成的动态库没法依赖它。最终的解决方案只能是CocoaPods对fake framework和源码pod一视同仁，都编译成动态库，这样彼此才能依赖。不知道CocoaPods什么时候会支持这样。<br>里面有更详细的解释<img src="http://www.superqq.com/blog/2016/03/07/objective-c-swift-study/" alt="原文链接"></p>
+        <span itemprop="articleBody"><h3 id="由于现在所写项目用’Swift’开发,_苹果要求使用’Swift’写的库,必须通过动态链接引入">由于现在所写项目用’Swift’开发, 苹果要求使用’Swift’写的库,必须通过动态链接引入</h3><a id="more"></a>
+<p>此处好多坑,网上查到的好多都在说什么苹果不支持动态库,审核会被拒… 那是iOS8之前的事情了.swift出来之后就没有了好吗<br>以下为此观点支持理由:<br>(swift项目在 ‘Cocopods’ 内引入第三方库 需要在Podfile顶部加上”use_frameworks”,之后pod的库都会被编译成动态链接库,而以fake framework引入的pod仍然会编译到主App里面。动态库都放在App里面的Frameworks目录，Swift相关的动态库也都拷贝进来了，所以支持Swift会导致包变大。)<br>如果不添加use_framework会’Cocopods’导入会报以下错误<br>Mach-O dynamically linked shared library arm<br>Mach-O 64-bit dynamically linked shared library<br>因为fake framework和源代码pod分别会编译成静态库和动态库，这样会导致一个问题，就是如果源码pod又依赖fake framework，那就没办法了。CocoaPods发现这种情况会提示下面这个错误。<br>target has transitive dependencies that include static binaries: (xxx.framework, xxx.framework)<br>pod install时会把静态库编译到App里面，源码编译成的动态库没法依赖它。最终的解决方案只能是CocoaPods对fake framework和源码pod一视同仁，都编译成动态库，这样彼此才能依赖。不知道CocoaPods什么时候会支持这样。<br>里面有更详细的解释<img src="http://www.superqq.com/blog/2016/03/07/objective-c-swift-study/" alt="原文链接"></p>
 <h3 id="制作方法">制作方法</h3><p>xcode7的制作方法完全没有任何问题,下面这个是xcode8的<br><img src="http://m.2cto.com/kf/201610/553341.html" alt="随便给个制作framework链接"></p>
 </span>
       
@@ -234,6 +235,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/iOS开发中-对OpenCV所需图片的处理/" rel="prev">iOS开发中 对OpenCV所需图片的处理</a>
             
           </div>
 
@@ -302,7 +305,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -316,7 +319,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

@@ -176,6 +176,243 @@
           
           
             
+              <a class="post-title-link" href="/2016/12/09/git库/" itemprop="url">
+                git库
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-12-09T10:59:51+08:00" content="2016-12-09">
+            2016-12-09
+          </time>
+        </span>
+
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><p>ssh 克隆git 库 git clone git@xxx</p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/11/07/Swift-throws-Error/" itemprop="url">
+                Swift throws Error
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-11-07T15:29:05+08:00" content="2016-11-07">
+            2016-11-07
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/swift/" itemprop="url" rel="index"><span itemprop="name">swift</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><h4 id="对于swift_2-0_中的引入了新的异常处理机制">对于swift 2.0 中的引入了新的异常处理机制</h4><p>基本用法:</p>
+<h4 id="自定义错误类型">自定义错误类型</h4><p>enum MyError: Error {<br>case ErrorTypeA<br>case ErrorTypeB<br>}</p>
+<h4 id="无返回值">无返回值</h4><p>func testMethod() throws   {</p>
+<p>guard let xx = xxx else {</p>
+<p>throw ErrorTypeA</p>
+<p>}</p>
+<p>}</p>
+<h4 id="有返回值">有返回值</h4><p>func testMethod() throws -&gt; String  {</p>
+<p>guard let xx = xxx else {</p>
+<p>throw ErrorTypeA</p>
+<p>}</p>
+<p>}</p>
+<h4 id="调用方法">调用方法</h4><p>do {</p>
+<p>let str =  try testMethod()</p>
+<p>}catch let error {</p>
+<p>print(error)</p>
+<p>}</p>
+<h4 id="抛出异常后_testMethod后面的部分不会执行">抛出异常后 testMethod后面的部分不会执行</h4><p>func testMethod() throws  {<br>defer {<br>print(“step 1”)<br>}<br>print(“step 2”)<br>let b = “2”<br>guard let xx = xxx else {</p>
+<p>throw ErrorTypeA</p>
+<p>}</p>
+<p>print(“step 3”)</p>
+<p>}<br>do {</p>
+<p>let str =  try testMethod()</p>
+<p>}catch let error {</p>
+<p>print(error)</p>
+<p>}<br>以上代码输出的顺序为<br>当抛出异常时: step 2 , 1 , error<br>不抛出异常时: step 2 , 3 , 1</p>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/2016/11/04/iOS开发中-对OpenCV所需图片的处理/" itemprop="url">
+                iOS开发中 对OpenCV所需图片的处理
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-11-04T10:14:33+08:00" content="2016-11-04">
+            2016-11-04
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h3 id="iOS开发中,利用OpenCV进行图片识别需要UIImage转换为CVMat,以下方法没有什么问题,做下记录">iOS开发中,利用OpenCV进行图片识别需要UIImage转换为CVMat,以下方法没有什么问题,做下记录</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/04/iOS开发中-对OpenCV所需图片的处理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/11/02/swift-制作-Framework-静态-动态/" itemprop="url">
                 swift 制作 Framework 静态?动态?
               </a>
@@ -700,242 +937,11 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/02/16/转-使用UIBezierPath和CAShapeLayer画图/" itemprop="url">
-                [转]使用UIBezierPath和CAShapeLayer画图
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-02-16T11:08:27+08:00" content="2016-02-16">
-            2016-02-16
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h3 id="CAShapeLayer_是_CALayer_的子类，但是比_CALayer_更灵活，可以画出各种图形，当然，你也可以使用其他方式来画，随你">CAShapeLayer 是 CALayer 的子类，但是比 CALayer 更灵活，可以画出各种图形，当然，你也可以使用其他方式来画，随你</h3>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/16/转-使用UIBezierPath和CAShapeLayer画图/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/28/UIView的layoutSubviews和drawRect方法何时调用/" itemprop="url">
-                UIView的layoutSubviews和drawRect方法何时调用
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-28T10:47:09+08:00" content="2016-01-28">
-            2016-01-28
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h4 id="layoutSubviews在以下情况下会被调用：">layoutSubviews在以下情况下会被调用：</h4>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/28/UIView的layoutSubviews和drawRect方法何时调用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/01/28/如何创建一个视图然后关联一个XIB/" itemprop="url">
-                如何创建一个视图然后关联一个XIB
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-01-28T10:46:22+08:00" content="2016-01-28">
-            2016-01-28
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/swift/" itemprop="url" rel="index"><span itemprop="name">swift</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>列举了一种使用File’s Owner关联视图的方法,仅供参考</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/28/如何创建一个视图然后关联一个XIB/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
   </nav>
 
 
@@ -970,7 +976,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -984,7 +990,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

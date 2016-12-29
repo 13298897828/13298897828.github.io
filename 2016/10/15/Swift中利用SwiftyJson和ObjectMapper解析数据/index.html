@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/15/Swift中利用SwiftyJson和ObjectMapper解析数据/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="1.在框架中到入swiftyJson,和objectMapper.本人是用Cocopods到入的pod ‘SwiftyJSON’pod ‘ObjectMapper’如果使用’Alamofire’可以换用’AlamofireObjectMapper’">
-<meta property="og:updated_time" content="2016-11-02T05:23:02.000Z">
+<meta property="og:updated_time" content="2016-11-02T05:26:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift中利用SwiftyJson和ObjectMapper解析数据">
 <meta name="twitter:description" content="1.在框架中到入swiftyJson,和objectMapper.本人是用Cocopods到入的pod ‘SwiftyJSON’pod ‘ObjectMapper’如果使用’Alamofire’可以换用’AlamofireObjectMapper’">
@@ -217,47 +217,85 @@
         <span itemprop="articleBody"><h3 id="1-在框架中到入swiftyJson,和objectMapper-">1.在框架中到入swiftyJson,和objectMapper.</h3><p>本人是用Cocopods到入的<br>pod ‘SwiftyJSON’<br>pod ‘ObjectMapper’<br>如果使用’Alamofire’可以换用’AlamofireObjectMapper’ </p>
 <a id="more"></a>
 <p>如果框架中有多个数据解析框架的 可以像我一样 使用’SwiftyJSON’和’ObjectMapper’</p>
-<h3 id="2-利用objectMapper创建model">2.利用objectMapper创建model</h3><p>import ObjectMapper<br>class Man: Mappable {</p>
-<p>var name: String?</p>
-<p>var age: Int = -1</p>
-<p>var married: Bool = false</p>
-<p>required init?(map: Map) {</p>
-<p>}</p>
-<p>func mapping(map: Map) {</p>
-<p>name &lt;- map[“name”]<br>age &lt;- map[“age”]<br>married &lt;- map[“married”]</p>
-<p>}<br>}<br>以上是一个简单model的创建过程,需要注意的是要实现下面的两个方法.需要 ‘xxx &lt;- map[“xxx”]’ 对每个字段进行转换.</p>
+<h3 id="2-利用objectMapper创建model">2.利用objectMapper创建model</h3><pre><code><span class="keyword">import</span> ObjectMapper
+
+<span class="class"><span class="keyword">class</span> <span class="title">Man</span>: <span class="title">Mappable</span> </span>{
+
+<span class="keyword">var</span> name: <span class="type">String</span>?
+
+<span class="keyword">var</span> age: <span class="type">Int</span> = -<span class="number">1</span>
+
+<span class="keyword">var</span> married: <span class="type">Bool</span> = <span class="literal">false</span>
+
+
+<span class="keyword">required</span> <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) {
+
+}
+
+<span class="func"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> {
+
+name &lt;- <span class="built_in">map</span>[<span class="string">"name"</span>]
+
+age &lt;- <span class="built_in">map</span>[<span class="string">"age"</span>]
+
+married &lt;- <span class="built_in">map</span>[<span class="string">"married"</span>]
+
+ }
+}
+</code></pre><p>以上是一个简单model的创建过程,需要注意的是要实现下面的两个方法.需要 ‘xxx &lt;- map[“xxx”]’ 对每个字段进行转换.</p>
 <h3 id="3-关于多层model嵌套的处理">3.关于多层model嵌套的处理</h3><ul>
-<li>1 这个是外层的model</li>
+<li><p>1 这个是外层的model</p>
+<p>  import ObjectMapper<br>  // modelPr<br>  class PrModel<pord:proddetailmodel>: Mappable {</pord:proddetailmodel></p>
+<p>  var info : [[[AnyObject]]]!</p>
+<p>  var name : String!</p>
+<p>  var prod : [ProdDetailModel]!</p>
+<p>  var step : Int!</p>
+<p>  required init?(map: Map) {</p>
+<p>  }</p>
+<p>  func mapping(map: Map) {</p>
+<p>  info &lt;- map[“info”]</p>
+<p>  prod &lt;- map[“modelProdDetailModel”]</p>
+<p>  name &lt;- map[“name”]</p>
+<p>  step &lt;- map[“step”]</p>
+</li>
 </ul>
-<p>import ObjectMapper<br>// modelPr<br>class PrModel<pord:proddetailmodel>: Mappable {</pord:proddetailmodel></p>
-<p>var info : [[[AnyObject]]]!</p>
-<p>var name : String!</p>
-<p>var prod : [ProdDetailModel]!</p>
-<p>var step : Int!</p>
-<p>required init?(map: Map) {</p>
-<p>}</p>
-<p>func mapping(map: Map) {</p>
-<p>info &lt;- map[“info”]</p>
-<p>prod &lt;- map[“modelProdDetailModel”]</p>
-<p>name &lt;- map[“name”]</p>
-<p>step &lt;- map[“step”]</p>
-<p>}<br>}</p>
-<ul>
+<pre><code> }
+}
+</code></pre><ul>
 <li>2 这个是在上面model中嵌套的model    </li>
 </ul>
-<p>// modelProdDetailModel<br>class ProdDetailModel:Mappable {</p>
-<p>var img : String!</p>
-<p>var name : String!</p>
-<p>var tip : [String]!</p>
-<p>required init?(map: Map) {</p>
-<p>}</p>
-<p>func mapping(map: Map) {</p>
-<p>img &lt;- map[“img”]</p>
-<p>name  &lt;- map[“name”]</p>
-<p>tip &lt;- map[“tip”]</p>
-<p>}<br>}<br>第二个model ‘ProdDetailModel’的实现方式是没有不同的,<br>第一个model嵌套了第二个model 需要注意的是要在定义class:Mapper 实现第二个model的protocol,定义变量和实现mapping方法时也需要实现.<br>多层model原理相同原理 </p>
-<h3 id="json转model">json转model</h3><h4 id="单层_model">单层 model</h4><p>如果 当数据格式为字典 获取 “man”字段下的数据<br>    let json = JSON(data: response.data)<br>    let model = Mapper<prmodel<man>().map(JSON: json[“man”]) </prmodel<man></p>
-<h4 id="多层model">多层model</h4><p>对于model嵌套解析<br>    let json = JSON(data: response.data)<br>    let model = Mapper<prmodel<pord:proddetailmodel>&gt;().map(JSON: json.rawValue as! [String : Any])<br>对于多层model解析需要注意的其实就是Mapper&lt;&gt;内所需填写的就是外层model的格式,Mapper&lt;&gt;.map(JSON:)函数只是其中一种解析方式还有对 String,Dictionary 数据的处理.这个就要大家自己去摸索了,本人只是把比较常见的解析方式列举出来.</prmodel<pord:proddetailmodel></p>
+<pre><code><span class="comment">// modelProdDetailModel</span>
+<span class="class"><span class="keyword">class</span> <span class="title">ProdDetailModel</span>:<span class="title">Mappable</span> </span>{
+
+<span class="keyword">var</span> img : <span class="type">String</span>!
+
+<span class="keyword">var</span> name : <span class="type">String</span>!
+
+<span class="keyword">var</span> tip : [<span class="type">String</span>]!
+
+<span class="keyword">required</span> <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) {
+
+}
+
+<span class="func"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> {
+
+img &lt;- <span class="built_in">map</span>[<span class="string">"img"</span>]
+
+name  &lt;- <span class="built_in">map</span>[<span class="string">"name"</span>]
+
+tip &lt;- <span class="built_in">map</span>[<span class="string">"tip"</span>]
+
+
+    }
+}
+</code></pre><p>第二个model ‘ProdDetailModel’的实现方式是没有不同的,<br>第一个model嵌套了第二个model 需要注意的是要在定义class:Mapper 实现第二个model的protocol,定义变量和实现mapping方法时也需要实现.<br>多层model原理相同原理 </p>
+<h3 id="json转model">json转model</h3><h4 id="单层_model">单层 model</h4><p>如果 当数据格式为字典 获取 “man”字段下的数据</p>
+<pre><code>let json = <span class="function"><span class="title">JSON</span><span class="params">(data: response.data)</span></span>
+let model = Mapper&lt;PrModel&lt;man&gt;().<span class="function"><span class="title">map</span><span class="params">(JSON: json[<span class="string">"man"</span>])</span></span> 
+</code></pre><h4 id="多层model">多层model</h4><p>对于model嵌套解析</p>
+<pre><code><span class="keyword">let</span> json = <span class="built_in">JSON</span>(data: response.data)
+<span class="keyword">let</span> model = Mapper&lt;PrModel&lt;pord:ProdDetailModel&gt;&gt;().map(<span class="built_in">JSON</span>: json.rawValue <span class="keyword">as</span>! [<span class="built_in">String</span> : Any]) 
+</code></pre><p>对于多层model解析需要注意的其实就是Mapper&lt;&gt;内所需填写的就是外层model的格式,Mapper&lt;&gt;.map(JSON:)函数只是其中一种解析方式还有对 String,Dictionary 数据的处理.这个就要大家自己去摸索了,本人只是把比较常见的解析方式列举出来.</p>
 </span>
       
     </div>
@@ -344,7 +382,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">53</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -358,7 +396,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">37</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
