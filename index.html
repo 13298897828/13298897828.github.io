@@ -638,8 +638,8 @@
           
           
             
-              <a class="post-title-link" href="/2016/03/30/how-to-let-your-label-or-uitextfield-be-colorful/" itemprop="url">
-                how to let your label or uitextfield be colorful
+              <a class="post-title-link" href="/2016/03/30/how-to-make-your-label-or-uitextfield-be-colorful/" itemprop="url">
+                how to make your label or uitextfield be colorful
               </a>
             
           
@@ -680,12 +680,31 @@
 
       
         
-          <p>今天UI出图,让我做如下效果~,然后…我就把label拼了下.改了下颜色,哈哈哈<del>~ 开个玩笑的…字数不定,也不知道在哪改,我当时内心的崩溃的😂,幸好谷歌上有大神的答案</del>然后就被我…不说了 上代码…..<br> <img src="http://i4.piimg.com/44c664c41bbbebfd.png" width="300" height="500" /><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/30/how-to-let-your-label-or-uitextfield-be-colorful/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          <span itemprop="articleBody"><p>今天UI出图,让我做如下效果~,然后…我就把label拼了下.改了下颜色,哈哈哈<del>~ 开个玩笑的…字数不定,也不知道在哪改,我当时内心的崩溃的😂,幸好谷歌上有大神的答案</del>然后就被我…不说了 上代码…..</p>
+<pre><code> var text = String()
+text = <span class="string">"你的肌肤光滑度超过了全国81%的女生"</span>
+let text3 = NSMutableAttributedString(<span class="built_in">string</span>: text)
+ <span class="comment">//  改颜色,下面是查找的字符</span>
+let needle: Character = <span class="string">"%"</span>
+ <span class="comment">//  然后判断是否含有次字符</span>
+ <span class="keyword">if</span> let idx = text.characters.indexOf(needle) {
+ <span class="comment">//  变色的长度</span>
+ let pos = text.startIndex.distanceTo(idx)
+
+ text3.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: <span class="number">254</span> / <span class="number">255.0</span>, green: <span class="number">220</span> / <span class="number">255.0</span>, blue: <span class="number">98</span> / <span class="number">255.0</span>, alpha: <span class="number">1</span>), range: NSMakeRange(pos - <span class="number">2</span>, <span class="number">3</span>))
+
+let style = NSMutableParagraphStyle()
+</code></pre><h4 id="设置行距啊!!这个一定要说,再也不怕换行要写两个啦">设置行距啊!!这个一定要说,再也不怕换行要写两个啦</h4><pre><code><span class="comment">//   设置label行距</span>
+ style<span class="variable">.lineSpacing</span> = <span class="number">10</span>
+ style<span class="variable">.alignment</span> = <span class="built_in">NSTextAlignment</span><span class="variable">.Center</span>
+       text3<span class="variable">.addAttribute</span>(<span class="built_in">NSParagraphStyleAttributeName</span>, value: style, range: <span class="built_in">NSMakeRange</span>(<span class="number">0</span>, text3<span class="variable">.length</span>))
+<span class="comment">//   最后,再把处理好的文字赋值给label 大功告成~       </span>
+       secondShareLabel<span class="variable">.attributedText</span> = text3
+   }
+   <span class="keyword">else</span> {
+       print(<span class="string">"Not found"</span>)
+   }
+</code></pre></span>
         
       
     </div>
