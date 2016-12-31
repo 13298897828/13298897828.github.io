@@ -176,6 +176,116 @@
           
           
             
+              <a class="post-title-link" href="/2016/12/31/在App内跳转淘宝需要做什么准备/" itemprop="url">
+                在App内跳转淘宝需要做什么准备?
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2016-12-31T11:23:17+08:00" content="2016-12-31">
+            2016-12-31
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/ios/" itemprop="url" rel="index"><span itemprop="name">ios</span></a></span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><h3 id="关于在App内跳转淘宝链接">关于在App内跳转淘宝链接</h3><p>   在网上找了很多相关资料,想做一个App内跳转链接,当时看到很多都告诉我去集成阿里百川SDK,我只是想做个跳转链接,为什么让我集成SDK啊.然后自己研究了下,好纠结.我去看了一眼阿里百川SDK,这明明**是做一个电商才用的好吧!我真的就像做个跳转啊!!!果断废弃.<br>&lt;!—more—&gt;</p>
+<h3 id="说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接OpenUrl">说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接OpenUrl</h3><ul>
+<li><p>1 替换 http | https 为淘 宝</p>
+<pre><code>let  taobaoUrl = <span class="function"><span class="title">getTaobaoUrl</span><span class="params">(url: url)</span></span>
+<span class="comment">// 正则表达式还是自己写就看你们自己了</span>
+</code></pre><p>  // 我自己怕麻烦自己写了个简单判断</p>
+<pre><code>func getTaobaoUrl(url:<span class="built_in">String</span>) -&gt; <span class="built_in">String</span> {
+<span class="keyword">var</span> urlStr = url
+<span class="keyword">if</span> !urlStr.hasPrefix(<span class="string">"https"</span>) {
+    <span class="keyword">if</span> urlStr.hasPrefix(<span class="string">"http"</span>){
+        urlStr =  urlStr.replacingOccurrences(<span class="keyword">of</span>: <span class="string">"https"</span>, <span class="keyword">with</span>: <span class="string">"http"</span>)
+    }<span class="keyword">else</span> {
+        urlStr = <span class="string">"https://\(urlStr)"</span>
+    }
+}
+<span class="keyword">let</span> newStr = urlStr.replacingOccurrences(<span class="keyword">of</span>: <span class="string">"https"</span>, <span class="keyword">with</span>: <span class="string">"taobao"</span>)
+</code></pre><p>   return newStr</p>
+<p>  }</p>
+</li>
+<li><p>2 判断链接是否为可用链接,canOpenURL判断 能否跳转,不能跳转则WebView展示. 需要注意iOS10和之前的判断方法稍有差异.</p>
+<pre><code><span class="keyword">if</span> #available(iOS <span class="number">10.0</span>, *) {   <span class="type">UIApplication</span>.shared.<span class="keyword">open</span>(<span class="type">URL</span>(<span class="built_in">string</span>: taobaoUrl)!, options: [:], completionHandler: {
+        <span class="keyword">if</span> !$<span class="number">0</span> {
+            <span class="keyword">let</span> vc = <span class="type">TaobaoWebViewController</span><span class="literal">()</span>
+            vc.url = <span class="type">URL</span>(<span class="built_in">string</span>: url)
+            vc.hidesBottomBarWhenPushed = <span class="literal">true</span> 
+            self.navigationController?.pushViewController(vc, animated: <span class="literal">true</span>)
+        }
+    })
+} <span class="keyword">else</span> {
+    <span class="keyword">if</span> !<span class="type">UIApplication</span>.shared.canOpenURL(<span class="type">URL</span>(<span class="built_in">string</span>: taobaoUrl)!) {
+        <span class="keyword">let</span> vc = <span class="type">TaobaoWebViewController</span><span class="literal">()</span>
+        vc.url = <span class="type">URL</span>(<span class="built_in">string</span>: url)
+        vc.hidesBottomBarWhenPushed = <span class="literal">true</span>
+        self.navigationController?.pushViewController(vc, animated: <span class="literal">true</span>)
+    }
+}
+</code></pre></li>
+</ul>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2016/11/07/Swift-throws-Error/" itemprop="url">
                 Swift throws Error
               </a>
@@ -854,83 +964,6 @@
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/2016/02/16/转-使用UIBezierPath和CAShapeLayer画图/" itemprop="url">
-                [转]使用UIBezierPath和CAShapeLayer画图
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2016-02-16T11:08:27+08:00" content="2016-02-16">
-            2016-02-16
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h3 id="CAShapeLayer_是_CALayer_的子类，但是比_CALayer_更灵活，可以画出各种图形，当然，你也可以使用其他方式来画，随你">CAShapeLayer 是 CALayer 的子类，但是比 CALayer 更灵活，可以画出各种图形，当然，你也可以使用其他方式来画，随你</h3>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/16/转-使用UIBezierPath和CAShapeLayer画图/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -970,14 +1003,14 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-count">54</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>

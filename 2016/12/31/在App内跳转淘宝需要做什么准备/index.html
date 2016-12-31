@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="照片获取," />
+  <meta name="keywords" content="Hexo,next" />
 
 
 
@@ -35,16 +35,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="利用系统相机或者图库中的图片进行裁剪缩放来获取图片当我们需要使用系统图库中的照片或者需要新照一张照片时，我们可以使用UIImagePickerController来实现">
+<meta name="description" content="关于在App内跳转淘宝链接   在网上找了很多相关资料,想做一个App内跳转链接,当时看到很多都告诉我去集成阿里百川SDK,我只是想做个跳转链接,为什么让我集成SDK啊.然后自己研究了下,好纠结.我去看了一眼阿里百川SDK,这明明**是做一个电商才用的好吧!我真的就像做个跳转啊!!!果断废弃.&amp;lt;!—more—&amp;gt;
+说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接Op">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用照相机或图库中的图片来获取图片">
-<meta property="og:url" content="http://yoursite.com/2015/03/15/使用照相机或图库中的图片来获取图片/index.html">
+<meta property="og:title" content="在App内跳转淘宝需要做什么准备?">
+<meta property="og:url" content="http://yoursite.com/2016/12/31/在App内跳转淘宝需要做什么准备/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="利用系统相机或者图库中的图片进行裁剪缩放来获取图片当我们需要使用系统图库中的照片或者需要新照一张照片时，我们可以使用UIImagePickerController来实现">
-<meta property="og:updated_time" content="2015-12-15T09:10:03.000Z">
+<meta property="og:description" content="关于在App内跳转淘宝链接   在网上找了很多相关资料,想做一个App内跳转链接,当时看到很多都告诉我去集成阿里百川SDK,我只是想做个跳转链接,为什么让我集成SDK啊.然后自己研究了下,好纠结.我去看了一眼阿里百川SDK,这明明**是做一个电商才用的好吧!我真的就像做个跳转啊!!!果断废弃.&amp;lt;!—more—&amp;gt;
+说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接Op">
+<meta property="og:updated_time" content="2016-12-31T03:38:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用照相机或图库中的图片来获取图片">
-<meta name="twitter:description" content="利用系统相机或者图库中的图片进行裁剪缩放来获取图片当我们需要使用系统图库中的照片或者需要新照一张照片时，我们可以使用UIImagePickerController来实现">
+<meta name="twitter:title" content="在App内跳转淘宝需要做什么准备?">
+<meta name="twitter:description" content="关于在App内跳转淘宝链接   在网上找了很多相关资料,想做一个App内跳转链接,当时看到很多都告诉我去集成阿里百川SDK,我只是想做个跳转链接,为什么让我集成SDK啊.然后自己研究了下,好纠结.我去看了一眼阿里百川SDK,这明明**是做一个电商才用的好吧!我真的就像做个跳转啊!!!果断废弃.&amp;lt;!—more—&amp;gt;
+说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接Op">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +57,7 @@
   };
 </script>
 
-    <title> 使用照相机或图库中的图片来获取图片 // 张天琦 </title>
+    <title> 在App内跳转淘宝需要做什么准备? // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -175,7 +178,7 @@
           
           
             
-              使用照相机或图库中的图片来获取图片
+              在App内跳转淘宝需要做什么准备?
             
           
         </h1>
@@ -184,8 +187,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-03-15T17:06:47+08:00" content="2015-03-15">
-            2015-03-15
+          <time itemprop="dateCreated" datetime="2016-12-31T11:23:17+08:00" content="2016-12-31">
+            2016-12-31
           </time>
         </span>
 
@@ -193,7 +196,7 @@
           <span class="post-category" >
             &nbsp; | &nbsp; 分类于
             
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/ios/" itemprop="url" rel="index"><span itemprop="name">ios</span></a></span>
 
               
               
@@ -214,78 +217,60 @@
       
 
       
-        <span itemprop="articleBody"><p>利用系统相机或者图库中的图片进行裁剪缩放来获取图片<br>当我们需要使用系统图库中的照片或者需要新照一张照片时，我们可以使用<code>UIImagePickerController</code>来实现<br><a id="more"></a><br>我们使用<code>UIImagePickerController</code>必须遵守这两个协议</p>
-<pre><code><span class="preprocessor">#pragma mark 实现—打开用户相册获取图片视图</span>
-
--(<span class="keyword">void</span>)pickImageFromAlbum {
-<span class="comment">// 初始化UIImagePickerController模态视图</span>
-<span class="built_in">UIImagePickerController</span> *imagePicker = [[<span class="built_in">UIImagePickerController</span> alloc] init];
-imagePicker<span class="variable">.delegate</span> = <span class="keyword">self</span>; <span class="comment">// 设置代理</span>
-<span class="comment">// 判断是否有照相机或者有图片</span>
-<span class="keyword">if</span> ([<span class="built_in">UIImagePickerController</span> isSourceTypeAvailable:<span class="built_in">UIImagePickerControllerSourceTypeCamera</span>]) {
-<span class="built_in">NSLog</span>(@”有照相机”);
+        <span itemprop="articleBody"><h3 id="关于在App内跳转淘宝链接">关于在App内跳转淘宝链接</h3><p>   在网上找了很多相关资料,想做一个App内跳转链接,当时看到很多都告诉我去集成阿里百川SDK,我只是想做个跳转链接,为什么让我集成SDK啊.然后自己研究了下,好纠结.我去看了一眼阿里百川SDK,这明明**是做一个电商才用的好吧!我真的就像做个跳转啊!!!果断废弃.<br>&lt;!—more—&gt;</p>
+<h3 id="说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接OpenUrl">说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接OpenUrl</h3><ul>
+<li><p>1 替换 http | https 为淘 宝</p>
+<pre><code>let  taobaoUrl = <span class="function"><span class="title">getTaobaoUrl</span><span class="params">(url: url)</span></span>
+<span class="comment">// 正则表达式还是自己写就看你们自己了</span>
+</code></pre><p>  // 我自己怕麻烦自己写了个简单判断</p>
+<pre><code>func getTaobaoUrl(url:<span class="built_in">String</span>) -&gt; <span class="built_in">String</span> {
+<span class="keyword">var</span> urlStr = url
+<span class="keyword">if</span> !urlStr.hasPrefix(<span class="string">"https"</span>) {
+    <span class="keyword">if</span> urlStr.hasPrefix(<span class="string">"http"</span>){
+        urlStr =  urlStr.replacingOccurrences(<span class="keyword">of</span>: <span class="string">"https"</span>, <span class="keyword">with</span>: <span class="string">"http"</span>)
+    }<span class="keyword">else</span> {
+        urlStr = <span class="string">"https://\(urlStr)"</span>
+    }
+}
+<span class="keyword">let</span> newStr = urlStr.replacingOccurrences(<span class="keyword">of</span>: <span class="string">"https"</span>, <span class="keyword">with</span>: <span class="string">"taobao"</span>)
+</code></pre><p>   return newStr</p>
+<p>  }</p>
+</li>
+<li><p>2 判断链接是否为可用链接,canOpenURL判断 能否跳转,不能跳转则WebView展示. 需要注意iOS10和之前的判断方法稍有差异.</p>
+<pre><code><span class="keyword">if</span> #available(iOS <span class="number">10.0</span>, *) {   <span class="type">UIApplication</span>.shared.<span class="keyword">open</span>(<span class="type">URL</span>(<span class="built_in">string</span>: taobaoUrl)!, options: [:], completionHandler: {
+        <span class="keyword">if</span> !$<span class="number">0</span> {
+            <span class="keyword">let</span> vc = <span class="type">TaobaoWebViewController</span><span class="literal">()</span>
+            vc.url = <span class="type">URL</span>(<span class="built_in">string</span>: url)
+            vc.hidesBottomBarWhenPushed = <span class="literal">true</span> 
+            self.navigationController?.pushViewController(vc, animated: <span class="literal">true</span>)
+        }
+    })
 } <span class="keyword">else</span> {
-<span class="built_in">NSLog</span>(@”摄像头不可使用”);
+    <span class="keyword">if</span> !<span class="type">UIApplication</span>.shared.canOpenURL(<span class="type">URL</span>(<span class="built_in">string</span>: taobaoUrl)!) {
+        <span class="keyword">let</span> vc = <span class="type">TaobaoWebViewController</span><span class="literal">()</span>
+        vc.url = <span class="type">URL</span>(<span class="built_in">string</span>: url)
+        vc.hidesBottomBarWhenPushed = <span class="literal">true</span>
+        self.navigationController?.pushViewController(vc, animated: <span class="literal">true</span>)
+    }
 }
-imagePicker<span class="variable">.sourceType</span> = <span class="built_in">UIImagePickerControllerSourceTypePhotoLibrary</span>; <span class="comment">// 设置选取的图片库 也可以直接使用摄像头进行拍摄</span>
-imagePicker<span class="variable">.modalTransitionStyle</span> = <span class="built_in">UIModalTransitionStyleCoverVertical</span>; <span class="comment">// 模态视图动画效果</span>
-imagePicker<span class="variable">.allowsEditing</span> = <span class="literal">YES</span>; <span class="comment">// 设置用户可以自由裁剪图片</span>
-
-<span class="comment">// 打开模态视图</span>
-[<span class="keyword">self</span> presentViewController:imagePicker animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
-}
-
-<span class="preprocessor">#pragma mark - UIImagePickerController Methods</span>
-<span class="preprocessor">#pragma mark 相册模态视图取消按钮 虽然此方法是可选的，但实际上需要必须实现</span>
-
--(<span class="keyword">void</span>)imagePickerControllerDidCancel:(<span class="built_in">UIImagePickerController</span> *)picker {
-<span class="built_in">NSLog</span>(@”关闭了相册模态视图”);
-<span class="comment">// 重写了次方法必须手动取消视图</span>
-[picker dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];
-}
-<span class="preprocessor">#pragma mark 获取选择的图片</span>
-(<span class="keyword">void</span>)imagePickerController:(<span class="built_in">UIImagePickerController</span> )picker didFinishPickingMediaWithInfo:(<span class="built_in">NSDictionary</span> )info {
-<span class="comment">// 获取裁剪的图片</span>
-<span class="built_in">UIImage</span> image= [info objectForKey:@”<span class="built_in">UIImagePickerControllerOriginalImage</span>”];
-<span class="built_in">UIImageView</span> imageView = [[<span class="built_in">UIImageView</span> alloc] initWithImage:image];
-imageView<span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">200</span>, image<span class="variable">.size</span><span class="variable">.width</span>, image<span class="variable">.size</span><span class="variable">.height</span>);
-[<span class="keyword">self</span><span class="variable">.view</span> addSubview:imageView];
-[imageView release], imageView = <span class="literal">nil</span>;
-
-<span class="built_in">NSLog</span>(@”%@”, info);
-<span class="comment">// 返回的字典中键 只有当picker允许编辑的情况下才会返回这5个键值对</span>
-<span class="comment">// UIImagePickerControllerOriginalImage // 没有编辑的图片</span>
-<span class="comment">// UIImagePickerControllerEditedImage // 编辑过的图片</span>
-<span class="comment">// UIImagePickerControllerCropRect // 编辑过的图片的位置和大小</span>
-<span class="comment">// UIImagePickerControllerMediaType</span>
-<span class="comment">// UIImagePickerControllerReferenceURL</span>
-
-<span class="comment">// 关闭视图</span>
-</code></pre><p>[picker dismissViewControllerAnimated:YES completion:nil];</p>
+</code></pre></li>
+</ul>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/照片获取/" rel="tag">#照片获取</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/04/11/如何上传本地文件到github/" rel="prev">如何上传本地文件到github</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/03/10/Block技术中的weak-strong/" rel="next">Block技术中的weak-strong</a>
+              <a href="/2016/11/07/Swift-throws-Error/" rel="next">Swift throws Error</a>
             
           </div>
         </div>
@@ -390,7 +375,7 @@ imageView<span class="variable">.frame</span> = <span class="built_in">CGRectMak
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于在App内跳转淘宝链接"><span class="nav-number">1.</span> <span class="nav-text">关于在App内跳转淘宝链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接OpenUrl"><span class="nav-number">2.</span> <span class="nav-text">说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接OpenUrl</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
