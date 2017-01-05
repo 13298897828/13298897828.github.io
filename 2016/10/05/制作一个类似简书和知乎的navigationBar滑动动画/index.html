@@ -26,7 +26,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -35,16 +35,27 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="关于在App内跳转淘宝链接   在网上找了很多相关资料,想做一个App内跳转链接,当时看到很多都告诉我去集成阿里百川SDK,我只是想做个跳转链接,为什么让我集成SDK啊.然后自己研究了下,好纠结.我去看了一眼阿里百川SDK,这明明**是做一个电商才用的好吧!我真的就像做个跳转啊!!!果断废弃.">
+<meta name="description" content="具体效果如图
+
+说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示&amp;lt;!—more—&amp;gt;
+具体实现也很简单,调用scrollViewWillEndDragging方法func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在App内跳转淘宝需要做什么准备?">
-<meta property="og:url" content="http://yoursite.com/2016/12/31/在App内跳转淘宝需要做什么准备/index.html">
+<meta property="og:title" content="制作一个类似简书和知乎的navigationBar滑动动画">
+<meta property="og:url" content="http://yoursite.com/2016/10/05/制作一个类似简书和知乎的navigationBar滑动动画/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="关于在App内跳转淘宝链接   在网上找了很多相关资料,想做一个App内跳转链接,当时看到很多都告诉我去集成阿里百川SDK,我只是想做个跳转链接,为什么让我集成SDK啊.然后自己研究了下,好纠结.我去看了一眼阿里百川SDK,这明明**是做一个电商才用的好吧!我真的就像做个跳转啊!!!果断废弃.">
-<meta property="og:updated_time" content="2017-01-04T07:05:27.000Z">
+<meta property="og:description" content="具体效果如图
+
+说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示&amp;lt;!—more—&amp;gt;
+具体实现也很简单,调用scrollViewWillEndDragging方法func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoin">
+<meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/demo.gif">
+<meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/demo_error.gif">
+<meta property="og:updated_time" content="2017-01-05T06:35:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在App内跳转淘宝需要做什么准备?">
-<meta name="twitter:description" content="关于在App内跳转淘宝链接   在网上找了很多相关资料,想做一个App内跳转链接,当时看到很多都告诉我去集成阿里百川SDK,我只是想做个跳转链接,为什么让我集成SDK啊.然后自己研究了下,好纠结.我去看了一眼阿里百川SDK,这明明**是做一个电商才用的好吧!我真的就像做个跳转啊!!!果断废弃.">
+<meta name="twitter:title" content="制作一个类似简书和知乎的navigationBar滑动动画">
+<meta name="twitter:description" content="具体效果如图
+
+说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示&amp;lt;!—more—&amp;gt;
+具体实现也很简单,调用scrollViewWillEndDragging方法func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoin">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -54,7 +65,7 @@
   };
 </script>
 
-    <title> 在App内跳转淘宝需要做什么准备? // 张天琦 </title>
+    <title> 制作一个类似简书和知乎的navigationBar滑动动画 // 张天琦 </title>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 <!--[if lte IE 8]>
@@ -175,7 +186,7 @@
           
           
             
-              在App内跳转淘宝需要做什么准备?
+              制作一个类似简书和知乎的navigationBar滑动动画
             
           
         </h1>
@@ -184,8 +195,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2016-12-31T11:23:17+08:00" content="2016-12-31">
-            2016-12-31
+          <time itemprop="dateCreated" datetime="2016-10-05T19:16:17+08:00" content="2016-10-05">
+            2016-10-05
           </time>
         </span>
 
@@ -193,7 +204,7 @@
           <span class="post-category" >
             &nbsp; | &nbsp; 分类于
             
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/ios/" itemprop="url" rel="index"><span itemprop="name">ios</span></a></span>
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a href="/categories/animation/" itemprop="url" rel="index"><span itemprop="name">animation</span></a></span>
 
               
               
@@ -214,61 +225,44 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="关于在App内跳转淘宝链接">关于在App内跳转淘宝链接</h3><p>   在网上找了很多相关资料,想做一个App内跳转链接,当时看到很多都告诉我去集成阿里百川SDK,我只是想做个跳转链接,为什么让我集成SDK啊.然后自己研究了下,好纠结.我去看了一眼阿里百川SDK,这明明**是做一个电商才用的好吧!我真的就像做个跳转啊!!!果断废弃.</p>
-<a id="more"></a>
-<h3 id="说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接OpenUrl">说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接OpenUrl</h3><ul>
-<li><p>1 替换 http | https 为淘 宝</p>
-<pre><code>let  taobaoUrl = <span class="function"><span class="title">getTaobaoUrl</span><span class="params">(url: url)</span></span>
-<span class="comment">// 正则表达式还是自己写就看你们自己了</span>
-</code></pre><p>  // 我自己怕麻烦自己写了个简单判断</p>
-<pre><code>func getTaobaoUrl(url:<span class="built_in">String</span>) -&gt; <span class="built_in">String</span> {
-<span class="keyword">var</span> urlStr = url
-<span class="keyword">if</span> !urlStr.hasPrefix(<span class="string">"https"</span>) {
-    <span class="keyword">if</span> urlStr.hasPrefix(<span class="string">"http"</span>){
-        urlStr =  urlStr.replacingOccurrences(<span class="keyword">of</span>: <span class="string">"https"</span>, <span class="keyword">with</span>: <span class="string">"http"</span>)
-    }<span class="keyword">else</span> {
-        urlStr = <span class="string">"https://\(urlStr)"</span>
+        <span itemprop="articleBody"><p>具体效果如图</p>
+<p><img src="http://7xrz94.com1.z0.glb.clouddn.com/demo.gif" alt=""></p>
+<h4 id="说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示">说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示</h4><p>&lt;!—more—&gt;</p>
+<h4 id="具体实现也很简单,调用scrollViewWillEndDragging方法">具体实现也很简单,调用scrollViewWillEndDragging方法</h4><pre><code><span class="func"><span class="keyword">func</span> <span class="title">scrollViewWillEndDragging</span><span class="params">(<span class="number">_</span> scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer&lt;CGPoint&gt;)</span></span> {
+    <span class="keyword">if</span> velocity.y &gt; <span class="number">0</span> {
+        <span class="keyword">self</span>.navigationController?.setNavigationBarHidden(<span class="literal">true</span>, animated: <span class="literal">true</span>)
+
+    }<span class="keyword">else</span> <span class="keyword">if</span> velocity.y &lt; -<span class="number">1</span> {
+        <span class="keyword">self</span>.navigationController?.setNavigationBarHidden(<span class="literal">false</span>, animated: <span class="literal">true</span>)
     }
-}
-<span class="keyword">let</span> newStr = urlStr.replacingOccurrences(<span class="keyword">of</span>: <span class="string">"https"</span>, <span class="keyword">with</span>: <span class="string">"taobao"</span>)
-</code></pre><p>   return newStr</p>
-<p>  }</p>
-</li>
-<li><p>2 判断链接是否为可用链接,canOpenURL判断 能否跳转,不能跳转则WebView展示. 需要注意iOS10和之前的判断方法稍有差异.</p>
-<pre><code><span class="keyword">if</span> #available(iOS <span class="number">10.0</span>, *) {   <span class="type">UIApplication</span>.shared.<span class="keyword">open</span>(<span class="type">URL</span>(<span class="built_in">string</span>: taobaoUrl)!, options: [:], completionHandler: {
-        <span class="keyword">if</span> !$<span class="number">0</span> {
-            <span class="keyword">let</span> vc = <span class="type">TaobaoWebViewController</span><span class="literal">()</span>
-            vc.url = <span class="type">URL</span>(<span class="built_in">string</span>: url)
-            vc.hidesBottomBarWhenPushed = <span class="literal">true</span> 
-            self.navigationController?.pushViewController(vc, animated: <span class="literal">true</span>)
-        }
-    })
-} <span class="keyword">else</span> {
-    <span class="keyword">if</span> !<span class="type">UIApplication</span>.shared.canOpenURL(<span class="type">URL</span>(<span class="built_in">string</span>: taobaoUrl)!) {
-        <span class="keyword">let</span> vc = <span class="type">TaobaoWebViewController</span><span class="literal">()</span>
-        vc.url = <span class="type">URL</span>(<span class="built_in">string</span>: url)
-        vc.hidesBottomBarWhenPushed = <span class="literal">true</span>
-        self.navigationController?.pushViewController(vc, animated: <span class="literal">true</span>)
-    }
-}
-</code></pre></li>
-</ul>
+
+} 
+</code></pre><p>以上代码既可以实现滑动是隐藏及显示效果,具体需要滑动的速度可以根据需要来调节</p>
+<h4 id="实现以上效果后会发现有一个问题">实现以上效果后会发现有一个问题</h4><p><img src="http://7xrz94.com1.z0.glb.clouddn.com/demo_error.gif" alt=""><br>当navigationBar隐藏状态下,返回主页,发现navigationBar消失.<br>看到很多解决办法,找到一个比较合理,并且效果较好的,让主控制器遵循 UINavigationControllerDelegate<br>并实现如下方法:<br>    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {<br>         self.navigationController?.setNavigationBarHidden(false, animated: true)<br>}<br>就可以实现一开始看到的效果啦</p>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/10/15/Swift中利用SwiftyJson和ObjectMapper解析数据/" rel="prev">Swift中利用SwiftyJson和ObjectMapper解析数据</a>
+            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/07/Swift-throws-Error/" rel="next">Swift throws Error</a>
+              <a href="/2016/05/10/xcode安装字体/" rel="next">xcode安装字体</a>
             
           </div>
         </div>
@@ -373,7 +367,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于在App内跳转淘宝链接"><span class="nav-number">1.</span> <span class="nav-text">关于在App内跳转淘宝链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接OpenUrl"><span class="nav-number">2.</span> <span class="nav-text">说下我的做法,其实和网上用法没什么区别,只是不需要那个SDK罢了,直接OpenUrl</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示"><span class="nav-number">1.</span> <span class="nav-text">说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体实现也很简单,调用scrollViewWillEndDragging方法"><span class="nav-number">2.</span> <span class="nav-text">具体实现也很简单,调用scrollViewWillEndDragging方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现以上效果后会发现有一个问题"><span class="nav-number">3.</span> <span class="nav-text">实现以上效果后会发现有一个问题</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
