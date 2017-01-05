@@ -41,7 +41,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/07/Swift-throws-Error/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="对于swift 2.0 中的引入了新的异常处理机制">
-<meta property="og:updated_time" content="2016-12-29T06:55:14.000Z">
+<meta property="og:updated_time" content="2017-01-05T06:45:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift throws Error">
 <meta name="twitter:description" content="对于swift 2.0 中的引入了新的异常处理机制">
@@ -216,31 +216,43 @@
       
         <span itemprop="articleBody"><h4 id="对于swift_2-0_中的引入了新的异常处理机制">对于swift 2.0 中的引入了新的异常处理机制</h4><a id="more"></a>
 <p>基本用法:</p>
-<h4 id="自定义错误类型">自定义错误类型</h4><p>enum MyError: Error {<br>case ErrorTypeA<br>case ErrorTypeB<br>}</p>
-<h4 id="无返回值">无返回值</h4><p>func testMethod() throws   {</p>
-<p>guard let xx = xxx else {</p>
-<p>throw ErrorTypeA</p>
-<p>}</p>
-<p>}</p>
-<h4 id="有返回值">有返回值</h4><p>func testMethod() throws -&gt; String  {</p>
-<p>guard let xx = xxx else {</p>
-<p>throw ErrorTypeA</p>
-<p>}</p>
-<p>}</p>
-<h4 id="调用方法">调用方法</h4><p>do {</p>
-<p>let str =  try testMethod()</p>
-<p>}catch let error {</p>
-<p>print(error)</p>
-<p>}</p>
-<h4 id="抛出异常后_testMethod后面的部分不会执行">抛出异常后 testMethod后面的部分不会执行</h4><p>func testMethod() throws  {<br>defer {<br>print(“step 1”)<br>}<br>print(“step 2”)<br>let b = “2”<br>guard let xx = xxx else {</p>
-<p>throw ErrorTypeA</p>
-<p>}</p>
-<p>print(“step 3”)</p>
-<p>}<br>do {</p>
-<p>let str =  try testMethod()</p>
-<p>}catch let error {</p>
-<p>print(error)</p>
-<p>}<br>以上代码输出的顺序为<br>当抛出异常时: step 2 , 1 , error<br>不抛出异常时: step 2 , 3 , 1</p>
+<h4 id="自定义错误类型">自定义错误类型</h4><pre><code><span class="class"><span class="keyword">enum</span> <span class="title">MyError</span>: <span class="title">Error</span> {</span>
+    <span class="keyword">case</span> <span class="constant">ErrorTypeA</span>
+    <span class="keyword">case</span> <span class="constant">ErrorTypeB</span>
+}
+</code></pre><h4 id="无返回值">无返回值</h4><pre><code><span class="func"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> <span class="keyword">throws</span>   {
+    <span class="keyword">guard</span> <span class="keyword">let</span> xx = xxx <span class="keyword">else</span> {
+    <span class="keyword">throw</span> <span class="type">ErrorTypeA</span>
+}
+</code></pre><p>}</p>
+<h4 id="有返回值">有返回值</h4><pre><code><span class="func"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span>  {
+    <span class="keyword">guard</span> <span class="keyword">let</span> xx = xxx <span class="keyword">else</span> {
+    <span class="keyword">throw</span> <span class="type">ErrorTypeA</span>
+    }
+}
+</code></pre><h4 id="调用方法">调用方法</h4><pre><code><span class="keyword">do</span> {
+
+    <span class="keyword">let</span> str =  <span class="function"><span class="keyword">try</span> <span class="title">testMethod</span>(<span class="params"></span>)
+    }<span class="keyword">catch</span> <span class="keyword">let</span> error </span>{
+    print(error)
+}
+</code></pre><h4 id="抛出异常后_testMethod后面的部分不会执行">抛出异常后 testMethod后面的部分不会执行</h4><pre><code><span class="func"><span class="keyword">func</span> <span class="title">testMethod</span><span class="params">()</span></span> <span class="keyword">throws</span>  {
+    <span class="keyword">defer</span> {
+        <span class="built_in">print</span>(<span class="string">"step 1"</span>)
+    }
+    <span class="built_in">print</span>(<span class="string">"step 2"</span>)
+    <span class="keyword">let</span> b = <span class="string">"2"</span>
+    <span class="keyword">guard</span> <span class="keyword">let</span> xx = xxx <span class="keyword">else</span> {
+        <span class="keyword">throw</span> <span class="type">ErrorTypeA</span>
+    }
+    <span class="built_in">print</span>(<span class="string">"step 3"</span>)
+}
+<span class="keyword">do</span> {
+    <span class="keyword">let</span> str =  <span class="keyword">try</span> testMethod()
+    }<span class="keyword">catch</span> <span class="keyword">let</span> error {
+        <span class="built_in">print</span>(error)
+}
+</code></pre><p>以上代码输出的顺序为<br>当抛出异常时: step 2 , 1 , error<br>不抛出异常时: step 2 , 3 , 1</p>
 </span>
       
     </div>
