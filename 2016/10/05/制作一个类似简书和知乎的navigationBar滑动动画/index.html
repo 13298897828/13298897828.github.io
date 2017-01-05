@@ -37,25 +37,22 @@
 
 <meta name="description" content="具体效果如图
 
-说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示&amp;lt;!—more—&amp;gt;
-具体实现也很简单,调用scrollViewWillEndDragging方法func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoin">
+说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示">
 <meta property="og:type" content="article">
 <meta property="og:title" content="制作一个类似简书和知乎的navigationBar滑动动画">
 <meta property="og:url" content="http://yoursite.com/2016/10/05/制作一个类似简书和知乎的navigationBar滑动动画/index.html">
 <meta property="og:site_name" content="张天琦">
 <meta property="og:description" content="具体效果如图
 
-说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示&amp;lt;!—more—&amp;gt;
-具体实现也很简单,调用scrollViewWillEndDragging方法func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoin">
+说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示">
 <meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/demo.gif">
 <meta property="og:image" content="http://7xrz94.com1.z0.glb.clouddn.com/demo_error.gif">
-<meta property="og:updated_time" content="2017-01-05T06:35:25.000Z">
+<meta property="og:updated_time" content="2017-01-05T06:37:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="制作一个类似简书和知乎的navigationBar滑动动画">
 <meta name="twitter:description" content="具体效果如图
 
-说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示&amp;lt;!—more—&amp;gt;
-具体实现也很简单,调用scrollViewWillEndDragging方法func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoin">
+说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -227,7 +224,7 @@
       
         <span itemprop="articleBody"><p>具体效果如图</p>
 <p><img src="http://7xrz94.com1.z0.glb.clouddn.com/demo.gif" alt=""></p>
-<h4 id="说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示">说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示</h4><p>&lt;!—more—&gt;</p>
+<h4 id="说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示">说下具体思路,一开始打算写效果的时候,思路很明确,判断连续获取的偏移量值,判断差值达到多少隐藏或显示</h4><a id="more"></a>
 <h4 id="具体实现也很简单,调用scrollViewWillEndDragging方法">具体实现也很简单,调用scrollViewWillEndDragging方法</h4><pre><code><span class="func"><span class="keyword">func</span> <span class="title">scrollViewWillEndDragging</span><span class="params">(<span class="number">_</span> scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer&lt;CGPoint&gt;)</span></span> {
     <span class="keyword">if</span> velocity.y &gt; <span class="number">0</span> {
         <span class="keyword">self</span>.navigationController?.setNavigationBarHidden(<span class="literal">true</span>, animated: <span class="literal">true</span>)
