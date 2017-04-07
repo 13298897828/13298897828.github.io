@@ -218,16 +218,12 @@
 
       
         
-          <span itemprop="articleBody"><p>开发过程中涉及.xlsx文件,看到网上有几个处理相关文件的库(XlsxReaderWriter)<br>但是都不是很好用,需要拽成子项目?添加依赖…而且一年没更新了,最终放弃了,选了另一种<br>先把文件转换成csv,然后对文件进行处理,转换数组操作.<br>    func getsvArray() -&gt; Array<array<string>&gt; {<br>        let fileContent = try? NSString(contentsOfFile: Bundle.main.path(forResource: “同龄人肤质平均分”, ofType: “csv”)!, encoding: String.Encoding.utf8.rawValue)<br>        let filearr = fileContent?.components(separatedBy: “,,”)<br>        var tempArr:Array<string> = []<br>        for item in filearr! {<br>            let newItem = item.replacingOccurrences(of: “\r\n”, with: “”)<br>            tempArr.append(newItem)<br>        }</string></array<string></p>
-<pre><code>    <span class="keyword">var</span> resultArr:<span class="built_in">Array</span>&lt;<span class="built_in">Array</span>&lt;<span class="built_in">String</span>&gt;&gt; = []
-    <span class="keyword">for</span> item  <span class="keyword">in</span> tempArr {
-        <span class="keyword">let</span> newItem =  item.components(separatedBy: <span class="string">","</span>)
-        resultArr.append(newItem)
-    }
-    <span class="keyword">return</span> resultArr
-}
-</code></pre><p>通过转换获取二维数组,对内层数组或者元组进行数据读取操作,仅限于读取数据,不适用数据写入.</p>
-</span>
+          <p>开发过程中涉及.xlsx文件,看到网上有几个处理相关文件的库(XlsxReaderWriter)<br>但是都不是很好用,需要拽成子项目?添加依赖…而且一年没更新了,最终放弃了,选了另一种<br>先把文件转换成csv,然后对文件进行处理,转换数组操作(仅限文件读取,不涉及写入).<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/04/07/iOS-如何读取xlsx文件/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

@@ -35,16 +35,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.4" />
 
 
-<meta name="description" content="开发过程中涉及.xlsx文件,看到网上有几个处理相关文件的库(XlsxReaderWriter)但是都不是很好用,需要拽成子项目?添加依赖…而且一年没更新了,最终放弃了,选了另一种先把文件转换成csv,然后对文件进行处理,转换数组操作.    func getsvArray() -&amp;gt; Array&amp;gt; {        let fileContent = try? NSString(con">
+<meta name="description" content="开发过程中涉及.xlsx文件,看到网上有几个处理相关文件的库(XlsxReaderWriter)但是都不是很好用,需要拽成子项目?添加依赖…而且一年没更新了,最终放弃了,选了另一种先把文件转换成csv,然后对文件进行处理,转换数组操作(仅限文件读取,不涉及写入).">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 如何读取xlsx文件(corver to csv)">
 <meta property="og:url" content="http://yoursite.com/2017/04/07/iOS-如何读取xlsx文件/index.html">
 <meta property="og:site_name" content="张天琦">
-<meta property="og:description" content="开发过程中涉及.xlsx文件,看到网上有几个处理相关文件的库(XlsxReaderWriter)但是都不是很好用,需要拽成子项目?添加依赖…而且一年没更新了,最终放弃了,选了另一种先把文件转换成csv,然后对文件进行处理,转换数组操作.    func getsvArray() -&amp;gt; Array&amp;gt; {        let fileContent = try? NSString(con">
-<meta property="og:updated_time" content="2017-04-07T07:55:49.000Z">
+<meta property="og:description" content="开发过程中涉及.xlsx文件,看到网上有几个处理相关文件的库(XlsxReaderWriter)但是都不是很好用,需要拽成子项目?添加依赖…而且一年没更新了,最终放弃了,选了另一种先把文件转换成csv,然后对文件进行处理,转换数组操作(仅限文件读取,不涉及写入).">
+<meta property="og:updated_time" content="2017-04-07T07:59:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 如何读取xlsx文件(corver to csv)">
-<meta name="twitter:description" content="开发过程中涉及.xlsx文件,看到网上有几个处理相关文件的库(XlsxReaderWriter)但是都不是很好用,需要拽成子项目?添加依赖…而且一年没更新了,最终放弃了,选了另一种先把文件转换成csv,然后对文件进行处理,转换数组操作.    func getsvArray() -&amp;gt; Array&amp;gt; {        let fileContent = try? NSString(con">
+<meta name="twitter:description" content="开发过程中涉及.xlsx文件,看到网上有几个处理相关文件的库(XlsxReaderWriter)但是都不是很好用,需要拽成子项目?添加依赖…而且一年没更新了,最终放弃了,选了另一种先把文件转换成csv,然后对文件进行处理,转换数组操作(仅限文件读取,不涉及写入).">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -214,7 +214,7 @@
       
 
       
-        <span itemprop="articleBody"><p>开发过程中涉及.xlsx文件,看到网上有几个处理相关文件的库(XlsxReaderWriter)<br>但是都不是很好用,需要拽成子项目?添加依赖…而且一年没更新了,最终放弃了,选了另一种<br>先把文件转换成csv,然后对文件进行处理,转换数组操作.<br>    func getsvArray() -&gt; Array<array<string>&gt; {<br>        let fileContent = try? NSString(contentsOfFile: Bundle.main.path(forResource: “同龄人肤质平均分”, ofType: “csv”)!, encoding: String.Encoding.utf8.rawValue)<br>        let filearr = fileContent?.components(separatedBy: “,,”)<br>        var tempArr:Array<string> = []<br>        for item in filearr! {<br>            let newItem = item.replacingOccurrences(of: “\r\n”, with: “”)<br>            tempArr.append(newItem)<br>        }</string></array<string></p>
+        <span itemprop="articleBody"><p>开发过程中涉及.xlsx文件,看到网上有几个处理相关文件的库(XlsxReaderWriter)<br>但是都不是很好用,需要拽成子项目?添加依赖…而且一年没更新了,最终放弃了,选了另一种<br>先把文件转换成csv,然后对文件进行处理,转换数组操作(仅限文件读取,不涉及写入).<br><a id="more"></a><br>    func getsvArray() -&gt; Array<array<string>&gt; {<br>        let fileContent = try? NSString(contentsOfFile: Bundle.main.path(forResource: “xxx”, ofType: “csv”)!, encoding: String.Encoding.utf8.rawValue)<br>        let filearr = fileContent?.components(separatedBy: “,,”)<br>        var tempArr:Array<string> = []<br>        for item in filearr! {<br>            let newItem = item.replacingOccurrences(of: “\r\n”, with: “”)<br>            tempArr.append(newItem)<br>        }</string></array<string></p>
 <pre><code>    <span class="keyword">var</span> resultArr:<span class="built_in">Array</span>&lt;<span class="built_in">Array</span>&lt;<span class="built_in">String</span>&gt;&gt; = []
     <span class="keyword">for</span> item  <span class="keyword">in</span> tempArr {
         <span class="keyword">let</span> newItem =  item.components(separatedBy: <span class="string">","</span>)
